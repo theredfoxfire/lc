@@ -1,0 +1,7 @@
+lc_lc:
+    resource: "@LcLcBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: @AppBundle/Controller/
+    type:     annotation

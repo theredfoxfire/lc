@@ -1,0 +1,3 @@
+lc_lc_homepage:
+    path:     /lc/{name}
+    defaults: { _controller: LcLcBundle:Default:index }

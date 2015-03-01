@@ -1,0 +1,7 @@
+parameters:
+#    lc_lc.example.class: Lc\LcBundle\Example
+
+services:
+#    lc_lc.example:
+#        class: %lc_lc.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
