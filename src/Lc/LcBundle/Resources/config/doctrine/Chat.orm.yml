@@ -1,15 +1,25 @@
-Lc\LcBundle\Entity\:
+Lc\LcBundle\Entity\Chat:
  type: entity
- table: 
+ table: chat
  id:
   id:
    type: integer
    generator: { strategy: AUTO }
  fields:
-  name:
+  id_1:
+   type: integer
+  id_2:
+   type: integer
+  message:
+   type: text
+  created_at:
+   type: datetime
+  updated_at:
+   type: datetime
+   nullable: true
+  token:
    type: string
    length: 255
-   unique: true
  oneToMany:
   jobs:
    targetEntity: Job

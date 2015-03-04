@@ -1,12 +1,18 @@
-Lc\LcBundle\Entity\:
+Lc\LcBundle\Entity\Criteria:
  type: entity
- table: 
+ table: criteria
  id:
   id:
    type: integer
    generator: { strategy: AUTO }
  fields:
   name:
+   type: string
+   length: 255
+   unique: true
+  is_active:
+   type: boolean
+  token:
    type: string
    length: 255
    unique: true

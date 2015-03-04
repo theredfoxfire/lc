@@ -1,6 +1,6 @@
-Lc\LcBundle\Entity\:
+Lc\LcBundle\Entity\Admin:
  type: entity
- table: 
+ table: admin
  id:
   id:
    type: integer
@@ -9,7 +9,24 @@ Lc\LcBundle\Entity\:
   name:
    type: string
    length: 255
+  password:
+   type: string
+   length: 255
+  email:
+   type: string
+   length: 255
    unique: true
+  is_active: 
+   type: boolean
+  token: 
+   type: string
+   length: 255
+   unique: true
+  created_at:
+   type: datetime
+  updated_at:
+   type: datetime
+   nullable: true
  oneToMany:
   jobs:
    targetEntity: Job

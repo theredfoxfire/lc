@@ -9,6 +9,9 @@ Lc\LcBundle\Entity\:
   name:
    type: string
    length: 255
+  token:
+   type: string
+   length: 255
    unique: true
  oneToMany:
   jobs:

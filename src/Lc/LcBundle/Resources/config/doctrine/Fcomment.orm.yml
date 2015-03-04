@@ -1,15 +1,24 @@
-Lc\LcBundle\Entity\:
+Lc\LcBundle\Entity\Fcomment:
  type: entity
- table: 
+ table: fcomment
  id:
   id:
    type: integer
    generator: { strategy: AUTO }
  fields:
-  name:
+  comment:
+   type: text
+  is_publish:
+   type: boolean
+  token: 
    type: string
    length: 255
    unique: true
+  created_at:
+   type: datetime
+  updated_at:
+   type: datetime
+   nullable: true
  oneToMany:
   jobs:
    targetEntity: Job
