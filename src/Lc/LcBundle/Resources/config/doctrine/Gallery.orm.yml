@@ -1,20 +1,29 @@
-Lc\LcBundle\Entity\:
+Lc\LcBundle\Entity\Gallery:
  type: entity
- table: 
+ table: gallery
  id:
   id:
    type: integer
    generator: { strategy: AUTO }
  fields:
-  name:
+  shared:
+   type: integer
+   nullable: true
+  liked:
+   type: integer
+   nullable: true
+  commented:
+   type: integer
+   nullable: true
+  token:
    type: string
    length: 255
    unique: true
- oneToMany:
-  jobs:
-   targetEntity: Job
-   mappedBy: category
- manyToMany:
-  affiliates:
-   targetEntity: Affiliate
-   mappedBy: categories
+  path:
+   type: string
+   length: 255
+  created_at:
+   type: datetime
+  updated_at:
+   type: datetime
+   nullable: true

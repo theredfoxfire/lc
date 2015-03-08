@@ -1,20 +1,34 @@
-Lc\LcBundle\Entity\:
+Lc\LcBundle\Entity\User:
  type: entity
- table: 
+ table: user
  id:
   id:
    type: integer
    generator: { strategy: AUTO }
  fields:
-  name:
+  username:
    type: string
    length: 255
    unique: true
- oneToMany:
-  jobs:
-   targetEntity: Job
-   mappedBy: category
- manyToMany:
-  affiliates:
-   targetEntity: Affiliate
-   mappedBy: categories
+  email:
+   type: string
+   length: 255
+   unique: true
+  phone:
+   type: string
+   length: 20
+   unique: true
+  password:
+   type: string
+   length: 255
+  is_active:
+   type: boolean
+  created_at:
+   type: datetime
+  updated_at:
+   type: datetime
+   nullable: true
+  token:
+   type: string
+   length: 255
+   unique: true

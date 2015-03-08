@@ -1,0 +1,30 @@
+admin:
+    path:     /
+    defaults: { _controller: "LcLcBundle:Admin:index" }
+
+admin_show:
+    path:     /{id}/show
+    defaults: { _controller: "LcLcBundle:Admin:show" }
+
+admin_new:
+    path:     /new
+    defaults: { _controller: "LcLcBundle:Admin:new" }
+
+admin_create:
+    path:     /create
+    defaults: { _controller: "LcLcBundle:Admin:create" }
+    requirements: { _method: post }
+
+admin_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "LcLcBundle:Admin:edit" }
+
+admin_update:
+    path:     /{id}/update
+    defaults: { _controller: "LcLcBundle:Admin:update" }
+    requirements: { _method: post|put }
+
+admin_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "LcLcBundle:Admin:delete" }
+    requirements: { _method: post|delete }

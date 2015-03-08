@@ -1,20 +1,25 @@
-Lc\LcBundle\Entity\:
+Lc\LcBundle\Entity\Friend:
  type: entity
- table: 
+ table: friend
  id:
   id:
    type: integer
    generator: { strategy: AUTO }
  fields:
-  name:
+  id_1: 
+   type: integer
+  id_2:
+   type: integer
+  status:
+   type: boolean
+  is_confirmed:
+   type: boolean
+  created_at:
+   type: datetime
+  updated_at:
+   type: datetime
+   nullable: true
+  token:
    type: string
    length: 255
    unique: true
- oneToMany:
-  jobs:
-   targetEntity: Job
-   mappedBy: category
- manyToMany:
-  affiliates:
-   targetEntity: Affiliate
-   mappedBy: categories

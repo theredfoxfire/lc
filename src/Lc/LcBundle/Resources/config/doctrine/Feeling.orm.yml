@@ -8,6 +8,15 @@ Lc\LcBundle\Entity\Feeling:
  fields:
   feel:
    type: text
+  liked:
+   type: integer
+   nullable: true
+  shared:
+   type: integer
+   nullable: true
+  commented:
+   type: integer
+   nullable: true
   is_active:
    type: boolean
   created_at:
@@ -19,11 +28,3 @@ Lc\LcBundle\Entity\Feeling:
    type: string
    length: 255
    unique: true
- oneToMany:
-  jobs:
-   targetEntity: Job
-   mappedBy: category
- manyToMany:
-  affiliates:
-   targetEntity: Affiliate
-   mappedBy: categories

@@ -1,6 +1,6 @@
-Lc\LcBundle\Entity\:
+Lc\LcBundle\Entity\Sex:
  type: entity
- table: 
+ table: sex
  id:
   id:
    type: integer
@@ -10,11 +10,12 @@ Lc\LcBundle\Entity\:
    type: string
    length: 255
    unique: true
- oneToMany:
-  jobs:
-   targetEntity: Job
-   mappedBy: category
- manyToMany:
-  affiliates:
-   targetEntity: Affiliate
-   mappedBy: categories
+  created_at:
+   type: datetime
+  updated_at:
+   type: datetime
+   nullable: true
+  token:
+   type: string
+   length: 255
+   unique: true

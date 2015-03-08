@@ -27,11 +27,3 @@ Lc\LcBundle\Entity\Admin:
   updated_at:
    type: datetime
    nullable: true
- oneToMany:
-  jobs:
-   targetEntity: Job
-   mappedBy: category
- manyToMany:
-  affiliates:
-   targetEntity: Affiliate
-   mappedBy: categories

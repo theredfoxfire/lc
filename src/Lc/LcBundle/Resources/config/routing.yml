@@ -1,3 +1,9 @@
 lc_lc_homepage:
     path:     /lc/{name}
     defaults: { _controller: LcLcBundle:Default:index }
+LcLcBundle_admin:
+        resource: "@LcLcBundle/Resources/config/routing/admin.yml"
+        prefix:   /admin
+LcLcBundle_admindoing:
+        resource: "@LcLcBundle/Resources/config/routing/admindoing.yml"
+        prefix:   /admindoing

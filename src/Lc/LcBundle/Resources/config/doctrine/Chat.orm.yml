@@ -20,11 +20,3 @@ Lc\LcBundle\Entity\Chat:
   token:
    type: string
    length: 255
- oneToMany:
-  jobs:
-   targetEntity: Job
-   mappedBy: category
- manyToMany:
-  affiliates:
-   targetEntity: Affiliate
-   mappedBy: categories

@@ -1,6 +1,6 @@
-Lc\LcBundle\Entity\:
+Lc\LcBundle\Entity\Province:
  type: entity
- table: 
+ table: province
  id:
   id:
    type: integer
@@ -10,11 +10,14 @@ Lc\LcBundle\Entity\:
    type: string
    length: 255
    unique: true
- oneToMany:
-  jobs:
-   targetEntity: Job
-   mappedBy: category
- manyToMany:
-  affiliates:
-   targetEntity: Affiliate
-   mappedBy: categories
+  is_active:
+   type: boolean
+  created_at:
+   type: datetime
+  updated_at:
+   type: datetime
+   nullable: true
+  token:
+   type: string
+   length: 255
+   unique: true

@@ -1,0 +1,33 @@
+Lc\LcBundle\Entity\Adminlog:
+ type: entity
+ table: adminlog
+ id:
+  id:
+   type: integer
+   generator: { strategy: AUTO }
+ fields:
+  login_at:
+   type: datetime
+  last_login:
+   type: datetime
+   nullable: true
+  logout_at:
+   type: datetime
+  last_logout:
+   type: datetime
+   nullable: true
+  ip_address:
+   type: string
+   length: 255
+  mac_address:
+   type: string
+   length: 255
+  created_at:
+   type: datetime
+  updated_at:
+   type: datetime
+   nullable: true
+  token:
+   type: string
+   length: 255
+   unique: true  

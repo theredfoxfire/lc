@@ -1,20 +1,19 @@
-Lc\LcBundle\Entity\:
+Lc\LcBundle\Entity\Glike:
  type: entity
- table: 
+ table: glike
  id:
   id:
    type: integer
    generator: { strategy: AUTO }
  fields:
-  name:
+  created_at: 
+   type: datetime
+  updated_at:
+   type: datetime
+   nullable: true
+  status:
+   type: boolean
+  token:
    type: string
    length: 255
    unique: true
- oneToMany:
-  jobs:
-   targetEntity: Job
-   mappedBy: category
- manyToMany:
-  affiliates:
-   targetEntity: Affiliate
-   mappedBy: categories

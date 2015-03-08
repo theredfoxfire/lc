@@ -1,20 +1,44 @@
-Lc\LcBundle\Entity\:
+Lc\LcBundle\Entity\Usercriteria:
  type: entity
- table: 
+ table: usercriteria
  id:
   id:
    type: integer
    generator: { strategy: AUTO }
  fields:
-  name:
+  hobby:
+   type: integer
+  work:
+   type: integer
+  education:
+   type: integer
+  sallary:
+   type: integer
+  province:
+   type: integer
+  city:
+   type: integer
+  lived:
+   type: integer
+  smoking:
+   type: integer
+  status:
+   type: integer
+  sex:
+   type: integer
+  religy:
+   type: integer
+  alcoholic:
+   type: integer
+  plan:
+   type: integer
+  created_at:
+   type: datetime
+  updated_at:
+   type: datetime
+   nullable: true
+  token: 
    type: string
    length: 255
    unique: true
- oneToMany:
-  jobs:
-   targetEntity: Job
-   mappedBy: category
- manyToMany:
-  affiliates:
-   targetEntity: Affiliate
-   mappedBy: categories
+

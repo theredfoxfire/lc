@@ -1,6 +1,6 @@
-Lc\LcBundle\Entity\:
+Lc\LcBundle\Entity\Profile:
  type: entity
- table: 
+ table: profile
  id:
   id:
    type: integer
@@ -9,12 +9,40 @@ Lc\LcBundle\Entity\:
   name:
    type: string
    length: 255
+  hobby:
+   type: integer
+  work:
+   type: integer
+  education:
+   type: integer
+  address:
+   type: text
+  sallary:
+   type: integer
+  province:
+   type: integer
+  city:
+   type: integer
+  lived:
+   type: integer
+  smoking:
+   type: integer
+  status:
+   type: integer
+  sex:
+   type: integer
+  religy:
+   type: integer
+  alcoholic:
+   type: integer
+  plan:
+   type: integer
+  created_at:
+   type: datetime
+  updated_at:
+   type: datetime
+   nullable: true
+  token: 
+   type: string
+   length: 255
    unique: true
- oneToMany:
-  jobs:
-   targetEntity: Job
-   mappedBy: category
- manyToMany:
-  affiliates:
-   targetEntity: Affiliate
-   mappedBy: categories
