@@ -1,0 +1,30 @@
+religy:
+    path:     /
+    defaults: { _controller: "LcLcBundle:Religy:index" }
+
+religy_show:
+    path:     /{id}/show
+    defaults: { _controller: "LcLcBundle:Religy:show" }
+
+religy_new:
+    path:     /new
+    defaults: { _controller: "LcLcBundle:Religy:new" }
+
+religy_create:
+    path:     /create
+    defaults: { _controller: "LcLcBundle:Religy:create" }
+    requirements: { _method: post }
+
+religy_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "LcLcBundle:Religy:edit" }
+
+religy_update:
+    path:     /{id}/update
+    defaults: { _controller: "LcLcBundle:Religy:update" }
+    requirements: { _method: post|put }
+
+religy_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "LcLcBundle:Religy:delete" }
+    requirements: { _method: post|delete }

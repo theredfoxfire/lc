@@ -10,9 +10,6 @@ LcLcBundle_admindoing:
 LcLcBundle_adminlog:
         resource: "@LcLcBundle/Resources/config/routing/adminlog.yml"
         prefix:   /adminlog
-LcLcBundle_adminmclist:
-        resource: "@LcLcBundle/Resources/config/routing/adminmclist.yml"
-        prefix:   /adminmclist
 LcLcBundle_chat:
         resource: "@LcLcBundle/Resources/config/routing/chat.yml"
         prefix:   /chat
@@ -70,13 +67,34 @@ LcLcBundle_notification:
 LcLcBundle_plan:
         resource: "@LcLcBundle/Resources/config/routing/plan.yml"
         prefix:   /plan
-LcLcBundle_priviledge:
-        resource: "@LcLcBundle/Resources/config/routing/priviledge.yml"
-        prefix:   /priviledge
 LcLcBundle_profile:
         resource: "@LcLcBundle/Resources/config/routing/profile.yml"
         prefix:   /profile
- LcLcBundle_province:
+LcLcBundle_province:
         resource: "@LcLcBundle/Resources/config/routing/province.yml"
         prefix:   /province
+LcLcBundle_religy:
+        resource: "@LcLcBundle/Resources/config/routing/religy.yml"
+        prefix:   /religy
+LcLcBundle_sallary:
+        resource: "@LcLcBundle/Resources/config/routing/sallary.yml"
+        prefix:   /sallary
+LcLcBundle_sex:
+        resource: "@LcLcBundle/Resources/config/routing/sex.yml"
+        prefix:   /sex
+LcLcBundle_status:
+        resource: "@LcLcBundle/Resources/config/routing/status.yml"
+        prefix:   /status
+LcLcBundle_user:
+        resource: "@LcLcBundle/Resources/config/routing/user.yml"
+        prefix:   /user
+LcLcBundle_usercriteria:
+        resource: "@LcLcBundle/Resources/config/routing/usercriteria.yml"
+        prefix:   /usercriteria
+LcLcBundle_userdoing:
+        resource: "@LcLcBundle/Resources/config/routing/userdoing.yml"
+        prefix:   /userdoing
+LcLcBundle_userlog:
+        resource: "@LcLcBundle/Resources/config/routing/userlog.yml"
+        prefix:   /userlog
 

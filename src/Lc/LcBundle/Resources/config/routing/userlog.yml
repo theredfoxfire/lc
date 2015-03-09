@@ -1,0 +1,30 @@
+userlog:
+    path:     /
+    defaults: { _controller: "LcLcBundle:Userlog:index" }
+
+userlog_show:
+    path:     /{id}/show
+    defaults: { _controller: "LcLcBundle:Userlog:show" }
+
+userlog_new:
+    path:     /new
+    defaults: { _controller: "LcLcBundle:Userlog:new" }
+
+userlog_create:
+    path:     /create
+    defaults: { _controller: "LcLcBundle:Userlog:create" }
+    requirements: { _method: post }
+
+userlog_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "LcLcBundle:Userlog:edit" }
+
+userlog_update:
+    path:     /{id}/update
+    defaults: { _controller: "LcLcBundle:Userlog:update" }
+    requirements: { _method: post|put }
+
+userlog_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "LcLcBundle:Userlog:delete" }
+    requirements: { _method: post|delete }

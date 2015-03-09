@@ -1,0 +1,30 @@
+userdoing:
+    path:     /
+    defaults: { _controller: "LcLcBundle:Userdoing:index" }
+
+userdoing_show:
+    path:     /{id}/show
+    defaults: { _controller: "LcLcBundle:Userdoing:show" }
+
+userdoing_new:
+    path:     /new
+    defaults: { _controller: "LcLcBundle:Userdoing:new" }
+
+userdoing_create:
+    path:     /create
+    defaults: { _controller: "LcLcBundle:Userdoing:create" }
+    requirements: { _method: post }
+
+userdoing_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "LcLcBundle:Userdoing:edit" }
+
+userdoing_update:
+    path:     /{id}/update
+    defaults: { _controller: "LcLcBundle:Userdoing:update" }
+    requirements: { _method: post|put }
+
+userdoing_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "LcLcBundle:Userdoing:delete" }
+    requirements: { _method: post|delete }

@@ -1,0 +1,30 @@
+usercriteria:
+    path:     /
+    defaults: { _controller: "LcLcBundle:Usercriteria:index" }
+
+usercriteria_show:
+    path:     /{id}/show
+    defaults: { _controller: "LcLcBundle:Usercriteria:show" }
+
+usercriteria_new:
+    path:     /new
+    defaults: { _controller: "LcLcBundle:Usercriteria:new" }
+
+usercriteria_create:
+    path:     /create
+    defaults: { _controller: "LcLcBundle:Usercriteria:create" }
+    requirements: { _method: post }
+
+usercriteria_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "LcLcBundle:Usercriteria:edit" }
+
+usercriteria_update:
+    path:     /{id}/update
+    defaults: { _controller: "LcLcBundle:Usercriteria:update" }
+    requirements: { _method: post|put }
+
+usercriteria_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "LcLcBundle:Usercriteria:delete" }
+    requirements: { _method: post|delete }

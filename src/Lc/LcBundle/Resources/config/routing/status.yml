@@ -1,0 +1,30 @@
+status:
+    path:     /
+    defaults: { _controller: "LcLcBundle:Status:index" }
+
+status_show:
+    path:     /{id}/show
+    defaults: { _controller: "LcLcBundle:Status:show" }
+
+status_new:
+    path:     /new
+    defaults: { _controller: "LcLcBundle:Status:new" }
+
+status_create:
+    path:     /create
+    defaults: { _controller: "LcLcBundle:Status:create" }
+    requirements: { _method: post }
+
+status_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "LcLcBundle:Status:edit" }
+
+status_update:
+    path:     /{id}/update
+    defaults: { _controller: "LcLcBundle:Status:update" }
+    requirements: { _method: post|put }
+
+status_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "LcLcBundle:Status:delete" }
+    requirements: { _method: post|delete }

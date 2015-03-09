@@ -1,0 +1,92 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Usercriteria</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Hobby</th>
+                <td>{{ entity.hobby }}</td>
+            </tr>
+            <tr>
+                <th>Work</th>
+                <td>{{ entity.work }}</td>
+            </tr>
+            <tr>
+                <th>Education</th>
+                <td>{{ entity.education }}</td>
+            </tr>
+            <tr>
+                <th>Sallary</th>
+                <td>{{ entity.sallary }}</td>
+            </tr>
+            <tr>
+                <th>Province</th>
+                <td>{{ entity.province }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ entity.city }}</td>
+            </tr>
+            <tr>
+                <th>Lived</th>
+                <td>{{ entity.lived }}</td>
+            </tr>
+            <tr>
+                <th>Smoking</th>
+                <td>{{ entity.smoking }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ entity.status }}</td>
+            </tr>
+            <tr>
+                <th>Sex</th>
+                <td>{{ entity.sex }}</td>
+            </tr>
+            <tr>
+                <th>Religy</th>
+                <td>{{ entity.religy }}</td>
+            </tr>
+            <tr>
+                <th>Alcoholic</th>
+                <td>{{ entity.alcoholic }}</td>
+            </tr>
+            <tr>
+                <th>Plan</th>
+                <td>{{ entity.plan }}</td>
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{{ entity.createdat|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Updated_at</th>
+                <td>{{ entity.updatedat|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Token</th>
+                <td>{{ entity.token }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('usercriteria') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('usercriteria_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}
