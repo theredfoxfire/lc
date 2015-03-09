@@ -1,0 +1,53 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Friend list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Id_1</th>
+                <th>Id_2</th>
+                <th>Status</th>
+                <th>Is_confirmed</th>
+                <th>Created_at</th>
+                <th>Updated_at</th>
+                <th>Token</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('friend_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.id1 }}</td>
+                <td>{{ entity.id2 }}</td>
+                <td>{{ entity.status }}</td>
+                <td>{{ entity.isconfirmed }}</td>
+                <td>{% if entity.createdat %}{{ entity.createdat|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.updatedat %}{{ entity.updatedat|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.token }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('friend_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('friend_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('friend_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

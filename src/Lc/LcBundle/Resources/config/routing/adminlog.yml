@@ -1,0 +1,30 @@
+adminlog:
+    path:     /
+    defaults: { _controller: "LcLcBundle:Adminlog:index" }
+
+adminlog_show:
+    path:     /{id}/show
+    defaults: { _controller: "LcLcBundle:Adminlog:show" }
+
+adminlog_new:
+    path:     /new
+    defaults: { _controller: "LcLcBundle:Adminlog:new" }
+
+adminlog_create:
+    path:     /create
+    defaults: { _controller: "LcLcBundle:Adminlog:create" }
+    requirements: { _method: post }
+
+adminlog_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "LcLcBundle:Adminlog:edit" }
+
+adminlog_update:
+    path:     /{id}/update
+    defaults: { _controller: "LcLcBundle:Adminlog:update" }
+    requirements: { _method: post|put }
+
+adminlog_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "LcLcBundle:Adminlog:delete" }
+    requirements: { _method: post|delete }

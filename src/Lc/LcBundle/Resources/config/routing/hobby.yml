@@ -1,0 +1,30 @@
+hobby:
+    path:     /
+    defaults: { _controller: "LcLcBundle:Hobby:index" }
+
+hobby_show:
+    path:     /{id}/show
+    defaults: { _controller: "LcLcBundle:Hobby:show" }
+
+hobby_new:
+    path:     /new
+    defaults: { _controller: "LcLcBundle:Hobby:new" }
+
+hobby_create:
+    path:     /create
+    defaults: { _controller: "LcLcBundle:Hobby:create" }
+    requirements: { _method: post }
+
+hobby_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "LcLcBundle:Hobby:edit" }
+
+hobby_update:
+    path:     /{id}/update
+    defaults: { _controller: "LcLcBundle:Hobby:update" }
+    requirements: { _method: post|put }
+
+hobby_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "LcLcBundle:Hobby:delete" }
+    requirements: { _method: post|delete }

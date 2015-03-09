@@ -1,0 +1,30 @@
+plan:
+    path:     /
+    defaults: { _controller: "LcLcBundle:Plan:index" }
+
+plan_show:
+    path:     /{id}/show
+    defaults: { _controller: "LcLcBundle:Plan:show" }
+
+plan_new:
+    path:     /new
+    defaults: { _controller: "LcLcBundle:Plan:new" }
+
+plan_create:
+    path:     /create
+    defaults: { _controller: "LcLcBundle:Plan:create" }
+    requirements: { _method: post }
+
+plan_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "LcLcBundle:Plan:edit" }
+
+plan_update:
+    path:     /{id}/update
+    defaults: { _controller: "LcLcBundle:Plan:update" }
+    requirements: { _method: post|put }
+
+plan_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "LcLcBundle:Plan:delete" }
+    requirements: { _method: post|delete }

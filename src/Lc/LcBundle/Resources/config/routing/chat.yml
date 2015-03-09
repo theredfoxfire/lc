@@ -1,0 +1,30 @@
+chat:
+    path:     /
+    defaults: { _controller: "LcLcBundle:Chat:index" }
+
+chat_show:
+    path:     /{id}/show
+    defaults: { _controller: "LcLcBundle:Chat:show" }
+
+chat_new:
+    path:     /new
+    defaults: { _controller: "LcLcBundle:Chat:new" }
+
+chat_create:
+    path:     /create
+    defaults: { _controller: "LcLcBundle:Chat:create" }
+    requirements: { _method: post }
+
+chat_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "LcLcBundle:Chat:edit" }
+
+chat_update:
+    path:     /{id}/update
+    defaults: { _controller: "LcLcBundle:Chat:update" }
+    requirements: { _method: post|put }
+
+chat_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "LcLcBundle:Chat:delete" }
+    requirements: { _method: post|delete }

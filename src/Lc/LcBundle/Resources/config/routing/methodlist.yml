@@ -1,0 +1,30 @@
+methodlist:
+    path:     /
+    defaults: { _controller: "LcLcBundle:Methodlist:index" }
+
+methodlist_show:
+    path:     /{id}/show
+    defaults: { _controller: "LcLcBundle:Methodlist:show" }
+
+methodlist_new:
+    path:     /new
+    defaults: { _controller: "LcLcBundle:Methodlist:new" }
+
+methodlist_create:
+    path:     /create
+    defaults: { _controller: "LcLcBundle:Methodlist:create" }
+    requirements: { _method: post }
+
+methodlist_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "LcLcBundle:Methodlist:edit" }
+
+methodlist_update:
+    path:     /{id}/update
+    defaults: { _controller: "LcLcBundle:Methodlist:update" }
+    requirements: { _method: post|put }
+
+methodlist_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "LcLcBundle:Methodlist:delete" }
+    requirements: { _method: post|delete }

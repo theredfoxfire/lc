@@ -1,0 +1,52 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Notification</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Viewed</th>
+                <td>{{ entity.viewed }}</td>
+            </tr>
+            <tr>
+                <th>From</th>
+                <td>{{ entity.from }}</td>
+            </tr>
+            <tr>
+                <th>From_id</th>
+                <td>{{ entity.fromid }}</td>
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{{ entity.createdat|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Updated_at</th>
+                <td>{{ entity.updatedat|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Token</th>
+                <td>{{ entity.token }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('notification') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('notification_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

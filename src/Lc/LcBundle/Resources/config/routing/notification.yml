@@ -1,0 +1,30 @@
+notification:
+    path:     /
+    defaults: { _controller: "LcLcBundle:Notification:index" }
+
+notification_show:
+    path:     /{id}/show
+    defaults: { _controller: "LcLcBundle:Notification:show" }
+
+notification_new:
+    path:     /new
+    defaults: { _controller: "LcLcBundle:Notification:new" }
+
+notification_create:
+    path:     /create
+    defaults: { _controller: "LcLcBundle:Notification:create" }
+    requirements: { _method: post }
+
+notification_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "LcLcBundle:Notification:edit" }
+
+notification_update:
+    path:     /{id}/update
+    defaults: { _controller: "LcLcBundle:Notification:update" }
+    requirements: { _method: post|put }
+
+notification_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "LcLcBundle:Notification:delete" }
+    requirements: { _method: post|delete }

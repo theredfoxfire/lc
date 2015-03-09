@@ -1,0 +1,30 @@
+province:
+    path:     /
+    defaults: { _controller: "LcLcBundle:Province:index" }
+
+province_show:
+    path:     /{id}/show
+    defaults: { _controller: "LcLcBundle:Province:show" }
+
+province_new:
+    path:     /new
+    defaults: { _controller: "LcLcBundle:Province:new" }
+
+province_create:
+    path:     /create
+    defaults: { _controller: "LcLcBundle:Province:create" }
+    requirements: { _method: post }
+
+province_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "LcLcBundle:Province:edit" }
+
+province_update:
+    path:     /{id}/update
+    defaults: { _controller: "LcLcBundle:Province:update" }
+    requirements: { _method: post|put }
+
+province_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "LcLcBundle:Province:delete" }
+    requirements: { _method: post|delete }

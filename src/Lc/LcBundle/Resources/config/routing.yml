@@ -7,3 +7,76 @@ LcLcBundle_admin:
 LcLcBundle_admindoing:
         resource: "@LcLcBundle/Resources/config/routing/admindoing.yml"
         prefix:   /admindoing
+LcLcBundle_adminlog:
+        resource: "@LcLcBundle/Resources/config/routing/adminlog.yml"
+        prefix:   /adminlog
+LcLcBundle_adminmclist:
+        resource: "@LcLcBundle/Resources/config/routing/adminmclist.yml"
+        prefix:   /adminmclist
+LcLcBundle_chat:
+        resource: "@LcLcBundle/Resources/config/routing/chat.yml"
+        prefix:   /chat
+LcLcBundle_city:
+        resource: "@LcLcBundle/Resources/config/routing/city.yml"
+        prefix:   /city
+LcLcBundle_controllerlist:
+        resource: "@LcLcBundle/Resources/config/routing/controllerlist.yml"
+        prefix:   /controllerlist
+LcLcBundle_criteria:
+        resource: "@LcLcBundle/Resources/config/routing/criteria.yml"
+        prefix:   /criteria
+LcLcBundle_education:
+        resource: "@LcLcBundle/Resources/config/routing/education.yml"
+        prefix:   /education
+LcLcBundle_fcomment:
+        resource: "@LcLcBundle/Resources/config/routing/fcomment.yml"
+        prefix:   /fcomment
+LcLcBundle_feeling:
+        resource: "@LcLcBundle/Resources/config/routing/feeling.yml"
+        prefix:   /feeling
+LcLcBundle_flike:
+        resource: "@LcLcBundle/Resources/config/routing/flike.yml"
+        prefix:   /flike
+LcLcBundle_friend:
+        resource: "@LcLcBundle/Resources/config/routing/friend.yml"
+        prefix:   /friend
+LcLcBundle_fshare:
+        resource: "@LcLcBundle/Resources/config/routing/fshare.yml"
+        prefix:   /fshare
+LcLcBundle_gallery:
+        resource: "@LcLcBundle/Resources/config/routing/gallery.yml"
+        prefix:   /gallery
+LcLcBundle_glike:
+        resource: "@LcLcBundle/Resources/config/routing/glike.yml"
+        prefix:   /glike
+LcLcBundle_gcomment:
+        resource: "@LcLcBundle/Resources/config/routing/gcomment.yml"
+        prefix:   /gcomment
+LcLcBundle_gshare:
+        resource: "@LcLcBundle/Resources/config/routing/gshare.yml"
+        prefix:   /gshare
+LcLcBundle_hobby:
+        resource: "@LcLcBundle/Resources/config/routing/hobby.yml"
+        prefix:   /hobby
+LcLcBundle_job:
+        resource: "@LcLcBundle/Resources/config/routing/job.yml"
+        prefix:   /job
+LcLcBundle_methodlist:
+        resource: "@LcLcBundle/Resources/config/routing/methodlist.yml"
+        prefix:   /methodlist
+LcLcBundle_notification:
+        resource: "@LcLcBundle/Resources/config/routing/notification.yml"
+        prefix:   /notification
+LcLcBundle_plan:
+        resource: "@LcLcBundle/Resources/config/routing/plan.yml"
+        prefix:   /plan
+LcLcBundle_priviledge:
+        resource: "@LcLcBundle/Resources/config/routing/priviledge.yml"
+        prefix:   /priviledge
+LcLcBundle_profile:
+        resource: "@LcLcBundle/Resources/config/routing/profile.yml"
+        prefix:   /profile
+ LcLcBundle_province:
+        resource: "@LcLcBundle/Resources/config/routing/province.yml"
+        prefix:   /province
+

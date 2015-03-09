@@ -1,0 +1,30 @@
+glike:
+    path:     /
+    defaults: { _controller: "LcLcBundle:Glike:index" }
+
+glike_show:
+    path:     /{id}/show
+    defaults: { _controller: "LcLcBundle:Glike:show" }
+
+glike_new:
+    path:     /new
+    defaults: { _controller: "LcLcBundle:Glike:new" }
+
+glike_create:
+    path:     /create
+    defaults: { _controller: "LcLcBundle:Glike:create" }
+    requirements: { _method: post }
+
+glike_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "LcLcBundle:Glike:edit" }
+
+glike_update:
+    path:     /{id}/update
+    defaults: { _controller: "LcLcBundle:Glike:update" }
+    requirements: { _method: post|put }
+
+glike_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "LcLcBundle:Glike:delete" }
+    requirements: { _method: post|delete }

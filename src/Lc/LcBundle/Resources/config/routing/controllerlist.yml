@@ -1,0 +1,30 @@
+controllerlist:
+    path:     /
+    defaults: { _controller: "LcLcBundle:Controllerlist:index" }
+
+controllerlist_show:
+    path:     /{id}/show
+    defaults: { _controller: "LcLcBundle:Controllerlist:show" }
+
+controllerlist_new:
+    path:     /new
+    defaults: { _controller: "LcLcBundle:Controllerlist:new" }
+
+controllerlist_create:
+    path:     /create
+    defaults: { _controller: "LcLcBundle:Controllerlist:create" }
+    requirements: { _method: post }
+
+controllerlist_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "LcLcBundle:Controllerlist:edit" }
+
+controllerlist_update:
+    path:     /{id}/update
+    defaults: { _controller: "LcLcBundle:Controllerlist:update" }
+    requirements: { _method: post|put }
+
+controllerlist_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "LcLcBundle:Controllerlist:delete" }
+    requirements: { _method: post|delete }

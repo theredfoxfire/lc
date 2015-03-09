@@ -1,0 +1,64 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Adminlog</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Login_at</th>
+                <td>{{ entity.loginat|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Last_login</th>
+                <td>{{ entity.lastlogin|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Logout_at</th>
+                <td>{{ entity.logoutat|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Last_logout</th>
+                <td>{{ entity.lastlogout|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Ip_address</th>
+                <td>{{ entity.ipaddress }}</td>
+            </tr>
+            <tr>
+                <th>Mac_address</th>
+                <td>{{ entity.macaddress }}</td>
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{{ entity.createdat|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Updated_at</th>
+                <td>{{ entity.updatedat|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Token</th>
+                <td>{{ entity.token }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('adminlog') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('adminlog_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

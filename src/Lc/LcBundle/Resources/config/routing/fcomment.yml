@@ -1,0 +1,30 @@
+fcomment:
+    path:     /
+    defaults: { _controller: "LcLcBundle:Fcomment:index" }
+
+fcomment_show:
+    path:     /{id}/show
+    defaults: { _controller: "LcLcBundle:Fcomment:show" }
+
+fcomment_new:
+    path:     /new
+    defaults: { _controller: "LcLcBundle:Fcomment:new" }
+
+fcomment_create:
+    path:     /create
+    defaults: { _controller: "LcLcBundle:Fcomment:create" }
+    requirements: { _method: post }
+
+fcomment_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "LcLcBundle:Fcomment:edit" }
+
+fcomment_update:
+    path:     /{id}/update
+    defaults: { _controller: "LcLcBundle:Fcomment:update" }
+    requirements: { _method: post|put }
+
+fcomment_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "LcLcBundle:Fcomment:delete" }
+    requirements: { _method: post|delete }

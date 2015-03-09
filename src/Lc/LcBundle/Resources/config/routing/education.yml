@@ -1,0 +1,30 @@
+education:
+    path:     /
+    defaults: { _controller: "LcLcBundle:Education:index" }
+
+education_show:
+    path:     /{id}/show
+    defaults: { _controller: "LcLcBundle:Education:show" }
+
+education_new:
+    path:     /new
+    defaults: { _controller: "LcLcBundle:Education:new" }
+
+education_create:
+    path:     /create
+    defaults: { _controller: "LcLcBundle:Education:create" }
+    requirements: { _method: post }
+
+education_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "LcLcBundle:Education:edit" }
+
+education_update:
+    path:     /{id}/update
+    defaults: { _controller: "LcLcBundle:Education:update" }
+    requirements: { _method: post|put }
+
+education_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "LcLcBundle:Education:delete" }
+    requirements: { _method: post|delete }

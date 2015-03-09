@@ -1,0 +1,30 @@
+gshare:
+    path:     /
+    defaults: { _controller: "LcLcBundle:Gshare:index" }
+
+gshare_show:
+    path:     /{id}/show
+    defaults: { _controller: "LcLcBundle:Gshare:show" }
+
+gshare_new:
+    path:     /new
+    defaults: { _controller: "LcLcBundle:Gshare:new" }
+
+gshare_create:
+    path:     /create
+    defaults: { _controller: "LcLcBundle:Gshare:create" }
+    requirements: { _method: post }
+
+gshare_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "LcLcBundle:Gshare:edit" }
+
+gshare_update:
+    path:     /{id}/update
+    defaults: { _controller: "LcLcBundle:Gshare:update" }
+    requirements: { _method: post|put }
+
+gshare_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "LcLcBundle:Gshare:delete" }
+    requirements: { _method: post|delete }

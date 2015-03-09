@@ -1,0 +1,30 @@
+feeling:
+    path:     /
+    defaults: { _controller: "LcLcBundle:Feeling:index" }
+
+feeling_show:
+    path:     /{id}/show
+    defaults: { _controller: "LcLcBundle:Feeling:show" }
+
+feeling_new:
+    path:     /new
+    defaults: { _controller: "LcLcBundle:Feeling:new" }
+
+feeling_create:
+    path:     /create
+    defaults: { _controller: "LcLcBundle:Feeling:create" }
+    requirements: { _method: post }
+
+feeling_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "LcLcBundle:Feeling:edit" }
+
+feeling_update:
+    path:     /{id}/update
+    defaults: { _controller: "LcLcBundle:Feeling:update" }
+    requirements: { _method: post|put }
+
+feeling_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "LcLcBundle:Feeling:delete" }
+    requirements: { _method: post|delete }
