@@ -1,5 +1,5 @@
 lc_lc_homepage:
-    path:     /lc/{name}
+    path:     /
     defaults: { _controller: LcLcBundle:Default:index }
 LcLcBundle_admin:
         resource: "@LcLcBundle/Resources/config/routing/admin.yml"

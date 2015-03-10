@@ -121,8 +121,12 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         // lc_lc_homepage
-        if (0 === strpos($pathinfo, '/lc') && preg_match('#^/lc/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'lc_lc_homepage')), array (  '_controller' => 'Lc\\LcBundle\\Controller\\DefaultController::indexAction',));
+        if (rtrim($pathinfo, '/') === '') {
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'lc_lc_homepage');
+            }
+
+            return array (  '_controller' => 'Lc\\LcBundle\\Controller\\DefaultController::indexAction',  '_route' => 'lc_lc_homepage',);
         }
 
         if (0 === strpos($pathinfo, '/admin')) {
@@ -2001,6 +2005,66 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
             }
 
+            if (0 === strpos($pathinfo, '/userlog')) {
+                // userlog
+                if (rtrim($pathinfo, '/') === '/userlog') {
+                    if (substr($pathinfo, -1) !== '/') {
+                        return $this->redirect($pathinfo.'/', 'userlog');
+                    }
+
+                    return array (  '_controller' => 'Lc\\LcBundle\\Controller\\UserlogController::indexAction',  '_route' => 'userlog',);
+                }
+
+                // userlog_show
+                if (preg_match('#^/userlog/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'userlog_show')), array (  '_controller' => 'Lc\\LcBundle\\Controller\\UserlogController::showAction',));
+                }
+
+                // userlog_new
+                if ($pathinfo === '/userlog/new') {
+                    return array (  '_controller' => 'Lc\\LcBundle\\Controller\\UserlogController::newAction',  '_route' => 'userlog_new',);
+                }
+
+                // userlog_create
+                if ($pathinfo === '/userlog/create') {
+                    if ($this->context->getMethod() != 'POST') {
+                        $allow[] = 'POST';
+                        goto not_userlog_create;
+                    }
+
+                    return array (  '_controller' => 'Lc\\LcBundle\\Controller\\UserlogController::createAction',  '_route' => 'userlog_create',);
+                }
+                not_userlog_create:
+
+                // userlog_edit
+                if (preg_match('#^/userlog/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'userlog_edit')), array (  '_controller' => 'Lc\\LcBundle\\Controller\\UserlogController::editAction',));
+                }
+
+                // userlog_update
+                if (preg_match('#^/userlog/(?P<id>[^/]++)/update$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('POST', 'PUT'))) {
+                        $allow = array_merge($allow, array('POST', 'PUT'));
+                        goto not_userlog_update;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'userlog_update')), array (  '_controller' => 'Lc\\LcBundle\\Controller\\UserlogController::updateAction',));
+                }
+                not_userlog_update:
+
+                // userlog_delete
+                if (preg_match('#^/userlog/(?P<id>[^/]++)/delete$#s', $pathinfo, $matches)) {
+                    if (!in_array($this->context->getMethod(), array('POST', 'DELETE'))) {
+                        $allow = array_merge($allow, array('POST', 'DELETE'));
+                        goto not_userlog_delete;
+                    }
+
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'userlog_delete')), array (  '_controller' => 'Lc\\LcBundle\\Controller\\UserlogController::deleteAction',));
+                }
+                not_userlog_delete:
+
+            }
+
         }
 
         // homepage
@@ -2013,11 +2077,7 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         // _welcome
-        if (rtrim($pathinfo, '/') === '') {
-            if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($pathinfo.'/', '_welcome');
-            }
-
+        if ($pathinfo === '/welcome') {
             return array (  '_controller' => 'Acme\\DemoBundle\\Controller\\WelcomeController::indexAction',  '_route' => '_welcome',);
         }
 
