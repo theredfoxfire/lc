@@ -9,7 +9,7 @@ body {
     height: 100%;
     font-family: Lora,"Helvetica Neue",Helvetica,Arial,sans-serif;
     color: #fff;
-    background-color: #6C0D38;
+    background-color: #49112A;
 }
 
 html {
@@ -149,9 +149,15 @@ a:focus {
 .intro .intro-body {
     display: table-cell;
     vertical-align: middle;
+    
 }
 
 .intro .intro-body .brand-heading {
+	color: #660D35;
+    border-radius:4px;
+	border: 0px solid black;
+	opacity:0.6;
+	filter:alpha(opacity=60);
     font-size: 40px;
 }
 
@@ -293,11 +299,19 @@ a:focus {
 
 .content-section {
     padding-top: 100px;
+    border-radius:4px;
+	border: 0px solid black;
+	opacity:0.6;
+	filter:alpha(opacity=60);
 }
 
 .download-section {
     width: 100%;
     padding: 50px 0;
+    border-radius:4px;
+	border: 0px solid black;
+	opacity:0.6;
+	filter:alpha(opacity=60);
     color: #fff;
     background: url(../img/downloads-bg.jpg) no-repeat center center scroll;
     background-color: #6C0D38;

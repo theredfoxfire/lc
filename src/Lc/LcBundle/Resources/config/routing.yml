@@ -30,7 +30,7 @@ LcLcBundle_fcomment:
         prefix:   /fcomment
 LcLcBundle_feeling:
         resource: "@LcLcBundle/Resources/config/routing/feeling.yml"
-        prefix:   /feeling
+        prefix:   /heaven
 LcLcBundle_flike:
         resource: "@LcLcBundle/Resources/config/routing/flike.yml"
         prefix:   /flike
