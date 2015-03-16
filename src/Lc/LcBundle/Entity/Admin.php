@@ -220,4 +220,88 @@ class Admin
     {
         return $this->updated_at;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $admindoing;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $adminlog;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->admindoing = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->adminlog = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add admindoing
+     *
+     * @param \Lc\LcBundle\Entity\Admindoing $admindoing
+     * @return Admin
+     */
+    public function addAdmindoing(\Lc\LcBundle\Entity\Admindoing $admindoing)
+    {
+        $this->admindoing[] = $admindoing;
+
+        return $this;
+    }
+
+    /**
+     * Remove admindoing
+     *
+     * @param \Lc\LcBundle\Entity\Admindoing $admindoing
+     */
+    public function removeAdmindoing(\Lc\LcBundle\Entity\Admindoing $admindoing)
+    {
+        $this->admindoing->removeElement($admindoing);
+    }
+
+    /**
+     * Get admindoing
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAdmindoing()
+    {
+        return $this->admindoing;
+    }
+
+    /**
+     * Add adminlog
+     *
+     * @param \Lc\LcBundle\Entity\Adminlog $adminlog
+     * @return Admin
+     */
+    public function addAdminlog(\Lc\LcBundle\Entity\Adminlog $adminlog)
+    {
+        $this->adminlog[] = $adminlog;
+
+        return $this;
+    }
+
+    /**
+     * Remove adminlog
+     *
+     * @param \Lc\LcBundle\Entity\Adminlog $adminlog
+     */
+    public function removeAdminlog(\Lc\LcBundle\Entity\Adminlog $adminlog)
+    {
+        $this->adminlog->removeElement($adminlog);
+    }
+
+    /**
+     * Get adminlog
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAdminlog()
+    {
+        return $this->adminlog;
+    }
 }

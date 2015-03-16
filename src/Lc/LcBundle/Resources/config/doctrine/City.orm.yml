@@ -9,7 +9,6 @@ Lc\LcBundle\Entity\City:
   name:
    type: string
    length: 255
-   unique: true
   is_active:
    type: boolean
   created_at:
@@ -21,6 +20,13 @@ Lc\LcBundle\Entity\City:
    type: string
    length: 255
    unique: true
+ manyToOne:
+  province:
+   targetEntity: Province
+   inversedBy: city
+   joinColumn:
+    name: province_id
+    referencedColumnName: id
  oneToOne:
   usercriteria:
    targetEntity: Usercriteria

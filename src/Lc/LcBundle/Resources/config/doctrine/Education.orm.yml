@@ -9,7 +9,6 @@ Lc\LcBundle\Entity\Education:
   name:
    type: string
    length: 255
-   unique: true
   is_active:
    type: boolean
   token: 

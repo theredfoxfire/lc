@@ -9,15 +9,12 @@ Lc\LcBundle\Entity\User:
   username:
    type: string
    length: 255
-   unique: true
   email:
    type: string
    length: 255
-   unique: true
   phone:
    type: string
    length: 20
-   unique: true
   password:
    type: string
    length: 255
@@ -36,7 +33,31 @@ Lc\LcBundle\Entity\User:
   feeling:
    targetEntity: Feeling
    mappedBy: user
+  fcomment:
+   targetEntity: Fcomment
+   mappedBy: user
+  flike:
+   targetEntity: Flike
+   mappedBy: user
+  fshare:
+   targetEntity: Fshare
+   mappedBy: user
+  gshare:
+   targetEntity: Gshare
+   mappedBy: user
+  gcomment:
+   targetEntity: Gcomment
+   mappedBy: user
+  glike:
+   targetEntity: Glike
+   mappedBy: user
+  gallery:
+   targetEntity: Gallery
+   mappedBy: user
  oneToOne:
   usercriteria:
    targetEntity: Usercriteria
+   mappedBy: user
+  profile:
+   targetEntity: Profile
    mappedBy: user

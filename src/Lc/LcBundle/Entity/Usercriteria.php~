@@ -472,4 +472,60 @@ class Usercriteria
     {
         return $this->token;
     }
+    /**
+     * @var \Lc\LcBundle\Entity\Job
+     */
+    private $job;
+
+    /**
+     * @var \Lc\LcBundle\Entity\User
+     */
+    private $user;
+
+
+    /**
+     * Set job
+     *
+     * @param \Lc\LcBundle\Entity\Job $job
+     * @return Usercriteria
+     */
+    public function setJob(\Lc\LcBundle\Entity\Job $job = null)
+    {
+        $this->job = $job;
+
+        return $this;
+    }
+
+    /**
+     * Get job
+     *
+     * @return \Lc\LcBundle\Entity\Job 
+     */
+    public function getJob()
+    {
+        return $this->job;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Lc\LcBundle\Entity\User $user
+     * @return Usercriteria
+     */
+    public function setUser(\Lc\LcBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Lc\LcBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 }

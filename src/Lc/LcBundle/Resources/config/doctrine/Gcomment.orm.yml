@@ -17,3 +17,16 @@ Lc\LcBundle\Entity\Gcomment:
    type: string
    length: 255
    unique: true
+ manyToOne:
+  gallery:
+   targetEntity: Gallery
+   inversedBy: gcomment
+   joinColumn:
+    name: gallery_id
+    referencedColumnName: id
+  user:
+   targetEntity: User
+   inversedBy: gcomment
+   joinColumn:
+    name: user_id
+    referencedColumnName: id

@@ -15,7 +15,6 @@ Lc\LcBundle\Entity\Admin:
   email:
    type: string
    length: 255
-   unique: true
   is_active: 
    type: boolean
   token: 
@@ -27,3 +26,10 @@ Lc\LcBundle\Entity\Admin:
   updated_at:
    type: datetime
    nullable: true
+ oneToMany:
+  admindoing:
+   targetEntity: Admindoing
+   mappedBy: admin
+  adminlog:
+   targetEntity: Adminlog
+   mappedBy: admin

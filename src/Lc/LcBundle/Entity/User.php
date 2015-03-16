@@ -349,4 +349,346 @@ class User
     {
         return $this->profile;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $fcomment;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $flike;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $fshare;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $gshare;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $gcomment;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $glike;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $gallery;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $userdoing;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $userlog;
+
+
+    /**
+     * Add fcomment
+     *
+     * @param \Lc\LcBundle\Entity\Fcomment $fcomment
+     * @return User
+     */
+    public function addFcomment(\Lc\LcBundle\Entity\Fcomment $fcomment)
+    {
+        $this->fcomment[] = $fcomment;
+
+        return $this;
+    }
+
+    /**
+     * Remove fcomment
+     *
+     * @param \Lc\LcBundle\Entity\Fcomment $fcomment
+     */
+    public function removeFcomment(\Lc\LcBundle\Entity\Fcomment $fcomment)
+    {
+        $this->fcomment->removeElement($fcomment);
+    }
+
+    /**
+     * Get fcomment
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFcomment()
+    {
+        return $this->fcomment;
+    }
+
+    /**
+     * Add flike
+     *
+     * @param \Lc\LcBundle\Entity\Flike $flike
+     * @return User
+     */
+    public function addFlike(\Lc\LcBundle\Entity\Flike $flike)
+    {
+        $this->flike[] = $flike;
+
+        return $this;
+    }
+
+    /**
+     * Remove flike
+     *
+     * @param \Lc\LcBundle\Entity\Flike $flike
+     */
+    public function removeFlike(\Lc\LcBundle\Entity\Flike $flike)
+    {
+        $this->flike->removeElement($flike);
+    }
+
+    /**
+     * Get flike
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFlike()
+    {
+        return $this->flike;
+    }
+
+    /**
+     * Add fshare
+     *
+     * @param \Lc\LcBundle\Entity\Fshare $fshare
+     * @return User
+     */
+    public function addFshare(\Lc\LcBundle\Entity\Fshare $fshare)
+    {
+        $this->fshare[] = $fshare;
+
+        return $this;
+    }
+
+    /**
+     * Remove fshare
+     *
+     * @param \Lc\LcBundle\Entity\Fshare $fshare
+     */
+    public function removeFshare(\Lc\LcBundle\Entity\Fshare $fshare)
+    {
+        $this->fshare->removeElement($fshare);
+    }
+
+    /**
+     * Get fshare
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFshare()
+    {
+        return $this->fshare;
+    }
+
+    /**
+     * Add gshare
+     *
+     * @param \Lc\LcBundle\Entity\Gshare $gshare
+     * @return User
+     */
+    public function addGshare(\Lc\LcBundle\Entity\Gshare $gshare)
+    {
+        $this->gshare[] = $gshare;
+
+        return $this;
+    }
+
+    /**
+     * Remove gshare
+     *
+     * @param \Lc\LcBundle\Entity\Gshare $gshare
+     */
+    public function removeGshare(\Lc\LcBundle\Entity\Gshare $gshare)
+    {
+        $this->gshare->removeElement($gshare);
+    }
+
+    /**
+     * Get gshare
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGshare()
+    {
+        return $this->gshare;
+    }
+
+    /**
+     * Add gcomment
+     *
+     * @param \Lc\LcBundle\Entity\Gcomment $gcomment
+     * @return User
+     */
+    public function addGcomment(\Lc\LcBundle\Entity\Gcomment $gcomment)
+    {
+        $this->gcomment[] = $gcomment;
+
+        return $this;
+    }
+
+    /**
+     * Remove gcomment
+     *
+     * @param \Lc\LcBundle\Entity\Gcomment $gcomment
+     */
+    public function removeGcomment(\Lc\LcBundle\Entity\Gcomment $gcomment)
+    {
+        $this->gcomment->removeElement($gcomment);
+    }
+
+    /**
+     * Get gcomment
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGcomment()
+    {
+        return $this->gcomment;
+    }
+
+    /**
+     * Add glike
+     *
+     * @param \Lc\LcBundle\Entity\Glike $glike
+     * @return User
+     */
+    public function addGlike(\Lc\LcBundle\Entity\Glike $glike)
+    {
+        $this->glike[] = $glike;
+
+        return $this;
+    }
+
+    /**
+     * Remove glike
+     *
+     * @param \Lc\LcBundle\Entity\Glike $glike
+     */
+    public function removeGlike(\Lc\LcBundle\Entity\Glike $glike)
+    {
+        $this->glike->removeElement($glike);
+    }
+
+    /**
+     * Get glike
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGlike()
+    {
+        return $this->glike;
+    }
+
+    /**
+     * Add gallery
+     *
+     * @param \Lc\LcBundle\Entity\Gallery $gallery
+     * @return User
+     */
+    public function addGallery(\Lc\LcBundle\Entity\Gallery $gallery)
+    {
+        $this->gallery[] = $gallery;
+
+        return $this;
+    }
+
+    /**
+     * Remove gallery
+     *
+     * @param \Lc\LcBundle\Entity\Gallery $gallery
+     */
+    public function removeGallery(\Lc\LcBundle\Entity\Gallery $gallery)
+    {
+        $this->gallery->removeElement($gallery);
+    }
+
+    /**
+     * Get gallery
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGallery()
+    {
+        return $this->gallery;
+    }
+
+    /**
+     * Add userdoing
+     *
+     * @param \Lc\LcBundle\Entity\Userdoing $userdoing
+     * @return User
+     */
+    public function addUserdoing(\Lc\LcBundle\Entity\Userdoing $userdoing)
+    {
+        $this->userdoing[] = $userdoing;
+
+        return $this;
+    }
+
+    /**
+     * Remove userdoing
+     *
+     * @param \Lc\LcBundle\Entity\Userdoing $userdoing
+     */
+    public function removeUserdoing(\Lc\LcBundle\Entity\Userdoing $userdoing)
+    {
+        $this->userdoing->removeElement($userdoing);
+    }
+
+    /**
+     * Get userdoing
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUserdoing()
+    {
+        return $this->userdoing;
+    }
+
+    /**
+     * Add userlog
+     *
+     * @param \Lc\LcBundle\Entity\Userlog $userlog
+     * @return User
+     */
+    public function addUserlog(\Lc\LcBundle\Entity\Userlog $userlog)
+    {
+        $this->userlog[] = $userlog;
+
+        return $this;
+    }
+
+    /**
+     * Remove userlog
+     *
+     * @param \Lc\LcBundle\Entity\Userlog $userlog
+     */
+    public function removeUserlog(\Lc\LcBundle\Entity\Userlog $userlog)
+    {
+        $this->userlog->removeElement($userlog);
+    }
+
+    /**
+     * Get userlog
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUserlog()
+    {
+        return $this->userlog;
+    }
 }

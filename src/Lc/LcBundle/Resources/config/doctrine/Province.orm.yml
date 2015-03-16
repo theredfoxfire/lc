@@ -9,7 +9,6 @@ Lc\LcBundle\Entity\Province:
   name:
    type: string
    length: 255
-   unique: true
   is_active:
    type: boolean
   created_at:
@@ -21,6 +20,10 @@ Lc\LcBundle\Entity\Province:
    type: string
    length: 255
    unique: true
+ oneToMany:
+  city:
+   targetEntity: City
+   mappedBy: province
  oneToOne:
   usercriteria:
    targetEntity: Usercriteria

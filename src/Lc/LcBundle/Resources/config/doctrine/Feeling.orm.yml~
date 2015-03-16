@@ -28,3 +28,14 @@ Lc\LcBundle\Entity\Feeling:
    type: string
    length: 255
    unique: true
+ oneToMany:
+  fcomment:
+   targetEntity: Fcomment
+   mappedBy: feeling
+ manyToOne:
+  user:
+   targetEntity: User
+   inversedBy: feeling
+   joinColumn:
+    name: user_id
+    referencedColumnName: id

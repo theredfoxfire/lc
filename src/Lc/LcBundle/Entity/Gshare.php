@@ -136,4 +136,60 @@ class Gshare
     {
         return $this->token;
     }
+    /**
+     * @var \Lc\LcBundle\Entity\Gallery
+     */
+    private $gallery;
+
+    /**
+     * @var \Lc\LcBundle\Entity\User
+     */
+    private $user;
+
+
+    /**
+     * Set gallery
+     *
+     * @param \Lc\LcBundle\Entity\Gallery $gallery
+     * @return Gshare
+     */
+    public function setGallery(\Lc\LcBundle\Entity\Gallery $gallery = null)
+    {
+        $this->gallery = $gallery;
+
+        return $this;
+    }
+
+    /**
+     * Get gallery
+     *
+     * @return \Lc\LcBundle\Entity\Gallery 
+     */
+    public function getGallery()
+    {
+        return $this->gallery;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Lc\LcBundle\Entity\User $user
+     * @return Gshare
+     */
+    public function setUser(\Lc\LcBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Lc\LcBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 }

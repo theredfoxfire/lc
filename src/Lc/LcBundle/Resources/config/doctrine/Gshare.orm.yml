@@ -17,3 +17,16 @@ Lc\LcBundle\Entity\Gshare:
    type: string
    length: 255
    unique: true
+ manyToOne:
+  gallery:
+   targetEntity: Gallery
+   inversedBy: gshare
+   joinColumn:
+    name: gallery_id
+    referencedColumnName: id
+  user:
+   targetEntity: User
+   inversedBy: gshare
+   joinColumn:
+    name: user_id
+    referencedColumnName: id

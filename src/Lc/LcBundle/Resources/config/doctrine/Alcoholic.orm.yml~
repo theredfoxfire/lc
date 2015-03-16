@@ -1,6 +1,6 @@
-Lc\LcBundle\Entity\Hobby:
+Lc\LcBundle\Entity\Alcoholic:
  type: entity
- table: hobby
+ table: alcoholic
  id:
   id:
    type: integer

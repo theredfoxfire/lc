@@ -21,3 +21,10 @@ Lc\LcBundle\Entity\Sallary:
    type: string
    length: 255
    unique: true
+ oneToOne:
+  usercriteria:
+   targetEntity: Usercriteria
+   mappedBy: sallary
+  profile:
+   targetEntity: Profile
+   mappedBy: sallary

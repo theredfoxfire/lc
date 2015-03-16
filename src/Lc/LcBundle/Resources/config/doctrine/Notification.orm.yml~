@@ -1,0 +1,24 @@
+Lc\LcBundle\Entity\Notification:
+ type: entity
+ table: notification
+ id:
+  id:
+   type: integer
+   generator: { strategy: AUTO }
+ fields:
+  viewed:
+   boolean: true
+  from:
+   type: string
+   length: 255
+  from_id:
+   type: integer
+  created_at:
+   type: datetime
+  updated_at:
+   type: datetime
+   nullable: true
+  token:
+   type: string
+   length: 255
+   unique: true

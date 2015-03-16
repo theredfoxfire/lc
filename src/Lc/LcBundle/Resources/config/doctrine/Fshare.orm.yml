@@ -17,3 +17,16 @@ Lc\LcBundle\Entity\Fshare:
    type: string
    length: 255
    unique: true
+ manyToOne:
+  feeling:
+   targetEntity: Feeling
+   inversedBy: fshare
+   joinColumn:
+    name: feeling_id
+    referencedColumnName: id
+  user:
+   targetEntity: User
+   inversedBy: fshare
+   joinColumn:
+    name: user_id
+    referencedColumnName: id

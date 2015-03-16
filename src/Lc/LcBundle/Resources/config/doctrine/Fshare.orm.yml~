@@ -1,0 +1,19 @@
+Lc\LcBundle\Entity\Fshare:
+ type: entity
+ table: fshare
+ id:
+  id:
+   type: integer
+   generator: { strategy: AUTO }
+ fields:
+  created_at: 
+   type: datetime
+  updated_at:
+   type: datetime
+   nullable: true
+  status:
+   type: boolean
+  token:
+   type: string
+   length: 255
+   unique: true

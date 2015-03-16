@@ -192,4 +192,32 @@ class Status
     {
         return $this->usercriteria;
     }
+    /**
+     * @var \Lc\LcBundle\Entity\Profile
+     */
+    private $profile;
+
+
+    /**
+     * Set profile
+     *
+     * @param \Lc\LcBundle\Entity\Profile $profile
+     * @return Status
+     */
+    public function setProfile(\Lc\LcBundle\Entity\Profile $profile = null)
+    {
+        $this->profile = $profile;
+
+        return $this;
+    }
+
+    /**
+     * Get profile
+     *
+     * @return \Lc\LcBundle\Entity\Profile 
+     */
+    public function getProfile()
+    {
+        return $this->profile;
+    }
 }

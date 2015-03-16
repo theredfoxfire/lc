@@ -1,0 +1,29 @@
+Lc\LcBundle\Entity\Gallery:
+ type: entity
+ table: gallery
+ id:
+  id:
+   type: integer
+   generator: { strategy: AUTO }
+ fields:
+  shared:
+   type: integer
+   nullable: true
+  liked:
+   type: integer
+   nullable: true
+  commented:
+   type: integer
+   nullable: true
+  token:
+   type: string
+   length: 255
+   unique: true
+  path:
+   type: string
+   length: 255
+  created_at:
+   type: datetime
+  updated_at:
+   type: datetime
+   nullable: true

@@ -28,6 +28,16 @@ Lc\LcBundle\Entity\Feeling:
    type: string
    length: 255
    unique: true
+ oneToMany:
+  fcomment:
+   targetEntity: Fcomment
+   mappedBy: feeling
+  flike:
+   targetEntity: Flike
+   mappedBy: feeling
+  fshare:
+   targetEntity: Fshare
+   mappedBy: feeling
  manyToOne:
   user:
    targetEntity: User

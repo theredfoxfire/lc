@@ -25,3 +25,6 @@ Lc\LcBundle\Entity\Status:
   usercriteria:
    targetEntity: Usercriteria
    mappedBy: status
+  profile:
+   targetEntity: Profile
+   mappedBy: status

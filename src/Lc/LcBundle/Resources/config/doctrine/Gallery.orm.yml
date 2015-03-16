@@ -27,3 +27,20 @@ Lc\LcBundle\Entity\Gallery:
   updated_at:
    type: datetime
    nullable: true
+ oneToMany:
+  gcomment:
+   targetEntity: Gcomment
+   mappedBy: gallery
+  glike:
+   targetEntity: Glike
+   mappedBy: gallery
+  gshare:
+   targetEntity: Gshare
+   mappedBy: gallery
+ manyToOne:
+  user:
+   targetEntity: User
+   inversedBy: gallery
+   joinColumn:
+    name: user_id
+    referencedColumnName: id

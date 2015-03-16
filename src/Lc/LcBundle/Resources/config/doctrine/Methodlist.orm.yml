@@ -9,7 +9,6 @@ Lc\LcBundle\Entity\Methodlist:
   name:
    type: string
    length: 255
-   unique: true
   is_active:
    type: boolean
   created_at:
@@ -21,3 +20,10 @@ Lc\LcBundle\Entity\Methodlist:
    type: string
    length: 255
    unique: true
+ manyToOne:
+  controllerlist:
+   targetEntity: Controllerlist
+   inversedBy: methodlist
+   joinColumn:
+    name: controllerlist_id
+    referencedColumnName: id

@@ -17,3 +17,10 @@ Lc\LcBundle\Entity\Userdoing:
    type: string
    length: 255
    unique: true
+ manyToOne:
+  user:
+   targetEntity: User
+   inversedBy: userdoing
+   joinColumn:
+    name: user_id
+    referencedColumnName: id

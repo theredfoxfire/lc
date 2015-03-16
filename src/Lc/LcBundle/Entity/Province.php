@@ -220,4 +220,49 @@ class Province
     {
         return $this->profile;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $city;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->city = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add city
+     *
+     * @param \Lc\LcBundle\Entity\City $city
+     * @return Province
+     */
+    public function addCity(\Lc\LcBundle\Entity\City $city)
+    {
+        $this->city[] = $city;
+
+        return $this;
+    }
+
+    /**
+     * Remove city
+     *
+     * @param \Lc\LcBundle\Entity\City $city
+     */
+    public function removeCity(\Lc\LcBundle\Entity\City $city)
+    {
+        $this->city->removeElement($city);
+    }
+
+    /**
+     * Get city
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
 }

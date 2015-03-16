@@ -1,0 +1,28 @@
+Lc\LcBundle\Entity\Fcomment:
+ type: entity
+ table: fcomment
+ id:
+  id:
+   type: integer
+   generator: { strategy: AUTO }
+ fields:
+  comment:
+   type: text
+  is_publish:
+   type: boolean
+  token: 
+   type: string
+   length: 255
+   unique: true
+  created_at:
+   type: datetime
+  updated_at:
+   type: datetime
+   nullable: true
+ manyToOne:
+  feeling:
+   targetEntity: Feeling
+   inversedBy: fcomment
+   joinColumn:
+    name: feeling_id
+    referencedColumnName: id

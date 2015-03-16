@@ -9,7 +9,6 @@ Lc\LcBundle\Entity\Smoking:
   name:
    type: string
    length: 255
-   unique: true
   is_active:
    type: boolean
   created_at:

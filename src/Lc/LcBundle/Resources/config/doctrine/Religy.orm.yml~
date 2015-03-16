@@ -21,3 +21,10 @@ Lc\LcBundle\Entity\Religy:
    type: string
    length: 255
    unique: true
+ oneToOne:
+  usercriteria:
+   targetEntity: Usercriteria
+   mappedBy: religy
+  profile:
+   targetEntity: Profile
+   mappedBy: religy

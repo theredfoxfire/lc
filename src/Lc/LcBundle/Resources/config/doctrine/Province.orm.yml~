@@ -21,3 +21,14 @@ Lc\LcBundle\Entity\Province:
    type: string
    length: 255
    unique: true
+ oneToMany:
+  city:
+   targetEntity: City
+   mappedBy: province
+ oneToOne:
+  usercriteria:
+   targetEntity: Usercriteria
+   mappedBy: province
+  profile:
+   targetEntity: Profile
+   mappedBy: province

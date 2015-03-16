@@ -136,4 +136,32 @@ class Userdoing
     {
         return $this->token;
     }
+    /**
+     * @var \Lc\LcBundle\Entity\User
+     */
+    private $user;
+
+
+    /**
+     * Set user
+     *
+     * @param \Lc\LcBundle\Entity\User $user
+     * @return Userdoing
+     */
+    public function setUser(\Lc\LcBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Lc\LcBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 }

@@ -9,8 +9,7 @@ Lc\LcBundle\Entity\Notification:
   viewed:
    boolean: true
   from:
-   type: string
-   length: 255
+   type: integer
   from_id:
    type: integer
   created_at:

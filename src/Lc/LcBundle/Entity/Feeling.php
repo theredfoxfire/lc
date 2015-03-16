@@ -276,4 +276,127 @@ class Feeling
     {
         return $this->user;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $fcomment;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $flike;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $fshare;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->fcomment = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->flike = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->fshare = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add fcomment
+     *
+     * @param \Lc\LcBundle\Entity\Fcomment $fcomment
+     * @return Feeling
+     */
+    public function addFcomment(\Lc\LcBundle\Entity\Fcomment $fcomment)
+    {
+        $this->fcomment[] = $fcomment;
+
+        return $this;
+    }
+
+    /**
+     * Remove fcomment
+     *
+     * @param \Lc\LcBundle\Entity\Fcomment $fcomment
+     */
+    public function removeFcomment(\Lc\LcBundle\Entity\Fcomment $fcomment)
+    {
+        $this->fcomment->removeElement($fcomment);
+    }
+
+    /**
+     * Get fcomment
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFcomment()
+    {
+        return $this->fcomment;
+    }
+
+    /**
+     * Add flike
+     *
+     * @param \Lc\LcBundle\Entity\Flike $flike
+     * @return Feeling
+     */
+    public function addFlike(\Lc\LcBundle\Entity\Flike $flike)
+    {
+        $this->flike[] = $flike;
+
+        return $this;
+    }
+
+    /**
+     * Remove flike
+     *
+     * @param \Lc\LcBundle\Entity\Flike $flike
+     */
+    public function removeFlike(\Lc\LcBundle\Entity\Flike $flike)
+    {
+        $this->flike->removeElement($flike);
+    }
+
+    /**
+     * Get flike
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFlike()
+    {
+        return $this->flike;
+    }
+
+    /**
+     * Add fshare
+     *
+     * @param \Lc\LcBundle\Entity\Fshare $fshare
+     * @return Feeling
+     */
+    public function addFshare(\Lc\LcBundle\Entity\Fshare $fshare)
+    {
+        $this->fshare[] = $fshare;
+
+        return $this;
+    }
+
+    /**
+     * Remove fshare
+     *
+     * @param \Lc\LcBundle\Entity\Fshare $fshare
+     */
+    public function removeFshare(\Lc\LcBundle\Entity\Fshare $fshare)
+    {
+        $this->fshare->removeElement($fshare);
+    }
+
+    /**
+     * Get fshare
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFshare()
+    {
+        return $this->fshare;
+    }
 }

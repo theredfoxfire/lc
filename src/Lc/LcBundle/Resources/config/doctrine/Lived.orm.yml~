@@ -1,6 +1,6 @@
-Lc\LcBundle\Entity\Hobby:
+Lc\LcBundle\Entity\Lived:
  type: entity
- table: hobby
+ table: lived
  id:
   id:
    type: integer
@@ -24,4 +24,7 @@ Lc\LcBundle\Entity\Hobby:
  oneToOne:
   usercriteria:
    targetEntity: Usercriteria
-   mappedBy: hobby
+   mappedBy: lived
+  profile:
+   targetEntity: Profile
+   mappedBy: lived

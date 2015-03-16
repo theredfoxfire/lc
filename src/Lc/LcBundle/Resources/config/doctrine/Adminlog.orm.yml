@@ -31,3 +31,10 @@ Lc\LcBundle\Entity\Adminlog:
    type: string
    length: 255
    unique: true  
+ manyToOne:
+  admin:
+   targetEntity: Admin
+   inversedBy: adminlog
+   joinColumn:
+    name: admin_id
+    referencedColumnName: id

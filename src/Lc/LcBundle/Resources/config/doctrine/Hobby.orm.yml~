@@ -25,3 +25,6 @@ Lc\LcBundle\Entity\Hobby:
   usercriteria:
    targetEntity: Usercriteria
    mappedBy: hobby
+  profile:
+   targetEntity: Profile
+   mappedBy: hobby

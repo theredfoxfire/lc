@@ -31,3 +31,10 @@ Lc\LcBundle\Entity\Userlog:
    type: string
    length: 255
    unique: true  
+ manyToOne:
+  user:
+   targetEntity: User
+   inversedBy: userlog
+   joinColumn:
+    name: user_id
+    referencedColumnName: id

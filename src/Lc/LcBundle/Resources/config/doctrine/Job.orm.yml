@@ -9,7 +9,6 @@ Lc\LcBundle\Entity\Job:
   name:
    type: string
    length: 255
-   unique: true
   token:
    type: string
    length: 255
