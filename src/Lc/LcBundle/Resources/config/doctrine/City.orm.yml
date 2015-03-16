@@ -21,3 +21,10 @@ Lc\LcBundle\Entity\City:
    type: string
    length: 255
    unique: true
+ oneToOne:
+  usercriteria:
+   targetEntity: Usercriteria
+   mappedBy: city
+  profile:
+   targetEntity: Profile
+   mappedBy: city

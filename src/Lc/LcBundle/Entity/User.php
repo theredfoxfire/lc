@@ -248,4 +248,105 @@ class User
     {
         return $this->token;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $feeling;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->feeling = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add feeling
+     *
+     * @param \Lc\LcBundle\Entity\Feeling $feeling
+     * @return User
+     */
+    public function addFeeling(\Lc\LcBundle\Entity\Feeling $feeling)
+    {
+        $this->feeling[] = $feeling;
+
+        return $this;
+    }
+
+    /**
+     * Remove feeling
+     *
+     * @param \Lc\LcBundle\Entity\Feeling $feeling
+     */
+    public function removeFeeling(\Lc\LcBundle\Entity\Feeling $feeling)
+    {
+        $this->feeling->removeElement($feeling);
+    }
+
+    /**
+     * Get feeling
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFeeling()
+    {
+        return $this->feeling;
+    }
+    /**
+     * @var \Lc\LcBundle\Entity\Usercriteria
+     */
+    private $usercriteria;
+
+    /**
+     * @var \Lc\LcBundle\Entity\Profile
+     */
+    private $profile;
+
+
+    /**
+     * Set usercriteria
+     *
+     * @param \Lc\LcBundle\Entity\Usercriteria $usercriteria
+     * @return User
+     */
+    public function setUsercriteria(\Lc\LcBundle\Entity\Usercriteria $usercriteria = null)
+    {
+        $this->usercriteria = $usercriteria;
+
+        return $this;
+    }
+
+    /**
+     * Get usercriteria
+     *
+     * @return \Lc\LcBundle\Entity\Usercriteria 
+     */
+    public function getUsercriteria()
+    {
+        return $this->usercriteria;
+    }
+
+    /**
+     * Set profile
+     *
+     * @param \Lc\LcBundle\Entity\Profile $profile
+     * @return User
+     */
+    public function setProfile(\Lc\LcBundle\Entity\Profile $profile = null)
+    {
+        $this->profile = $profile;
+
+        return $this;
+    }
+
+    /**
+     * Get profile
+     *
+     * @return \Lc\LcBundle\Entity\Profile 
+     */
+    public function getProfile()
+    {
+        return $this->profile;
+    }
 }

@@ -1,0 +1,30 @@
+Lc\LcBundle\Entity\Feeling:
+ type: entity
+ table: feeling
+ id:
+  id:
+   type: integer
+   generator: { strategy: AUTO }
+ fields:
+  feel:
+   type: text
+  liked:
+   type: integer
+   nullable: true
+  shared:
+   type: integer
+   nullable: true
+  commented:
+   type: integer
+   nullable: true
+  is_active:
+   type: boolean
+  created_at:
+   type: datetime
+  updated_at:
+   type: datetime
+   nullable: true
+  token: 
+   type: string
+   length: 255
+   unique: true

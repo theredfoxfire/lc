@@ -1,0 +1,102 @@
+Lc\LcBundle\Entity\Usercriteria:
+ type: entity
+ table: usercriteria
+ id:
+  id:
+   type: integer
+   generator: { strategy: AUTO }
+ fields:
+  created_at:
+   type: datetime
+  updated_at:
+   type: datetime
+   nullable: true
+  token: 
+   type: string
+   length: 255
+   unique: true
+ oneToOne:
+  status:
+   targetEntity: Status
+   inversedBy: usercriteria
+   joinColumn:
+    name: status_id
+    referencedColumnName: id
+  hobby:
+   targetEntity: Hobby
+   inversedBy: usercriteria
+   joinColumn:
+    name: hobby_id
+    referencedColumnName: id
+  work:
+   targetEntity: Work
+   inversedBy: usercriteria
+   joinColumn:
+    name: work_id
+    referencedColumnName: id
+  education:
+   targetEntity: Education
+   inversedBy: usercriteria
+   joinColumn:
+    name: education_id
+    referencedColumnName: id
+  sallary:
+   targetEntity: Sallary
+   inversedBy: usercriteria
+   joinColumn:
+    name: sallary_id
+    referencedColumnName: id
+  province:
+   targetEntity: Province
+   inversedBy: usercriteria
+   joinColumn:
+    name: province_id
+    referencedColumnName: id
+  city:
+   targetEntity: City
+   inversedBy: usercriteria
+   joinColumn:
+    name: city_id
+    referencedColumnName: id
+  lived:
+   targetEntity: Lived
+   inversedBy: usercriteria
+   joinColumn:
+    name: lived_id
+    referencedColumnName: id
+  smoking:
+   targetEntity: Smoking
+   inversedBy: usercriteria
+   joinColumn:
+    name: smoking_id
+    referencedColumnName: id
+  sex:
+   targetEntity: Sex
+   inversedBy: usercriteria
+   joinColumn:
+    name: sex_id
+    referencedColumnName: id
+  religy:
+   targetEntity: Religy
+   inversedBy: usercriteria
+   joinColumn:
+    name: religy_id
+    referencedColumnName: id
+  alcoholic:
+   targetEntity: Alcoholic
+   inversedBy: usercriteria
+   joinColumn:
+    name: alcoholic_id
+    referencedColumnName: id
+  plan:
+   targetEntity: Plan
+   inversedBy: usercriteria
+   joinColumn:
+    name: plan_id
+    referencedColumnName: id
+  user:
+   targetEntity: User
+   inversedBy: usercriteria
+   joinColumn:
+    name: user_id
+    referencedColumnName: id

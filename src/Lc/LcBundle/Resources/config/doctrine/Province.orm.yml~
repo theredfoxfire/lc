@@ -1,0 +1,23 @@
+Lc\LcBundle\Entity\Province:
+ type: entity
+ table: province
+ id:
+  id:
+   type: integer
+   generator: { strategy: AUTO }
+ fields:
+  name:
+   type: string
+   length: 255
+   unique: true
+  is_active:
+   type: boolean
+  created_at:
+   type: datetime
+  updated_at:
+   type: datetime
+   nullable: true
+  token:
+   type: string
+   length: 255
+   unique: true

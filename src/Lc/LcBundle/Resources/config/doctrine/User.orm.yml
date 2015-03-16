@@ -32,3 +32,14 @@ Lc\LcBundle\Entity\User:
    type: string
    length: 255
    unique: true
+ oneToMany:
+  feeling:
+   targetEntity: Feeling
+   mappedBy: user
+ oneToOne:
+  usercriteria:
+   targetEntity: Usercriteria
+   mappedBy: user
+  profile:
+   targetEntity: Profile
+   mappedBy: user

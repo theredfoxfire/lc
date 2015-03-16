@@ -528,4 +528,88 @@ class Profile
     {
         return $this->token;
     }
+    /**
+     * @var string
+     */
+    private $about;
+
+    /**
+     * @var \Lc\LcBundle\Entity\Job
+     */
+    private $job;
+
+    /**
+     * @var \Lc\LcBundle\Entity\User
+     */
+    private $user;
+
+
+    /**
+     * Set about
+     *
+     * @param string $about
+     * @return Profile
+     */
+    public function setAbout($about)
+    {
+        $this->about = $about;
+
+        return $this;
+    }
+
+    /**
+     * Get about
+     *
+     * @return string 
+     */
+    public function getAbout()
+    {
+        return $this->about;
+    }
+
+    /**
+     * Set job
+     *
+     * @param \Lc\LcBundle\Entity\Job $job
+     * @return Profile
+     */
+    public function setJob(\Lc\LcBundle\Entity\Job $job = null)
+    {
+        $this->job = $job;
+
+        return $this;
+    }
+
+    /**
+     * Get job
+     *
+     * @return \Lc\LcBundle\Entity\Job 
+     */
+    public function getJob()
+    {
+        return $this->job;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Lc\LcBundle\Entity\User $user
+     * @return Profile
+     */
+    public function setUser(\Lc\LcBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Lc\LcBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 }

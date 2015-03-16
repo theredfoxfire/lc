@@ -9,34 +9,10 @@ Lc\LcBundle\Entity\Profile:
   name:
    type: string
    length: 255
-  hobby:
-   type: integer
-  work:
-   type: integer
-  education:
-   type: integer
   address:
    type: text
-  sallary:
-   type: integer
-  province:
-   type: integer
-  city:
-   type: integer
-  lived:
-   type: integer
-  smoking:
-   type: integer
-  status:
-   type: integer
-  sex:
-   type: integer
-  religy:
-   type: integer
-  alcoholic:
-   type: integer
-  plan:
-   type: integer
+  about:
+   type: text
   created_at:
    type: datetime
   updated_at:
@@ -46,3 +22,88 @@ Lc\LcBundle\Entity\Profile:
    type: string
    length: 255
    unique: true
+ oneToOne:
+  status:
+   targetEntity: Status
+   inversedBy: profile
+   joinColumn:
+    name: status_id
+    referencedColumnName: id
+  hobby:
+   targetEntity: Hobby
+   inversedBy: profile
+   joinColumn:
+    name: hobby_id
+    referencedColumnName: id
+  job:
+   targetEntity: Job
+   inversedBy: profile
+   joinColumn:
+    name: job_id
+    referencedColumnName: id
+  education:
+   targetEntity: Education
+   inversedBy: profile
+   joinColumn:
+    name: education_id
+    referencedColumnName: id
+  sallary:
+   targetEntity: Sallary
+   inversedBy: profile
+   joinColumn:
+    name: sallary_id
+    referencedColumnName: id
+  province:
+   targetEntity: Province
+   inversedBy: profile
+   joinColumn:
+    name: province_id
+    referencedColumnName: id
+  city:
+   targetEntity: City
+   inversedBy: profile
+   joinColumn:
+    name: city_id
+    referencedColumnName: id
+  lived:
+   targetEntity: Lived
+   inversedBy: profile
+   joinColumn:
+    name: lived_id
+    referencedColumnName: id
+  smoking:
+   targetEntity: Smoking
+   inversedBy: profile
+   joinColumn:
+    name: smoking_id
+    referencedColumnName: id
+  sex:
+   targetEntity: Sex
+   inversedBy: profile
+   joinColumn:
+    name: sex_id
+    referencedColumnName: id
+  religy:
+   targetEntity: Religy
+   inversedBy: profile
+   joinColumn:
+    name: religy_id
+    referencedColumnName: id
+  alcoholic:
+   targetEntity: Alcoholic
+   inversedBy: profile
+   joinColumn:
+    name: alcoholic_id
+    referencedColumnName: id
+  plan:
+   targetEntity: Plan
+   inversedBy: profile
+   joinColumn:
+    name: plan_id
+    referencedColumnName: id
+  user:
+   targetEntity: User
+   inversedBy: profile
+   joinColumn:
+    name: user_id
+    referencedColumnName: id

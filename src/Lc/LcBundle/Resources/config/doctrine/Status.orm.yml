@@ -21,3 +21,10 @@ Lc\LcBundle\Entity\Status:
    type: string
    length: 255
    unique: true
+ oneToOne:
+  usercriteria:
+   targetEntity: Usercriteria
+   mappedBy: status
+  profile:
+   targetEntity: Profile
+   mappedBy: status

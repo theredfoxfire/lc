@@ -1,0 +1,18 @@
+Lc\LcBundle\Entity\Education:
+ type: entity
+ table: education
+ id:
+  id:
+   type: integer
+   generator: { strategy: AUTO }
+ fields:
+  name:
+   type: string
+   length: 255
+   unique: true
+  is_active:
+   type: boolean
+  token: 
+   type: string
+   length: 255
+   unique: true
