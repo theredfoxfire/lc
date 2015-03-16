@@ -9,6 +9,8 @@ Lc\LcBundle\Entity\Profile:
   name:
    type: string
    length: 255
+  birthdate:
+   type: date
   address:
    type: text
   about:
@@ -35,11 +37,11 @@ Lc\LcBundle\Entity\Profile:
    joinColumn:
     name: hobby_id
     referencedColumnName: id
-  work:
-   targetEntity: Work
+  job:
+   targetEntity: Job
    inversedBy: profile
    joinColumn:
-    name: work_id
+    name: job_id
     referencedColumnName: id
   education:
    targetEntity: Education

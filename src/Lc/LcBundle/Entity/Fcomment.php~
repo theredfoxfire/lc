@@ -164,4 +164,60 @@ class Fcomment
     {
         return $this->updated_at;
     }
+    /**
+     * @var \Lc\LcBundle\Entity\Feeling
+     */
+    private $feeling;
+
+    /**
+     * @var \Lc\LcBundle\Entity\User
+     */
+    private $user;
+
+
+    /**
+     * Set feeling
+     *
+     * @param \Lc\LcBundle\Entity\Feeling $feeling
+     * @return Fcomment
+     */
+    public function setFeeling(\Lc\LcBundle\Entity\Feeling $feeling = null)
+    {
+        $this->feeling = $feeling;
+
+        return $this;
+    }
+
+    /**
+     * Get feeling
+     *
+     * @return \Lc\LcBundle\Entity\Feeling 
+     */
+    public function getFeeling()
+    {
+        return $this->feeling;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Lc\LcBundle\Entity\User $user
+     * @return Fcomment
+     */
+    public function setUser(\Lc\LcBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Lc\LcBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 }

@@ -136,4 +136,32 @@ class Admindoing
     {
         return $this->token;
     }
+    /**
+     * @var \Lc\LcBundle\Entity\Admin
+     */
+    private $admin;
+
+
+    /**
+     * Set admin
+     *
+     * @param \Lc\LcBundle\Entity\Admin $admin
+     * @return Admindoing
+     */
+    public function setAdmin(\Lc\LcBundle\Entity\Admin $admin = null)
+    {
+        $this->admin = $admin;
+
+        return $this;
+    }
+
+    /**
+     * Get admin
+     *
+     * @return \Lc\LcBundle\Entity\Admin 
+     */
+    public function getAdmin()
+    {
+        return $this->admin;
+    }
 }

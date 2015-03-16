@@ -164,4 +164,32 @@ class Methodlist
     {
         return $this->token;
     }
+    /**
+     * @var \Lc\LcBundle\Entity\Controllerlist
+     */
+    private $controllerlist;
+
+
+    /**
+     * Set controllerlist
+     *
+     * @param \Lc\LcBundle\Entity\Controllerlist $controllerlist
+     * @return Methodlist
+     */
+    public function setControllerlist(\Lc\LcBundle\Entity\Controllerlist $controllerlist = null)
+    {
+        $this->controllerlist = $controllerlist;
+
+        return $this;
+    }
+
+    /**
+     * Get controllerlist
+     *
+     * @return \Lc\LcBundle\Entity\Controllerlist 
+     */
+    public function getControllerlist()
+    {
+        return $this->controllerlist;
+    }
 }

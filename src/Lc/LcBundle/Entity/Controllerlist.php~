@@ -164,4 +164,49 @@ class Controllerlist
     {
         return $this->token;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $methodlist;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->methodlist = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add methodlist
+     *
+     * @param \Lc\LcBundle\Entity\Methodlist $methodlist
+     * @return Controllerlist
+     */
+    public function addMethodlist(\Lc\LcBundle\Entity\Methodlist $methodlist)
+    {
+        $this->methodlist[] = $methodlist;
+
+        return $this;
+    }
+
+    /**
+     * Remove methodlist
+     *
+     * @param \Lc\LcBundle\Entity\Methodlist $methodlist
+     */
+    public function removeMethodlist(\Lc\LcBundle\Entity\Methodlist $methodlist)
+    {
+        $this->methodlist->removeElement($methodlist);
+    }
+
+    /**
+     * Get methodlist
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMethodlist()
+    {
+        return $this->methodlist;
+    }
 }

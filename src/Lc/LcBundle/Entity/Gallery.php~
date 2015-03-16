@@ -220,4 +220,155 @@ class Gallery
     {
         return $this->updated_at;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $gcomment;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $glike;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $gshare;
+
+    /**
+     * @var \Lc\LcBundle\Entity\User
+     */
+    private $user;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->gcomment = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->glike = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->gshare = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add gcomment
+     *
+     * @param \Lc\LcBundle\Entity\Gcomment $gcomment
+     * @return Gallery
+     */
+    public function addGcomment(\Lc\LcBundle\Entity\Gcomment $gcomment)
+    {
+        $this->gcomment[] = $gcomment;
+
+        return $this;
+    }
+
+    /**
+     * Remove gcomment
+     *
+     * @param \Lc\LcBundle\Entity\Gcomment $gcomment
+     */
+    public function removeGcomment(\Lc\LcBundle\Entity\Gcomment $gcomment)
+    {
+        $this->gcomment->removeElement($gcomment);
+    }
+
+    /**
+     * Get gcomment
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGcomment()
+    {
+        return $this->gcomment;
+    }
+
+    /**
+     * Add glike
+     *
+     * @param \Lc\LcBundle\Entity\Glike $glike
+     * @return Gallery
+     */
+    public function addGlike(\Lc\LcBundle\Entity\Glike $glike)
+    {
+        $this->glike[] = $glike;
+
+        return $this;
+    }
+
+    /**
+     * Remove glike
+     *
+     * @param \Lc\LcBundle\Entity\Glike $glike
+     */
+    public function removeGlike(\Lc\LcBundle\Entity\Glike $glike)
+    {
+        $this->glike->removeElement($glike);
+    }
+
+    /**
+     * Get glike
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGlike()
+    {
+        return $this->glike;
+    }
+
+    /**
+     * Add gshare
+     *
+     * @param \Lc\LcBundle\Entity\Gshare $gshare
+     * @return Gallery
+     */
+    public function addGshare(\Lc\LcBundle\Entity\Gshare $gshare)
+    {
+        $this->gshare[] = $gshare;
+
+        return $this;
+    }
+
+    /**
+     * Remove gshare
+     *
+     * @param \Lc\LcBundle\Entity\Gshare $gshare
+     */
+    public function removeGshare(\Lc\LcBundle\Entity\Gshare $gshare)
+    {
+        $this->gshare->removeElement($gshare);
+    }
+
+    /**
+     * Get gshare
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGshare()
+    {
+        return $this->gshare;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Lc\LcBundle\Entity\User $user
+     * @return Gallery
+     */
+    public function setUser(\Lc\LcBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Lc\LcBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 }

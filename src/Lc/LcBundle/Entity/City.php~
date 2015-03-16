@@ -220,4 +220,32 @@ class City
     {
         return $this->profile;
     }
+    /**
+     * @var \Lc\LcBundle\Entity\Province
+     */
+    private $province;
+
+
+    /**
+     * Set province
+     *
+     * @param \Lc\LcBundle\Entity\Province $province
+     * @return City
+     */
+    public function setProvince(\Lc\LcBundle\Entity\Province $province = null)
+    {
+        $this->province = $province;
+
+        return $this;
+    }
+
+    /**
+     * Get province
+     *
+     * @return \Lc\LcBundle\Entity\Province 
+     */
+    public function getProvince()
+    {
+        return $this->province;
+    }
 }
