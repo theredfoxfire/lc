@@ -1,3 +1,5 @@
-app/cache/*
-app/logs/*
-app/config/*
+/app/cache/*
+/app/logs/*
+/app/config/*
+!app/cache/.gitkeep
+!app/logs/.gitkeep
