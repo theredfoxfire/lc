@@ -5,3 +5,5 @@ lc_lc:
 app:
     resource: @AppBundle/Controller/
     type:     annotation
+base_url:
+ pattern: /

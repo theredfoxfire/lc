@@ -1837,6 +1837,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array (  '_controller' => 'Lc\\LcBundle\\Controller\\UserController::indexAction',  '_route' => 'user',);
             }
 
+            // user_wait
+            if ($pathinfo === '/user/thanks') {
+                return array (  '_controller' => 'Lc\\LcBundle\\Controller\\UserController::waitAction',  '_route' => 'user_wait',);
+            }
+
             // user_show
             if (preg_match('#^/user/(?P<id>[^/]++)/show$#s', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'user_show')), array (  '_controller' => 'Lc\\LcBundle\\Controller\\UserController::showAction',));
@@ -2074,6 +2079,15 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             }
 
             return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',  '_route' => 'homepage',);
+        }
+
+        // base_url
+        if (rtrim($pathinfo, '/') === '') {
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'base_url');
+            }
+
+            return array('_route' => 'base_url');
         }
 
         // _welcome

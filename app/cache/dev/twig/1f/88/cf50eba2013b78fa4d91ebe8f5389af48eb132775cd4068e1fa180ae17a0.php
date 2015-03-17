@@ -41,7 +41,7 @@ class __TwigTemplate_1f88cf50eba2013b78fa4d91ebe8f5389af48eb132775cd4068e1fa180a
         // line 26
         echo "\t<script>
 \t\t\$(function() {
-\t\t\$( \"#birthday\" ).datepicker({
+\t\t\$( \".date\" ).datepicker({
 \t\t\tchangeMonth: true,
 \t\t\tchangeYear: true,
 \t\t\tyearRange: \"-65:-15\",
@@ -121,33 +121,42 @@ class __TwigTemplate_1f88cf50eba2013b78fa4d91ebe8f5389af48eb132775cd4068e1fa180a
         <div class=\"row\">
             <div class=\"col-lg-8 col-lg-offset-2\">
                 <h2>Daftar LucidCouple</h2>
-                <p><form role=\"form\" class=\"register-area\">
+                <p>";
+        // line 108
+        echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_start');
+        echo "
+\t\t\t\t\t\t";
+        // line 109
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'errors');
+        echo "
 \t\t\t\t\t\t<div class=\"well well-sm f-well form-area\" ><strong><span class=\"glyphicon glyphicon-asterisk\"></span>Harus diisi</strong></div>
-\t\t\t\t\t\t\t<div class=\"form-group form-area\">
-\t\t\t\t\t\t\t\t<label for=\"InputName\">Nama</label>
-\t\t\t\t\t\t\t\t<div class=\"input-group\">
-\t\t\t\t\t\t\t\t\t<input type=\"text\" class=\"form-control\" name=\"InputName\" id=\"InputName\" placeholder=\"Masukan nama\" required>
-\t\t\t\t\t\t\t\t\t<span class=\"input-group-addon\"><span class=\"glyphicon glyphicon-asterisk\"></span></span>
-\t\t\t\t\t\t\t\t</div>
-\t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t<div class=\"form-group form-area\">
 \t\t\t\t\t\t\t\t<label for=\"InputEmail\">Email</label>
 \t\t\t\t\t\t\t\t<div class=\"input-group\">
-\t\t\t\t\t\t\t\t\t<input type=\"email\" class=\"form-control\" id=\"InputEmailFirst\" name=\"InputEmail\" placeholder=\"Masukan email\" required>
+\t\t\t\t\t\t\t\t\t";
+        // line 114
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "email", array()), 'widget');
+        echo "
 \t\t\t\t\t\t\t\t\t<span class=\"input-group-addon\"><span class=\"glyphicon glyphicon-asterisk\"></span></span>
 \t\t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t<div class=\"form-group form-area\">
 \t\t\t\t\t\t\t\t<label for=\"InputEmail\">Password</label>
 \t\t\t\t\t\t\t\t<div class=\"input-group\">
-\t\t\t\t\t\t\t\t\t<input type=\"password\" class=\"form-control\" id=\"InputPassword\" name=\"InputPassword\" placeholder=\"Masukan password\" required>
+\t\t\t\t\t\t\t\t\t";
+        // line 121
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "password", array()), 'widget');
+        echo "
 \t\t\t\t\t\t\t\t\t<span class=\"input-group-addon\"><span class=\"glyphicon glyphicon-asterisk\"></span></span>
 \t\t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t<div class=\"form-group form-area\">
 \t\t\t\t\t\t\t\t<label for=\"InputEmail\">Ulangi Password</label>
 \t\t\t\t\t\t\t\t<div class=\"input-group\">
-\t\t\t\t\t\t\t\t\t<input type=\"password\" class=\"form-control\" id=\"InputPasswordSecond\" name=\"InputPasswordSecond\" placeholder=\"Ulangi password\" required>
+\t\t\t\t\t\t\t\t\t";
+        // line 128
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "password2", array()), 'widget');
+        echo "
 \t\t\t\t\t\t\t\t\t<span class=\"input-group-addon\"><span class=\"glyphicon glyphicon-asterisk\"></span></span>
 \t\t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t</div>
@@ -155,13 +164,25 @@ class __TwigTemplate_1f88cf50eba2013b78fa4d91ebe8f5389af48eb132775cd4068e1fa180a
 \t\t\t\t\t\t\t<div class=\"form-group form-area\">
 \t\t\t\t\t\t\t\t<label for=\"InputEmail\">Tanggal Lahir</label>
 \t\t\t\t\t\t\t\t<div class=\"input-group\">
-\t\t\t\t\t\t\t\t\t<input type=\"text\" class=\"form-control\" id=\"birthday\" name=\"InputBirth\" placeholder=\"Tanggal lahir\" required=\"true\" readonly=\"true\">
+\t\t\t\t\t\t\t\t\t";
+        // line 136
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "birthday", array()), 'widget');
+        echo "
 \t\t\t\t\t\t\t\t\t<span class=\"input-group-addon add-on\"><span class=\"glyphicon glyphicon-asterisk\"></span>
 \t\t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t</div>
-\t\t\t\t\t\t\t
-\t\t\t\t\t\t<input type=\"submit\" name=\"submit\" id=\"submit\" value=\"Daftar\" class=\"btn btn-default btn-lg pull-right\">
-\t\t\t\t</form>
+\t\t\t\t\t\t\t";
+        // line 140
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "_token", array()), 'row');
+        echo "
+\t\t\t\t\t\t\t";
+        // line 141
+        echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "submit", array()), 'widget');
+        echo "
+\t\t\t\t";
+        // line 142
+        echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
+        echo "
 \t\t\t\t</p>
             </div>
         </div>
@@ -226,20 +247,23 @@ class __TwigTemplate_1f88cf50eba2013b78fa4d91ebe8f5389af48eb132775cd4068e1fa180a
     <!-- Footer -->
     <footer>
         <div class=\"container text-center\">
-            <p>Copyright &copy; lucidcouple.com 2014</p>
+            <p>Copyright &copy; lucidcouple.com ";
+        // line 207
+        echo twig_escape_filter($this->env, twig_date_format_filter($this->env, "now", "Y"), "html", null, true);
+        echo "</p>
         </div>
     </footer>
 
             <script type=\"text/javascript\" src=\"";
-        // line 217
+        // line 211
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/lclc/js/jquery.easing.min.js"), "html", null, true);
         echo "\"></script>
             <script type=\"text/javascript\" src=\"";
-        // line 218
+        // line 212
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/lclc/js/bootstrap.min.js"), "html", null, true);
         echo "\"></script>
             <script type=\"text/javascript\" src=\"";
-        // line 219
+        // line 213
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/lclc/js/grayscale.js"), "html", null, true);
         echo "\"></script>
             
@@ -310,6 +334,6 @@ class __TwigTemplate_1f88cf50eba2013b78fa4d91ebe8f5389af48eb132775cd4068e1fa180a
 
     public function getDebugInfo()
     {
-        return array (  296 => 24,  291 => 23,  288 => 22,  282 => 20,  278 => 19,  274 => 18,  270 => 17,  265 => 16,  262 => 15,  243 => 219,  239 => 218,  235 => 217,  42 => 26,  39 => 22,  37 => 15,  21 => 1,);
+        return array (  320 => 24,  315 => 23,  312 => 22,  306 => 20,  302 => 19,  298 => 18,  294 => 17,  289 => 16,  286 => 15,  267 => 213,  263 => 212,  259 => 211,  252 => 207,  184 => 142,  180 => 141,  176 => 140,  169 => 136,  158 => 128,  148 => 121,  138 => 114,  130 => 109,  126 => 108,  42 => 26,  39 => 22,  37 => 15,  21 => 1,);
     }
 }

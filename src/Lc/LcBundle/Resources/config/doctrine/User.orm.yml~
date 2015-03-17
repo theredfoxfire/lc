@@ -54,6 +54,12 @@ Lc\LcBundle\Entity\User:
   gallery:
    targetEntity: Gallery
    mappedBy: user
+  userdoing:
+   targetEntity: Userdoing
+   mappedBy: user
+  userlog:
+   targetEntity: Userlog
+   mappedBy: user
  oneToOne:
   usercriteria:
    targetEntity: Usercriteria
@@ -61,3 +67,5 @@ Lc\LcBundle\Entity\User:
   profile:
    targetEntity: Profile
    mappedBy: user
+ lifecycleCallbacks:
+  prePersist: [ setCreatedAtValue, setTokenValue ]

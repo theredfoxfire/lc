@@ -54,7 +54,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">
+                <a class="navbar-brand page-scroll" href="{{ path('lc_lc_homepage') }">
                     <i class="glyphicon glyphicon-heart-empty"></i>  <span class="light">Lucid</span>Couple
                 </a>
             </div>
@@ -64,14 +64,7 @@
                 <ul class="nav navbar-nav">
                     <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
                     <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    
-                    <li>
-                        <a class="page-scroll" href="#daftar">Daftar</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#login">Login</a>
+                        <a href="{{ path('lc_lc_homepage') }}"></a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#contact">Contact</a>
@@ -90,8 +83,8 @@
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <h1 class="brand-heading">LucidCouple</h1>
-                        <p class="intro-text">Layanan aplikasi yang akan membantu mu menemukan pasangan yang terbaik.<br>Daftar sekarang! Geratis, selamanya.</p>
-                        <a href="#daftar" class="btn btn-circle page-scroll" data-toggle="tooltip" data-placement="top" title="Daftar!">
+                        <p class="intro-text">Terima kasih telah melakukan pendaftaran di LUCIDCOUPLE. Kami sudah mengirim email pengaktifan akun ke alamat email anda, silahkan buka email anda dan aktifkan akun anda.</p>
+                        <a href="#contact" class="btn btn-circle page-scroll" data-toggle="tooltip" data-placement="top" title="Hubungi Kami">
                             <i class="fa fa-angle-double-down animated"></i>
                         </a>
                     </div>
@@ -100,81 +93,7 @@
         </div>
     </header>
 
-    <!-- About Section -->
-    <section id="daftar" class="container content-section text-center">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <h2>Daftar LucidCouple</h2>
-                <p>{{ form_start(form) }}
-						{{ form_errors(form) }}
-						<div class="well well-sm f-well form-area" ><strong><span class="glyphicon glyphicon-asterisk"></span>Harus diisi</strong></div>
-							<div class="form-group form-area">
-								<label for="InputEmail">Email</label>
-								<div class="input-group">
-									{{ form_widget(form.email) }}
-									<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-								</div>
-							</div>
-							<div class="form-group form-area">
-								<label for="InputEmail">Password</label>
-								<div class="input-group">
-									{{ form_widget(form.password) }}
-									<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-								</div>
-							</div>
-							<div class="form-group form-area">
-								<label for="InputEmail">Ulangi Password</label>
-								<div class="input-group">
-									{{ form_widget(form.password2) }}
-									<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-								</div>
-							</div>
-							
-							<div class="form-group form-area">
-								<label for="InputEmail">Tanggal Lahir</label>
-								<div class="input-group">
-									{{ form_widget(form.birthday) }}
-									<span class="input-group-addon add-on"><span class="glyphicon glyphicon-asterisk"></span>
-								</div>
-							</div>
-							{{ form_row(form._token) }}
-							{{ form_widget(form.submit) }}
-				{{ form_end(form) }}
-				</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Download Section -->
-    <section id="login" class="content-section text-center">
-        <div class="download-section">
-            <div class="container">
-                <div class="col-lg-8 col-lg-offset-2">
-                    <h2>Login LucidCouple</h2>
-                    <p>
-						<form role="form" class="login-area">
-							<div class="form-group form-area">
-								<label for="InputEmail">Email</label>
-								<div class="input-group">
-									<input type="email" class="form-control" id="InputEmailFirst" name="InputEmail" placeholder="Masukan email" required>
-									<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-								</div>
-							</div>
-							<div class="form-group form-area">
-								<label for="InputEmail">Password</label>
-								<div class="input-group">
-									<input type="password" class="form-control" id="InputPassword" name="InputPassword" placeholder="Masukan password" required>
-									<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-								</div>
-							</div>
-							<input type="submit" name="submit" id="submit" value="Login" class="btn btn-default btn-lg pull-right">
-						</form>
-					</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    
     <!-- Contact Section -->
     <section id="contact" class="container content-section text-center">
         <div class="row">

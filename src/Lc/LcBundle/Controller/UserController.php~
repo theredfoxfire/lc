@@ -52,7 +52,7 @@ class UserController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('user_wait'));
+            return $this->redirect($this->generateUrl('user_wait', array('id' => $entity->getId())));
         }
 
         return $this->render('LcLcBundle:Default:index.html.twig', array(

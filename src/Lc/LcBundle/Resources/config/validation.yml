@@ -1,0 +1,11 @@
+Lc\LcBundle\Entity\User:
+ properties:
+  email:
+   - NotBlank: ~
+   - Email: ~
+  password:
+   - NotBlank: ~
+  password2:
+   - NotBlank: ~
+  birthday:
+   - NotBlank: ~

@@ -1,9 +1,7 @@
 user:
     path:     /
     defaults: { _controller: "LcLcBundle:User:index" }
-user_wait:
- path: /thanks
- defaults: { _controller: "LcLcBundle:User:wait"}
+
 user_show:
     path:     /{id}/show
     defaults: { _controller: "LcLcBundle:User:show" }

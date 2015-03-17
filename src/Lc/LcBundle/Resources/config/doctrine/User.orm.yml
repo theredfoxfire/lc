@@ -15,6 +15,7 @@ Lc\LcBundle\Entity\User:
   phone:
    type: string
    length: 20
+   nullable: true
   password:
    type: string
    length: 255
@@ -67,3 +68,5 @@ Lc\LcBundle\Entity\User:
   profile:
    targetEntity: Profile
    mappedBy: user
+ lifecycleCallbacks:
+  prePersist: [ setCreatedAtValue, setTokenValue ]

@@ -33,6 +33,10 @@ class User
      * @var string
      */
     private $password;
+    
+    private $password2;
+    
+    private $birthday;
 
     /**
      * @var boolean
@@ -155,6 +159,40 @@ class User
     public function getPassword()
     {
         return $this->password;
+    }
+    
+    public function setPassword2($password2)
+    {
+        $this->password2 = $password2;
+
+        return $this;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string 
+     */
+    public function getPassword2()
+    {
+        return $this->password2;
+    }
+    
+    public function setBirthday($birthday)
+    {
+        $this->birthday = $birthday;
+
+        return $this;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string 
+     */
+    public function getBirthday()
+    {
+        return $this->birthday;
     }
 
     /**
@@ -690,5 +728,25 @@ class User
     public function getUserlog()
     {
         return $this->userlog;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedAtValue()
+    {
+        $this->created_at = new \DateTime();
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setTokenValue()
+    {
+        if(!$this->getToken()) {
+            $st = date('Y-m-d H:i:s');
+			$st = $st.$this->getEmail();
+			$this->token = sha1($st.rand(11111, 99999));
+        }
     }
 }
