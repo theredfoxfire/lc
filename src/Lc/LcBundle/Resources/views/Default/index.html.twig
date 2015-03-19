@@ -27,7 +27,7 @@
 		$( ".date" ).datepicker({
 			changeMonth: true,
 			changeYear: true,
-			yearRange: "-65:-15",
+			yearRange: "-65:-17",
 			dateFormat:'yy-mm-dd'
 		});
 	});
@@ -136,6 +136,7 @@
 									{{ form_widget(form.birthday) }}
 									<span class="input-group-addon add-on"><span class="glyphicon glyphicon-asterisk"></span>
 								</div>
+									{{ form_errors(form.birthday) }}
 							</div>
 							{{ form_row(form._token) }}
 							{{ form_widget(form.submit) }}

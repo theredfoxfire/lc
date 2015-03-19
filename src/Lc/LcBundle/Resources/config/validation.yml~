@@ -1,6 +1,9 @@
 Lc\LcBundle\Entity\User:
-    constraints:
-        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
-            fields: [email]
-            errorPath: email
-            message: 'Gunakan alamat email lain, email tersebut sudah digunakan.'
+ constraints:
+  - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+     fields: [email]
+     errorPath: email
+     message: 'Gunakan alamat email lain, email tersebut sudah digunakan.'
+ properties:
+  birthday:
+   - NotBlank: ~

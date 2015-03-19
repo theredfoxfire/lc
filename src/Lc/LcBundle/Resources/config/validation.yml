@@ -4,3 +4,7 @@ Lc\LcBundle\Entity\User:
      fields: [email]
      errorPath: email
      message: 'Gunakan alamat email lain, email tersebut sudah digunakan.'
+ properties:
+  birthday:
+   - NotBlank: ~
+   - ContainsAlphanumeric: ~

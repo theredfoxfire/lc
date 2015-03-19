@@ -3,7 +3,6 @@
 namespace Lc\LcBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 /**
  * User
  */
