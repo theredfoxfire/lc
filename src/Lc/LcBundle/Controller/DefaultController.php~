@@ -25,12 +25,7 @@ class DefaultController extends Controller
             'action' => $this->generateUrl('user_create'),
             'method' => 'POST',
             'attr' => array('class' => 'register-area'),
-        ));
-        $form->add('email', 'email', array('attr'=>array('class'=>'form-control', 'required'=> true,'placeholder'=>'Masukan Alamat Email'), 'label'=>false));
-        $form->add('password', 'password', array('attr'=>array('class'=>'form-control', 'required'=> true,'placeholder'=>'Masukan Password'), 'label'=>false));
-        //~ $form->add('password2', 'password', array('attr'=>array('class'=>'form-control', 'required'=> true,'placeholder'=>'Ulangi Password'), 'label'=>false));
-        //~ $form->add('birthday', 'text', array('attr'=>array('class'=>'form-control', 'required'=> true,'placeholder'=>'Tanggal Lahir', 'id'=>'birthday','disabled'=>'disabled'), 'label'=>false));
-		$form->add('submit', 'submit', array('label' => false, 'attr' => array('class'=>'btn btn-default btn-lg pull-right')));
+        ));        
         return $form;
     }
 }

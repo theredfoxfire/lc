@@ -1,7 +1,9 @@
 user:
     path:     /
     defaults: { _controller: "LcLcBundle:User:index" }
-
+user_wait:
+ path: /thanks
+ defaults: { _controller: "LcLcBundle:User:wait"}
 user_show:
     path:     /{id}/show
     defaults: { _controller: "LcLcBundle:User:show" }
@@ -11,7 +13,7 @@ user_new:
     defaults: { _controller: "LcLcBundle:User:new" }
 
 user_create:
-    path:     /create
+    path:     /create#daftar
     defaults: { _controller: "LcLcBundle:User:create" }
     requirements: { _method: post }
 

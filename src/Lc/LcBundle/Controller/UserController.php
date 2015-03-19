@@ -55,7 +55,7 @@ class UserController extends Controller
             return $this->redirect($this->generateUrl('user_wait'));
         }
 
-        return $this->render('LcLcBundle:Default:index.html.twig', array(
+        return $this->render('LcLcBundle:User:create.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
@@ -73,9 +73,9 @@ class UserController extends Controller
         $form = $this->createForm(new UserType(), $entity, array(
             'action' => $this->generateUrl('user_create'),
             'method' => 'POST',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Create'));
+            'attr' => array('class' => 'register-area'),
+        ));        
+		$form->add('submit', 'submit', array('label' => false, 'attr' => array('class'=>'btn btn-default btn-lg pull-right', 'focus' =>'focus')));
 
         return $form;
     }
