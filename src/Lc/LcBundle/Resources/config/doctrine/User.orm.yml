@@ -17,8 +17,7 @@ Lc\LcBundle\Entity\User:
    length: 20
    nullable: true
   password:
-   type: string
-   length: 255
+   type: text
   is_active:
    type: boolean
   created_at:

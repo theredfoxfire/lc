@@ -58,7 +58,6 @@ class User
      */
     private $token;
 
-
     /**
      * Get id
      *
@@ -748,5 +747,10 @@ class User
 			$st = $st.$this->getEmail();
 			$this->token = sha1($st.rand(11111, 99999));
         }
+    }
+    
+	public function getSalt()
+    {
+        return null;
     }
 }

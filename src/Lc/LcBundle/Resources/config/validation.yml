@@ -5,6 +5,20 @@ Lc\LcBundle\Entity\User:
      errorPath: email
      message: 'Gunakan alamat email lain, email tersebut sudah digunakan.'
  properties:
+  email:
+   - Email:
+      message: 'Alamat email tidak benar.'
+   - NotBlank:
+      message: 'Email harap diisi.'
   birthday:
-   - NotBlank: ~
+   - NotBlank:
+      message: 'Tanggal lahir harap diisi.'
    - ContainsAlphanumeric: ~
+  password2:
+   - NotBlank:
+      message: 'Ulangi password harap diisi.'
+   - ComparePassword: 
+      field: password
+  password:
+   - NotBlank:
+      message: 'Password harap diisi.'

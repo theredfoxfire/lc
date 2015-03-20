@@ -47,7 +47,14 @@ class UserController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $formData = $request->get('lc_lcbundle_user');
+            $ps = $formData['password'];
+            
+            $factory = $this->get('security.encoder_factory');
+			$encoder = $factory->getEncoder($entity);
+			$ep = $encoder->encodePassword($ps, $entity->getSalt());
+            
 			$entity->setUsername($formData['email']);
+			$entity->setPassword($ep);
 			$entity->setIsActive(false);
             $em->persist($entity);
             $em->flush();
