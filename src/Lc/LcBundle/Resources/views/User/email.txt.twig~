@@ -1,0 +1,7 @@
+Hello {{ email }}, terima kasih telah melakukan pendaftaran di LUCIDCOUPLE.
+Untuk mengaktifkan akun Anda silahkan klink link di bawah ini:
+
+http://localhost/lc/web/app_dev.php/user/aktivate/{{ token }}
+
+Jika mengalami masalah dengan proses aktivasi akun silahkan hubungi layan member kami di:
+member@lucidcouple.com

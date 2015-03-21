@@ -4,54 +4,22 @@
 	{% endblock %}
 	
 	{% block content %}
-    <!-- About Section -->
-    <section id="daftar" class="container content-section text-center">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <h2>Daftar LucidCouple</h2>
-                <p>{{ form_start(form) }}
-					{{ form_errors(form) }}
-						<div class="well well-sm f-well form-area" ><strong>(Oops! data yang di masukan belum benar, coba periksa lagi)</strong> <br><span class="glyphicon glyphicon-asterisk"></span>) Harus diisi</div>
-							<div class="form-group form-area">
-								<label for="InputEmail">Email</label>
-								<div class="input-group">
-									{{ form_widget(form.email) }}
-									<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-								</div>
-									{{ form_errors(form.email) }}
-							</div>
-							<div class="form-group form-area">
-								<label for="InputEmail">Password</label>
-								<div class="input-group">
-									{{ form_widget(form.password) }}
-									<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-								</div>
-									{{ form_errors(form.password) }}
-							</div>
-							<div class="form-group form-area">
-								<label for="InputEmail">Ulangi Password</label>
-								<div class="input-group">
-									{{ form_widget(form.password2) }}
-									<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-								</div>
-									{{ form_errors(form.password2) }}
-							</div>
-							
-							<div class="form-group form-area">
-								<label for="InputEmail">Tanggal Lahir</label>
-								<div class="input-group">
-									{{ form_widget(form.birthday) }}
-									<span class="input-group-addon add-on"><span class="glyphicon glyphicon-asterisk"></span>
-								</div>
-									{{ form_errors(form.birthday) }}
-							</div>
-							{{ form_row(form._token) }}
-							{{ form_widget(form.submit) }}
-				{{ form_end(form) }}
-				</p>
+    <!-- Intro Header -->
+    <header class="intro">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h1 class="brand-heading">LucidCouple</h1>
+                        <p class="intro-text">Terima kasih {{ email }}, selamat akun LUCIDCOUPLE Anda sudah aktif. <br> Mulailah sekarang dan temukan takdirmu di sini!</p>
+                        <a href="#login" class="btn btn-circle page-scroll" data-toggle="tooltip" data-placement="top" title="Login">
+                            <i class="fa fa-angle-double-down animated"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
+    </header>
 
     <!-- Download Section -->
     <section id="login" class="content-section text-center">
@@ -82,7 +50,7 @@
             </div>
         </div>
     </section>
-
+    
     <!-- Contact Section -->
     <section id="contact" class="container content-section text-center">
         <div class="row">

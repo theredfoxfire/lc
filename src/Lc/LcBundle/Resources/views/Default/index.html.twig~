@@ -27,7 +27,7 @@
 		$( ".date" ).datepicker({
 			changeMonth: true,
 			changeYear: true,
-			yearRange: "-65:-15",
+			yearRange: "-65:-17",
 			dateFormat:'yy-mm-dd'
 		});
 	});
@@ -89,7 +89,7 @@
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <h1 class="brand-heading">LucidCouple</h1>
-                        <p class="intro-text">Layanan aplikasi yang akan membantu mu menemukan pasangan yang terbaik.<br>Daftar sekarang! Geratis, selamanya.</p>
+                        <p class="intro-text">Layanan aplikasi yang akan membantu mu menemukan pasangan yang terbaik.<br>Daftar sekarang! Geratis, akses penuh, selamanya.</p>
                         <a href="#daftar" class="btn btn-circle page-scroll" data-toggle="tooltip" data-placement="top" title="Daftar!">
                             <i class="fa fa-angle-double-down animated"></i>
                         </a>
@@ -181,7 +181,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>Hubungi LucidCouple</h2>
-                <p>Tidak usah sungkan, silahkan hubungi kami untuk menyampaikan saran, memasang iklan atau hanya sekedar ingin menyapa kami!</p>
+                <p>Tidak usah sungkan, silahkan hubungi kami untuk menyampaikan saran, relasi bisnis atau hanya sekedar ingin menyapa kami!</p>
                 <p><a href="mailto:call@lucidcouple.com">call@lucidcouple.com</a>
                 </p>
                 <ul class="list-inline banner-social-buttons">

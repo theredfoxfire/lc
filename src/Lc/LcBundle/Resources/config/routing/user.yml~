@@ -13,13 +13,16 @@ user_new:
     defaults: { _controller: "LcLcBundle:User:new" }
 
 user_create:
-    path:     /create#daftar
+    path:     /create
     defaults: { _controller: "LcLcBundle:User:create" }
     requirements: { _method: post }
 
 user_edit:
     path:     /{id}/edit
     defaults: { _controller: "LcLcBundle:User:edit" }
+user_edit:
+    path:     /activate/{token}
+    defaults: { _controller: "LcLcBundle:User:activate" }
 
 user_update:
     path:     /{id}/update

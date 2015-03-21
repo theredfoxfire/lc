@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Lucidcouple - Temukan takdirmu disini!</title>
+
+    <!-- Bootstrap Core CSS -->
+    {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('bundles/lclc/css/bootstrap.min.css') }}" type="text/css" media="all" />
+            <link rel="stylesheet" href="{{ asset('bundles/lclc/css/grayscale.css') }}" type="text/css" media="all" />
+            <link rel="stylesheet" href="{{ asset('bundles/lclc/css/jquery-ui.css') }}" type="text/css" media="all" />
+            <link rel="stylesheet" href="{{ asset('bundles/lclc/font-awesome/css/font-awesome.min.css') }}" type="text/css" media="all" />
+    {% endblock %}
+    {% block javascripts %}
+            <script type="text/javascript" src="{{ asset('bundles/lclc/js/jquery-1.10.2.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/lclc/js/jquery-ui.js') }}"></script>
+    {% endblock %}
+	<script>
+		$(function() {
+		$( ".date" ).datepicker({
+			changeMonth: true,
+			changeYear: true,
+			yearRange: "-65:-17",
+			dateFormat:'yy-mm-dd'
+		});
+	});
+	</script>
+    <!--<link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">-->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    
+    
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p>Copyright &copy; lucidcouple.com {{ "now"|date("Y") }}</p>
+        </div>
+    </footer>
+
+            <script type="text/javascript" src="{{ asset('bundles/lclc/js/jquery.easing.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/lclc/js/bootstrap.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('bundles/lclc/js/grayscale.js') }}"></script>
+            
+    <!-- Bootstrap Core JavaScript -->
+
+    <!-- Custom Theme JavaScript -->
+    
+	<script>
+		$(function(){
+			$('[data-toggle="tooltip"]').tooltip();
+		});
+	</script>
+</body>
+
+</html>

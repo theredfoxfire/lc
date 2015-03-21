@@ -58,7 +58,22 @@ class UserController extends Controller
 			$entity->setIsActive(false);
             $em->persist($entity);
             $em->flush();
-
+            
+            $em = $this->getDoctrine()->getManager();
+			$entity = $em->getRepository('LcLcBundle:User')->findOneByEmail($formData['email']);
+		/*
+		email section
+		*/
+			$message = \Swift_Message::newInstance()
+                ->setSubject('Aktivasi Akun LUCIDCOUPLE')
+                ->setFrom('member@lucidcouple.com')
+                ->setTo($entity->getEmail())
+                ->setBody(
+                    $this->renderView('LcLcBundle:User:email.txt.twig', array('token' => $entity->getToken(), 'email' => $entity->getEmail())))
+            ;
+ 
+            $this->get('mailer')->send($message);
+		
             return $this->redirect($this->generateUrl('user_wait'));
         }
 
@@ -145,6 +160,23 @@ class UserController extends Controller
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+        ));
+    }
+    
+	public function activateAction($token)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('LcLcBundle:User')->findOneByToken($token);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find User entity.');
+        }
+        $entity->setIsActive(true);
+        $em->flush();
+
+        return $this->render('LcLcBundle:User:thanks.html.twig', array(
+            'email'      => $entity->getEmail(),
         ));
     }
 
