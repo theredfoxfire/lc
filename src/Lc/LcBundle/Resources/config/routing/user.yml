@@ -20,7 +20,7 @@ user_create:
 user_edit:
     path:     /{id}/edit
     defaults: { _controller: "LcLcBundle:User:edit" }
-user_edit:
+user_activate:
     path:     /activate/{token}
     defaults: { _controller: "LcLcBundle:User:activate" }
 

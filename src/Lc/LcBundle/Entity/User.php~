@@ -753,4 +753,12 @@ class User
     {
         return null;
     }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedAtValue()
+    {
+        // Add your code here
+    }
 }

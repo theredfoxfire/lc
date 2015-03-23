@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <h1 class="brand-heading">LucidCouple</h1>
-                        <p class="intro-text">Terima kasih telah melakukan pendaftaran di LUCIDCOUPLE. Kami sudah mengirim email pengaktifan akun ke alamat email anda, silahkan buka email anda dan aktifkan akun anda.</p>
+                        <p class="intro-text">Terima kasih {{ email }}, selamat akun LUCIDCOUPLE Anda sudah aktif. <br> Mulailah sekarang dan temukan takdirmu di sini!</p>
                         <a href="#login" class="btn btn-circle page-scroll" data-toggle="tooltip" data-placement="top" title="Login">
                             <i class="fa fa-angle-double-down animated"></i>
                         </a>

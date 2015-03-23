@@ -1,6 +1,6 @@
 {% extends 'LcLcBundle:Default:layout.html.twig' %}
 	{% block menu %}
-    {{ include ('LcLcBundle:Default:menu.thank.html.twig', {'jobs': category.activejobs}) }}
+    {{ include ('LcLcBundle:Default:menu.thank.html.twig') }}
 	{% endblock %}
 	
 	{% block content %}

@@ -753,4 +753,12 @@ class User
     {
         return null;
     }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedAtValue()
+    {
+        $this->updated_at = new \DateTime();
+    }
 }
