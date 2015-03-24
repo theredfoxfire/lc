@@ -759,6 +759,21 @@ class User
      */
     public function setUpdatedAtValue()
     {
-        // Add your code here
+        $this->updated_at = new \DateTime();
     }
+    
+    public function getRoles()
+    {
+        return array('ROLE_ADMIN');
+    }
+
+    public function eraseCredentials()
+    {
+ 
+    }
+ 
+    public function equals(User $user)
+    {
+        return $user->getEmail() == $this->getEmail();
+    } 
 }

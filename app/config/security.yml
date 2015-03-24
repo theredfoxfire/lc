@@ -5,7 +5,7 @@ security:
          cost: 12
 
     role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
+        ROLE_USER:       ROLE_USER
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
     providers:
         main:
@@ -16,22 +16,29 @@ security:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        login:
-            pattern:  ^/demo/secured/login$
+        create:
+            pattern:  ^/user/create
             security: false
-
+        wait:
+            pattern:  ^/user/thanks
+            security: false
+        activate:
+            pattern: ^/user/activate/{token}
+            security: false
         secured_area:
-            pattern:    ^/demo/secured/
+            pattern:    ^/
+            anonymous: ~
             form_login:
-                check_path: _security_check
-                login_path: _demo_login
+                check_path: /login_check
+                login_path: /
+                default_target_path: LcLcBundle_feeling
             logout:
-                path:   _demo_logout
-                target: _demo
+                path:   /logout
+                target: /
             #anonymous: ~
             #http_basic:
             #    realm: "Secured Demo Area"
 
     access_control:
-        - { path: ^/demo/secured/hello/admin/, roles: ROLE_ADMIN }
+        - { path: ^/user, roles: ROLE_USER }
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }

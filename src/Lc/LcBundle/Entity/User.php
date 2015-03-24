@@ -761,4 +761,19 @@ class User
     {
         $this->updated_at = new \DateTime();
     }
+    
+    public function getRoles()
+    {
+        return array('ROLE_USER');
+    }
+
+    public function eraseCredentials()
+    {
+ 
+    }
+ 
+    public function equals(User $user)
+    {
+        return $user->getEmail() == $this->getEmail();
+    } 
 }

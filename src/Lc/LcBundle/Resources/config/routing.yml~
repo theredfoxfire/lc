@@ -1,5 +1,5 @@
 lc_lc_homepage:
-    path:     /lc/{name}
+    path:     /
     defaults: { _controller: LcLcBundle:Default:index }
 LcLcBundle_admin:
         resource: "@LcLcBundle/Resources/config/routing/admin.yml"
@@ -30,7 +30,7 @@ LcLcBundle_fcomment:
         prefix:   /fcomment
 LcLcBundle_feeling:
         resource: "@LcLcBundle/Resources/config/routing/feeling.yml"
-        prefix:   /feeling
+        prefix:   /heaven
 LcLcBundle_flike:
         resource: "@LcLcBundle/Resources/config/routing/flike.yml"
         prefix:   /flike
@@ -94,4 +94,11 @@ LcLcBundle_usercriteria:
 LcLcBundle_userdoing:
         resource: "@LcLcBundle/Resources/config/routing/userdoing.yml"
         prefix:   /userdoing
-
+LcLcBundle_userlog:
+        resource: "@LcLcBundle/Resources/config/routing/userlog.yml"
+        prefix:   /userlog
+login:
+    pattern:   /
+    defaults:  { _controller: LcLcBundle:Default:login }
+login_check:
+    pattern:   /login_check

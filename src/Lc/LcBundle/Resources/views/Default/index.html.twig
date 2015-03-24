@@ -153,18 +153,21 @@
                 <div class="col-lg-8 col-lg-offset-2">
                     <h2>Login LucidCouple</h2>
                     <p>
-						<form role="form" class="login-area">
+						{% if error is defined%}
+							<div>{{ error.message }}</div>
+						{% endif %}
+						<form role="form" class="login-area" action="{{ path('login_check') }}" method="POST">
 							<div class="form-group form-area">
 								<label for="InputEmail">Email</label>
 								<div class="input-group">
-									<input type="email" class="form-control" id="InputEmailFirst" name="InputEmail" placeholder="Masukan email" required>
+									<input type="email" class="form-control" id="email" name="_email" placeholder="Masukan email" {% if last_username is defined %} value="{{ last_username }}" {% endif %} required>
 									<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
 								</div>
 							</div>
 							<div class="form-group form-area">
 								<label for="InputEmail">Password</label>
 								<div class="input-group">
-									<input type="password" class="form-control" id="InputPassword" name="InputPassword" placeholder="Masukan password" required>
+									<input type="password" class="form-control" id="password" name="_password" placeholder="Masukan password" required>
 									<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
 								</div>
 							</div>

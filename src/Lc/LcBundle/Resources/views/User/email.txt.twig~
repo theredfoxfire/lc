@@ -1,7 +1,7 @@
 Hello {{ email }}, terima kasih telah melakukan pendaftaran di LUCIDCOUPLE.
 Untuk mengaktifkan akun Anda silahkan klink link di bawah ini:
 
-{{ path('user_activate', {'token': token}) }}
+{{ app.request.scheme ~'://' ~ app.request.httpHost ~ path('user_activate', {'token': token}) }}
 
 Jika mengalami masalah dengan proses aktivasi akun silahkan hubungi layan member kami di:
 member@lucidcouple.com
