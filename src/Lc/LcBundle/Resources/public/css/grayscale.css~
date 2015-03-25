@@ -405,6 +405,11 @@ footer p {
     background: rgba(255,255,255,.2);
 }
 
+.error_msg{
+	background-color: #E00B0B;
+	font-size: 30px;
+}
+
 img::selection {
     background: 0 0;
 }
@@ -415,7 +420,4 @@ img::-moz-selection {
 
 body {
     webkit-tap-highlight-color: rgba(255,255,255,.2);
-}
-.radio-check{
-	margin-right: 36px;
 }

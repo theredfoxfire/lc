@@ -2,14 +2,14 @@ security:
     encoders:
         Lc\LcBundle\Entity\User:
          algorithm: bcrypt
-         cost: 12
+         cost: 13
 
     role_hierarchy:
         ROLE_USER:       ROLE_USER
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
     providers:
         main:
-            entity: { class: Lc\LcBundle\Entity\User, property: email }
+            entity: { class: Lc\LcBundle\Entity\User }
 
     firewalls:
         dev:
@@ -30,8 +30,8 @@ security:
             anonymous: ~
             form_login:
                 check_path: /login_check
-                login_path: /
-                default_target_path: LcLcBundle_feeling
+                login_path: /login
+                default_target_path: /heaven
             logout:
                 path:   /logout
                 target: /

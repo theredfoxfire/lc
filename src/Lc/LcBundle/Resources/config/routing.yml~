@@ -98,7 +98,7 @@ LcLcBundle_userlog:
         resource: "@LcLcBundle/Resources/config/routing/userlog.yml"
         prefix:   /userlog
 login:
-    pattern:   /
+    pattern:   /login
     defaults:  { _controller: LcLcBundle:Default:login }
 login_check:
     pattern:   /login_check

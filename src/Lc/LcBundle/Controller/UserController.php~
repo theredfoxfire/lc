@@ -4,6 +4,7 @@ namespace Lc\LcBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Security\Core\SecurityContext;
 
 use Lc\LcBundle\Entity\User;
 use Lc\LcBundle\Form\UserType;
@@ -167,7 +168,7 @@ class UserController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('LcLcBundle:User')->findOneByToken($id);
+        $entity = $em->getRepository('LcLcBundle:User')->findOneByToken($token);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');

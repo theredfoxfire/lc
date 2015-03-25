@@ -32,7 +32,7 @@ class DefaultController extends Controller
         return $form;
     }
     
-    public function loginAction()
+	public function loginAction()
     {
         $request = $this->getRequest();
         $session = $request->getSession();
@@ -45,7 +45,7 @@ class DefaultController extends Controller
             $session->remove(SecurityContext::AUTHENTICATION_ERROR);
         }
  
-        return $this->render('LcLcBundle:Default:index.html.twig', array(
+        return $this->render('LcLcBundle:Default:login.html.twig', array(
             // last username entered by the user
             'last_username' => $session->get(SecurityContext::LAST_USERNAME),
             'error'         => $error,

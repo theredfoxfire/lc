@@ -1,5 +1,6 @@
 Lc\LcBundle\Entity\User:
  type: entity
+ repositoryClass: Lc\LcBundle\Repository\UserRepository
  table: user
  id:
   id:
