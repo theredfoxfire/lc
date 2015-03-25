@@ -129,7 +129,18 @@
 									<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
 								</div>
 							</div>
-							
+							<div class="form-group form-area">
+								<label for="InputEmail">Jenis Kelamin</label>
+								<div class="input-group">
+									{% block radio_widget %}
+										{% spaceless %}
+											<input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked is defined %} checked="checked"{% endif %} />
+										{% endspaceless %}
+									{% endblock radio_widget %}
+									<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+								</div>
+									{{ form_errors(form.sex) }}
+							</div>
 							<div class="form-group form-area">
 								<label for="InputEmail">Tanggal Lahir</label>
 								<div class="input-group">
@@ -156,7 +167,7 @@
 						{% if error is defined%}
 							<div>{{ error.message }}</div>
 						{% endif %}
-						<form role="form" class="login-area" action="{{ path('login') }}" method="POST">
+						<form role="form" class="login-area" action="{{ path('login_check') }}" method="POST">
 							<div class="form-group form-area">
 								<label for="InputEmail">Email</label>
 								<div class="input-group">

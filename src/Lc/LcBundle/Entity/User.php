@@ -3,6 +3,10 @@
 namespace Lc\LcBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints as DoctrineAssert;
 
 /**
  * User
@@ -37,6 +41,7 @@ class User
     private $password2;
     
     private $birthday;
+    private $sex;
 
     /**
      * @var boolean
@@ -158,6 +163,23 @@ class User
     public function getPassword()
     {
         return $this->password;
+    }
+    
+    public function setSex($sex)
+    {
+        $this->sex = $sex;
+
+        return $this;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string 
+     */
+    public function getSex()
+    {
+        return $this->sex;
     }
     
     public function setPassword2($password2)

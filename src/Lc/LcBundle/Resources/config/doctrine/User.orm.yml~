@@ -69,3 +69,4 @@ Lc\LcBundle\Entity\User:
    mappedBy: user
  lifecycleCallbacks:
   prePersist: [ setCreatedAtValue, setTokenValue ]
+  preUpdate: [ setUpdatedAtValue ]

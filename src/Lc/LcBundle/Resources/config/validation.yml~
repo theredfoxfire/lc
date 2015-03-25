@@ -6,6 +6,8 @@ Lc\LcBundle\Entity\User:
      message: 'Gunakan alamat email lain, email tersebut sudah digunakan.'
  properties:
   email:
+   - Email:
+      message: 'Alamat email tidak benar.'
    - NotBlank:
       message: 'Email harap diisi.'
   birthday:

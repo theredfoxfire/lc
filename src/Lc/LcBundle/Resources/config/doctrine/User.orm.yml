@@ -12,6 +12,9 @@ Lc\LcBundle\Entity\User:
   email:
    type: string
    length: 255
+  sex:
+   type: integer
+   length: 1
   phone:
    type: string
    length: 20

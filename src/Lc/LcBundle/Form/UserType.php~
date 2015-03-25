@@ -18,7 +18,8 @@ class UserType extends AbstractType
             ->add('email', 'email', array('attr'=>array('class'=>'form-control', 'required'=> false,'placeholder'=>'Masukan Alamat Email'), 'label'=>false))
 			->add('password', 'password', array('attr'=>array('class'=>'form-control', 'required'=> false,'placeholder'=>'Masukan Password'), 'label'=>false))
 			->add('password2', 'password', array('attr'=>array('class'=>'form-control', 'required'=> false,'placeholder'=>'Ulangi Password'), 'label'=>false))
-			->add('birthday','text',array('attr' => array('class' => 'date form-control', 'readonly'=>false)))
+			->add('birthday','text',array('attr' => array('class' => 'date form-control', 'readonly'=>true)))
+			->add('sex', 'choice', array('choices' => array('1' => 'Laki-laki ','2' => 'Perempuan'), 'attr'=>array('class'=>'radio-check'),'multiple' => false,'expanded' => true,'required' => true,))
         ;
     }
     

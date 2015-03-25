@@ -301,8 +301,6 @@ a:focus {
     padding-top: 100px;
     border-radius:4px;
 	border: 0px solid black;
-	opacity:0.6;
-	filter:alpha(opacity=60);
 }
 
 .download-section {
@@ -417,4 +415,7 @@ img::-moz-selection {
 
 body {
     webkit-tap-highlight-color: rgba(255,255,255,.2);
+}
+.radio-check{
+	margin-right: 36px;
 }
