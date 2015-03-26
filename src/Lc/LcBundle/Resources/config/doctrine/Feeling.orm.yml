@@ -1,5 +1,6 @@
 Lc\LcBundle\Entity\Feeling:
  type: entity
+ repositoryClass: Lc\LcBundle\Repository\FeelingRepository
  table: feeling
  id:
   id:

@@ -18,11 +18,11 @@
 												{{ form_start(form) }}
 												{{ form_errors(form) }}
 													<div class="form-group">
-													{{ form_widget(form.email) }}
+													{{ form_widget(form.feel) }}
 													</div>
-													{{ form_errors(form.email) }}
+													{{ form_errors(form.feel) }}
 													<div class="form-group right">
-														<button type="submit" class="btn btn-primary btn-feel"><i class="glyphicon glyphicon-send"></i> &nbsp;&nbsp;&nbsp;&nbsp;Kirim</button>
+														<button type="submit" class="btn btn-primary btn-feel"><i class="glyphicon glyphicon-send"></i> &nbsp;&nbsp;&nbsp;Posting</button>
 													</div>
 												{{ form_row(form._token) }}
 												{{ form_end(form) }}
@@ -33,6 +33,7 @@
 								</a>
 							</div>
 						</div>
+						{% for entity in entities %}
 						<div class="row">
 							<div class="panel panel-success">
 								<div class="panel-heading panel-success right">
@@ -47,13 +48,15 @@
 											<img src="{{ asset('bundles/lclc/img/wedus-48.jpeg') }}" class="img-rounded" alt="Super">
 										</div>
 										<div class="media-body f-feel">
-											<h5 class="media-right">Some awesome and great status. Are sure you want to share your status here? Off course here is the best place for share your feeling.</h5>
+											<h5 class="media-right">{{ entity.feel }}</h5>
+											<div class='pull-right created_at'>@ {{ entity.createdAt | date('d-m-Y H:i:s') }}</div>
 										</div>
 									</div>
 								</div>
 								</a>
 							</div>
 						</div>
+						{% endfor %}
 				</div>
 {% endblock %}
 {%block rightcontent%}

@@ -23,8 +23,10 @@ class FeelingController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $usr= $this->get('security.context')->getToken()->getUser();
+		$uid = $usr->getId();
 
-        $entities = $em->getRepository('LcLcBundle:Feeling')->findAll();
+        $entities = $em->getRepository('LcLcBundle:Feeling')->getUserFeeling($uid);
         $entity = new Feeling();
         $form = $this->createCreateForm($entity);
 
