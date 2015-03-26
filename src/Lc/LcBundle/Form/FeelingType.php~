@@ -15,7 +15,14 @@ class FeelingType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('feel', 'textarea', array('attr' => array('class' => 'form-control', 'required' => true, 'placeholder' => 'Apa perasaanmu?'), 'label'=>false))
+            ->add('feel')
+            ->add('liked')
+            ->add('shared')
+            ->add('commented')
+            ->add('is_active')
+            ->add('created_at')
+            ->add('updated_at')
+            ->add('token')
         ;
     }
     

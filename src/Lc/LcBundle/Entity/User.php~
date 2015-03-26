@@ -801,14 +801,14 @@ class User implements AdvancedUserInterface
 		return $this->getIsActive();
 	}
 	public function isCredentialsNonExpired(){
-		
+		return true;
 	}
 	
 	public function isAccountNonExpired(){
-		
+		return true;
 	}
 	
 	public function isAccountNonLocked(){
-		
+		return true;
 	}
 }

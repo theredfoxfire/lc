@@ -50,7 +50,7 @@ class FeelingController extends Controller
             $em = $this->getDoctrine()->getManager();
 			$userId = $em->getRepository('LcLcBundle:User')->find($uid);
             $entity->setIsActive(true);
-            $entity->setUser($userId);
+            $user->setUser($userId);
             $em->persist($entity);
             $em->flush();
 

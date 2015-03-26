@@ -32,6 +32,12 @@ Lc\LcBundle\Entity\Feeling:
   fcomment:
    targetEntity: Fcomment
    mappedBy: feeling
+  flike:
+   targetEntity: Flike
+   mappedBy: feeling
+  fshare:
+   targetEntity: Fshare
+   mappedBy: feeling
  manyToOne:
   user:
    targetEntity: User
