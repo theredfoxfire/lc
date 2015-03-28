@@ -9,7 +9,7 @@
 						<div class="row">
 							<div class="panel panel-success">
 								<div class="panel-heading panel-success right">
-									<a class="a-act" href="#comments" data-toggle="tooltip" data-placement="top" title="Tulis balasan"><i class="glyphicon glyphicon-comment"></i></a>
+									<a class="a-act" href="#" data-toggle="tooltip" data-placement="top" title="Tulis balasan"><i class="glyphicon glyphicon-comment"></i></a>
 									<a class="a-act" href="#" data-toggle="tooltip" data-placement="top" title="Beri simpati"><i class="glyphicon glyphicon-thumbs-up"></i></a>
 									<a class="a-act" href="#" data-toggle="tooltip" data-placement="top" title="Bagikan"><i class="glyphicon glyphicon-share-alt"></i></a>
 								</div>
@@ -42,7 +42,7 @@
 											{% endfor %}
 						
 						
-											<div class="panel panel-success apanel-body" id="comments">
+											<div class="panel panel-success apanel-body">
 												<div class="panel-body">
 													<div class="media">
 														<a class="media-left pull-left" href="#">

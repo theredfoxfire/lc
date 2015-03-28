@@ -6,6 +6,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Lc\LcBundle\Entity\Feeling;
+use Lc\LcBundle\Entity\Fcomment;
+use Lc\LcBundle\Form\FcommentType;
 use Lc\LcBundle\Entity\User;
 use Lc\LcBundle\Form\FeelingType;
 
@@ -23,8 +25,10 @@ class FeelingController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $usr= $this->get('security.context')->getToken()->getUser();
+		$uid = $usr->getId();
 
-        $entities = $em->getRepository('LcLcBundle:Feeling')->findAll();
+        $entities = $em->getRepository('LcLcBundle:Feeling')->getUserFeeling($uid);
         $entity = new Feeling();
         $form = $this->createCreateForm($entity);
 
@@ -45,12 +49,9 @@ class FeelingController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-			$usr= $this->get('security.context')->getToken()->getUser();
-			$uid = $usr->getId();
             $em = $this->getDoctrine()->getManager();
-			$userId = $em->getRepository('LcLcBundle:User')->find($uid);
             $entity->setIsActive(true);
-            $entity->setUser($userId);
+            $entity->setUser($this->getUid());
             $em->persist($entity);
             $em->flush();
 
@@ -79,6 +80,18 @@ class FeelingController extends Controller
 
         return $form;
     }
+    
+    private function createCommentForm(Fcomment $entity, $token)
+    {
+        $form = $this->createForm(new FcommentType(), $entity, array(
+            'action' => $this->generateUrl('feeling_show', array(
+				'token' => $token,)
+            ),
+            'method' => 'POST',
+        ));
+
+        return $form;
+    }
 
     /**
      * Displays a form to create a new Feeling entity.
@@ -99,21 +112,36 @@ class FeelingController extends Controller
      * Finds and displays a Feeling entity.
      *
      */
-    public function showAction($id)
+    public function showAction(Request $request, $token)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('LcLcBundle:Feeling')->find($id);
+        $entity = $em->getRepository('LcLcBundle:Feeling')->findOneByToken($token);
+        $comments = $em->getRepository('LcLcBundle:Fcomment')->getCommentList($this->getUid(),$entity);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Feeling entity.');
         }
-
-        $deleteForm = $this->createDeleteForm($id);
+        
+        $fcomment = new Fcomment();
+        $form = $this->createCommentForm($fcomment, $token);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+			$usr= $this->get('security.context')->getToken()->getUser();
+			$uid = $usr->getId();
+			$em = $this->getDoctrine()->getManager();
+            $fcomment->setIsPublish(true);
+            $fcomment->setUser($this->getUid());
+            $fcomment->setFeeling($entity);
+            $em->persist($fcomment);
+            $em->flush();
+		}
+        
 
         return $this->render('LcLcBundle:Feeling:show.html.twig', array(
             'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
+            'comments' 	  => $comments,
+            'form'		  => $form->createView(),
         ));
     }
 
@@ -229,4 +257,13 @@ class FeelingController extends Controller
             ->getForm()
         ;
     }
+    
+    public function getUid(){
+		$usr= $this->get('security.context')->getToken()->getUser();
+		$uid = $usr->getId();
+		$em = $this->getDoctrine()->getManager();
+		$userId = $em->getRepository('LcLcBundle:User')->find($uid);
+		return $userId;
+		
+	}
 }

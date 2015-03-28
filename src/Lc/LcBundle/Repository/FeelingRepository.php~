@@ -13,10 +13,10 @@ use Lc\LcBundle\Entity\Feeling;
  */
 class FeelingRepository extends EntityRepository
 {
-	public function getUserFeeling($uid)
+	public function getUserFeeling($uid = null)
 	{
 		$query = $this->createQueryBuilder('f')
-		->where('f.user_id = :uid')
+		->where('f.user = :uid')
 		->setParameter('uid', $uid)
 		->andWhere('f.is_active = :is')
 		->setParameter('is', 1)

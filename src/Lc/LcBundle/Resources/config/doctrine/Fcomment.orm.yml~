@@ -1,5 +1,6 @@
 Lc\LcBundle\Entity\Fcomment:
  type: entity
+ repositoryClass: Lc\LcBundle\Repository\FeelingRepository
  table: fcomment
  id:
   id:
@@ -26,3 +27,12 @@ Lc\LcBundle\Entity\Fcomment:
    joinColumn:
     name: feeling_id
     referencedColumnName: id
+  user:
+   targetEntity: User
+   inversedBy: fcomment
+   joinColumn:
+    name: user_id
+    referencedColumnName: id
+ lifecycleCallbacks:
+  prePersist: [ setCreatedAtValue, setTokenValue ]
+  preUpdate: [ setUpdatedAtValue ]

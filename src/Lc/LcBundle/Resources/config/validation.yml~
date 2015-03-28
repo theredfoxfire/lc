@@ -5,6 +5,9 @@ Lc\LcBundle\Entity\User:
      errorPath: email
      message: 'Gunakan alamat email lain, email tersebut sudah digunakan.'
  properties:
+  sex:
+   - NotBlank:
+      message: 'Pilih jenis kelamin.'
   email:
    - Email:
       message: 'Alamat email tidak benar.'
@@ -22,3 +25,7 @@ Lc\LcBundle\Entity\User:
   password:
    - NotBlank:
       message: 'Password harap diisi.'
+Lc\LcBundle\Entity\Feeling:
+  feel:
+   - NotBlank:
+      message: 'Tulis apa yang sedang kamu rasakan.'

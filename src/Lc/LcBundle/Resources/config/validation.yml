@@ -25,3 +25,11 @@ Lc\LcBundle\Entity\User:
   password:
    - NotBlank:
       message: 'Password harap diisi.'
+Lc\LcBundle\Entity\Feeling:
+  feel:
+   - NotBlank:
+      message: 'Tulis apa yang sedang kamu rasakan.'
+Lc\LcBundle\Entity\Fcomment:
+  comment:
+   - NotBlank:
+      message: 'Tulis apa komentarmu.'

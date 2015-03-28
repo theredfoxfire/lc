@@ -22,7 +22,7 @@
 													</div>
 													{{ form_errors(form.feel) }}
 													<div class="form-group right">
-														<button type="submit" class="btn btn-primary btn-feel"><i class="glyphicon glyphicon-send"></i> &nbsp;&nbsp;&nbsp;Posting</button>
+														<button type="submit" class="btn btn-primary btn-feel"><i class="glyphicon glyphicon-send"></i> &nbsp;&nbsp;Posting</button>
 													</div>
 												{{ form_row(form._token) }}
 												{{ form_end(form) }}
