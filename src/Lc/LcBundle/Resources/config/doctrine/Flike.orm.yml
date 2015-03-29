@@ -1,5 +1,6 @@
 Lc\LcBundle\Entity\Flike:
  type: entity
+ repositoryClass: Lc\LcBundle\Repository\FlikeRepository
  table: flike
  id:
   id:
@@ -30,3 +31,6 @@ Lc\LcBundle\Entity\Flike:
    joinColumn:
     name: user_id
     referencedColumnName: id
+ lifecycleCallbacks:
+  prePersist: [ setCreatedAtValue, setTokenValue ]
+  preUpdate: [ setUpdatedAtValue ]

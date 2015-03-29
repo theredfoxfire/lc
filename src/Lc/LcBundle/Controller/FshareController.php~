@@ -39,7 +39,7 @@ class FshareController extends Controller
         $entity = new Fshare();
         $em = $this->getDoctrine()->getManager();
         $feeling = $em->getRepository('LcLcBundle:Feeling')->findOneByToken($feel);
-        $check = $em->getRepository('LcLcBundle:Fshare')->checkShared($this->getUid(),$feeling);
+        $check = $em->getRepository('LcLcBundle:Fshare')->checkLiked($this->getUid(),$feeling);
         if(!$check){
 			$entity->setStatus(1);
 			$entity->setUser($this->getUid());

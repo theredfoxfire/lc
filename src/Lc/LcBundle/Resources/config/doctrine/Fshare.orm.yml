@@ -1,5 +1,6 @@
 Lc\LcBundle\Entity\Fshare:
  type: entity
+ repositoryClass: Lc\LcBundle\Repository\FshareRepository
  table: fshare
  id:
   id:
@@ -30,3 +31,6 @@ Lc\LcBundle\Entity\Fshare:
    joinColumn:
     name: user_id
     referencedColumnName: id
+ lifecycleCallbacks:
+  prePersist: [ setCreatedAtValue, setTokenValue ]
+  preUpdate: [ setUpdatedAtValue ]

@@ -15,10 +15,7 @@ class FlikeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('created_at')
-            ->add('updated_at')
-            ->add('status')
-            ->add('token')
+            
         ;
     }
     

@@ -11,7 +11,7 @@ fshare_new:
     defaults: { _controller: "LcLcBundle:Fshare:new" }
 
 fshare_create:
-    path:     /create/{feel}
+    path:     /create/{token}
     defaults: { _controller: "LcLcBundle:Fshare:create" }
 
 fshare_edit:

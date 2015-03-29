@@ -13,6 +13,7 @@ flike_new:
 flike_create:
     path:     /create/{feel}
     defaults: { _controller: "LcLcBundle:Flike:create" }
+    requirements: { _method: post }
 
 flike_edit:
     path:     /{id}/edit
