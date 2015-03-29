@@ -23,7 +23,7 @@ class ProfileController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('LcLcBundle:Profile')->findOneByUser($this->getUid());
+        $entities = $em->getRepository('LcLcBundle:Profile')->findOneByUser();
 
         return $this->render('LcLcBundle:Profile:index.html.twig', array(
             'entities' => $entities,

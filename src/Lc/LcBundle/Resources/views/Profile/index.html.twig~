@@ -1,6 +1,6 @@
 {% extends 'LcLcBundle:Default:userlayout.html.twig' %}
 {%block leftcontent%}
-	{{ include ('LcLcBundle:Default:userleftbar.profile.html.twig') }}
+	{{ include ('LcLcBundle:Default:userleftbar.html.twig') }}
 {% endblock %}
 {%block content%}
 				<div class="col-sm-7 column">
