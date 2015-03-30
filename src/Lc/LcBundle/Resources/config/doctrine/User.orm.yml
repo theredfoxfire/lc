@@ -20,6 +20,8 @@ Lc\LcBundle\Entity\User:
    type: string
    length: 20
    nullable: true
+  birthday:
+   type: date
   password:
    type: text
   is_active:

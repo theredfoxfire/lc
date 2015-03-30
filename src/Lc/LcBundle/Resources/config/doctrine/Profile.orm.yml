@@ -9,8 +9,6 @@ Lc\LcBundle\Entity\Profile:
   name:
    type: string
    length: 255
-  birthdate:
-   type: date
   address:
    type: text
   about:

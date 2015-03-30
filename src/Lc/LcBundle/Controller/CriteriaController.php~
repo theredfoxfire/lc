@@ -5,49 +5,38 @@ namespace Lc\LcBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use Lc\LcBundle\Entity\Profile;
+use Lc\LcBundle\Entity\Criteria;
 use Lc\LcBundle\Entity\User;
-use Lc\LcBundle\Form\ProfileType;
+use Lc\LcBundle\Form\CriteriaType;
 
 /**
- * Profile controller.
+ * Criteria controller.
  *
  */
-class ProfileController extends Controller
+class CriteriaController extends Controller
 {
 
     /**
-     * Lists all Profile entities.
+     * Lists all Criteria entities.
      *
      */
     public function indexAction()
     {
-        $entity = $this->getUid();
-
-        return $this->render('LcLcBundle:Profile:index.html.twig', array(
-            'entity' => $entity,
-        ));
-    }
-    
-    
-    public function profileAction()
-    {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('LcLcBundle:Profile')->findOneByUser($this->getUid());
+        $entity = $em->getRepository('LcLcBundle:Criteria')->findOneByUser($this->getUid());
 
-        return $this->render('LcLcBundle:Profile:profile.html.twig', array(
+        return $this->render('LcLcBundle:Profile:criteria.html.twig', array(
             'entity' => $entity,
         ));
     }
-    
     /**
-     * Creates a new Profile entity.
+     * Creates a new Criteria entity.
      *
      */
     public function createAction(Request $request)
     {
-        $entity = new Profile();
+        $entity = new Criteria();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -56,26 +45,26 @@ class ProfileController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('profile_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('criteria_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('LcLcBundle:Profile:new.html.twig', array(
+        return $this->render('LcLcBundle:Criteria:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Creates a form to create a Profile entity.
+     * Creates a form to create a Criteria entity.
      *
-     * @param Profile $entity The entity
+     * @param Criteria $entity The entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Profile $entity)
+    private function createCreateForm(Criteria $entity)
     {
-        $form = $this->createForm(new ProfileType(), $entity, array(
-            'action' => $this->generateUrl('profile_create'),
+        $form = $this->createForm(new CriteriaType(), $entity, array(
+            'action' => $this->generateUrl('criteria_create'),
             'method' => 'POST',
         ));
 
@@ -85,60 +74,60 @@ class ProfileController extends Controller
     }
 
     /**
-     * Displays a form to create a new Profile entity.
+     * Displays a form to create a new Criteria entity.
      *
      */
     public function newAction()
     {
-        $entity = new Profile();
+        $entity = new Criteria();
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('LcLcBundle:Profile:new.html.twig', array(
+        return $this->render('LcLcBundle:Criteria:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Finds and displays a Profile entity.
+     * Finds and displays a Criteria entity.
      *
      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('LcLcBundle:Profile')->find($id);
+        $entity = $em->getRepository('LcLcBundle:Criteria')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Profile entity.');
+            throw $this->createNotFoundException('Unable to find Criteria entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('LcLcBundle:Profile:show.html.twig', array(
+        return $this->render('LcLcBundle:Criteria:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-     * Displays a form to edit an existing Profile entity.
+     * Displays a form to edit an existing Criteria entity.
      *
      */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('LcLcBundle:Profile')->find($id);
+        $entity = $em->getRepository('LcLcBundle:Criteria')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Profile entity.');
+            throw $this->createNotFoundException('Unable to find Criteria entity.');
         }
 
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('LcLcBundle:Profile:edit.html.twig', array(
+        return $this->render('LcLcBundle:Criteria:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -146,16 +135,16 @@ class ProfileController extends Controller
     }
 
     /**
-    * Creates a form to edit a Profile entity.
+    * Creates a form to edit a Criteria entity.
     *
-    * @param Profile $entity The entity
+    * @param Criteria $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(Profile $entity)
+    private function createEditForm(Criteria $entity)
     {
-        $form = $this->createForm(new ProfileType(), $entity, array(
-            'action' => $this->generateUrl('profile_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new CriteriaType(), $entity, array(
+            'action' => $this->generateUrl('criteria_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -164,17 +153,17 @@ class ProfileController extends Controller
         return $form;
     }
     /**
-     * Edits an existing Profile entity.
+     * Edits an existing Criteria entity.
      *
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('LcLcBundle:Profile')->find($id);
+        $entity = $em->getRepository('LcLcBundle:Criteria')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Profile entity.');
+            throw $this->createNotFoundException('Unable to find Criteria entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -184,17 +173,17 @@ class ProfileController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('profile_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('criteria_edit', array('id' => $id)));
         }
 
-        return $this->render('LcLcBundle:Profile:edit.html.twig', array(
+        return $this->render('LcLcBundle:Criteria:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
     /**
-     * Deletes a Profile entity.
+     * Deletes a Criteria entity.
      *
      */
     public function deleteAction(Request $request, $id)
@@ -204,21 +193,21 @@ class ProfileController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('LcLcBundle:Profile')->find($id);
+            $entity = $em->getRepository('LcLcBundle:Criteria')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Profile entity.');
+                throw $this->createNotFoundException('Unable to find Criteria entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('profile'));
+        return $this->redirect($this->generateUrl('criteria'));
     }
 
     /**
-     * Creates a form to delete a Profile entity by id.
+     * Creates a form to delete a Criteria entity by id.
      *
      * @param mixed $id The entity id
      *
@@ -227,19 +216,10 @@ class ProfileController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('profile_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('criteria_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
     }
-    
-    public function getUid(){
-		$usr= $this->get('security.context')->getToken()->getUser();
-		$uid = $usr->getId();
-		$em = $this->getDoctrine()->getManager();
-		$userId = $em->getRepository('LcLcBundle:User')->find($uid);
-		return $userId;
-		
-	}
 }

@@ -1,14 +1,14 @@
 {%block leftcontent%}
 				<div class="col-md-2 column">
 				<div class="thumbnail">
-					<img src="{{ asset('bundles/lclc/img/wedus-48.jpeg') }}" alt="Profile">
+					<img src="{{ asset('bundles/lclc/img/wedus.jpeg') }}" alt="Profile">
 				</div>
 					<div id="navbar" class="navbar">
 						
 					<ul class="nav nav-pills nav-stacked">
-						<li role="presentation"><a href="#">Foto</a></li>
-						<li role="presentation"><a href="#">Kenalan&nbsp;<span class="badge">29</span></a></li>
-						<li role="presentation"><a href="#">Obrolan</a></li>
+						<li role="presentation"><a href="{{ path('profile') }}">Data Akun</a></li>
+						<li role="presentation"><a href="{{ path('profile_data') }}">Data Profile</a></li>
+						<li role="presentation"><a href="{{ path('criteria') }}">Data Kriteria</a></li>
 					</ul>
 					</div>
 				</div>

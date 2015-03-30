@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Lc\LcBundle\Entity\Criteria;
+use Lc\LcBundle\Entity\User;
 use Lc\LcBundle\Form\CriteriaType;
 
 /**
@@ -23,10 +24,10 @@ class CriteriaController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('LcLcBundle:Criteria')->findAll();
+        $entity = $em->getRepository('LcLcBundle:Criteria')->findOneByUser($this->getUid());
 
-        return $this->render('LcLcBundle:Criteria:index.html.twig', array(
-            'entities' => $entities,
+        return $this->render('LcLcBundle:Profile:criteria.html.twig', array(
+            'entity' => $entity,
         ));
     }
     /**
@@ -221,4 +222,13 @@ class CriteriaController extends Controller
             ->getForm()
         ;
     }
+    
+    public function getUid(){
+		$usr= $this->get('security.context')->getToken()->getUser();
+		$uid = $usr->getId();
+		$em = $this->getDoctrine()->getManager();
+		$userId = $em->getRepository('LcLcBundle:User')->find($uid);
+		return $userId;
+		
+	}
 }

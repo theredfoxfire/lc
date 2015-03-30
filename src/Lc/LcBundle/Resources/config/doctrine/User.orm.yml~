@@ -1,5 +1,6 @@
 Lc\LcBundle\Entity\User:
  type: entity
+ repositoryClass: Lc\LcBundle\Repository\UserRepository
  table: user
  id:
   id:
@@ -19,6 +20,8 @@ Lc\LcBundle\Entity\User:
    type: string
    length: 20
    nullable: true
+  birthdate:
+   type: date
   password:
    type: text
   is_active:

@@ -1,21 +1,55 @@
 {% extends 'LcLcBundle:Default:userlayout.html.twig' %}
 {%block leftcontent%}
-	{{ include ('LcLcBundle:Default:userleftbar.html.twig') }}
+	{{ include ('LcLcBundle:Default:userleftbar.profile.html.twig') }}
 {% endblock %}
 {%block content%}
 				<div class="col-sm-7 column">
 						<div class="row">
 							<div class="panel panel-success">
-								<div class="panel-heading panel-success right">
-									some personal data
+								<div class="panel-heading panel-success">
+									<i class="glyphicon glyphicon-user"></i>&nbsp;Pengelolaan Data Akun Anda
 								</div>
 								<div class="panel-body apanel-body">
 									<div class="media">
-										<div class="media-left pull-left">
-										data
-										</div>
 										<div class="media-body f-feel">
-											<h5 class="media-right">data</h5>
+											<form class="form-horizontal">
+											  <div class="form-group form-group-sm">
+												<label class="col-sm-2 control-label" for="formGroupInputSmall">Username</label>
+												<div class="col-sm-10">
+												  <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Username">
+												</div>
+											  </div>
+											  <div class="form-group form-group-sm">
+												<label class="col-sm-2 control-label" for="formGroupInputSmall">Email</label>
+												<div class="col-sm-10">
+												  <input class="form-control" type="text" id="formGroupInputSmall" placeholder="Email">
+												</div>
+											  </div>
+											  <div class="form-group form-group-sm">
+												<label class="col-sm-2 control-label" for="formGroupInputSmall">Phone</label>
+												<div class="col-sm-10">
+												  <input class="form-control" type="text" id="formGroupInputSmall" placeholder="Phone">
+												</div>
+											  </div>
+											  <div class="form-group form-group-sm">
+												<label class="col-sm-2 control-label" for="formGroupInputSmall">Jenis Kelamin</label>
+												<div class="col-sm-10">
+													<div class="radio disabled">
+													  <label>
+														<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled>
+														Laki-laki
+													  </label>
+													</div>
+												</div>
+											  </div>
+											  <div class="form-group form-group-sm pull-right">
+													<div class="col-sm-10">
+														<button type="submit" class="btn btn-primary btn-feel"><i class="glyphicon glyphicon-floppy-saved"></i> &nbsp;&nbsp;Update</button>
+													</div>
+											  </div>
+											</form>
+											<br /><br />
+											<a href="">Ubah Password</a>
 										</div>
 									</div>
 								</div>

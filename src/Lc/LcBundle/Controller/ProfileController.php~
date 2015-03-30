@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Lc\LcBundle\Entity\Profile;
+use Lc\LcBundle\Entity\User;
 use Lc\LcBundle\Form\ProfileType;
 
 /**
@@ -21,12 +22,33 @@ class ProfileController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entities = $em->getRepository('LcLcBundle:Profile')->findOneByUser();
+        $entity = $this->getUid();
 
         return $this->render('LcLcBundle:Profile:index.html.twig', array(
-            'entities' => $entities,
+            'entity' => $entity,
+        ));
+    }
+    
+    
+    public function profileAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('LcLcBundle:Profile')->findOneByUser($this->getUid());
+
+        return $this->render('LcLcBundle:Profile:profile.html.twig', array(
+            'entity' => $entity,
+        ));
+    }
+    
+    public function criteriaAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('LcLcBundle:Criteria')->findOneByUser($this->getUid());
+
+        return $this->render('LcLcBundle:Profile:criteria.html.twig', array(
+            'entity' => $entity,
         ));
     }
     /**

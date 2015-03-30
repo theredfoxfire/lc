@@ -1,9 +1,6 @@
 profile:
     path:     /
     defaults: { _controller: "LcLcBundle:Profile:index" }
-profile_data:
-    path:     /data
-    defaults: { _controller: "LcLcBundle:Profile:profile" }
 
 profile_show:
     path:     /{id}/show
