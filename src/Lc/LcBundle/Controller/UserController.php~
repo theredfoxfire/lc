@@ -4,7 +4,6 @@ namespace Lc\LcBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Security\Core\SecurityContext;
 
 use Lc\LcBundle\Entity\User;
 use Lc\LcBundle\Form\UserType;
@@ -55,6 +54,7 @@ class UserController extends Controller
 			$ep = $encoder->encodePassword($ps, $entity->getSalt());
             
 			$entity->setUsername($formData['email']);
+			$entity->setBirthday($formData['birthday']);
 			$entity->setPassword($ep);
 			$entity->setIsActive(false);
             $em->persist($entity);

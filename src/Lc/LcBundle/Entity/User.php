@@ -200,7 +200,7 @@ class User implements AdvancedUserInterface
     
     public function setBirthday($birthday)
     {
-        $this->birthday = $birthday;
+        $this->birthday = new \DateTime($birthday);
 
         return $this;
     }
