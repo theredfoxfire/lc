@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Lc\LcBundle\Entity\Profile;
 use Lc\LcBundle\Entity\User;
 use Lc\LcBundle\Form\ProfileType;
+use Lc\LcBundle\Form\DatauType;
 
 /**
  * Profile controller.
@@ -23,9 +24,11 @@ class ProfileController extends Controller
     public function indexAction()
     {
         $entity = $this->getUid();
+        $form = $this->createDuForm($entity);
 
         return $this->render('LcLcBundle:Profile:index.html.twig', array(
             'entity' => $entity,
+            'form' => $form->createView(),
         ));
     }
     
@@ -242,4 +245,14 @@ class ProfileController extends Controller
 		return $userId;
 		
 	}
+	
+	private function createDuForm(User $entity)
+    {
+        $form = $this->createForm(new DatauType(), $entity, array(
+            'action' => $this->generateUrl('profile'),
+            'method' => 'POST',
+            'attr' => array('class' => 'form-horizontal'),
+        ));        
+        return $form;
+    }
 }

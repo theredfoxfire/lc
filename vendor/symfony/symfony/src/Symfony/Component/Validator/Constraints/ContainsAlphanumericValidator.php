@@ -9,13 +9,11 @@ class ContainsAlphanumericValidator extends ConstraintValidator
     public function validate($value, Constraint $constraint)
     {
 		$current_date = new \DateTime();
-		$val = new \DateTime($value);
-		$dif = $val->diff($current_date)->y;
+		$dif = $value->diff($current_date)->y;
 		
         if($dif < 17) { 
             $this->context->addViolation(
-                $constraint->message,
-                array('%string%' => $value)
+                $constraint->message
             );
         }
     }
