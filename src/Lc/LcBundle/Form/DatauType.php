@@ -15,6 +15,8 @@ class DatauType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+			->add('password', 'hidden', array('attr'=>array('class'=>'form-control', 'value'=>'love',  'required'=> true,'placeholder'=>'Masukan Password'), 'label'=>false))
+			->add('password2', 'hidden', array('attr'=>array('class'=>'form-control', 'value'=>'love', 'required'=> true,'placeholder'=>'Ulangi Password'), 'label'=>false))
             ->add('email', 'email', array('attr'=>array('class'=>'form-control', 'required'=> true,'placeholder'=>'Alamat Email Anda'), 'label'=>false))
 			->add('phone', 'text', array('attr'=>array('class'=>'form-control', 'required'=> true,'placeholder'=>'Nomor Telephone Anda'), 'label'=>false))
 			->add('username', 'text', array('attr'=>array('class'=>'form-control', 'required'=> true,'placeholder'=>'Username'), 'label'=>false))

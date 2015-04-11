@@ -9,10 +9,13 @@ Lc\LcBundle\Entity\Profile:
   name:
    type: string
    length: 255
+   nullable: true
   address:
    type: text
+   nullable: true
   about:
    type: text
+   nullable: true
   created_at:
    type: datetime
   updated_at:
@@ -107,3 +110,6 @@ Lc\LcBundle\Entity\Profile:
    joinColumn:
     name: user_id
     referencedColumnName: id
+ lifecycleCallbacks:
+  prePersist: [ setCreatedAtValue, setTokenValue ]
+  preUpdate: [ setUpdatedAtValue ]

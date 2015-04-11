@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Lc\LcBundle\Entity\Profile;
 use Lc\LcBundle\Entity\User;
+use Lc\LcBundle\Entity\Usercriteria;
 use Lc\LcBundle\Form\ProfileType;
 use Lc\LcBundle\Form\DatauType;
 
@@ -249,7 +250,7 @@ class ProfileController extends Controller
 	private function createDuForm(User $entity)
     {
         $form = $this->createForm(new DatauType(), $entity, array(
-            'action' => $this->generateUrl('profile'),
+            'action' => $this->generateUrl('user_update', array('token' => $entity->getToken())),
             'method' => 'POST',
             'attr' => array('class' => 'form-horizontal'),
         ));        

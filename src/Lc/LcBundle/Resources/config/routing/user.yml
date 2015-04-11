@@ -25,7 +25,7 @@ user_activate:
     defaults: { _controller: "LcLcBundle:User:activate" }
 
 user_update:
-    path:     /{id}/update
+    path:     /{token}/update
     defaults: { _controller: "LcLcBundle:User:update" }
     requirements: { _method: post|put }
 

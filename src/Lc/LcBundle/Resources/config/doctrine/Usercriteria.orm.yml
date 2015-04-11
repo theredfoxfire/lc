@@ -100,3 +100,6 @@ Lc\LcBundle\Entity\Usercriteria:
    joinColumn:
     name: user_id
     referencedColumnName: id
+ lifecycleCallbacks:
+  prePersist: [ setCreatedAtValue, setTokenValue ]
+  preUpdate: [ setUpdatedAtValue ]

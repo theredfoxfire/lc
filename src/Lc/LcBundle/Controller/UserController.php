@@ -6,7 +6,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Lc\LcBundle\Entity\User;
+use Lc\LcBundle\Entity\Usercriteria;
+use Lc\LcBundle\Entity\Profile;
 use Lc\LcBundle\Form\UserType;
+use Lc\LcBundle\Form\DatauType;
 
 /**
  * User controller.
@@ -154,12 +157,10 @@ class UserController extends Controller
         }
 
         $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('LcLcBundle:User:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         ));
     }
     
@@ -168,11 +169,21 @@ class UserController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('LcLcBundle:User')->findOneByToken($token);
+        $profile = new Profile();
+        $criteria = new Usercriteria();
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
         }
         $entity->setIsActive(true);
+        $em->flush();
+        
+        $profile->setUser($entity);
+        $em->persist($profile);
+        $em->flush();
+        
+        $criteria->setUser($entity);
+        $em->persist($criteria);
         $em->flush();
 
         return $this->render('LcLcBundle:User:thanks.html.twig', array(
@@ -189,43 +200,42 @@ class UserController extends Controller
     */
     private function createEditForm(User $entity)
     {
-        $form = $this->createForm(new UserType(), $entity, array(
-            'action' => $this->generateUrl('user_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Update'));
-
+        $form = $this->createForm(new DatauType(), $entity, array(
+            'action' => $this->generateUrl('user_update', array('token' => $entity->getToken())),
+            'method' => 'POST',
+            'attr' => array('class' => 'form-horizontal'),
+        ));        
         return $form;
     }
     /**
      * Edits an existing User entity.
      *
      */
-    public function updateAction(Request $request, $id)
+    public function updateAction(Request $request, $token)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('LcLcBundle:User')->find($id);
+        $entity = $em->getRepository('LcLcBundle:User')->findOneByToken($token);
+        $user = $em->getRepository('LcLcBundle:User')->findOneByToken($token);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
-
+        
         if ($editForm->isValid()) {
+			$entity->setPassword($user->getPassword());
+			$em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('user_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('profile'));
         }
 
-        return $this->render('LcLcBundle:User:edit.html.twig', array(
+        return $this->render('LcLcBundle:Profile:index.html.twig', array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'form'   => $editForm->createView(),
         ));
     }
     /**
