@@ -216,7 +216,8 @@ class UserController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('LcLcBundle:User')->findOneByToken($token);
-        $user = $em->getRepository('LcLcBundle:User')->findOneByToken($token);
+        $password = $entity->getPassword();
+        
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
@@ -226,7 +227,7 @@ class UserController extends Controller
         $editForm->handleRequest($request);
         
         if ($editForm->isValid()) {
-			$entity->setPassword($user->getPassword());
+			$entity->setPassword($password);
 			$em->persist($entity);
             $em->flush();
 
@@ -278,4 +279,13 @@ class UserController extends Controller
             ->getForm()
         ;
     }
+    
+    public function getUid(){
+		$usr= $this->get('security.context')->getToken()->getUser();
+		$uid = $usr->getId();
+		$em = $this->getDoctrine()->getManager();
+		$userId = $em->getRepository('LcLcBundle:User')->find($uid);
+		return $userId;
+		
+	}
 }
