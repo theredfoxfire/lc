@@ -220,4 +220,15 @@ class Sallary
     {
         return $this->profile;
     }
+    
+    public function __construct(){
+		$this->profile = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->usercriteria = new \Doctrine\Common\Collections\ArrayCollection();
+		
+	}
+	
+	public function __toString()
+	{
+		return $this->getAmount() ? $this->getAmount() : "";
+	}
 }

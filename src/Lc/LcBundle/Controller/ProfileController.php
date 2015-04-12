@@ -39,9 +39,16 @@ class ProfileController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('LcLcBundle:Profile')->findOneByUser($this->getUid());
+        
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Profile entity.');
+        }
+        
+        $form = $this->createEditForm($entity);
 
         return $this->render('LcLcBundle:Profile:profile.html.twig', array(
             'entity' => $entity,
+            'form' => $form->createView(),
         ));
     }
     
@@ -140,12 +147,10 @@ class ProfileController extends Controller
         }
 
         $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('LcLcBundle:Profile:edit.html.twig', array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'form'   => $editForm->createView(),
         ));
     }
 
@@ -159,11 +164,10 @@ class ProfileController extends Controller
     private function createEditForm(Profile $entity)
     {
         $form = $this->createForm(new ProfileType(), $entity, array(
-            'action' => $this->generateUrl('profile_update', array('id' => $entity->getId())),
+            'action' => $this->generateUrl('profile_update', array('id' => $entity->getToken())),
             'method' => 'PUT',
+            'attr' => array('class' => 'form-horizontal'),
         ));
-
-        $form->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
     }
@@ -175,26 +179,24 @@ class ProfileController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('LcLcBundle:Profile')->find($id);
+        $entity = $em->getRepository('LcLcBundle:Profile')->findOneByToken($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Profile entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('profile_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('profile_data'));
         }
 
-        return $this->render('LcLcBundle:Profile:edit.html.twig', array(
+        return $this->render('LcLcBundle:Profile:profile.html.twig', array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'form'   => $editForm->createView(),
         ));
     }
     /**
