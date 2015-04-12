@@ -7,60 +7,99 @@
 						<div class="row">
 							<div class="panel panel-success">
 								<div class="panel-heading panel-success">
-									<i class="glyphicon glyphicon-user"></i>&nbsp;Pengelolaan Data Kriteria Anda
+									<i class="glyphicon glyphicon-user"></i>&nbsp;Pengelolaan Data Profile Dia
 								</div>
 								<div class="panel-body apanel-body">
 									<div class="media">
 										<div class="media-body f-feel">
-											<form class="form-horizontal">
+											{{ form_start(form) }}
+												{{ form_errors(form) }}
 											  <div class="form-group form-group-sm">
-												<label class="col-sm-2 control-label" for="formGroupInputSmall">Username</label>
-												<div class="col-sm-10">
-												  <input class="form-control" type="text" id="formGroupInputLarge" placeholder="Username">
+												<label class="col-sm-3 control-label" for="formGroupInputSmall">Hobby</label>
+													<div class="col-sm-9">
+														{{ form_widget(form.hobby) }}
 												</div>
+												  {{ form_errors(form.hobby) }}
 											  </div>
 											  <div class="form-group form-group-sm">
-												<label class="col-sm-2 control-label" for="formGroupInputSmall">Email</label>
-												<div class="col-sm-10">
-												  <input class="form-control" type="text" id="formGroupInputSmall" placeholder="Email">
+												<label class="col-sm-3 control-label" for="formGroupInputSmall">Pekerjaan</label>
+													<div class="col-sm-9">
+														{{ form_widget(form.job) }}
 												</div>
+												  {{ form_errors(form.job) }}
 											  </div>
+											  
 											  <div class="form-group form-group-sm">
-												<label class="col-sm-2 control-label" for="formGroupInputSmall">Phone</label>
-												<div class="col-sm-10">
-												  <input class="form-control" type="text" id="formGroupInputSmall" placeholder="Phone">
+												<label class="col-sm-3 control-label" for="formGroupInputSmall">Gaji</label>
+													<div class="col-sm-9">
+														{{ form_widget(form.sallary) }}
 												</div>
+												  {{ form_errors(form.sallary) }}
 											  </div>
 											  <div class="form-group form-group-sm">
-												<label class="col-sm-2 control-label" for="formGroupInputSmall">Pekerjaan</label>
-													<div class="col-sm-10">
-														<select class="form-control">
-														  <option>1</option>
-														  <option>2</option>
-														  <option>3</option>
-														  <option>4</option>
-														  <option>5</option>
-														</select>
-													</div>
+												<label class="col-sm-3 control-label" for="formGroupInputSmall">Pendidikan</label>
+													<div class="col-sm-9">
+														{{ form_widget(form.education) }}
+												</div>
+												  {{ form_errors(form.education) }}
 											  </div>
 											  <div class="form-group form-group-sm">
-												<label class="col-sm-2 control-label" for="formGroupInputSmall">Penghasilan</label>
-													<div class="col-sm-10">
-														<select class="form-control">
-														  <option>1</option>
-														  <option>2</option>
-														  <option>3</option>
-														  <option>4</option>
-														  <option>5</option>
-														</select>
-													</div>
+												<label class="col-sm-3 control-label" for="formGroupInputSmall">Provinsi</label>
+													<div class="col-sm-9">
+														{{ form_widget(form.province) }}
+												</div>
+												  {{ form_errors(form.province) }}
 											  </div>
+											  <div class="form-group form-group-sm">
+												<label class="col-sm-3 control-label" for="formGroupInputSmall">Di mana Dia bertempat tinggal?</label>
+													<div class="col-sm-9">
+														{{ form_widget(form.lived) }}
+												</div>
+												  {{ form_errors(form.lived) }}
+											  </div>
+											  <div class="form-group form-group-sm">
+												<label class="col-sm-3 control-label" for="formGroupInputSmall">Apakah Dia perokok?</label>
+													<div class="col-sm-9">
+														{{ form_widget(form.smoking) }}
+												</div>
+												  {{ form_errors(form.smoking) }}
+											  </div>
+											  <div class="form-group form-group-sm">
+												<label class="col-sm-3 control-label" for="formGroupInputSmall">Status pernikahan Dia</label>
+													<div class="col-sm-9">
+														{{ form_widget(form.status) }}
+												</div>
+												  {{ form_errors(form.status) }}
+											  </div>
+											  <div class="form-group form-group-sm">
+												<label class="col-sm-3 control-label" for="formGroupInputSmall">Agama</label>
+													<div class="col-sm-9">
+														{{ form_widget(form.religy) }}
+												</div>
+												  {{ form_errors(form.religy) }}
+											  </div>
+											  <div class="form-group form-group-sm">
+												<label class="col-sm-3 control-label" for="formGroupInputSmall">Apakah Dia meminum minuman beralkohol?</label>
+													<div class="col-sm-9">
+														{{ form_widget(form.alcoholic) }}
+												</div>
+												  {{ form_errors(form.alcoholic) }}
+											  </div>
+											  <div class="form-group form-group-sm">
+												<label class="col-sm-3 control-label" for="formGroupInputSmall">Kapan Dia berencana akan menikah?</label>
+													<div class="col-sm-9">
+														{{ form_widget(form.plan) }}
+												</div>
+												  {{ form_errors(form.plan) }}
+											  </div>
+											  
 											  <div class="form-group form-group-sm pull-right">
-													<div class="col-sm-10">
+													<div class="col-sm-9">
 														<button type="submit" class="btn btn-primary btn-feel"><i class="glyphicon glyphicon-floppy-disk"></i> &nbsp;&nbsp;Update</button>
 													</div>
 											  </div>
-											</form>
+											{{ form_row(form._token) }}
+											{{ form_end(form) }}
 											<br /><br />
 										</div>
 									</div>

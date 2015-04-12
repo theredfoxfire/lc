@@ -26,8 +26,15 @@ class UsercriteriaController extends Controller
 
         $entity = $em->getRepository('LcLcBundle:Usercriteria')->findOneByUser($this->getUid());
 
+                if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Usercriteria entity.');
+        }
+
+        $editForm = $this->createEditForm($entity);
+
         return $this->render('LcLcBundle:Usercriteria:index.html.twig', array(
-            'entity' => $entity,
+            'entity'      => $entity,
+            'form'   => $editForm->createView(),
         ));
     }
     /**
@@ -146,9 +153,9 @@ class UsercriteriaController extends Controller
         $form = $this->createForm(new UsercriteriaType(), $entity, array(
             'action' => $this->generateUrl('usercriteria_update', array('id' => $entity->getId())),
             'method' => 'PUT',
+            'attr' => array('class' => 'form-horizontal'),
+            
         ));
-
-        $form->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
     }
@@ -166,20 +173,18 @@ class UsercriteriaController extends Controller
             throw $this->createNotFoundException('Unable to find Usercriteria entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('usercriteria_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('usercriteria'));
         }
 
-        return $this->render('LcLcBundle:Usercriteria:edit.html.twig', array(
+        return $this->render('LcLcBundle:Usercriteria:index.html.twig', array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'form'   => $editForm->createView(),
         ));
     }
     /**

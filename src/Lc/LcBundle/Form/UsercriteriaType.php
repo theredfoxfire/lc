@@ -15,22 +15,17 @@ class UsercriteriaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('hobby')
-            ->add('work')
-            ->add('education')
-            ->add('sallary')
-            ->add('province')
-            ->add('city')
-            ->add('lived')
-            ->add('smoking')
-            ->add('status')
-            ->add('sex')
-            ->add('religy')
-            ->add('alcoholic')
-            ->add('plan')
-            ->add('created_at')
-            ->add('updated_at')
-            ->add('token')
+            ->add('hobby', null, array('attr'=>array('class'=>'form-control', 'required'=> true,'placeholder'=>'Hobby Anda'), 'label'=>false))
+            ->add('job', null, array( 'attr'=>array('class'=>'form-control', 'required'=> true,'placeholder'=>'Pekerjaan Anda'), 'label'=>false))
+            ->add('education', null, array( 'attr'=>array('class'=>'form-control', 'required'=> true,'placeholder'=>'Pendidikan Anda'), 'label'=>false))
+            ->add('sallary', null, array( 'attr'=>array('class'=>'form-control', 'required'=> true,'placeholder'=>'Kisaran gaji Anda'), 'label'=>false))
+            ->add('province', null, array( 'attr'=>array('class'=>'form-control', 'required'=> true,'placeholder'=>'Province Anda'), 'label'=>false))
+            ->add('lived', null, array( 'attr'=>array('class'=>'form-control', 'required'=> true,'placeholder'=>'Tempat tinggal Anda'), 'label'=>false))
+            ->add('smoking', null, array( 'attr'=>array('class'=>'form-control', 'required'=> true,'placeholder'=>'Anda seorang perokok?'), 'label'=>false))
+            ->add('status', null, array( 'attr'=>array('class'=>'form-control', 'required'=> true,'placeholder'=>'Status pernikahan Anda'), 'label'=>false))
+            ->add('religy', null, array( 'attr'=>array('class'=>'form-control', 'required'=> true,'placeholder'=>'Agama Anda'), 'label'=>false))
+            ->add('alcoholic', null, array( 'attr'=>array('class'=>'form-control', 'required'=> true,'placeholder'=>'Anda meminum minuman beralkohol?'), 'label'=>false))
+            ->add('plan', null, array( 'attr'=>array('class'=>'form-control', 'required'=> true,'placeholder'=>'Rencana Anda menikah'), 'label'=>false))
         ;
     }
     
