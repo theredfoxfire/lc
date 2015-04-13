@@ -6,10 +6,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Lc\LcBundle\Entity\User;
+use Lc\LcBundle\Entity\ChangePassword;
 use Lc\LcBundle\Entity\Usercriteria;
 use Lc\LcBundle\Entity\Profile;
 use Lc\LcBundle\Form\UserType;
 use Lc\LcBundle\Form\DatauType;
+use Lc\LcBundle\Form\ChangePasswordType;
 
 /**
  * User controller.
@@ -288,4 +290,33 @@ class UserController extends Controller
 		return $userId;
 		
 	}
+	
+	public function changePasswdAction(Request $request)
+    {
+      $changePasswordModel = new ChangePassword();
+      $form = $this->createForm(new ChangePasswordType(), $changePasswordModel);
+
+      $form->handleRequest($request);
+
+      if ($form->isSubmitted() && $form->isValid()) {
+			$em = $this->getDoctrine()->getManager();
+            $formData = $request->get('change_passwd');
+            $ps = $formData['newPassword']['first'];
+            $entity = $this->getUid();
+            
+            $factory = $this->get('security.encoder_factory');
+			$encoder = $factory->getEncoder($entity);
+			$ep = $encoder->encodePassword($ps, $entity->getSalt());
+			
+			$entity->setPassword($ep);
+            $em->persist($entity);
+            $em->flush();
+                        
+          return $this->redirect($this->generateUrl('profile'));
+      }
+
+      return $this->render('LcLcBundle:User:changePwd.html.twig', array(
+          'form' => $form->createView(),
+      ));      
+    }
 }
