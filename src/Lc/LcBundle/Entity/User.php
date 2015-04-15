@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Gregwar\Image\Image;
 
 /**
  * User
@@ -41,6 +42,7 @@ class User implements AdvancedUserInterface
     
     private $birthday;
     private $sex;
+    public $file;
 
     /**
      * @var boolean
@@ -811,4 +813,176 @@ class User implements AdvancedUserInterface
 	public function isAccountNonLocked(){
 		return true;
 	}
+    /**
+     * @var string
+     */
+    private $foto;
+
+
+    /**
+     * Set foto
+     *
+     * @param string $foto
+     * @return User
+     */
+    public function setFoto($foto)
+    {
+        $this->foto = $foto;
+
+        return $this;
+    }
+
+    /**
+     * Get foto
+     *
+     * @return string 
+     */
+    public function getFoto()
+    {
+        return $this->foto;
+    }
+    
+    public function setFile($file)
+    {
+        $this->file = $file;
+
+        return $this;
+    }
+
+    /**
+     * Get foto
+     *
+     * @return string 
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+    
+    
+
+    /**
+     * @ORM\PrePersist
+     */
+    protected function getUploadDir()
+	{
+		return 'uploads/users';
+	}
+	
+	protected function getUploadRootDir()
+	{
+		return __DIR__.'/../../../../web/'.$this->getUploadDir();
+	}
+	
+	public function getWebPath()
+	{
+		return null === $this->foto ? null : $this->getUploadDir().'/'.$this->foto;
+	}
+	
+	public function getWebPathMini()
+	{
+		return null === $this->foto ? null : $this->getUploadDir().'/mini_'.$this->foto;
+	}
+	
+	public function getAbsolutePath()
+	{
+		return null === $this->foto ? null : $this->getUploadRootDir().'/'.$this->foto;
+	}
+    
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function preUpload()
+    {
+        if (null !== $this->file){
+				$this->foto = uniqid().'.'.$this->file->guessExtension();
+			}
+    }
+
+    /**
+     * @ORM\PostPersist
+     */
+    public function upload()
+    {
+        if (null === $this->file){
+			return;
+		} 
+		$this->file->move($this->getUploadRootDir(), $this->foto);
+		
+		Image::open($this->getUploadRootDir().'/'.$this->foto)
+		->scaleResize(300, 480, $background = 0xffffff)
+		->save($this->getUploadRootDir().'/index_'.$this->foto);
+		
+		Image::open($this->getUploadRootDir().'/'.$this->foto)
+		->scaleResize(750, 1200, $background = 0xffffff)
+		->save($this->getUploadRootDir().'/grande_'.$this->foto);
+		
+		Image::open($this->getUploadRootDir().'/'.$this->foto)
+		->scaleResize(150, 240, $background = 0xffffff)
+		->save($this->getUploadRootDir().'/mini_'.$this->foto);
+		
+		Image::open($this->getUploadRootDir().'/'.$this->foto)
+		->scaleResize(1280, 2048, $background = 0xffffff)
+		->save($this->getUploadRootDir().'/zoom_'.$this->foto);
+		
+		$rmfile = $this->getAbsolutePath();
+        if(file_exists($rmfile)) {
+			unlink($rmfile);
+		}
+		
+		unset($this->file);
+    }
+
+
+    /**
+     * @ORM\PostPersist
+     */
+    public function updateLuceneIndex()
+    {
+        // Add your code here
+    }
+
+    /**
+     * @ORM\PostRemove
+     */
+    public function removeUpload()
+    {
+        $file = $this->getAbsolutePath();
+        if(file_exists($file)) {
+			unlink($file);
+		}
+    }
+    
+    public function removeUploaded()
+    {
+        if (null === $this->file){
+			return;
+		}
+		
+		$rmfilei = $this->getUploadRootDir().'/index_'.$this->getFoto();
+		$rmfilem = $this->getUploadRootDir().'/mini_'.$this->getFoto();
+		$rmfileg = $this->getUploadRootDir().'/grande_'.$this->getFoto();
+		$rmfilez = $this->getUploadRootDir().'/zoom_'.$this->getFoto();
+        if(file_exists($rmfilei)) {
+			unlink($rmfilei);
+		}
+		if(file_exists($rmfilem)) {
+			unlink($rmfilem);
+		}
+		if(file_exists($rmfileg)) {
+			unlink($rmfileg);
+		}
+		if(file_exists($rmfilez)) {
+			unlink($rmfilez);
+		}
+    }
+
+    /**
+     * @ORM\PostRemove
+     */
+    public function deleteLuceneIndex()
+    {
+        // Add your code here
+    }
 }

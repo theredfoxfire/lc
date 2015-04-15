@@ -4,6 +4,11 @@ user:
 user_wait:
  path: /thanks
  defaults: { _controller: "LcLcBundle:User:wait"}
+ 
+user_foto:
+ path: /foto
+ defaults: { _controller: "LcLcBundle:User:foto"}
+ 
 user_pass:
  path: /pass
  defaults: { _controller: "LcLcBundle:User:changePasswd"}

@@ -1,0 +1,44 @@
+{% extends 'LcLcBundle:Default:userlayout.html.twig' %}
+{%block leftcontent%}
+	{{ include ('LcLcBundle:Default:userleftbar.profile.html.twig') }}
+{% endblock %}
+{%block content%}
+				<div class="col-sm-7 column">
+						<div class="row">
+							<div class="panel panel-success">
+								<div class="panel-heading panel-success">
+									<i class="glyphicon glyphicon-user"></i>&nbsp;Pengelolaan Data Akun Anda
+								</div>
+								<div class="panel-body apanel-body">
+									<div class="media">
+										<div class="media-body f-feel">
+											{{ form_start(form) }}
+												{{ form_errors(form) }}
+											  <div class="form-group form-group-sm">
+												<label class="col-sm-3 control-label" for="formGroupInputSmall">Pilih file</label>
+												<div class="col-sm-9">
+												<input class="form-control" value="{{ entity.birthday | date('d-m-Y') }}" type="hidden" id="formGroupInputSmall" placeholder="Tanggal lahir" readonly>
+												  {{ form_widget(form.file) }}
+												</div>
+												  {{ form_errors(form.file) }}
+											  </div>
+											  
+											  <div class="form-group form-group-sm pull-right">
+													<div class="col-sm-9">
+													<br><br>
+														<button type="submit" class="btn btn-primary btn-feel"><i class="glyphicon glyphicon-floppy-disk"></i> &nbsp;&nbsp;Update</button>
+													</div>
+											  </div>
+												{{ form_row(form._token) }}
+											{{ form_end(form) }}
+											<br /><br />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+				</div>
+{% endblock %}
+{%block rightcontent%}
+	{{ include ('LcLcBundle:Default:userrightbar.html.twig') }}
+{% endblock %}

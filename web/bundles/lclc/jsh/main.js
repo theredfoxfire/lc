@@ -1,0 +1,2 @@
+
+$('#source').quicksand( $('#destination li') );

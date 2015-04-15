@@ -6,10 +6,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Lc\LcBundle\Entity\User;
+use Lc\LcBundle\Entity\Foto;
 use Lc\LcBundle\Entity\ChangePassword;
 use Lc\LcBundle\Entity\Usercriteria;
 use Lc\LcBundle\Entity\Profile;
 use Lc\LcBundle\Form\UserType;
+use Lc\LcBundle\Form\FotoType;
 use Lc\LcBundle\Form\DatauType;
 use Lc\LcBundle\Form\ChangePasswordType;
 
@@ -317,6 +319,31 @@ class UserController extends Controller
 
       return $this->render('LcLcBundle:User:changePwd.html.twig', array(
           'form' => $form->createView(),
+      ));      
+    }
+    
+    public function fotoAction(Request $request)
+    {
+      $entity = $this->getUid();
+      $form = $this->createForm(new FotoType(), $entity, array(
+            'action' => $this->generateUrl('user_foto'),
+            'method' => 'POST',
+            'attr' => array('class' => 'form-horizontal'),
+        ));        
+
+      $form->handleRequest($request);
+
+      if ($form->isValid()) {
+			$em = $this->getDoctrine()->getManager();            
+            $em->persist($entity);
+            $em->flush();
+                        
+          return $this->redirect($this->generateUrl('profile'));
+      }
+
+      return $this->render('LcLcBundle:User:foto.html.twig', array(
+          'form' => $form->createView(),
+          'entity' => $entity,
       ));      
     }
 }

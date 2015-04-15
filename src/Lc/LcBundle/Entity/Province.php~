@@ -231,6 +231,8 @@ class Province
     public function __construct()
     {
         $this->city = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->profile = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->usercriteria = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -265,4 +267,10 @@ class Province
     {
         return $this->city;
     }
+    
+    public function __toString()
+	{
+		return $this->getName() ? $this->getName() : "";
+	}
+    
 }

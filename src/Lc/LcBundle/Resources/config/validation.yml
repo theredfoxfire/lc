@@ -29,6 +29,10 @@ Lc\LcBundle\Entity\Feeling:
   feel:
    - NotBlank:
       message: 'Tulis apa yang sedang kamu rasakan.'
+Lc\LcBundle\Entity\Foto:
+  foto:
+   - Image: 
+      message: 'Pilih file foto/image.'
 Lc\LcBundle\Entity\Fcomment:
   comment:
    - NotBlank:

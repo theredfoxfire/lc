@@ -20,6 +20,10 @@ Lc\LcBundle\Entity\User:
    type: string
    length: 20
    nullable: true
+  foto:
+   type: string
+   length: 255
+   nullable: true
   birthday:
    type: date
   password:
@@ -74,5 +78,8 @@ Lc\LcBundle\Entity\User:
    targetEntity: Profile
    mappedBy: user
  lifecycleCallbacks:
-  prePersist: [ setCreatedAtValue, setTokenValue ]
-  preUpdate: [ setUpdatedAtValue ]
+  prePersist: [ preUpload, setCreatedAtValue, setTokenValue ]
+  preUpdate: [ removeUploaded, preUpload, setUpdatedAtValue ]
+  postPersist: [ upload, updateLuceneIndex ]
+  postUpdate: [ upload, updateLuceneIndex ]
+  postRemove: [ removeUpload, deleteLuceneIndex ]
