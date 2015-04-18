@@ -911,20 +911,20 @@ class User implements AdvancedUserInterface
 		$this->file->move($this->getUploadRootDir(), $this->foto);
 		
 		Image::open($this->getUploadRootDir().'/'.$this->foto)
-		->scaleResize(300, 480, $background = 0xffffff)
+		->scaleResize(200, 200, $background = 0xffffff)
 		->save($this->getUploadRootDir().'/index_'.$this->foto);
 		
 		Image::open($this->getUploadRootDir().'/'.$this->foto)
-		->scaleResize(750, 1200, $background = 0xffffff)
+		->scaleResize(64, 64, $background = 0xffffff)
 		->save($this->getUploadRootDir().'/grande_'.$this->foto);
 		
 		Image::open($this->getUploadRootDir().'/'.$this->foto)
-		->scaleResize(150, 240, $background = 0xffffff)
+		->scaleResize(48, 48, $background = 0xffffff)
 		->save($this->getUploadRootDir().'/mini_'.$this->foto);
 		
 		Image::open($this->getUploadRootDir().'/'.$this->foto)
-		->scaleResize(1280, 2048, $background = 0xffffff)
-		->save($this->getUploadRootDir().'/zoom_'.$this->foto);
+		->scaleResize(36, 36, $background = 0xffffff)
+		->save($this->getUploadRootDir().'/thumb_'.$this->foto);
 		
 		$rmfile = $this->getAbsolutePath();
         if(file_exists($rmfile)) {
@@ -963,7 +963,7 @@ class User implements AdvancedUserInterface
 		$rmfilei = $this->getUploadRootDir().'/index_'.$this->getFoto();
 		$rmfilem = $this->getUploadRootDir().'/mini_'.$this->getFoto();
 		$rmfileg = $this->getUploadRootDir().'/grande_'.$this->getFoto();
-		$rmfilez = $this->getUploadRootDir().'/zoom_'.$this->getFoto();
+		$rmfilez = $this->getUploadRootDir().'/thumb_'.$this->getFoto();
         if(file_exists($rmfilei)) {
 			unlink($rmfilei);
 		}

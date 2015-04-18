@@ -105,6 +105,7 @@ class UserController extends Controller
             'attr' => array('class' => 'register-area'),
         ));        
 		$form->add('submit', 'submit', array('label' => false, 'attr' => array('class'=>'btn btn-default btn-lg pull-right', 'focus' =>'focus')));
+		$form->add('file', 'hidden', array('label' => false, 'attr' => array('class'=>'btn btn-default btn-lg pull-right')));
 
         return $form;
     }
@@ -325,16 +326,19 @@ class UserController extends Controller
     public function fotoAction(Request $request)
     {
       $entity = $this->getUid();
+      $password = $entity->getPassword();
       $form = $this->createForm(new FotoType(), $entity, array(
             'action' => $this->generateUrl('user_foto'),
             'method' => 'POST',
-            'attr' => array('class' => 'form-horizontal'),
+            'attr' => array('class' => 'form-horizontal', 'onsubmit' => 'return Validate(this);'),
+            
         ));        
 
       $form->handleRequest($request);
 
       if ($form->isValid()) {
 			$em = $this->getDoctrine()->getManager();            
+			$entity->setPassword($password);
             $em->persist($entity);
             $em->flush();
                         

@@ -255,7 +255,7 @@ class ProfileController extends Controller
             'action' => $this->generateUrl('user_update', array('token' => $entity->getToken())),
             'method' => 'POST',
             'attr' => array('class' => 'form-horizontal'),
-        ));        
+        ));  
         return $form;
     }
 }

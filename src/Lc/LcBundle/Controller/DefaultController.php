@@ -29,6 +29,7 @@ class DefaultController extends Controller
             'attr' => array('class' => 'register-area'),
         ));        
 		$form->add('submit', 'submit', array('label' => false, 'attr' => array('class'=>'btn btn-default btn-lg pull-right')));
+		$form->add('file', 'hidden', array('label' => false, 'attr' => array('class'=>'btn btn-default btn-lg pull-right')));
         return $form;
     }
     
