@@ -1,100 +1,46 @@
-{% extends '::base.html.twig' %}
+{% extends 'LcLcBundle:Default:userlayout.html.twig' %}
+{%block leftcontent%}
+	{{ include ('LcLcBundle:Default:userleftbar.profile.html.twig') }}
+{% endblock %}
+{%block content%}
+				<div class="col-sm-7 column">
+						<div class="row">
+							<div class="panel panel-success">
+								<div class="panel-heading panel-success">
+									<i class="glyphicon glyphicon-user"></i>&nbsp;Preview Akun Anda
+								</div>
+								<div class="panel-body apanel-body">
+									<div class="media">
+										<div class="media-left pull-left">
+											<img class="thumbnail" src="{{ asset('uploads/users/index_') }}{{ entity.user.foto }}" alt="{{ entity.name }}">
+											<a class="label label-primary" data-toggle="tooltip" data-placement="top" title="Suka sama Dia?" href="#">Tertarik</a>
+										</div>
+										<div class="media-body">
+											<div class="media-right">
+											<table>
+												<tr><td>Nama Lengkap</td><td>:</td><td>{{ entity.name }}</td></tr>
+												<tr><td>Tentang saya</td><td>:</td><td>{{ entity.about }}</td></tr>
+												<tr><td>Alamat</td><td>:</td><td>{{ entity.address }}</td></tr>
+												<tr><td>Status pernikahan</td><td>:</td><td>{{ entity.status }}</td></tr>
+												<tr><td>Hobi</td><td>:</td><td>{{ entity.hobby }}</td></tr>
+												<tr><td>Pekerjaan</td><td>:</td><td>{{ entity.job }}</td></tr>
+												<tr><td>Pendidikan</td><td>:</td><td>{{ entity.education }}</td></tr>
+												<tr><td>Gaji</td><td>:</td><td>{{ entity.sallary }}</td></tr>
+												<tr><td>Tempat tinggal:</td><td>:</td><td>{{ entity.lived }}</td></tr>
+												<tr><td>Perokok</td><td>:</td><td>{{ entity.smoking }}</td></tr>
+												<tr><td>Peminum alkohol</td><td>:</td><td>{{ entity.alcoholic }}</td></tr>
+												<tr><td>Agama</td><td>:</td><td>{{ entity.religy }}</td></tr>
+												<tr><td>Rencana menikah</td><td>:</td><td>{{ entity.plan }} lagi</td></tr>
+											</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+				</div>
 
-{% block body -%}
-    <h1>Profile</h1>
-
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ entity.name }}</td>
-            </tr>
-            <tr>
-                <th>Hobby</th>
-                <td>{{ entity.hobby }}</td>
-            </tr>
-            <tr>
-                <th>Work</th>
-                <td>{{ entity.work }}</td>
-            </tr>
-            <tr>
-                <th>Education</th>
-                <td>{{ entity.education }}</td>
-            </tr>
-            <tr>
-                <th>Address</th>
-                <td>{{ entity.address }}</td>
-            </tr>
-            <tr>
-                <th>Sallary</th>
-                <td>{{ entity.sallary }}</td>
-            </tr>
-            <tr>
-                <th>Province</th>
-                <td>{{ entity.province }}</td>
-            </tr>
-            <tr>
-                <th>City</th>
-                <td>{{ entity.city }}</td>
-            </tr>
-            <tr>
-                <th>Lived</th>
-                <td>{{ entity.lived }}</td>
-            </tr>
-            <tr>
-                <th>Smoking</th>
-                <td>{{ entity.smoking }}</td>
-            </tr>
-            <tr>
-                <th>Status</th>
-                <td>{{ entity.status }}</td>
-            </tr>
-            <tr>
-                <th>Sex</th>
-                <td>{{ entity.sex }}</td>
-            </tr>
-            <tr>
-                <th>Religy</th>
-                <td>{{ entity.religy }}</td>
-            </tr>
-            <tr>
-                <th>Alcoholic</th>
-                <td>{{ entity.alcoholic }}</td>
-            </tr>
-            <tr>
-                <th>Plan</th>
-                <td>{{ entity.plan }}</td>
-            </tr>
-            <tr>
-                <th>Created_at</th>
-                <td>{{ entity.createdat|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Updated_at</th>
-                <td>{{ entity.updatedat|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Token</th>
-                <td>{{ entity.token }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('profile') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('profile_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+{% endblock %}
+{%block rightcontent%}
+	{{ include ('LcLcBundle:Default:userrightbar.html.twig') }}
 {% endblock %}

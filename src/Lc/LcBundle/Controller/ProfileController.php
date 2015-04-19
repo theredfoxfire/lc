@@ -114,21 +114,19 @@ class ProfileController extends Controller
      * Finds and displays a Profile entity.
      *
      */
-    public function showAction($id)
+    public function showAction()
     {
+
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('LcLcBundle:Profile')->find($id);
+        $entity = $em->getRepository('LcLcBundle:Profile')->findOneByUser($this->getUid());
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Profile entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
-
         return $this->render('LcLcBundle:Profile:show.html.twig', array(
             'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 

@@ -6,7 +6,7 @@ profile_data:
     defaults: { _controller: "LcLcBundle:Profile:profile" }
 
 profile_show:
-    path:     /{id}/show
+    path:     /show
     defaults: { _controller: "LcLcBundle:Profile:show" }
 
 profile_new:
