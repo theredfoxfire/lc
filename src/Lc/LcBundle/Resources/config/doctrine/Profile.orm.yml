@@ -25,7 +25,7 @@ Lc\LcBundle\Entity\Profile:
    type: string
    length: 255
    unique: true
- oneToOne:
+ manyToOne:
   status:
    targetEntity: Status
    inversedBy: profile
@@ -104,6 +104,7 @@ Lc\LcBundle\Entity\Profile:
    joinColumn:
     name: plan_id
     referencedColumnName: id
+ oneToOne:
   user:
    targetEntity: User
    inversedBy: profile

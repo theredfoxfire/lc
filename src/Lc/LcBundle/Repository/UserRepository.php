@@ -35,5 +35,23 @@ class UserRepository extends EntityRepository implements UserProviderInterface
     public function supportsClass($class) {
         return $class === 'Lc\LcBundle\Entity\User';
     }
+    
+    public function loadOthers($sex) {
+     $query = $this->createQueryBuilder('u')
+            ->where('u.sex != :sex')
+            ->setParameter('sex', $sex)
+            ->andWhere('u.is_active = :active')
+            ->setParameter('active', 1)
+            ->setMaxResults(8)
+            ->getQuery();
+ 
+        try {
+            $love = $query->getResult();
+        } catch (\Doctrine\Orm\NoResultException $e) {
+        $love = null;
+          }
+ 
+        return $love;
+    }
  
 }

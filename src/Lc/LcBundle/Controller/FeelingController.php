@@ -27,11 +27,13 @@ class FeelingController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('LcLcBundle:Feeling')->getUserFeeling($this->getUid());
+        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex());
         $entity = new Feeling();
         $form = $this->createCreateForm($entity);
 
         return $this->render('LcLcBundle:Feeling:index.html.twig', array(
             'entities' => $entities,
+            'others' => $others,
             'form'   => $form->createView(),
         ));
     }

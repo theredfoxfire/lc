@@ -20,7 +20,7 @@ Lc\LcBundle\Entity\Job:
   updated_at:
    type: datetime
    nullable: true
- oneToOne:
+ oneToMany:
   usercriteria:
    targetEntity: Usercriteria
    mappedBy: job

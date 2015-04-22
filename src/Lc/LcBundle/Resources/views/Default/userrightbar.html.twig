@@ -4,46 +4,18 @@
 								<div class="panel-heading">
 									<h3 class="panel-title">Mungkin kamu suka</h3>
 								</div>
+								{% for other in others %}
 								<div class="panel-body apanel-body p-border">
 									<div class="media">
 										<a class="media-left pull-left thumbnail" href="#">
-											<img src="{{ asset('bundles/lclc/img/wedus-36.jpeg') }}" alt="Super">
+											<img src="{{ asset('uploads/users/thumb_') }}{{ other.foto }}" alt="{{ other.profile.name }}">
 										</a>
 										<div class="media-body">
-											<h5 class="media-right">Middle aligned media.lll ll lllllllll lllll kkk</h5>
+											<h5 class="media-right">{{ other.profile.name }}</h5>
 										</div>
 									</div>
 								</div>
-								<div class="panel-body apanel-body p-border">
-									<div class="media">
-										<a class="media-left pull-left thumbnail" href="#">
-											<img src="{{ asset('bundles/lclc/img/wedus-36.jpeg') }}" alt="Super">
-										</a>
-										<div class="media-body">
-											<h5 class="media-right">Middle aligned media.lll ll lllllllll lllll kkk</h5>
-										</div>
-									</div>
-								</div>
-								<div class="panel-body apanel-body p-border">
-									<div class="media">
-										<a class="media-left pull-left thumbnail" href="#">
-											<img src="{{ asset('bundles/lclc/img/wedus-36.jpeg') }}" alt="Super">
-										</a>
-										<div class="media-body">
-											<h5 class="media-right">Middle aligned media.lll ll lllllllll lllll kkk</h5>
-										</div>
-									</div>
-								</div>
-								<div class="panel-body apanel-body p-border">
-									<div class="media">
-										<a class="media-left pull-left thumbnail" href="#">
-											<img src="{{ asset('bundles/lclc/img/wedus-36.jpeg') }}" alt="Super">
-										</a>
-										<div class="media-body">
-											<h5 class="media-right">Middle aligned media.hugrdb mvcxzhgdrou vkkk</h5>
-										</div>
-									</div>
-								</div>
+								{% endfor %}
 							</div>
 						</div>
 {% endblock %}

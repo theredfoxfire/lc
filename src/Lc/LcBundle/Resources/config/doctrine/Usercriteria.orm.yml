@@ -15,7 +15,7 @@ Lc\LcBundle\Entity\Usercriteria:
    type: string
    length: 255
    unique: true
- oneToOne:
+ manyToOne:
   status:
    targetEntity: Status
    inversedBy: usercriteria
@@ -94,6 +94,7 @@ Lc\LcBundle\Entity\Usercriteria:
    joinColumn:
     name: plan_id
     referencedColumnName: id
+ oneToOne:
   user:
    targetEntity: User
    inversedBy: usercriteria

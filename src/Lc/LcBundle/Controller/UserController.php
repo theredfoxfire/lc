@@ -325,7 +325,11 @@ class UserController extends Controller
     
     public function fotoAction(Request $request)
     {
+	  $em = $this->getDoctrine()->getManager();
+		
       $entity = $this->getUid();
+      
+      $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex());
       $password = $entity->getPassword();
       $form = $this->createForm(new FotoType(), $entity, array(
             'action' => $this->generateUrl('user_foto'),
@@ -337,7 +341,6 @@ class UserController extends Controller
       $form->handleRequest($request);
 
       if ($form->isValid()) {
-			$em = $this->getDoctrine()->getManager();            
 			$entity->setPassword($password);
             $em->persist($entity);
             $em->flush();
@@ -348,6 +351,7 @@ class UserController extends Controller
       return $this->render('LcLcBundle:User:foto.html.twig', array(
           'form' => $form->createView(),
           'entity' => $entity,
+          'others' => $others,
       ));      
     }
 }

@@ -27,7 +27,7 @@ Lc\LcBundle\Entity\City:
    joinColumn:
     name: province_id
     referencedColumnName: id
- oneToOne:
+ oneToMany:
   usercriteria:
    targetEntity: Usercriteria
    mappedBy: city

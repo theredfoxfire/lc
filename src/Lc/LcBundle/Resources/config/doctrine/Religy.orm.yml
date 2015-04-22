@@ -20,7 +20,7 @@ Lc\LcBundle\Entity\Religy:
    type: string
    length: 255
    unique: true
- oneToOne:
+ oneToMany:
   usercriteria:
    targetEntity: Usercriteria
    mappedBy: religy

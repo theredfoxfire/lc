@@ -841,4 +841,148 @@ class User implements AdvancedUserInterface
     {
         return $this->foto;
     }
+    
+    public function setFile($file)
+    {
+        $this->file = $file;
+
+        return $this;
+    }
+
+    /**
+     * Get foto
+     *
+     * @return string 
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+    
+    
+
+    /**
+     * @ORM\PrePersist
+     */
+    protected function getUploadDir()
+	{
+		return 'uploads/users';
+	}
+	
+	protected function getUploadRootDir()
+	{
+		return __DIR__.'/../../../../web/'.$this->getUploadDir();
+	}
+	
+	public function getWebPath()
+	{
+		return null === $this->foto ? null : $this->getUploadDir().'/'.$this->foto;
+	}
+	
+	public function getWebPathMini()
+	{
+		return null === $this->foto ? null : $this->getUploadDir().'/mini_'.$this->foto;
+	}
+	
+	public function getAbsolutePath()
+	{
+		return null === $this->foto ? null : $this->getUploadRootDir().'/'.$this->foto;
+	}
+    
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function preUpload()
+    {
+        if (null !== $this->file){
+				$this->foto = uniqid().'.'.$this->file->guessExtension();
+			}
+    }
+
+    /**
+     * @ORM\PostPersist
+     */
+    public function upload()
+    {
+        if (null === $this->file){
+			return;
+		} 
+		$this->file->move($this->getUploadRootDir(), $this->foto);
+		
+		Image::open($this->getUploadRootDir().'/'.$this->foto)
+		->scaleResize(200, 200, $background = 0xffffff)
+		->save($this->getUploadRootDir().'/index_'.$this->foto);
+		
+		Image::open($this->getUploadRootDir().'/'.$this->foto)
+		->scaleResize(64, 64, $background = 0xffffff)
+		->save($this->getUploadRootDir().'/grande_'.$this->foto);
+		
+		Image::open($this->getUploadRootDir().'/'.$this->foto)
+		->scaleResize(48, 48, $background = 0xffffff)
+		->save($this->getUploadRootDir().'/mini_'.$this->foto);
+		
+		Image::open($this->getUploadRootDir().'/'.$this->foto)
+		->scaleResize(36, 36, $background = 0xffffff)
+		->save($this->getUploadRootDir().'/thumb_'.$this->foto);
+		
+		$rmfile = $this->getAbsolutePath();
+        if(file_exists($rmfile)) {
+			unlink($rmfile);
+		}
+		
+		unset($this->file);
+    }
+
+
+    /**
+     * @ORM\PostPersist
+     */
+    public function updateLuceneIndex()
+    {
+        // Add your code here
+    }
+
+    /**
+     * @ORM\PostRemove
+     */
+    public function removeUpload()
+    {
+        $file = $this->getAbsolutePath();
+        if(file_exists($file)) {
+			unlink($file);
+		}
+    }
+    
+    public function removeUploaded()
+    {
+        if (null === $this->file){
+			return;
+		}
+		
+		$rmfilei = $this->getUploadRootDir().'/index_'.$this->getFoto();
+		$rmfilem = $this->getUploadRootDir().'/mini_'.$this->getFoto();
+		$rmfileg = $this->getUploadRootDir().'/grande_'.$this->getFoto();
+		$rmfilez = $this->getUploadRootDir().'/thumb_'.$this->getFoto();
+        if(file_exists($rmfilei)) {
+			unlink($rmfilei);
+		}
+		if(file_exists($rmfilem)) {
+			unlink($rmfilem);
+		}
+		if(file_exists($rmfileg)) {
+			unlink($rmfileg);
+		}
+		if(file_exists($rmfilez)) {
+			unlink($rmfilez);
+		}
+    }
+
+    /**
+     * @ORM\PostRemove
+     */
+    public function deleteLuceneIndex()
+    {
+        // Add your code here
+    }
 }

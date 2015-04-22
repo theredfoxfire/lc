@@ -18,7 +18,7 @@ Lc\LcBundle\Entity\Sex:
    type: string
    length: 255
    unique: true
- oneToOne:
+ oneToMany:
   usercriteria:
    targetEntity: Usercriteria
    mappedBy: sex

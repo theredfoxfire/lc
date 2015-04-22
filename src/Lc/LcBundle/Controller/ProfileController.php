@@ -24,11 +24,15 @@ class ProfileController extends Controller
      */
     public function indexAction()
     {
+		$em = $this->getDoctrine()->getManager();
+		
         $entity = $this->getUid();
         $form = $this->createDuForm($entity);
+        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex());
 
         return $this->render('LcLcBundle:Profile:index.html.twig', array(
             'entity' => $entity,
+            'others' => $others,
             'form' => $form->createView(),
         ));
     }
@@ -37,7 +41,8 @@ class ProfileController extends Controller
     public function profileAction()
     {
         $em = $this->getDoctrine()->getManager();
-
+        
+        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex());
         $entity = $em->getRepository('LcLcBundle:Profile')->findOneByUser($this->getUid());
         
         if (!$entity) {
@@ -48,6 +53,7 @@ class ProfileController extends Controller
 
         return $this->render('LcLcBundle:Profile:profile.html.twig', array(
             'entity' => $entity,
+            'others' => $others,
             'form' => $form->createView(),
         ));
     }
@@ -120,6 +126,7 @@ class ProfileController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('LcLcBundle:Profile')->findOneByUser($this->getUid());
+        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex());
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Profile entity.');
@@ -127,6 +134,7 @@ class ProfileController extends Controller
 
         return $this->render('LcLcBundle:Profile:show.html.twig', array(
             'entity'      => $entity,
+            'others' => $others,
         ));
     }
 
