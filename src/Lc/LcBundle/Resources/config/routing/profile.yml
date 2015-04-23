@@ -8,6 +8,10 @@ profile_data:
 profile_show:
     path:     /show
     defaults: { _controller: "LcLcBundle:Profile:show" }
+    
+profile_see:
+    path:     /{token}/see
+    defaults: { _controller: "LcLcBundle:Profile:see" }
 
 profile_new:
     path:     /new

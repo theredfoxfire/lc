@@ -296,13 +296,15 @@ class UserController extends Controller
 	
 	public function changePasswdAction(Request $request)
     {
+		
+	  $em = $this->getDoctrine()->getManager();
+	  $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex());
       $changePasswordModel = new ChangePassword();
       $form = $this->createForm(new ChangePasswordType(), $changePasswordModel);
 
       $form->handleRequest($request);
 
       if ($form->isSubmitted() && $form->isValid()) {
-			$em = $this->getDoctrine()->getManager();
             $formData = $request->get('change_passwd');
             $ps = $formData['newPassword']['first'];
             $entity = $this->getUid();
@@ -320,6 +322,7 @@ class UserController extends Controller
 
       return $this->render('LcLcBundle:User:changePwd.html.twig', array(
           'form' => $form->createView(),
+          'others' => $others,
       ));      
     }
     

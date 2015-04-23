@@ -118,6 +118,7 @@ class FeelingController extends Controller
 
         $entity = $em->getRepository('LcLcBundle:Feeling')->findOneByToken($token);
         $comments = $em->getRepository('LcLcBundle:Fcomment')->getCommentList($this->getUid(),$entity);
+        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex());
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Feeling entity.');
@@ -142,6 +143,7 @@ class FeelingController extends Controller
         return $this->render('LcLcBundle:Feeling:show.html.twig', array(
             'entity'      => $entity,
             'comments' 	  => $comments,
+            'others' => $others,
             'form'		  => $form->createView(),
         ));
     }

@@ -7,7 +7,7 @@
 								{% for other in others %}
 								<div class="panel-body apanel-body p-border">
 									<div class="media">
-										<a class="media-left pull-left thumbnail" href="#">
+										<a class="media-left pull-left thumbnail" href="{{ path('profile_see', {'token': other.token }) }}">
 											<img src="{{ asset('uploads/users/thumb_') }}{{ other.foto }}" alt="{{ other.profile.name }}">
 										</a>
 										<div class="media-body">

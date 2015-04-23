@@ -137,6 +137,25 @@ class ProfileController extends Controller
             'others' => $others,
         ));
     }
+    
+    public function seeAction($token)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        
+		$user = $em->getRepository('LcLcBundle:User')->findOneByToken($token);
+        $entity = $em->getRepository('LcLcBundle:Profile')->findOneByUser($user);
+        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex());
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Profile entity.');
+        }
+
+        return $this->render('LcLcBundle:Profile:see.html.twig', array(
+            'entity'      => $entity,
+            'others' => $others,
+        ));
+    }
 
     /**
      * Displays a form to edit an existing Profile entity.
