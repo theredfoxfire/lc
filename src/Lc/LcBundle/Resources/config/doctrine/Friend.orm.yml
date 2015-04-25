@@ -1,5 +1,6 @@
 Lc\LcBundle\Entity\Friend:
  type: entity
+ repositoryClass: Lc\LcBundle\Repository\FriendRepository
  table: friend
  id:
   id:
@@ -7,9 +8,11 @@ Lc\LcBundle\Entity\Friend:
    generator: { strategy: AUTO }
  fields:
   id_1: 
-   type: integer
+   type: string
+   length: 255
   id_2:
-   type: integer
+   type: string
+   length: 255
   status:
    type: boolean
   is_confirmed:
@@ -23,3 +26,6 @@ Lc\LcBundle\Entity\Friend:
    type: string
    length: 255
    unique: true
+ lifecycleCallbacks:
+  prePersist: [ setCreatedAtValue, setTokenValue ]
+  preUpdate: [ setUpdatedAtValue ]

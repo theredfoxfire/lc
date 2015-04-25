@@ -11,9 +11,8 @@ friend_new:
     defaults: { _controller: "LcLcBundle:Friend:new" }
 
 friend_create:
-    path:     /create
+    path:     /make/{token}
     defaults: { _controller: "LcLcBundle:Friend:create" }
-    requirements: { _method: post }
 
 friend_edit:
     path:     /{id}/edit

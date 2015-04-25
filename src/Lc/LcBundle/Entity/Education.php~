@@ -175,4 +175,50 @@ class Education
 	{
 		return $this->getName() ? $this->getName() : "";
 	}
+
+    /**
+     * Add usercriteria
+     *
+     * @param \Lc\LcBundle\Entity\Usercriteria $usercriteria
+     * @return Education
+     */
+    public function addUsercriterium(\Lc\LcBundle\Entity\Usercriteria $usercriteria)
+    {
+        $this->usercriteria[] = $usercriteria;
+
+        return $this;
+    }
+
+    /**
+     * Remove usercriteria
+     *
+     * @param \Lc\LcBundle\Entity\Usercriteria $usercriteria
+     */
+    public function removeUsercriterium(\Lc\LcBundle\Entity\Usercriteria $usercriteria)
+    {
+        $this->usercriteria->removeElement($usercriteria);
+    }
+
+    /**
+     * Add profile
+     *
+     * @param \Lc\LcBundle\Entity\Profile $profile
+     * @return Education
+     */
+    public function addProfile(\Lc\LcBundle\Entity\Profile $profile)
+    {
+        $this->profile[] = $profile;
+
+        return $this;
+    }
+
+    /**
+     * Remove profile
+     *
+     * @param \Lc\LcBundle\Entity\Profile $profile
+     */
+    public function removeProfile(\Lc\LcBundle\Entity\Profile $profile)
+    {
+        $this->profile->removeElement($profile);
+    }
 }

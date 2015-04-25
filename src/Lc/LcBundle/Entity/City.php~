@@ -248,4 +248,58 @@ class City
     {
         return $this->province;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->usercriteria = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->profile = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add usercriteria
+     *
+     * @param \Lc\LcBundle\Entity\Usercriteria $usercriteria
+     * @return City
+     */
+    public function addUsercriterium(\Lc\LcBundle\Entity\Usercriteria $usercriteria)
+    {
+        $this->usercriteria[] = $usercriteria;
+
+        return $this;
+    }
+
+    /**
+     * Remove usercriteria
+     *
+     * @param \Lc\LcBundle\Entity\Usercriteria $usercriteria
+     */
+    public function removeUsercriterium(\Lc\LcBundle\Entity\Usercriteria $usercriteria)
+    {
+        $this->usercriteria->removeElement($usercriteria);
+    }
+
+    /**
+     * Add profile
+     *
+     * @param \Lc\LcBundle\Entity\Profile $profile
+     * @return City
+     */
+    public function addProfile(\Lc\LcBundle\Entity\Profile $profile)
+    {
+        $this->profile[] = $profile;
+
+        return $this;
+    }
+
+    /**
+     * Remove profile
+     *
+     * @param \Lc\LcBundle\Entity\Profile $profile
+     */
+    public function removeProfile(\Lc\LcBundle\Entity\Profile $profile)
+    {
+        $this->profile->removeElement($profile);
+    }
 }

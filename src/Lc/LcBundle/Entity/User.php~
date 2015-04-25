@@ -915,7 +915,7 @@ class User implements AdvancedUserInterface
 		->save($this->getUploadRootDir().'/index_'.$this->foto);
 		
 		Image::open($this->getUploadRootDir().'/'.$this->foto)
-		->scaleResize(64, 64, $background = 0xffffff)
+		->scaleResize(128, 128, $background = 0xffffff)
 		->save($this->getUploadRootDir().'/grande_'.$this->foto);
 		
 		Image::open($this->getUploadRootDir().'/'.$this->foto)

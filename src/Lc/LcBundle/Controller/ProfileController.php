@@ -146,6 +146,8 @@ class ProfileController extends Controller
 		$user = $em->getRepository('LcLcBundle:User')->findOneByToken($token);
         $entity = $em->getRepository('LcLcBundle:Profile')->findOneByUser($user);
         $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex());
+        $friend = $em->getRepository('LcLcBundle:Friend')->check($this->getUid()->getToken(),$token);
+        $req = $em->getRepository('LcLcBundle:Friend')->check($token,$this->getUid()->getToken());
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Profile entity.');
@@ -154,6 +156,8 @@ class ProfileController extends Controller
         return $this->render('LcLcBundle:Profile:see.html.twig', array(
             'entity'      => $entity,
             'others' => $others,
+            'friend' => $friend,
+            'req' => $req,
         ));
     }
 

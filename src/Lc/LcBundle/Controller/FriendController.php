@@ -33,24 +33,29 @@ class FriendController extends Controller
      * Creates a new Friend entity.
      *
      */
-    public function createAction(Request $request)
+    public function createAction($token = null)
     {
         $entity = new Friend();
-        $form = $this->createCreateForm($entity);
-        $form->handleRequest($request);
+        
+        $em = $this->getDoctrine()->getManager();
+        $is = $em->getRepository('LcLcBundle:User')->findOneByToken($token);
+        $friend = $em->getRepository('LcLcBundle:Friend')->check($this->getUid()->getToken(),$token);
+        $req = $em->getRepository('LcLcBundle:Friend')->check($token,$this->getUid()->getToken());
+        if(!$is){
+			throw $this->createNotFoundException('Unable to find Friend entity.');
+		}
+        if(empty($friend) && empty($req)){
+			$entity->setId1($this->getUid()->getToken());
+			$entity->setId2($token);
+			$entity->setStatus(false);
+			$entity->setIsConfirmed(false);
+			$em->persist($entity);
+			$em->flush();
+		}else{
+			return $this->redirect($this->generateUrl('profile_see', array('token' => $token)));
+		}
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('friend_show', array('id' => $entity->getId())));
-        }
-
-        return $this->render('LcLcBundle:Friend:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
+        return $this->redirect($this->generateUrl('profile_see', array('token' => $token)));
     }
 
     /**
@@ -221,4 +226,13 @@ class FriendController extends Controller
             ->getForm()
         ;
     }
+    
+    public function getUid(){
+		$usr= $this->get('security.context')->getToken()->getUser();
+		$uid = $usr->getId();
+		$em = $this->getDoctrine()->getManager();
+		$userId = $em->getRepository('LcLcBundle:User')->find($uid);
+		return $userId;
+		
+	}
 }
