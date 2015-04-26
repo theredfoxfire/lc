@@ -985,4 +985,61 @@ class User implements AdvancedUserInterface
     {
         // Add your code here
     }
+    
+    /**
+     * @var \Lc\LcBundle\Entity\Friend
+     */
+    private $friend1;
+
+    /**
+     * @var \Lc\LcBundle\Entity\Friend
+     */
+    private $friend2;
+
+
+    /**
+     * Set friend1
+     *
+     * @param \Lc\LcBundle\Entity\Friend $friend1
+     * @return User
+     */
+    public function setFriend1(\Lc\LcBundle\Entity\Friend $friend1 = null)
+    {
+        $this->friend1 = $friend1;
+
+        return $this;
+    }
+
+    /**
+     * Get friend1
+     *
+     * @return \Lc\LcBundle\Entity\Friend 
+     */
+    public function getFriend1()
+    {
+        return $this->friend1;
+    }
+
+    /**
+     * Set friend2
+     *
+     * @param \Lc\LcBundle\Entity\Friend $friend2
+     * @return User
+     */
+    public function setFriend2(\Lc\LcBundle\Entity\Friend $friend2 = null)
+    {
+        $this->friend2 = $friend2;
+
+        return $this;
+    }
+
+    /**
+     * Get friend2
+     *
+     * @return \Lc\LcBundle\Entity\Friend 
+     */
+    public function getFriend2()
+    {
+        return $this->friend2;
+    }
 }

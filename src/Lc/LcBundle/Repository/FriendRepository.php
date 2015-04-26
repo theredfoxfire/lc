@@ -14,11 +14,30 @@ class FriendRepository extends EntityRepository
 {
 	public function check($id1 = null, $id2 = null) {
      $query = $this->createQueryBuilder('f')
-            ->where('f.id_1 = :id1')
+            ->where('f.user1 = :id1')
             ->setParameter('id1', $id1)
-            ->andWhere('f.id_2 = :id2')
+            ->andWhere('f.user2 = :id2')
             ->setParameter('id2', $id2)
             ->setMaxResults(1)
+            ->getQuery();
+ 
+        try {
+            $love = $query->getResult();
+        } catch (\Doctrine\Orm\NoResultException $e) {
+        $love = null;
+          }
+ 
+        return $love;
+    }
+    
+    public function fall($id) {
+     $query = $this->createQueryBuilder('f')
+            ->where('f.status = :st')
+            ->setParameter('st', 1)
+            ->andWhere('f.is_confirmed = :cf')
+            ->setParameter('cf', 0)
+            ->andWhere('f.user2 = :id2')
+            ->setParameter('id2', $id)
             ->getQuery();
  
         try {

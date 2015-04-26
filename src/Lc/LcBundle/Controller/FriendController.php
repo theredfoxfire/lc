@@ -39,15 +39,17 @@ class FriendController extends Controller
         
         $em = $this->getDoctrine()->getManager();
         $is = $em->getRepository('LcLcBundle:User')->findOneByToken($token);
-        $friend = $em->getRepository('LcLcBundle:Friend')->check($this->getUid()->getToken(),$token);
-        $req = $em->getRepository('LcLcBundle:Friend')->check($token,$this->getUid()->getToken());
         if(!$is){
 			throw $this->createNotFoundException('Unable to find Friend entity.');
 		}
+		
+        $friend = $em->getRepository('LcLcBundle:Friend')->check($this->getUid()->getId(),$is->getId());
+        $req = $em->getRepository('LcLcBundle:Friend')->check($is->getId(),$this->getUid()->getId());
+        
         if(empty($friend) && empty($req)){
-			$entity->setId1($this->getUid()->getToken());
-			$entity->setId2($token);
-			$entity->setStatus(false);
+			$entity->setUser1($this->getUid());
+			$entity->setUser2($is);
+			$entity->setStatus(true);
 			$entity->setIsConfirmed(false);
 			$em->persist($entity);
 			$em->flush();
@@ -111,6 +113,21 @@ class FriendController extends Controller
         return $this->render('LcLcBundle:Friend:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
+        ));
+    }
+    
+    public function showfallAction($token)
+    {
+        $em = $this->getDoctrine()->getManager();
+		
+        $entities = $em->getRepository('LcLcBundle:Friend')->fall($this->getUid()->getId());
+        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex());
+        
+        //exit(\Doctrine\Common\Util\Debug::dump($entities));
+
+        return $this->render('LcLcBundle:Friend:showfall.html.twig', array(
+            'entities'      => $entities,
+            'others' => $others,
         ));
     }
 

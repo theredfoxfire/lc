@@ -7,12 +7,6 @@ Lc\LcBundle\Entity\Friend:
    type: integer
    generator: { strategy: AUTO }
  fields:
-  id_1: 
-   type: string
-   length: 255
-  id_2:
-   type: string
-   length: 255
   status:
    type: boolean
   is_confirmed:
@@ -26,6 +20,19 @@ Lc\LcBundle\Entity\Friend:
    type: string
    length: 255
    unique: true
+ manyToOne:
+  user1:
+   targetEntity: User
+   inversedBy: friend1
+   joinColumn:
+    name: user
+    referencedColumnName: id
+  user2:
+   targetEntity: User
+   inversedBy: friend2
+   joinColumn:
+    name: friend
+    referencedColumnName: id
  lifecycleCallbacks:
   prePersist: [ setCreatedAtValue, setTokenValue ]
   preUpdate: [ setUpdatedAtValue ]

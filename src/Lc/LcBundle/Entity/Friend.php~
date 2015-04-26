@@ -15,16 +15,6 @@ class Friend
     private $id;
 
     /**
-     * @var integer
-     */
-    private $id_1;
-
-    /**
-     * @var integer
-     */
-    private $id_2;
-
-    /**
      * @var boolean
      */
     private $status;
@@ -58,52 +48,6 @@ class Friend
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set id_1
-     *
-     * @param integer $id1
-     * @return Friend
-     */
-    public function setId1($id1)
-    {
-        $this->id_1 = $id1;
-
-        return $this;
-    }
-
-    /**
-     * Get id_1
-     *
-     * @return integer 
-     */
-    public function getId1()
-    {
-        return $this->id_1;
-    }
-
-    /**
-     * Set id_2
-     *
-     * @param integer $id2
-     * @return Friend
-     */
-    public function setId2($id2)
-    {
-        $this->id_2 = $id2;
-
-        return $this;
-    }
-
-    /**
-     * Get id_2
-     *
-     * @return integer 
-     */
-    public function getId2()
-    {
-        return $this->id_2;
     }
 
     /**
@@ -246,5 +190,62 @@ class Friend
     public function setUpdatedAtValue()
     {
         $this->updated_at = new \DateTime();
+    }
+
+    /**
+     * @var \Lc\LcBundle\Entity\User
+     */
+    private $user1;
+
+    /**
+     * @var \Lc\LcBundle\Entity\User
+     */
+    private $user2;
+
+
+    /**
+     * Set user1
+     *
+     * @param \Lc\LcBundle\Entity\User $user1
+     * @return Friend
+     */
+    public function setUser1(\Lc\LcBundle\Entity\User $user1 = null)
+    {
+        $this->user1 = $user1;
+
+        return $this;
+    }
+
+    /**
+     * Get user1
+     *
+     * @return \Lc\LcBundle\Entity\User 
+     */
+    public function getUser1()
+    {
+        return $this->user1;
+    }
+
+    /**
+     * Set user2
+     *
+     * @param \Lc\LcBundle\Entity\User $user2
+     * @return Friend
+     */
+    public function setUser2(\Lc\LcBundle\Entity\User $user2 = null)
+    {
+        $this->user2 = $user2;
+
+        return $this;
+    }
+
+    /**
+     * Get user2
+     *
+     * @return \Lc\LcBundle\Entity\User 
+     */
+    public function getUser2()
+    {
+        return $this->user2;
     }
 }

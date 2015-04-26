@@ -5,6 +5,10 @@ friend:
 friend_show:
     path:     /{id}/show
     defaults: { _controller: "LcLcBundle:Friend:show" }
+    
+friend_fall:
+    path:     /fall/{token}
+    defaults: { _controller: "LcLcBundle:Friend:showfall" }
 
 friend_new:
     path:     /new

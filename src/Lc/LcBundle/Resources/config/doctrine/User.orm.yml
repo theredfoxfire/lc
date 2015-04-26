@@ -77,6 +77,13 @@ Lc\LcBundle\Entity\User:
   profile:
    targetEntity: Profile
    mappedBy: user
+  friend1:
+   targetEntity: Friend
+   mappedBy: user1
+  friend2:
+   targetEntity: Friend
+   mappedBy: user2
+
  lifecycleCallbacks:
   prePersist: [ preUpload, setCreatedAtValue, setTokenValue ]
   preUpdate: [ removeUploaded, preUpload, setUpdatedAtValue ]

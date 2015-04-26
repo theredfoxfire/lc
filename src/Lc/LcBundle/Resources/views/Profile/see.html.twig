@@ -17,7 +17,7 @@
 												<div class="label label-success">Permintaan pertemanan sudah dikirim</div>
 											{% elseif req %}
 												<div class="label label-success">Dia sudah meminta pertemanan denganmu</div><br /><br / >
-												<a class="label label-primary" data-toggle="tooltip" data-placement="top" title="Lihat permintaan" href="">Lihat</a>
+												<a class="label label-primary" data-toggle="tooltip" data-placement="top" title="Lihat permintaan" href="{{ path('friend_fall', {'token': app.user.token }) }}">Lihat</a>
 											{% else %}
 												<a class="label label-primary" data-toggle="tooltip" data-placement="top" title="Suka sama Dia?" href="{{ path('friend_create', {'token' : entity.user.token}) }}">Tertarik</a>
 											{% endif %}

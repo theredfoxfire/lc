@@ -1,0 +1,58 @@
+{% extends 'LcLcBundle:Default:userlayout.html.twig' %}
+{%block leftcontent%}
+	{{ include ('LcLcBundle:Default:userleftbar.html.twig') }}
+{% endblock %}
+{%block content%}
+				<div class="col-sm-7 column">
+						
+						<div class="row">
+							<div class="panel panel-success">
+								<div class="panel-heading panel-success">
+									<div class="media">
+										<div class="media-left pull-left knowing">
+											<img src="{{ asset('uploads/users/mini_') }}{{ app.user.foto }}" alt="{{ app.user.profile.name }}" class="img-rounded a-act">
+											Orang yang menyukaimu
+										</div>
+										<div class="media-body">
+											<h5 class="media-right pull-right">
+												<a class="a-act" href="#" data-toggle="tooltip" data-placement="top" title="Yang menyukaimu"><i class="glyphicon glyphicon-heart knowing"></i></a>
+											</h5>
+										</div>
+									</div>
+								</div>
+								{% if entities %}
+									
+									{% for entity in entities %}
+									<div class="panel-body apanel-body p-border">
+										<div class="media">
+											<div class="media-left pull-left">
+												<img src="{{ asset('uploads/users/mini_') }}{{ entity.user1.foto }}" alt="{{ entity.user1.profile.name }}" class="img-rounded">
+											</div>
+											<div class="media-body f-feel">
+												<h4 class="media-right">{{ entity.user1.profile.name }}</h4>
+												<a class="a-act pull-right" href="#" data-toggle="tooltip" data-placement="top" title="Tolak"><i class="glyphicon glyphicon-remove-sign"></i></a>
+												<a class="a-act pull-right" href="#" data-toggle="tooltip" data-placement="top" title="Terima"><i class="glyphicon glyphicon-heart-empty"></i></a>
+											</div>
+										</div>
+									</div>
+									{% endfor %}
+									
+								{% else %}
+									<div class="panel-body apanel-body p-border">
+										<div class="media">
+											<div class="media-left pull-left">
+											</div>
+											<div class="media-body f-feel">
+												<h4 class="media-right">Sementara ini masih belum ada.</h4>
+											</div>
+										</div>
+									</div>
+								{% endif %}
+							</div>
+						</div>
+						
+				</div>
+{% endblock %}
+{%block rightcontent%}
+	{{ include ('LcLcBundle:Default:userrightbar.html.twig') }}
+{% endblock %}
