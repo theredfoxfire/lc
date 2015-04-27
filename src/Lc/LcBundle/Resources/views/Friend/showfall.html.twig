@@ -30,8 +30,8 @@
 											</div>
 											<div class="media-body f-feel">
 												<h4 class="media-right">{{ entity.user1.profile.name }}</h4>
-												<a class="a-act pull-right" href="#" data-toggle="tooltip" data-placement="top" title="Tolak"><i class="glyphicon glyphicon-remove-sign"></i></a>
-												<a class="a-act pull-right" href="#" data-toggle="tooltip" data-placement="top" title="Terima"><i class="glyphicon glyphicon-heart-empty"></i></a>
+												<a class="a-act pull-right" href="{{ path('friend_delete', {'token': entity.token }) }}" data-toggle="tooltip" data-placement="top" title="Tolak"><i class="glyphicon glyphicon-remove-sign"></i></a>
+												<a class="a-act pull-right" href="{{ path('friend_update', {'token': entity.token }) }}" data-toggle="tooltip" data-placement="top" title="Terima"><i class="glyphicon glyphicon-heart-empty"></i></a>
 											</div>
 										</div>
 									</div>

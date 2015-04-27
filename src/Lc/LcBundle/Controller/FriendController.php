@@ -177,54 +177,40 @@ class FriendController extends Controller
      * Edits an existing Friend entity.
      *
      */
-    public function updateAction(Request $request, $id)
+    public function updateAction($token)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('LcLcBundle:Friend')->find($id);
+        $entity = $em->getRepository('LcLcBundle:Friend')->findOneByToken($token);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Friend entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
-        $editForm->handleRequest($request);
+		$entity->setIsConfirmed(true);
+		$em->persist($entity);
+        $em->flush();
 
-        if ($editForm->isValid()) {
-            $em->flush();
+        return $this->redirect($this->generateUrl('friend_fall', array('token' => $token)));
 
-            return $this->redirect($this->generateUrl('friend_edit', array('id' => $id)));
-        }
-
-        return $this->render('LcLcBundle:Friend:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
     }
     /**
      * Deletes a Friend entity.
      *
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction($token)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('LcLcBundle:Friend')->findOneByToken($token);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('LcLcBundle:Friend')->find($id);
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Friend entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Friend entity.');
         }
 
-        return $this->redirect($this->generateUrl('friend'));
+        $em->remove($entity);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('friend_fall',array('token' => $token)));
     }
 
     /**
