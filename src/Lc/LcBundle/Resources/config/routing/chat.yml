@@ -3,7 +3,7 @@ chat:
     defaults: { _controller: "LcLcBundle:Chat:index" }
 
 chat_show:
-    path:     /{id}/show
+    path:     /chat/{token}/
     defaults: { _controller: "LcLcBundle:Chat:show" }
 
 chat_new:

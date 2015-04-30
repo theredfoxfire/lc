@@ -4,59 +4,53 @@
 {% endblock %}
 {%block content%}
 				<div class="col-sm-7 column">
+						
 						<div class="row">
 							<div class="panel panel-success">
-								
-								<a href="#">
-								<div class="panel-body apanel-body">
+								<div class="panel-heading panel-success">
 									<div class="media">
-										<div class="media-left pull-left">
-											<img src="{{ asset('uploads/users/mini_') }}{{ app.user.foto }}" alt="{{ app.user.profile.name }}" class="img-rounded">
+										<div class="media-left pull-left knowing">
+											<img src="{{ asset('uploads/users/mini_') }}{{ app.user.foto }}" alt="{{ app.user.profile.name }}" class="img-rounded a-act">
+											Daftar Kenalanmu
 										</div>
 										<div class="media-body">
-											 <div class="col-md-12">
-												{{ form_start(form) }}
-												{{ form_errors(form) }}
-													<div class="form-group">
-													{{ form_widget(form.feel) }}
-													</div>
-													{{ form_errors(form.feel) }}
-													<div class="form-group right">
-														<button type="submit" class="btn btn-primary btn-feel"><i class="glyphicon glyphicon-send"></i> &nbsp;&nbsp;Posting</button>
-													</div>
-												{{ form_row(form._token) }}
-												{{ form_end(form) }}
-											</div><!-- /.col-lg-6 -->
+											<h5 class="media-right pull-right">
+												<a class="a-act" href="#" data-toggle="tooltip" data-placement="top" title="Daftar kenalanmu"><i class="glyphicon glyphicon-heart knowing"></i></a>
+											</h5>
 										</div>
 									</div>
 								</div>
-								</a>
-							</div>
-						</div>
-						{% for entity in entities %}
-						<div class="row">
-							<div class="panel panel-success">
-								<div class="panel-heading panel-success right">
-									<a class="a-act" href="#" data-toggle="tooltip" data-placement="top" title="Tulis balasan"><i class="glyphicon glyphicon-comment"></i></a>
-									<a class="a-act" href="{{ path('flike_create', {'feel': entity.token }) }}" data-toggle="tooltip" data-placement="top" title="Beri simpati"><i class="glyphicon glyphicon-thumbs-up"></i></a>
-									<a class="a-act" href="{{ path('fshare_create', {'feel': entity.token }) }}" data-toggle="tooltip" data-placement="top" title="Bagikan"><i class="glyphicon glyphicon-share-alt"></i></a>
-								</div>
-								<a href="{{ path('feeling_show', {'token': entity.token }) }}">
-								<div class="panel-body apanel-body">
-									<div class="media">
-										<div class="media-left pull-left">
-											<img src="{{ asset('uploads/users/mini_') }}{{ app.user.foto }}" alt="{{ app.user.profile.name }}" class="img-rounded">
-										</div>
-										<div class="media-body f-feel">
-											<h5 class="media-right">{{ entity.feel }}</h5>
-											<div class='pull-right created_at'>@ {{ entity.createdAt | date('d-m-Y H:i:s') }}</div>
+								{% if entities %}
+									
+									{% for entity in entities %}
+									<div class="panel-body apanel-body p-border">
+										<div class="media">
+											<div class="media-left pull-left">
+												<img src="{{ asset('uploads/users/mini_') }}{{ entity.user1.foto }}" alt="{{ entity.user1.profile.name }}" class="img-rounded">
+											</div>
+											<div class="media-body f-feel">
+												<h4 class="media-right">{{ entity.user1.profile.name }}</h4>
+												<a class="a-act pull-right" href="{{ path('friend_block', {'token': entity.token }) }}" data-toggle="tooltip" data-placement="top" title="Blokir"><i class="glyphicon glyphicon-eye-close"></i></a>
+												<a class="a-act pull-right" href="{{ path('chat_show', {'token': entity.user1.token }) }}" data-toggle="tooltip" data-placement="top" title="Kirim pesan"><i class="glyphicon glyphicon-envelope"></i></a>
+											</div>
 										</div>
 									</div>
-								</div>
-								</a>
+									{% endfor %}
+									
+								{% else %}
+									<div class="panel-body apanel-body p-border">
+										<div class="media">
+											<div class="media-left pull-left">
+											</div>
+											<div class="media-body f-feel">
+												<h4 class="media-right">Sementara ini masih belum ada.</h4>
+											</div>
+										</div>
+									</div>
+								{% endif %}
 							</div>
 						</div>
-						{% endfor %}
+						
 				</div>
 {% endblock %}
 {%block rightcontent%}

@@ -1,0 +1,71 @@
+{% extends 'LcLcBundle:Default:userlayout.html.twig' %}
+{%block leftcontent%}
+	{{ include ('LcLcBundle:Default:userleftbar.html.twig') }}
+{% endblock %}
+{%block content%}
+				<div class="col-sm-7 column">
+						
+						<div class="row">
+							<div class="panel panel-success">
+								<div class="panel-heading panel-success">
+									<div class="media">
+										<div class="media-left pull-left knowing">
+											<img src="{{ asset('uploads/users/mini_') }}{{ friend.foto }}" alt="{{ friend.profile.name }}" class="img-rounded a-act" >
+											Obrolanmu dengan {{ friend.profile.name }}
+										</div>
+										<div class="media-body">
+											<h5 class="media-right pull-right">
+												<a class="a-act" href="#" data-toggle="tooltip" data-placement="top" title="Obrolan"><i class="glyphicon glyphicon-phone knowing"></i></a>
+											</h5>
+										</div>
+									</div>
+								</div>
+								{% for entity in entities %}
+									{% if entity.user1.id == app.user.id %}
+									<div class="panel-body apanel-body p-border">
+										<div class="media">
+											<div class="media-right pull-right">
+												<img src="{{ asset('uploads/users/thumb_') }}{{ app.user.foto }}" alt="{{ app.user.profile.name }}" class="img-circle" >
+											</div>
+											<div class="media-body f-feel">
+												<h5 class="media-left">{{ entity.message }}</h5>
+												<small class="text-muted pull-right"><i class="glyphicon glyphicon-time"></i> <i> {{ entity.createdAt | date('d-m-Y H:i:s') }}</i></small>
+											</div>
+										</div>
+									</div>
+									{% else %}
+									<div class="panel-body apanel-body p-border">
+										<div class="media">
+											<div class="media-left pull-left">
+												<img src="{{ asset('uploads/users/thumb_') }}{{ friend.foto }}" alt="{{ friend.profile.name }}" class="img-circle" >
+											</div>
+											<div class="media-body f-feel">
+												<h4 class="media-right">{{ friend.profile.name }}</h4>
+												<h5 class="media-right">{{ entity.message }}</h5>
+												<small class="text-muted"> <i class="glyphicon glyphicon-time"></i> <i>{{ entity.createdAt | date('d-m-Y H:i:s') }}</i></small>
+											</div>
+										</div>
+									</div>
+									{% endif %}
+								{% endfor %}
+								<div class="panel-footer">
+									{{ form_start(form) }}
+									{{ form_errors(form) }}
+									<div class="input-group">
+										{{ form_widget(form.message) }}
+										{{ form_errors(form.message) }}
+										<span class="input-group-btn">
+											<button class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-send"></i> &nbsp;Kirim</button>
+										</span>
+									</div>
+									{{ form_row(form._token) }}
+									{{ form_end(form) }}
+								</div>
+							</div>
+						</div>
+						
+				</div>
+{% endblock %}
+{%block rightcontent%}
+	{{ include ('LcLcBundle:Default:userrightbar.html.twig') }}
+{% endblock %}

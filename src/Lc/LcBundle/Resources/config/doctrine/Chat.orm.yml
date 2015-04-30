@@ -1,15 +1,12 @@
 Lc\LcBundle\Entity\Chat:
  type: entity
+ repositoryClass: Lc\LcBundle\Repository\ChatRepository
  table: chat
  id:
   id:
    type: integer
    generator: { strategy: AUTO }
  fields:
-  id_1:
-   type: integer
-  id_2:
-   type: integer
   message:
    type: text
   created_at:
@@ -20,3 +17,19 @@ Lc\LcBundle\Entity\Chat:
   token:
    type: string
    length: 255
+ manyToOne:
+  user1:
+   targetEntity: User
+   inversedBy: chat1
+   joinColumn:
+    name: user1
+    referencedColumnName: id
+  user2:
+   targetEntity: User
+   inversedBy: chat2
+   joinColumn:
+    name: user2
+    referencedColumnName: id
+ lifecycleCallbacks:
+  prePersist: [ setCreatedAtValue, setTokenValue ]
+  preUpdate: [ setUpdatedAtValue ]

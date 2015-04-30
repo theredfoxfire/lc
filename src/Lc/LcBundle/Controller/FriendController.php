@@ -98,21 +98,16 @@ class FriendController extends Controller
      * Finds and displays a Friend entity.
      *
      */
-    public function showAction($id)
+    public function showAction($token)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('LcLcBundle:Friend')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Friend entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
+        $entities = $em->getRepository('LcLcBundle:Friend')->freez($this->getUid()->getId());
+        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex());
 
         return $this->render('LcLcBundle:Friend:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
+            'entities'      => $entities,
+            'others' => $others,
         ));
     }
     
@@ -180,6 +175,7 @@ class FriendController extends Controller
     public function updateAction($token)
     {
         $em = $this->getDoctrine()->getManager();
+        $mate = new Friend();
 
         $entity = $em->getRepository('LcLcBundle:Friend')->findOneByToken($token);
 
@@ -190,8 +186,47 @@ class FriendController extends Controller
 		$entity->setIsConfirmed(true);
 		$em->persist($entity);
         $em->flush();
+        
+        $is = $em->getRepository('LcLcBundle:User')->findOneById($entity->getUser1());
+        
+        $mate->setUser1($this->getUid());
+		$mate->setUser2($is);
+		$mate->setStatus(true);
+		$mate->setIsConfirmed(true);
+		$em->persist($mate);
+		$em->flush();
 
         return $this->redirect($this->generateUrl('friend_fall', array('token' => $token)));
+
+    }
+    /**
+     * Edits an existing Friend entity.
+     *
+     */
+    public function blockAction($token)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('LcLcBundle:Friend')->findOneByToken($token);
+        if($this->getUid() == $entity->getUser2()){
+			$mate = $em->getRepository('LcLcBundle:Friend')->findOneByUser1($entity->getUser2());
+		}else{
+			$mate = $em->getRepository('LcLcBundle:Friend')->findOneByUser1($entity->getUser1());
+		}
+
+        if (empty($mate)) {
+            throw $this->createNotFoundException('Unable to find Friend entity.');
+        }
+
+		$entity->setStatus(false);
+		$em->persist($entity);
+        $em->flush();
+        
+        $mate->setStatus(false);
+		$em->persist($mate);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('friend_show', array('token' => $token)));
 
     }
     /**

@@ -15,12 +15,7 @@ class ChatType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('id_1')
-            ->add('id_2')
-            ->add('message')
-            ->add('created_at')
-            ->add('updated_at')
-            ->add('token')
+            ->add('message', 'text', array('attr' => array('class' => 'form-control', 'required' => false, 'placeholder' => 'Tulis pesan'), 'label'=>false))
         ;
     }
     

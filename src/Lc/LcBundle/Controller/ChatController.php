@@ -60,14 +60,14 @@ class ChatController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Chat $entity)
+    private function createCreateForm(Chat $entity, $token)
     {
         $form = $this->createForm(new ChatType(), $entity, array(
-            'action' => $this->generateUrl('chat_create'),
+            'action' => $this->generateUrl('chat_show', array(
+				'token' => $token,)
+            ),
             'method' => 'POST',
         ));
-
-        $form->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
     }
@@ -91,21 +91,31 @@ class ChatController extends Controller
      * Finds and displays a Chat entity.
      *
      */
-    public function showAction($id)
+    public function showAction(Request $request, $token)
     {
         $em = $this->getDoctrine()->getManager();
+        
+        $chat = new Chat();
+        $form   = $this->createCreateForm($chat, $token);
 
-        $entity = $em->getRepository('LcLcBundle:Chat')->find($id);
+        $friend = $em->getRepository('LcLcBundle:User')->findOneByToken($token);
+        $entities = $em->getRepository('LcLcBundle:Chat')->chat($this->getUid()->getId(),$friend->getId());
+        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex());
+        
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $chat->setUser1($this->getUid());
+            $chat->setUser2($friend);
+            $em->persist($chat);
+            $em->flush();
+            return $this->redirect($this->generateUrl('chat_show', array('token'=>$token)));
+		}
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Chat entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-
-        return $this->render('LcLcBundle:Chat:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
+        return $this->render('LcLcBundle:Chat:chatting.html.twig', array(
+            'entities' => $entities,
+            'friend' => $friend,
+            'others' => $others,
+            'form' => $form->createView(),
         ));
     }
 
@@ -221,4 +231,13 @@ class ChatController extends Controller
             ->getForm()
         ;
     }
+    
+    public function getUid(){
+		$usr= $this->get('security.context')->getToken()->getUser();
+		$uid = $usr->getId();
+		$em = $this->getDoctrine()->getManager();
+		$userId = $em->getRepository('LcLcBundle:User')->find($uid);
+		return $userId;
+		
+	}
 }

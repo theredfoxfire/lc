@@ -3,8 +3,12 @@ friend:
     defaults: { _controller: "LcLcBundle:Friend:index" }
 
 friend_show:
-    path:     /{id}/show
+    path:     /list/{token}
     defaults: { _controller: "LcLcBundle:Friend:show" }
+    
+friend_block:
+    path:     /{token}/block
+    defaults: { _controller: "LcLcBundle:Friend:block" }
     
 friend_fall:
     path:     /fall/{token}

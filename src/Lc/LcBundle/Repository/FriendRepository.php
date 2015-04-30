@@ -48,4 +48,40 @@ class FriendRepository extends EntityRepository
  
         return $love;
     }
+    
+    public function freez($id) {
+     $query = $this->createQueryBuilder('f')
+            ->where('f.status = :st')
+            ->setParameter('st', 1)
+            ->andWhere('f.is_confirmed = :cf')
+            ->setParameter('cf', 1)
+            ->andWhere('f.user2 = :id2')
+            ->setParameter('id2', $id)
+            ->getQuery();
+ 
+        try {
+            $love = $query->getResult();
+        } catch (\Doctrine\Orm\NoResultException $e) {
+        $love = null;
+          }
+ 
+        return $love;
+    }
+    
+    public function block($id1,$id2) {
+     $query = $this->createQueryBuilder('f')
+            ->where('f.user1 = :id1')
+            ->setParameter('id1', $id1)
+            ->andWhere('f.user2 = :id2')
+            ->setParameter('id2', $id2)
+            ->getQuery();
+ 
+        try {
+            $love = $query->getResult();
+        } catch (\Doctrine\Orm\NoResultException $e) {
+        $love = null;
+          }
+ 
+        return $love;
+    }
 }

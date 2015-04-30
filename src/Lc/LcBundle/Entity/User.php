@@ -1042,4 +1042,60 @@ class User implements AdvancedUserInterface
     {
         return $this->friend2;
     }
+    /**
+     * @var \Lc\LcBundle\Entity\Friend
+     */
+    private $chat1;
+
+    /**
+     * @var \Lc\LcBundle\Entity\Friend
+     */
+    private $chat2;
+
+
+    /**
+     * Set chat1
+     *
+     * @param \Lc\LcBundle\Entity\Friend $chat1
+     * @return User
+     */
+    public function setChat1(\Lc\LcBundle\Entity\Friend $chat1 = null)
+    {
+        $this->chat1 = $chat1;
+
+        return $this;
+    }
+
+    /**
+     * Get chat1
+     *
+     * @return \Lc\LcBundle\Entity\Friend 
+     */
+    public function getChat1()
+    {
+        return $this->chat1;
+    }
+
+    /**
+     * Set chat2
+     *
+     * @param \Lc\LcBundle\Entity\Friend $chat2
+     * @return User
+     */
+    public function setChat2(\Lc\LcBundle\Entity\Friend $chat2 = null)
+    {
+        $this->chat2 = $chat2;
+
+        return $this;
+    }
+
+    /**
+     * Get chat2
+     *
+     * @return \Lc\LcBundle\Entity\Friend 
+     */
+    public function getChat2()
+    {
+        return $this->chat2;
+    }
 }

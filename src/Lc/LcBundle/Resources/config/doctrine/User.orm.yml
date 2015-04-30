@@ -83,6 +83,12 @@ Lc\LcBundle\Entity\User:
   friend2:
    targetEntity: Friend
    mappedBy: user2
+  chat1:
+   targetEntity: Friend
+   mappedBy: user1
+  chat2:
+   targetEntity: Friend
+   mappedBy: user2
 
  lifecycleCallbacks:
   prePersist: [ preUpload, setCreatedAtValue, setTokenValue ]
