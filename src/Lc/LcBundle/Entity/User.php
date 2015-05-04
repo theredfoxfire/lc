@@ -1098,4 +1098,96 @@ class User implements AdvancedUserInterface
     {
         return $this->chat2;
     }
+
+    /**
+     * Add friend1
+     *
+     * @param \Lc\LcBundle\Entity\Friend $friend1
+     * @return User
+     */
+    public function addFriend1(\Lc\LcBundle\Entity\Friend $friend1)
+    {
+        $this->friend1[] = $friend1;
+
+        return $this;
+    }
+
+    /**
+     * Remove friend1
+     *
+     * @param \Lc\LcBundle\Entity\Friend $friend1
+     */
+    public function removeFriend1(\Lc\LcBundle\Entity\Friend $friend1)
+    {
+        $this->friend1->removeElement($friend1);
+    }
+
+    /**
+     * Add friend2
+     *
+     * @param \Lc\LcBundle\Entity\Friend $friend2
+     * @return User
+     */
+    public function addFriend2(\Lc\LcBundle\Entity\Friend $friend2)
+    {
+        $this->friend2[] = $friend2;
+
+        return $this;
+    }
+
+    /**
+     * Remove friend2
+     *
+     * @param \Lc\LcBundle\Entity\Friend $friend2
+     */
+    public function removeFriend2(\Lc\LcBundle\Entity\Friend $friend2)
+    {
+        $this->friend2->removeElement($friend2);
+    }
+
+    /**
+     * Add chat1
+     *
+     * @param \Lc\LcBundle\Entity\Friend $chat1
+     * @return User
+     */
+    public function addChat1(\Lc\LcBundle\Entity\Friend $chat1)
+    {
+        $this->chat1[] = $chat1;
+
+        return $this;
+    }
+
+    /**
+     * Remove chat1
+     *
+     * @param \Lc\LcBundle\Entity\Friend $chat1
+     */
+    public function removeChat1(\Lc\LcBundle\Entity\Friend $chat1)
+    {
+        $this->chat1->removeElement($chat1);
+    }
+
+    /**
+     * Add chat2
+     *
+     * @param \Lc\LcBundle\Entity\Friend $chat2
+     * @return User
+     */
+    public function addChat2(\Lc\LcBundle\Entity\Friend $chat2)
+    {
+        $this->chat2[] = $chat2;
+
+        return $this;
+    }
+
+    /**
+     * Remove chat2
+     *
+     * @param \Lc\LcBundle\Entity\Friend $chat2
+     */
+    public function removeChat2(\Lc\LcBundle\Entity\Friend $chat2)
+    {
+        $this->chat2->removeElement($chat2);
+    }
 }

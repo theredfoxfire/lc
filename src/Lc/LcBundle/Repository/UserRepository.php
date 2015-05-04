@@ -55,3 +55,5 @@ class UserRepository extends EntityRepository implements UserProviderInterface
     }
  
 }
+
+

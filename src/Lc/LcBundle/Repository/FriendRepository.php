@@ -18,11 +18,10 @@ class FriendRepository extends EntityRepository
             ->setParameter('id1', $id1)
             ->andWhere('f.user2 = :id2')
             ->setParameter('id2', $id2)
-            ->setMaxResults(1)
             ->getQuery();
  
         try {
-            $love = $query->getResult();
+            $love = $query->getSingleResult();
         } catch (\Doctrine\Orm\NoResultException $e) {
         $love = null;
           }

@@ -37,9 +37,8 @@
 						<div class="row">
 							<div class="panel panel-success">
 								<div class="panel-heading panel-success right">
-									<a class="a-act" href="#" data-toggle="tooltip" data-placement="top" title="Tulis balasan"><i class="glyphicon glyphicon-comment"></i></a>
+									<a class="a-act" href="{{ path('feeling_show', {'token': entity.token }) }}" data-toggle="tooltip" data-placement="top" title="Tulis balasan"><i class="glyphicon glyphicon-comment"></i></a>
 									<a class="a-act" href="{{ path('flike_create', {'feel': entity.token }) }}" data-toggle="tooltip" data-placement="top" title="Beri simpati"><i class="glyphicon glyphicon-thumbs-up"></i></a>
-									<a class="a-act" href="{{ path('fshare_create', {'feel': entity.token }) }}" data-toggle="tooltip" data-placement="top" title="Bagikan"><i class="glyphicon glyphicon-share-alt"></i></a>
 								</div>
 								<a href="{{ path('feeling_show', {'token': entity.token }) }}">
 								<div class="panel-body apanel-body">

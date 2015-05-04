@@ -49,6 +49,7 @@
 									{% endif %}
 								{% endfor %}
 								<div class="panel-footer">
+								<a href="{{ path('chat_show', {'token': friend.token }) }}"><i class="glyphicon glyphicon-refresh"></i> RefreshChatList</a><br><br>
 									{{ form_start(form) }}
 									{{ form_errors(form) }}
 									<div class="input-group">
@@ -65,7 +66,14 @@
 						</div>
 						
 				</div>
+				
+<script>
+	window.onload = function() {
+	document.getElementById("lc_lcbundle_chat_message").focus();
+	};
+</script>
 {% endblock %}
 {%block rightcontent%}
 	{{ include ('LcLcBundle:Default:userrightbar.html.twig') }}
 {% endblock %}
+

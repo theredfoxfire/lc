@@ -13,13 +13,12 @@
 									<div class="media">
 										<div class="media-left pull-left">
 											<img class="thumbnail" src="{{ asset('uploads/users/index_') }}{{ entity.user.foto }}" alt="{{ entity.name }}">
-											{% if friend %}
+											{% if friend and friend.isconfirmed == 0 %}
 												<div class="label label-success">Permintaan pertemanan sudah dikirim</div>
-											{% elseif req %}
-												<div class="label label-success">Dia sudah meminta pertemanan denganmu</div><br /><br / >
-												<a class="label label-primary" data-toggle="tooltip" data-placement="top" title="Lihat permintaan" href="{{ path('friend_fall', {'token': app.user.token }) }}">Lihat</a>
+											{% elseif friend and friend.isconfirmed == 1 %}
+												<div class="label label-success">Dia sudah berteman denganmu</div><br /><br / >
 											{% else %}
-												<a class="label label-primary" data-toggle="tooltip" data-placement="top" title="Suka sama Dia?" href="{{ path('friend_create', {'token' : entity.user.token}) }}">Tertarik</a>
+												<a class="label label-primary" data-toggle="tooltip" data-placement="top" title="Suka sama Dia?" href="{{ path('friend_create', {'token' : entity.user.token}) }}"> Tertarik</a>
 											{% endif %}
 										</div>
 										<div class="media-body">

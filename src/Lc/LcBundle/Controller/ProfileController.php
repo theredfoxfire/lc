@@ -6,7 +6,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Lc\LcBundle\Entity\Profile;
-use Lc\LcBundle\Entity\User;
 use Lc\LcBundle\Entity\Usercriteria;
 use Lc\LcBundle\Form\ProfileType;
 use Lc\LcBundle\Form\DatauType;
@@ -152,13 +151,13 @@ class ProfileController extends Controller
         
         $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex());
         $friend = $em->getRepository('LcLcBundle:Friend')->check($this->getUid()->getId(),$user->getId());
-        $req = $em->getRepository('LcLcBundle:Friend')->check($user->getId(),$this->getUid()->getId());
+        
+        //exit(\Doctrine\Common\Util\Debug::dump($friend));
 
         return $this->render('LcLcBundle:Profile:see.html.twig', array(
             'entity'      => $entity,
             'others' => $others,
             'friend' => $friend,
-            'req' => $req,
         ));
     }
 

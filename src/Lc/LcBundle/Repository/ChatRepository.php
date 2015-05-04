@@ -18,7 +18,8 @@ class ChatRepository extends EntityRepository
             ->setParameter('id1', $id1)
             ->andWhere('c.user2 = :id2 OR c.user1 = :id2')
             ->setParameter('id2', $id2)
-            ->setMaxResults(25)
+            ->setFirstResult(5)
+            ->orderBy('c.created_at', 'ASC')
             ->getQuery();
  
         try {

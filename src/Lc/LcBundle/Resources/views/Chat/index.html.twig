@@ -1,51 +1,44 @@
-{% extends '::base.html.twig' %}
-
-{% block body -%}
-    <h1>Chat list</h1>
-
-    <table class="records_list">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Id_1</th>
-                <th>Id_2</th>
-                <th>Message</th>
-                <th>Created_at</th>
-                <th>Updated_at</th>
-                <th>Token</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('chat_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.id1 }}</td>
-                <td>{{ entity.id2 }}</td>
-                <td>{{ entity.message }}</td>
-                <td>{% if entity.createdat %}{{ entity.createdat|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if entity.updatedat %}{{ entity.updatedat|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ entity.token }}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('chat_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('chat_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-        <ul>
-        <li>
-            <a href="{{ path('chat_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
-    {% endblock %}
+{% extends 'LcLcBundle:Default:userlayout.html.twig' %}
+{%block leftcontent%}
+	{{ include ('LcLcBundle:Default:userleftbar.html.twig') }}
+{% endblock %}
+{%block content%}
+				<div class="col-sm-7 column">
+						
+						<div class="row">
+							<div class="panel panel-success">
+								<div class="panel-heading panel-success">
+									<div class="media">
+										<div class="media-left pull-left knowing">
+											<img src="{{ asset('uploads/users/mini_') }}{{ app.user.foto }}" alt="{{ app.user.profile.name }}" class="img-rounded a-act">
+											Pesan untukmu
+										</div>
+										<div class="media-body">
+											<h5 class="media-right pull-right">
+												<a class="a-act" href="#" data-toggle="tooltip" data-placement="top" title="Pesan untukmu"><i class="glyphicon glyphicon-envelope knowing"></i></a>
+											</h5>
+										</div>
+									</div>
+								</div>
+								<div class="panel-body apanel-body p-border">
+									<div class="media">
+										<div class="media-left pull-left">
+											<img src="img/wedus-48.jpeg" class="img-rounded" alt="Super">
+										</div>
+										<div class="media-body f-feel">
+											<h4 class="media-right">Jhony Robert Junior</h4>
+											<h5 class="media-right">Some wonderfull message that makes you happy. Hmmm... are you interested with him? So what are you waiting for let's move take him out!</h5>
+											<a class="a-act pull-right" href="#" data-toggle="tooltip" data-placement="top" title="Buang"><i class="glyphicon glyphicon-trash"></i></a>
+											<a class="a-act pull-right" href="#" data-toggle="tooltip" data-placement="top" title="Tulis balasan"><i class="glyphicon glyphicon-edit"></i></a>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+						
+				</div>
+{% endblock %}
+{%block rightcontent%}
+	{{ include ('LcLcBundle:Default:userrightbar.html.twig') }}
+{% endblock %}

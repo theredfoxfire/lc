@@ -77,6 +77,7 @@ Lc\LcBundle\Entity\User:
   profile:
    targetEntity: Profile
    mappedBy: user
+ oneToMany:
   friend1:
    targetEntity: Friend
    mappedBy: user1
@@ -84,10 +85,10 @@ Lc\LcBundle\Entity\User:
    targetEntity: Friend
    mappedBy: user2
   chat1:
-   targetEntity: Friend
+   targetEntity: Chat
    mappedBy: user1
   chat2:
-   targetEntity: Friend
+   targetEntity: Chat
    mappedBy: user2
 
  lifecycleCallbacks:

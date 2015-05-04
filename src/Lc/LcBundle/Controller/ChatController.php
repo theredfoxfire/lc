@@ -24,9 +24,11 @@ class ChatController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('LcLcBundle:Chat')->findAll();
+        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex());
 
         return $this->render('LcLcBundle:Chat:index.html.twig', array(
             'entities' => $entities,
+            'others' => $others,
         ));
     }
     /**
