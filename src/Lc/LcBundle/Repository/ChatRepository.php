@@ -14,12 +14,32 @@ class ChatRepository extends EntityRepository
 {
 	public function chat($id1 = null, $id2 = null) {
      $query = $this->createQueryBuilder('c')
-            ->where('c.user1 = :id1 OR c.user2 = :id1')
+            ->where('c.user1 = :id1')
             ->setParameter('id1', $id1)
-            ->andWhere('c.user2 = :id2 OR c.user1 = :id2')
+            ->andWhere('c.user2 = :id2')
             ->setParameter('id2', $id2)
-            ->setFirstResult(5)
-            ->orderBy('c.created_at', 'ASC')
+            ->setMaxResults(10)
+            ->orderBy('c.created_at', 'DESC')
+            ->getQuery();
+ 
+        try {
+            $love = $query->getResult();
+        } catch (\Doctrine\Orm\NoResultException $e) {
+        $love = null;
+          }
+ 
+        return $love;
+    }
+    
+    public function loadChat($id1 = null, $sender = null) {
+     $query = $this->createQueryBuilder('c')
+            ->where('c.user1 = :id1')
+            ->setParameter('id1', $id1)
+            ->andWhere('c.sender_id != :sender')
+            ->setParameter('sender', $sender)
+            ->setMaxResults(15)
+            ->orderBy('c.created_at', 'DESC')
+            ->groupBy('c.user2')
             ->getQuery();
  
         try {

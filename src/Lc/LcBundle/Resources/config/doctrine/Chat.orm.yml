@@ -7,8 +7,12 @@ Lc\LcBundle\Entity\Chat:
    type: integer
    generator: { strategy: AUTO }
  fields:
+  sender_id:
+   type: integer
   message:
    type: text
+  is_read:
+   type: boolean
   created_at:
    type: datetime
   updated_at:

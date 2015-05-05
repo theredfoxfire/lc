@@ -23,7 +23,7 @@ class ChatController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('LcLcBundle:Chat')->findAll();
+        $entities = $em->getRepository('LcLcBundle:Chat')->loadChat($this->getUid(), $this->getUid()->getId());
         $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex());
 
         return $this->render('LcLcBundle:Chat:index.html.twig', array(
@@ -97,6 +97,7 @@ class ChatController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         
+        $chit = new Chat();
         $chat = new Chat();
         $form   = $this->createCreateForm($chat, $token);
 
@@ -106,9 +107,18 @@ class ChatController extends Controller
         
         $form->handleRequest($request);
         if ($form->isValid()) {
+			$formData = $request->get('lc_lcbundle_chat');
             $chat->setUser1($this->getUid());
             $chat->setUser2($friend);
+            $chat->setSenderId($this->getUid()->getId());
             $em->persist($chat);
+            $em->flush();
+            
+            $chit->setUser2($this->getUid());
+            $chit->setUser1($friend);
+            $chit->setMessage($formData['message']);
+            $chit->setSenderId($this->getUid()->getId());
+            $em->persist($chit);
             $em->flush();
             return $this->redirect($this->generateUrl('chat_show', array('token'=>$token)));
 		}

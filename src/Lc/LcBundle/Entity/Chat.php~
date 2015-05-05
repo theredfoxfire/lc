@@ -274,4 +274,32 @@ class Chat
     {
         $this->updated_at = new \DateTime();
     }
+    /**
+     * @var integer
+     */
+    private $sender_id;
+
+
+    /**
+     * Set sender_id
+     *
+     * @param integer $senderId
+     * @return Chat
+     */
+    public function setSenderId($senderId)
+    {
+        $this->sender_id = $senderId;
+
+        return $this;
+    }
+
+    /**
+     * Get sender_id
+     *
+     * @return integer 
+     */
+    public function getSenderId()
+    {
+        return $this->sender_id;
+    }
 }

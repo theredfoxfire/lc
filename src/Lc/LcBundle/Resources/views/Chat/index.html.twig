@@ -20,20 +20,43 @@
 										</div>
 									</div>
 								</div>
+								{% if entities %}
+								{% for entity in entities %}
 								<div class="panel-body apanel-body p-border">
 									<div class="media">
 										<div class="media-left pull-left">
-											<img src="img/wedus-48.jpeg" class="img-rounded" alt="Super">
+										{% if entity.user1.foto != app.user.foto %}
+											<img src="{{ asset('uploads/users/mini_') }}{{ entity.user1.foto }}" alt="{{ entity.user1.profile.name }}" class="img-rounded">
+										{% elseif entity.user2.foto != app.user.foto %}
+											<img src="{{ asset('uploads/users/mini_') }}{{ entity.user2.foto }}" alt="{{ entity.user2.profile.name }}" class="img-rounded">
+										{% endif %}
 										</div>
 										<div class="media-body f-feel">
-											<h4 class="media-right">Jhony Robert Junior</h4>
-											<h5 class="media-right">Some wonderfull message that makes you happy. Hmmm... are you interested with him? So what are you waiting for let's move take him out!</h5>
+										{% if entity.user1.foto != app.user.foto %}
+											<h4 class="media-right">{{ entity.user1.profile.name }}</h4>
+										{% elseif entity.user2.foto != app.user.foto %}
+											<h4 class="media-right">{{ entity.user2.profile.name }}</h4>
+										{% endif %}
+											
+											<h5 class="media-right">{{ entity.message }}</h5>
 											<a class="a-act pull-right" href="#" data-toggle="tooltip" data-placement="top" title="Buang"><i class="glyphicon glyphicon-trash"></i></a>
 											<a class="a-act pull-right" href="#" data-toggle="tooltip" data-placement="top" title="Tulis balasan"><i class="glyphicon glyphicon-edit"></i></a>
 										</div>
 									</div>
 								</div>
-								
+								{% endfor %}
+								{% else %}
+								<div class="panel-body apanel-body p-border">
+									<div class="media">
+										<div class="media-left pull-left">
+											
+										</div>
+										<div class="media-body f-feel">
+											Chat mu masih kosong.
+										</div>
+									</div>
+								</div>
+								{% endif %}
 							</div>
 						</div>
 						

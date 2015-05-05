@@ -274,4 +274,60 @@ class Chat
     {
         $this->updated_at = new \DateTime();
     }
+    /**
+     * @var integer
+     */
+    private $sender_id;
+
+
+    /**
+     * Set sender_id
+     *
+     * @param integer $senderId
+     * @return Chat
+     */
+    public function setSenderId($senderId)
+    {
+        $this->sender_id = $senderId;
+
+        return $this;
+    }
+
+    /**
+     * Get sender_id
+     *
+     * @return integer 
+     */
+    public function getSenderId()
+    {
+        return $this->sender_id;
+    }
+    /**
+     * @var boolean
+     */
+    private $is_read;
+
+
+    /**
+     * Set is_read
+     *
+     * @param boolean $isRead
+     * @return Chat
+     */
+    public function setIsRead($isRead)
+    {
+        $this->is_read = $isRead;
+
+        return $this;
+    }
+
+    /**
+     * Get is_read
+     *
+     * @return boolean 
+     */
+    public function getIsRead()
+    {
+        return $this->is_read;
+    }
 }
