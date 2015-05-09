@@ -37,14 +37,25 @@
 						<div class="row">
 							<div class="panel panel-success">
 								<div class="panel-heading panel-success right">
-									<a class="a-act" href="{{ path('feeling_show', {'token': entity.token }) }}" data-toggle="tooltip" data-placement="top" title="Tulis balasan"><i class="glyphicon glyphicon-comment"></i></a>
-									<a class="a-act" href="{{ path('flike_create', {'feel': entity.token }) }}" data-toggle="tooltip" data-placement="top" title="Beri simpati"><i class="glyphicon glyphicon-thumbs-up"></i></a>
+									<div class="media">
+										<div class="media-left pull-left knowing">
+											<h5>{{ entity.user.profile.name }}</h5>
+										</div>
+										<div class="media-body">
+											<h5 class="media-right pull-right">
+											<a class="a-act" href="{{ path('feeling_show', {'token': entity.token }) }}" data-toggle="tooltip" data-placement="top" title="Tulis balasan"><i class="glyphicon glyphicon-comment"></i></a>
+											</h5>
+											<h5 class="media-right pull-right">
+											<a class="a-act" href="{{ path('flike_create', {'feel': entity.token, 'page': '2' }) }}" data-toggle="tooltip" data-placement="top" title="Beri simpati"><i class="glyphicon glyphicon-thumbs-up"></i></a>
+											</h5>
+										</div>
+									</div>
 								</div>
 								<a href="{{ path('feeling_show', {'token': entity.token }) }}">
 								<div class="panel-body apanel-body">
 									<div class="media">
 										<div class="media-left pull-left">
-											<img src="{{ asset('uploads/users/mini_') }}{{ app.user.foto }}" alt="{{ app.user.profile.name }}" class="img-rounded">
+											<img src="{{ asset('uploads/users/mini_') }}{{ entity.user.foto }}" alt="{{ entity.user.profile.name }}" class="img-rounded">
 										</div>
 										<div class="media-body f-feel">
 											<h5 class="media-right">{{ entity.feel }}</h5>

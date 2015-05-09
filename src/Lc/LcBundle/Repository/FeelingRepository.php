@@ -15,14 +15,19 @@ class FeelingRepository extends EntityRepository
 {
 	public function getUserFeeling($uid = null)
 	{
-		$query = $this->createQueryBuilder('f')
-		->where('f.user = :uid')
-		->setParameter('uid', $uid)
-		->andWhere('f.is_active = :is')
-		->setParameter('is', 1)
-		->setMaxResults(20)
-		->orderBy('f.created_at', 'DESC')
-		->getQuery();
+		$query = $this->getEntityManager()
+			->createQuery('SELECT f FROM
+			LcLcBundle:Feeling f INNER JOIN LcLcBundle:Friend fr with f.user= fr.user2
+			WHERE fr.user1 = :id1
+			OR fr.user2 = :id1
+			AND f.is_active = :is
+			order by f.created_at DESC'
+			)
+			->setMaxResults(50)
+			->setParameters(array(
+						   'id1' => $uid,
+						   'is' => 1,
+							));
 		
 		return $query->getResult();
 	}

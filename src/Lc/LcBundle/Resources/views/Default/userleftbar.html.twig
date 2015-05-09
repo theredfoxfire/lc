@@ -1,7 +1,12 @@
 {%block leftcontent%}
 				<div class="col-md-2 column">
 					<div id="navbar" class="navbar">
-						
+					<a href="{{ path('user_foto') }}" data-toggle="tooltip" data-placement="top" title="Ubah foto profile Anda">
+						<div class="thumbnail">
+							<img src="{{ asset('uploads/users/grande_') }}{{ app.user.foto }}" alt="{{ app.user.profile.name }}">
+							<h5 class="text-center">{{ app.user.profile.name }}</h5>
+						</div>
+					</a>
 					<ul class="nav nav-pills nav-stacked">
 						<li role="presentation"><a href="{{ path('friend_show', {'token': app.user.token}) }}">Kenalan&nbsp;<span class="badge">29</span></a></li>
 						<li role="presentation"><a href="{{ path('chat') }}">Obrolan</a></li>

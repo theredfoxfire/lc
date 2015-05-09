@@ -12,15 +12,13 @@ use Lc\LcBundle\Entity\Fcomment;
  */
 class FcommentRepository extends EntityRepository
 {
-	public function getCommentList($user = null, $feel = null){
+	public function getCommentList($feel = null){
 		$query = $this->createQueryBuilder('c')
-		->where('c.user = :uid')
-		->setParameter('uid', $user)
 		->andWhere('c.feeling = :fe')
 		->setParameter('fe', $feel)
 		->andWhere('c.is_publish = :is')
 		->setParameter('is', 1)
-		->setMaxResults(20)
+		->setMaxResults(25)
 		->orderBy('c.created_at', 'DESC')
 		->getQuery();
 		

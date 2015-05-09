@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Lc\LcBundle\Entity\Profile;
 use Lc\LcBundle\Entity\Usercriteria;
+use Lc\LcBundle\Entity\User;
 use Lc\LcBundle\Form\ProfileType;
 use Lc\LcBundle\Form\DatauType;
 

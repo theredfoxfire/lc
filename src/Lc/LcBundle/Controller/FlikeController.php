@@ -34,7 +34,7 @@ class FlikeController extends Controller
      * Creates a new Flike entity.
      *
      */
-    public function createAction($feel = null)
+    public function createAction($feel = null, $page = null)
     {
         $entity = new Flike();
         $em = $this->getDoctrine()->getManager();
@@ -51,7 +51,13 @@ class FlikeController extends Controller
 			$em->persist($check);
 			$em->flush();
 		}
-        return $this->redirect($this->generateUrl('feeling'));
+		if($page == 1)
+		{
+			return $this->redirect($this->generateUrl('feeling_show', array('token' => $feel)));
+		} else 
+		{
+			return $this->redirect($this->generateUrl('feeling'));
+		}
     }
 
     /**

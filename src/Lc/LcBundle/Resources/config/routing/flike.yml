@@ -11,7 +11,7 @@ flike_new:
     defaults: { _controller: "LcLcBundle:Flike:new" }
 
 flike_create:
-    path:     /create/{feel}
+    path:     /create/{feel}/{page}
     defaults: { _controller: "LcLcBundle:Flike:create" }
 
 flike_edit:

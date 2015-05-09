@@ -117,7 +117,7 @@ class FeelingController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('LcLcBundle:Feeling')->findOneByToken($token);
-        $comments = $em->getRepository('LcLcBundle:Fcomment')->getCommentList($this->getUid(),$entity);
+        $comments = $em->getRepository('LcLcBundle:Fcomment')->getCommentList($entity);
         $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex());
 
         if (!$entity) {
