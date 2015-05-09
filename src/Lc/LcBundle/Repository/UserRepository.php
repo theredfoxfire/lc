@@ -36,15 +36,19 @@ class UserRepository extends EntityRepository implements UserProviderInterface
         return $class === 'Lc\LcBundle\Entity\User';
     }
     
-    public function loadOthers($sex) {
-     $query = $this->createQueryBuilder('u')
-            ->where('u.sex != :sex')
-            ->setParameter('sex', $sex)
-            ->andWhere('u.is_active = :active')
-            ->setParameter('active', 1)
-            ->setMaxResults(8)
-            ->orderBy('u.created_at', 'DESC')
-            ->getQuery();
+    public function loadOthers($sex = null, $id1 = null) {
+
+	$query = $this->getEntityManager()
+			->createQuery('SELECT u FROM
+			LcLcBundle:User u
+			WHERE u.sex != :sex
+			AND u.id NOT IN (SELECT IDENTITY (f.user2) FROM LcLcBundle:Friend f where f.user1 = :id1)'
+			)
+			->setMaxResults(8)
+			->setParameters(array(
+						   'id1' => $id1,
+						   'sex' => $sex,
+							));
  
         try {
             $love = $query->getResult();

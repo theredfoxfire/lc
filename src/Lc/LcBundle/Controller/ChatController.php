@@ -24,7 +24,7 @@ class ChatController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('LcLcBundle:Chat')->loadChat($this->getUid(), $this->getUid()->getId());
-        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex());
+        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
 
         return $this->render('LcLcBundle:Chat:index.html.twig', array(
             'entities' => $entities,
@@ -37,7 +37,7 @@ class ChatController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('LcLcBundle:Chat')->unreadChat($this->getUid(), $this->getUid()->getId());
-        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex());
+        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
 
         return $this->render('LcLcBundle:Chat:unread.html.twig', array(
             'entities' => $entities,
@@ -117,7 +117,7 @@ class ChatController extends Controller
         $friend = $em->getRepository('LcLcBundle:User')->findOneByToken($token);
         $entities = $em->getRepository('LcLcBundle:Chat')->chat($this->getUid()->getId(),$friend->getId());
         $em->getRepository('LcLcBundle:Chat')->updateChat($this->getUid()->getId(),$friend->getId());
-        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex());
+        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
         
         $form->handleRequest($request);
         if ($form->isValid()) {

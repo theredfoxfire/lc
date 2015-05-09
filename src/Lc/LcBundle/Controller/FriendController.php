@@ -103,7 +103,7 @@ class FriendController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('LcLcBundle:Friend')->freez($this->getUid()->getId());
-        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex());
+        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
 
         return $this->render('LcLcBundle:Friend:show.html.twig', array(
             'entities'      => $entities,
@@ -116,7 +116,7 @@ class FriendController extends Controller
         $em = $this->getDoctrine()->getManager();
 		
         $entities = $em->getRepository('LcLcBundle:Friend')->fall($this->getUid()->getId());
-        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex());
+        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
         
         //exit(\Doctrine\Common\Util\Debug::dump($entities));
 

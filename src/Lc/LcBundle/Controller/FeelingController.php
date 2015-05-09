@@ -27,7 +27,7 @@ class FeelingController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('LcLcBundle:Feeling')->getUserFeeling($this->getUid());
-        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex());
+        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
         $entity = new Feeling();
         $form = $this->createCreateForm($entity);
 
@@ -118,7 +118,7 @@ class FeelingController extends Controller
 
         $entity = $em->getRepository('LcLcBundle:Feeling')->findOneByToken($token);
         $comments = $em->getRepository('LcLcBundle:Fcomment')->getCommentList($entity);
-        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex());
+        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Feeling entity.');

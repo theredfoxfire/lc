@@ -298,7 +298,7 @@ class UserController extends Controller
     {
 		
 	  $em = $this->getDoctrine()->getManager();
-	  $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex());
+	  $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
       $changePasswordModel = new ChangePassword();
       $form = $this->createForm(new ChangePasswordType(), $changePasswordModel);
 
@@ -332,7 +332,7 @@ class UserController extends Controller
 		
       $entity = $this->getUid();
       
-      $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex());
+      $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
       $password = $entity->getPassword();
       $form = $this->createForm(new FotoType(), $entity, array(
             'action' => $this->generateUrl('user_foto'),

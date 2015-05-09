@@ -32,22 +32,42 @@
 											<h5 class="media-right">{{ entity.feel }}</h5>
 											<div class='pull-right created_at'><small class="text-muted"> <i class="glyphicon glyphicon-time"></i> <i>{{ entity.createdAt | date('d-m-Y H:i:s') }}</i></small></div><br>
 											<hr />
-											{% for comment in comments %}
-											<div class="panel panel-success apanel-body">
-												<div class="panel-body">
-													<div class="media">
-														<a class="media-left pull-left" href="#">
-															<img src="{{ asset('uploads/users/mini_') }}{{ comment.user.foto }}" class="img-rounded" alt="{{ comment.user.profile.name }}">
-														</a>
-														<div class="media-body">
-															<h5 class="media-right">{{ comment.comment }}</h5>
+											{% for comment in comments|sort %}
+											{% if entity.user.id == app.user.id %}
+													<div class="panel panel-success apanel-body">
+														<div class="panel-body">
+															<div class="media">
+																<a class="media-left pull-left" href="#">
+																	<img src="{{ asset('uploads/users/mini_') }}{{ comment.user.foto }}" class="img-rounded" alt="{{ comment.user.profile.name }}">
+																</a>
+																<div class="media-body">
+																	<h5 class="media-right">{{ comment.comment }}</h5>
+																</div>
+															</div>
+														</div>
+														<div class="panel-footer">
+															{{ comment.user.profile.name }} <div class="pull-right"> <small class="text-muted"> <i class="glyphicon glyphicon-time"></i> <i>{{ comment.createdAt | date('d-m-Y H:i:s') }}</i></small></div>
 														</div>
 													</div>
-												</div>
-												<div class="panel-footer">
-													{{ comment.user.profile.name }} <div class="pull-right"> <small class="text-muted"> <i class="glyphicon glyphicon-time"></i> <i>{{ comment.createdAt | date('d-m-Y H:i:s') }}</i></small></div>
-												</div>
-											</div>
+											{% else %}
+												{% if (comment.user.id == app.user.id) or (comment.user.id == entity.user.id)  %}
+													<div class="panel panel-success apanel-body">
+														<div class="panel-body">
+															<div class="media">
+																<a class="media-left pull-left" href="#">
+																	<img src="{{ asset('uploads/users/mini_') }}{{ comment.user.foto }}" class="img-rounded" alt="{{ comment.user.profile.name }}">
+																</a>
+																<div class="media-body">
+																	<h5 class="media-right">{{ comment.comment }}</h5>
+																</div>
+															</div>
+														</div>
+														<div class="panel-footer">
+															{{ comment.user.profile.name }} <div class="pull-right"> <small class="text-muted"> <i class="glyphicon glyphicon-time"></i> <i>{{ comment.createdAt | date('d-m-Y H:i:s') }}</i></small></div>
+														</div>
+													</div>
+												{% endif %}
+											{% endif %}
 											{% endfor %}
 						
 						

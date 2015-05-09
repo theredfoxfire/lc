@@ -25,7 +25,7 @@ class UsercriteriaController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('LcLcBundle:Usercriteria')->findOneByUser($this->getUid());
-        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex());
+        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
 
                 if (!$entity) {
             throw $this->createNotFoundException('Unable to find Usercriteria entity.');

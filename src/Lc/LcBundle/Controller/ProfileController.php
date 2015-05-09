@@ -28,7 +28,7 @@ class ProfileController extends Controller
 		
         $entity = $this->getUid();
         $form = $this->createDuForm($entity);
-        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex());
+        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
 
         return $this->render('LcLcBundle:Profile:index.html.twig', array(
             'entity' => $entity,
@@ -42,7 +42,7 @@ class ProfileController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         
-        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex());
+        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
         $entity = $em->getRepository('LcLcBundle:Profile')->findOneByUser($this->getUid());
         
         if (!$entity) {
@@ -126,7 +126,7 @@ class ProfileController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('LcLcBundle:Profile')->findOneByUser($this->getUid());
-        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex());
+        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Profile entity.');
@@ -150,7 +150,7 @@ class ProfileController extends Controller
         
         $entity = $em->getRepository('LcLcBundle:Profile')->findOneByUser($user);
         
-        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex());
+        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
         $friend = $em->getRepository('LcLcBundle:Friend')->check($this->getUid()->getId(),$user->getId());
         
         //exit(\Doctrine\Common\Util\Debug::dump($friend));
