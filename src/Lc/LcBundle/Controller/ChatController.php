@@ -31,6 +31,19 @@ class ChatController extends Controller
             'others' => $others,
         ));
     }
+    
+    public function unreadAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('LcLcBundle:Chat')->unreadChat($this->getUid(), $this->getUid()->getId());
+        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex());
+
+        return $this->render('LcLcBundle:Chat:unread.html.twig', array(
+            'entities' => $entities,
+            'others' => $others,
+        ));
+    }
     /**
      * Creates a new Chat entity.
      *
@@ -103,6 +116,7 @@ class ChatController extends Controller
 
         $friend = $em->getRepository('LcLcBundle:User')->findOneByToken($token);
         $entities = $em->getRepository('LcLcBundle:Chat')->chat($this->getUid()->getId(),$friend->getId());
+        $em->getRepository('LcLcBundle:Chat')->updateChat($this->getUid()->getId(),$friend->getId());
         $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex());
         
         $form->handleRequest($request);
@@ -110,6 +124,8 @@ class ChatController extends Controller
 			$formData = $request->get('lc_lcbundle_chat');
             $chat->setUser1($this->getUid());
             $chat->setUser2($friend);
+            $chat->setIsRead(false);
+            $chat->setIsDelete(false);
             $chat->setSenderId($this->getUid()->getId());
             $em->persist($chat);
             $em->flush();
@@ -118,6 +134,8 @@ class ChatController extends Controller
             $chit->setUser1($friend);
             $chit->setMessage($formData['message']);
             $chit->setSenderId($this->getUid()->getId());
+            $chit->setIsRead(false);
+            $chit->setIsDelete(false);
             $em->persist($chit);
             $em->flush();
             return $this->redirect($this->generateUrl('chat_show', array('token'=>$token)));
@@ -207,21 +225,15 @@ class ChatController extends Controller
      * Deletes a Chat entity.
      *
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction($token)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('LcLcBundle:Chat')->find($id);
+        $em = $this->getDoctrine()->getManager();
+        $friend = $em->getRepository('LcLcBundle:User')->findOneByToken($token);
+        $entity = $em->getRepository('LcLcBundle:Chat')->deleteChat($this->getUid()->getId(),$friend->getId());
 
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Chat entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
+        if (!$friend) {
+            throw $this->createNotFoundException('Unable to find Chat entity.');
         }
 
         return $this->redirect($this->generateUrl('chat'));
@@ -252,4 +264,5 @@ class ChatController extends Controller
 		return $userId;
 		
 	}
+	
 }

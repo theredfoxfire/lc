@@ -330,4 +330,32 @@ class Chat
     {
         return $this->is_read;
     }
+    /**
+     * @var boolean
+     */
+    private $is_delete;
+
+
+    /**
+     * Set is_delete
+     *
+     * @param boolean $isDelete
+     * @return Chat
+     */
+    public function setIsDelete($isDelete)
+    {
+        $this->is_delete = $isDelete;
+
+        return $this;
+    }
+
+    /**
+     * Get is_delete
+     *
+     * @return boolean 
+     */
+    public function getIsDelete()
+    {
+        return $this->is_delete;
+    }
 }

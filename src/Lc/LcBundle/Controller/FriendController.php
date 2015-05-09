@@ -213,6 +213,8 @@ class FriendController extends Controller
 		}else{
 			$mate = $em->getRepository('LcLcBundle:Friend')->findOneByUser1($entity->getUser1());
 		}
+		
+		$em->getRepository('LcLcBundle:Chat')->deleteChat($entity->getUser1(),$entity->getUser2());
 
         if (empty($mate)) {
             throw $this->createNotFoundException('Unable to find Friend entity.');

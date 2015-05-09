@@ -20,7 +20,7 @@
 										</div>
 									</div>
 								</div>
-								{% for entity in entities %}
+								{% for entity in entities|sort %}
 									{% if entity.senderid == app.user.id %}
 									<div class="panel-body apanel-body p-border">
 										<div class="media">

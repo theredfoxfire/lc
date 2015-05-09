@@ -13,6 +13,8 @@ Lc\LcBundle\Entity\Chat:
    type: text
   is_read:
    type: boolean
+  is_delete:
+   type: boolean
   created_at:
    type: datetime
   updated_at:

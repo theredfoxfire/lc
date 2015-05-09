@@ -43,6 +43,7 @@ class UserRepository extends EntityRepository implements UserProviderInterface
             ->andWhere('u.is_active = :active')
             ->setParameter('active', 1)
             ->setMaxResults(8)
+            ->orderBy('u.created_at', 'DESC')
             ->getQuery();
  
         try {

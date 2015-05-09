@@ -302,4 +302,32 @@ class Chat
     {
         return $this->sender_id;
     }
+    /**
+     * @var boolean
+     */
+    private $is_read;
+
+
+    /**
+     * Set is_read
+     *
+     * @param boolean $isRead
+     * @return Chat
+     */
+    public function setIsRead($isRead)
+    {
+        $this->is_read = $isRead;
+
+        return $this;
+    }
+
+    /**
+     * Get is_read
+     *
+     * @return boolean 
+     */
+    public function getIsRead()
+    {
+        return $this->is_read;
+    }
 }
