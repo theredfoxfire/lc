@@ -91,21 +91,23 @@ class NotificationController extends Controller
      * Finds and displays a Notification entity.
      *
      */
-    public function showAction($id)
+    public function showAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('LcLcBundle:Notification')->find($id);
+        $entities = $em->getRepository('LcLcBundle:Notification')->loadNoty($this->getUid());
+        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
+        $em->getRepository('LcLcBundle:Notification')->updateNoty($this->getUid());
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Notification entity.');
+        if (!$entities) {
+				return $this->render('LcLcBundle:Notification:show.html.twig', array(
+				'entities'      => $entities,
+				'others' => $others,
+			));
         }
-
-        $deleteForm = $this->createDeleteForm($id);
-
         return $this->render('LcLcBundle:Notification:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
+            'entities'      => $entities,
+            'others' => $others,
         ));
     }
 
@@ -221,4 +223,13 @@ class NotificationController extends Controller
             ->getForm()
         ;
     }
+    
+    public function getUid(){
+		$usr= $this->get('security.context')->getToken()->getUser();
+		$uid = $usr->getId();
+		$em = $this->getDoctrine()->getManager();
+		$userId = $em->getRepository('LcLcBundle:User')->find($uid);
+		return $userId;
+		
+	}
 }

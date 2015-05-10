@@ -58,7 +58,7 @@
             <li><a href="{{ path('feeling') }}" data-toggle="tooltip" data-placement="top" title="Beranda">Beranda</a></li>
             <li><a href="{{ path('friend_fall', {'token': app.user.token }) }}" data-toggle="tooltip" data-placement="top" title="Suka Kamu"><span class="glyphicon glyphicon-heart knowing"></span><span class="badge">2</span></a></li>
 			<li><a href="{{ path('unread_chat') }}" data-toggle="tooltip" data-placement="top" title="Pesan"><span class="glyphicon glyphicon-envelope knowing"></span><span class="badge">7</span></a></li>
-			<li><a href="announcement.html" data-toggle="tooltip" data-placement="top" title="Pemberitahuan"><span class="glyphicon glyphicon-bell knowing"></span><span class="badge">8</span></a></li>
+			<li><a href="{{ path('notification_show') }}" data-toggle="tooltip" data-placement="top" title="Pemberitahuan"><span class="glyphicon glyphicon-bell knowing"></span><span class="badge">8</span></a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span></a>
               <ul class="dropdown-menu" role="menu">

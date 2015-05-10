@@ -4,18 +4,28 @@
 								<div class="panel-heading">
 									<h3 class="panel-title">Mungkin kamu suka</h3>
 								</div>
-								{% for other in others %}
-								<div class="panel-body apanel-body p-border">
-									<div class="media">
-										<a class="media-left pull-left thumbnail" href="{{ path('profile_see', {'token': other.token }) }}">
-											<img src="{{ asset('uploads/users/thumb_') }}{{ other.foto }}" alt="{{ other.profile.name }}">
-										</a>
-										<div class="media-body">
-											<h5 class="media-right">{{ other.profile.name }}</h5>
+								{% if others %}
+									{% for other in others %}
+										<div class="panel-body apanel-body p-border">
+											<div class="media">
+												<a class="media-left pull-left thumbnail" href="{{ path('profile_see', {'token': other.token }) }}">
+													<img src="{{ asset('uploads/users/thumb_') }}{{ other.foto }}" alt="{{ other.profile.name }}">
+												</a>
+												<div class="media-body">
+													<h5 class="media-right">{{ other.profile.name }}</h5>
+												</div>
+											</div>
 										</div>
-									</div>
-								</div>
-								{% endfor %}
+									{% endfor %}
+								{% else %}
+									<div class="panel-body apanel-body p-border">
+										<div class="media">
+											<div class="media-body">
+												<h5 class="media-right">Belum ada saran untuk mu.</h5>
+											</div>
+										</div>
+									</div>	
+								{% endif %}
 							</div>
 						</div>
 {% endblock %}

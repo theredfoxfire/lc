@@ -41,7 +41,7 @@ class ChatRepository extends EntityRepository
 			AND c.sender_id != :sender
 			AND c.is_delete = :del
 			AND c.created_at = (select max(cc.created_at) from LcLcBundle:Chat cc WHERE cc.user1 = c.user2 AND cc.user2 = c.user1
-			AND cc.sender_id = c.user2)  group by c.user2 order by c.created_at'
+			AND cc.sender_id = c.user2)  group by c.user2 order by c.created_at DESC'
 			)
 			->setMaxResults(25)
 			->setParameters(array(

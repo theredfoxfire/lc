@@ -1,52 +1,75 @@
-{% extends '::base.html.twig' %}
-
-{% block body -%}
-    <h1>Notification</h1>
-
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Viewed</th>
-                <td>{{ entity.viewed }}</td>
-            </tr>
-            <tr>
-                <th>From</th>
-                <td>{{ entity.from }}</td>
-            </tr>
-            <tr>
-                <th>From_id</th>
-                <td>{{ entity.fromid }}</td>
-            </tr>
-            <tr>
-                <th>Created_at</th>
-                <td>{{ entity.createdat|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Updated_at</th>
-                <td>{{ entity.updatedat|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Token</th>
-                <td>{{ entity.token }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('notification') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('notification_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+{% extends 'LcLcBundle:Default:userlayout.html.twig' %}
+{%block leftcontent%}
+	{{ include ('LcLcBundle:Default:userleftbar.html.twig') }}
+{% endblock %}
+{%block content%}
+				<div class="col-sm-7 column">
+						
+						<div class="row">
+							<div class="panel panel-success">
+								<div class="panel-heading panel-success">
+									<div class="media">
+										<div class="media-left pull-left knowing">
+											<img src="{{ asset('uploads/users/mini_') }}{{ app.user.foto }}" alt="{{ app.user.profile.name }}" class="img-rounded a-act">
+											Pemberitahuan untukmu
+										</div>
+										<div class="media-body">
+											<h5 class="media-right pull-right">
+												<a class="a-act" href="#" data-toggle="tooltip" data-placement="top" title="Pemberitahuan"><i class="glyphicon glyphicon-bell knowing"></i></a>
+											</h5>
+										</div>
+									</div>
+								</div>
+								{% if entities %}
+								{% for entity in entities|sort %}
+								{% if entity.user1.id != app.user.id %}
+								<div class="panel-body apanel-body p-border">
+									<div class="media">
+										<div class="media-left pull-left">
+											<img src="{{ asset('uploads/users/mini_') }}{{ entity.user1.foto }}" alt="{{ entity.user1.profile.name }}" class="img-rounded">
+										</div>
+										<div class="media-body f-feel">
+											<h4 class="media-right">{{ entity.user1.profile.name }}</h4>
+											{% if entity.frompage == 1 %}
+													<h5 class="media-right">Berkunjung ke halaman Profile mu, <a href="{{ path('profile_see', {'token': entity.user1.token }) }}">Lihat Profile {{ entity.user1.profile.name }}.</a></h5>
+											{% elseif entity.frompage == 2 %}
+												{% if entity.user2.id != app.user.id %}
+													<h5 class="media-right">Bersimpati dengan Perasaannya sendiri, <a href="{{ path('feeling_show', {'token': entity.fromid }) }}">Lihat status Perasaannya.</a></h5>
+												{% else %}
+													<h5 class="media-right">Bersimpati dengan Perasaan mu, <a href="{{ path('feeling_show', {'token': entity.fromid }) }}">Lihat status Perasaan mu.</a></h5>
+												{% endif %}
+											{% elseif entity.frompage == 3 %}
+												{% if entity.user2.id != app.user.id %}
+													<h5 class="media-right">Mengomentari Perasaannya sendiri, <a href="{{ path('feeling_show', {'token': entity.fromid }) }}">Lihat komentar {{ entity.user1.profile.name }}.</a></h5>
+												{% else %}
+													<h5 class="media-right">Mengomentari Perasaan mu, <a href="{{ path('feeling_show', {'token': entity.fromid }) }}">Lihat komentar {{ entity.user1.profile.name }}.</a></h5>
+												{% endif %}
+											{% else %}
+												<h5 class="media-right"></h5>
+											{% endif %}
+											<div class='pull-right created_at'><small class="text-muted"> <i class="glyphicon glyphicon-time"></i> <i>{{ entity.createdAt | date('d-m-Y H:i:s') }}</i></small></div>
+										</div>
+									</div>
+								</div>
+								{% endif %}
+								{% endfor %}
+								{% else %}
+								<div class="panel-body apanel-body p-border">
+									<div class="media">
+										<div class="media-left pull-left">
+											
+										</div>
+										<div class="media-body f-feel">
+											<h4 class="media-right">Sementara ini masih belum ada.</h4>
+										</div>
+									</div>
+								</div>
+								{% endif %}
+							</div>
+						</div>
+						
+				</div>
+{% endblock %}
+{%block rightcontent%}
+	{{ include ('LcLcBundle:Default:userrightbar.html.twig') }}
 {% endblock %}

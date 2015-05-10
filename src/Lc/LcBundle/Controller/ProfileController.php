@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Lc\LcBundle\Entity\Profile;
+use Lc\LcBundle\Entity\Notification;
 use Lc\LcBundle\Entity\Usercriteria;
 use Lc\LcBundle\Entity\User;
 use Lc\LcBundle\Form\ProfileType;
@@ -142,6 +143,7 @@ class ProfileController extends Controller
     {
 
         $em = $this->getDoctrine()->getManager();
+        $noty = new Notification();
         
 		$user = $em->getRepository('LcLcBundle:User')->findOneByToken($token);
 		if (!$user) {
@@ -152,6 +154,15 @@ class ProfileController extends Controller
         
         $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
         $friend = $em->getRepository('LcLcBundle:Friend')->check($this->getUid()->getId(),$user->getId());
+        
+        //1 -> profile, 2 -> like, 3 -> comment
+        //user 1 is visiting user 2 is visited
+        $noty->setViewed(false);
+        $noty->setUser1($this->getUid());
+        $noty->setUser2($user);
+        $noty->setFromPage(1);
+        $em->persist($noty);
+        $em->flush();
         
         //exit(\Doctrine\Common\Util\Debug::dump($friend));
 

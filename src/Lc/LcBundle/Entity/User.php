@@ -1190,4 +1190,118 @@ class User implements AdvancedUserInterface
     {
         $this->chat2->removeElement($chat2);
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $notify;
+
+
+    /**
+     * Add notify
+     *
+     * @param \Lc\LcBundle\Entity\Notification $notify
+     * @return User
+     */
+    public function addNotify(\Lc\LcBundle\Entity\Notification $notify)
+    {
+        $this->notify[] = $notify;
+
+        return $this;
+    }
+
+    /**
+     * Remove notify
+     *
+     * @param \Lc\LcBundle\Entity\Notification $notify
+     */
+    public function removeNotify(\Lc\LcBundle\Entity\Notification $notify)
+    {
+        $this->notify->removeElement($notify);
+    }
+
+    /**
+     * Get notify
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getNotify()
+    {
+        return $this->notify;
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $notify1;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $notify2;
+
+
+    /**
+     * Add notify1
+     *
+     * @param \Lc\LcBundle\Entity\Notification $notify1
+     * @return User
+     */
+    public function addNotify1(\Lc\LcBundle\Entity\Notification $notify1)
+    {
+        $this->notify1[] = $notify1;
+
+        return $this;
+    }
+
+    /**
+     * Remove notify1
+     *
+     * @param \Lc\LcBundle\Entity\Notification $notify1
+     */
+    public function removeNotify1(\Lc\LcBundle\Entity\Notification $notify1)
+    {
+        $this->notify1->removeElement($notify1);
+    }
+
+    /**
+     * Get notify1
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getNotify1()
+    {
+        return $this->notify1;
+    }
+
+    /**
+     * Add notify2
+     *
+     * @param \Lc\LcBundle\Entity\Notification $notify2
+     * @return User
+     */
+    public function addNotify2(\Lc\LcBundle\Entity\Notification $notify2)
+    {
+        $this->notify2[] = $notify2;
+
+        return $this;
+    }
+
+    /**
+     * Remove notify2
+     *
+     * @param \Lc\LcBundle\Entity\Notification $notify2
+     */
+    public function removeNotify2(\Lc\LcBundle\Entity\Notification $notify2)
+    {
+        $this->notify2->removeElement($notify2);
+    }
+
+    /**
+     * Get notify2
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getNotify2()
+    {
+        return $this->notify2;
+    }
 }

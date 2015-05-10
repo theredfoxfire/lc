@@ -46,7 +46,11 @@
 											<a class="a-act" href="{{ path('feeling_show', {'token': entity.token }) }}" data-toggle="tooltip" data-placement="top" title="Tulis balasan"><i class="glyphicon glyphicon-comment"></i></a>
 											</h5>
 											<h5 class="media-right pull-right">
-											<a class="a-act" href="{{ path('flike_create', {'feel': entity.token, 'page': '2' }) }}" data-toggle="tooltip" data-placement="top" title="Beri simpati"><i class="glyphicon glyphicon-thumbs-up"></i></a>
+											{% if entity %}
+												<a class="a-act disabled" href="{{ path('flike_create', {'feel': entity.token, 'page': '2' }) }}" data-toggle="tooltip" data-placement="top" title="Beri simpati"><i class="glyphicon glyphicon-thumbs-up"></i></a>
+											{% else %}
+												<a class="a-act" href="{{ path('flike_create', {'feel': entity.token, 'page': '2' }) }}" data-toggle="tooltip" data-placement="top" title="Beri simpati"><i class="glyphicon glyphicon-thumbs-up"></i></a>
+											{% endif %}
 											</h5>
 										</div>
 									</div>

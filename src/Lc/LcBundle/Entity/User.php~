@@ -1190,4 +1190,42 @@ class User implements AdvancedUserInterface
     {
         $this->chat2->removeElement($chat2);
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $notify;
+
+
+    /**
+     * Add notify
+     *
+     * @param \Lc\LcBundle\Entity\Notification $notify
+     * @return User
+     */
+    public function addNotify(\Lc\LcBundle\Entity\Notification $notify)
+    {
+        $this->notify[] = $notify;
+
+        return $this;
+    }
+
+    /**
+     * Remove notify
+     *
+     * @param \Lc\LcBundle\Entity\Notification $notify
+     */
+    public function removeNotify(\Lc\LcBundle\Entity\Notification $notify)
+    {
+        $this->notify->removeElement($notify);
+    }
+
+    /**
+     * Get notify
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getNotify()
+    {
+        return $this->notify;
+    }
 }

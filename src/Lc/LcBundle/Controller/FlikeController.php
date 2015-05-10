@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Lc\LcBundle\Entity\Flike;
+use Lc\LcBundle\Entity\Notification;
 use Lc\LcBundle\Entity\Feeling;
 use Lc\LcBundle\Form\FlikeType;
 
@@ -45,6 +46,16 @@ class FlikeController extends Controller
 			$entity->setUser($this->getUid());
 			$entity->setFeeling($feeling);
 			$em->persist($entity);
+			$em->flush();
+			
+			$noty = new Notification();
+			//user 1 is liker user 2 is liked
+			$noty->setViewed(false);
+			$noty->setUser1($this->getUid());
+			$noty->setUser2($feeling->getUser());
+			$noty->setFromPage(2);
+			$noty->setFromId($feeling->getToken());
+			$em->persist($noty);
 			$em->flush();
 		}else{
 			($check->getStatus() == 1 ? $check->setStatus(0) : $check->setStatus(1));

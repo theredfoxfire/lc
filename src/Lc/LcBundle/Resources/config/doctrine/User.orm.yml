@@ -90,6 +90,12 @@ Lc\LcBundle\Entity\User:
   chat2:
    targetEntity: Chat
    mappedBy: user2
+  notify1:
+   targetEntity: Notification
+   mappedBy: user1
+  notify2:
+   targetEntity: Notification
+   mappedBy: user2
 
  lifecycleCallbacks:
   prePersist: [ preUpload, setCreatedAtValue, setTokenValue ]

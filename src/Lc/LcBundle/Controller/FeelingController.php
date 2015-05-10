@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Lc\LcBundle\Entity\Feeling;
 use Lc\LcBundle\Entity\Fcomment;
+use Lc\LcBundle\Entity\Notification;
 use Lc\LcBundle\Form\FcommentType;
 use Lc\LcBundle\Entity\User;
 use Lc\LcBundle\Form\FeelingType;
@@ -27,6 +28,7 @@ class FeelingController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('LcLcBundle:Feeling')->getUserFeeling($this->getUid());
+        //exit(\Doctrine\Common\Util\Debug::dump($entities));
         $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
         $entity = new Feeling();
         $form = $this->createCreateForm($entity);
@@ -125,6 +127,8 @@ class FeelingController extends Controller
         }
         
         $fcomment = new Fcomment();
+        $noty = new Notification();
+        
         $form = $this->createCommentForm($fcomment, $token);
         $form->handleRequest($request);
         if ($form->isValid()) {
@@ -136,6 +140,16 @@ class FeelingController extends Controller
             $fcomment->setFeeling($entity);
             $em->persist($fcomment);
             $em->flush();
+            
+			//user 1 is commenter user 2 is commented
+			$noty->setViewed(false);
+			$noty->setUser1($this->getUid());
+			$noty->setUser2($entity->getUser());
+			$noty->setFromPage(3);
+			$noty->setFromId($entity->getToken());
+			$em->persist($noty);
+			$em->flush();
+			
             return $this->redirect($this->generateUrl('feeling_show', array('token'=>$token)));
 		}
         

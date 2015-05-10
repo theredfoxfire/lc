@@ -20,11 +20,6 @@ class Notification
     private $viewed;
 
     /**
-     * @var string
-     */
-    private $from;
-
-    /**
      * @var integer
      */
     private $from_id;
@@ -76,29 +71,6 @@ class Notification
     public function getViewed()
     {
         return $this->viewed;
-    }
-
-    /**
-     * Set from
-     *
-     * @param string $from
-     * @return Notification
-     */
-    public function setFrom($from)
-    {
-        $this->from = $from;
-
-        return $this;
-    }
-
-    /**
-     * Get from
-     *
-     * @return string 
-     */
-    public function getFrom()
-    {
-        return $this->from;
     }
 
     /**
@@ -191,5 +163,115 @@ class Notification
     public function getToken()
     {
         return $this->token;
+    }
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedAtValue()
+    {
+        $this->created_at = new \DateTime();
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setTokenValue()
+    {
+        if(!$this->getToken()) {
+            $st = date('Y-m-d H:i:s');
+			$this->token = sha1($st.rand(11111, 99999));
+        }
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedAtValue()
+    {
+        $this->updated_at = new \DateTime();
+    }
+    /**
+     * @var integer
+     */
+    private $from_page;
+
+
+    /**
+     * Set from_page
+     *
+     * @param integer $fromPage
+     * @return Notification
+     */
+    public function setFromPage($fromPage)
+    {
+        $this->from_page = $fromPage;
+
+        return $this;
+    }
+
+    /**
+     * Get from_page
+     *
+     * @return integer 
+     */
+    public function getFromPage()
+    {
+        return $this->from_page;
+    }
+    /**
+     * @var \Lc\LcBundle\Entity\User
+     */
+    private $user1;
+
+    /**
+     * @var \Lc\LcBundle\Entity\User
+     */
+    private $user2;
+
+
+    /**
+     * Set user1
+     *
+     * @param \Lc\LcBundle\Entity\User $user1
+     * @return Notification
+     */
+    public function setUser1(\Lc\LcBundle\Entity\User $user1 = null)
+    {
+        $this->user1 = $user1;
+
+        return $this;
+    }
+
+    /**
+     * Get user1
+     *
+     * @return \Lc\LcBundle\Entity\User 
+     */
+    public function getUser1()
+    {
+        return $this->user1;
+    }
+
+    /**
+     * Set user2
+     *
+     * @param \Lc\LcBundle\Entity\User $user2
+     * @return Notification
+     */
+    public function setUser2(\Lc\LcBundle\Entity\User $user2 = null)
+    {
+        $this->user2 = $user2;
+
+        return $this;
+    }
+
+    /**
+     * Get user2
+     *
+     * @return \Lc\LcBundle\Entity\User 
+     */
+    public function getUser2()
+    {
+        return $this->user2;
     }
 }

@@ -1,5 +1,6 @@
 Lc\LcBundle\Entity\Notification:
  type: entity
+ repositoryClass: Lc\LcBundle\Repository\NotificationRepository
  table: notification
  id:
   id:
@@ -7,11 +8,13 @@ Lc\LcBundle\Entity\Notification:
    generator: { strategy: AUTO }
  fields:
   viewed:
-   boolean: true
-  from:
+   type: boolean
+  from_page:
    type: integer
   from_id:
-   type: integer
+   type: string
+   length: 255
+   nullable: true
   created_at:
    type: datetime
   updated_at:
@@ -21,3 +24,19 @@ Lc\LcBundle\Entity\Notification:
    type: string
    length: 255
    unique: true
+ manyToOne:
+  user1:
+   targetEntity: User
+   inversedBy: notify1
+   joinColumn:
+    name: user1
+    referencedColumnName: id
+  user2:
+   targetEntity: User
+   inversedBy: notify2
+   joinColumn:
+    name: user2
+    referencedColumnName: id
+ lifecycleCallbacks:
+  prePersist: [ setCreatedAtValue, setTokenValue ]
+  preUpdate: [ setUpdatedAtValue ]
