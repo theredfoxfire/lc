@@ -7,7 +7,6 @@
 						<div class="row">
 							<div class="panel panel-success">
 								
-								<a href="#">
 								<div class="panel-body apanel-body">
 									<div class="media">
 										<div class="media-left pull-left">
@@ -21,6 +20,9 @@
 													{{ form_widget(form.feel) }}
 													</div>
 													{{ form_errors(form.feel) }}
+													
+													Tambahkan foto:{{ form_widget(form.file) }}
+													{{ form_errors(form.file) }}
 													<div class="form-group right">
 														<button type="submit" class="btn btn-primary btn-feel"><i class="glyphicon glyphicon-send"></i> &nbsp;&nbsp;Posting</button>
 													</div>
@@ -30,7 +32,6 @@
 										</div>
 									</div>
 								</div>
-								</a>
 							</div>
 						</div>
 						{% for entity in entities %}
@@ -68,6 +69,11 @@
 									</div>
 								</div>
 								</a>
+								{% if entity.foto %}
+								<div class="panel-footer">
+										<div class="text-center"><img src="{{ asset('uploads/feels/feel_') }}{{ entity.foto }}" alt="{{ entity.user.profile.name }}" class=""></div>
+								</div>
+								{% endif %}
 							</div>
 						</div>
 						{% endfor %}

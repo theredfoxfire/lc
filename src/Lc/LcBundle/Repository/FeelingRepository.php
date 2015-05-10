@@ -23,7 +23,7 @@ class FeelingRepository extends EntityRepository
 			AND f.is_active = :is
 			order by f.created_at DESC'
 			)
-			->setMaxResults(50)
+			->setMaxResults(25)
 			->setParameters(array(
 						   'id1' => $uid,
 						   'is' => 1,

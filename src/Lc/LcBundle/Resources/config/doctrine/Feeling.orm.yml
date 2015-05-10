@@ -15,6 +15,10 @@ Lc\LcBundle\Entity\Feeling:
   shared:
    type: integer
    nullable: true
+  foto:
+   type: string
+   length: 255
+   nullable: true
   commented:
    type: integer
    nullable: true
@@ -47,5 +51,6 @@ Lc\LcBundle\Entity\Feeling:
     name: user_id
     referencedColumnName: id
  lifecycleCallbacks:
-  prePersist: [ setCreatedAtValue, setTokenValue ]
+  prePersist: [ preUpload, setCreatedAtValue, setTokenValue ]
   preUpdate: [ setUpdatedAtValue ]
+  postPersist: [ upload ]
