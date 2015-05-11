@@ -42,7 +42,8 @@ class UserRepository extends EntityRepository implements UserProviderInterface
 			->createQuery('SELECT u FROM
 			LcLcBundle:User u
 			WHERE u.sex != :sex
-			AND u.id NOT IN (SELECT IDENTITY (f.user2) FROM LcLcBundle:Friend f where f.user1 = :id1)'
+			AND u.id NOT IN (SELECT IDENTITY (f.user2) FROM LcLcBundle:Friend f where f.user1 = :id1)
+			AND u.id NOT IN (SELECT IDENTITY (fr.user1) FROM LcLcBundle:Friend fr where fr.user2 = :id1)'
 			)
 			->setMaxResults(8)
 			->setParameters(array(
@@ -55,6 +56,30 @@ class UserRepository extends EntityRepository implements UserProviderInterface
         } catch (\Doctrine\Orm\NoResultException $e) {
         $love = null;
           }
+ 
+        return $love;
+    }
+    
+    public function countAll($sex = null, $id1 = null) {
+
+	$query = $this->getEntityManager()
+			->createQuery('SELECT u FROM
+			LcLcBundle:User u
+			WHERE u.sex != :sex
+			AND u.id NOT IN (SELECT IDENTITY (f.user2) FROM LcLcBundle:Friend f where f.user1 = :id1)'
+			)
+			->setParameters(array(
+						   'id1' => $id1,
+						   'sex' => $sex,
+							));
+ 
+        try {
+            $love = $query->getResult();
+        } catch (\Doctrine\Orm\NoResultException $e) {
+        $love = null;
+          }
+          
+        $love = count($love);
  
         return $love;
     }

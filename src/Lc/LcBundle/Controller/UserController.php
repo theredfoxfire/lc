@@ -51,10 +51,15 @@ class UserController extends Controller
 			16
 		);
         $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
+        
+        $c = $em->getRepository('LcLcBundle:User')->countAll($this->getUid()->getSex(), $this->getUid()->getId());
+        $cp = count($pagination);
 
         return $this->render('LcLcBundle:User:all.html.twig', array(
             'entities' => $pagination,
             'others' => $others,
+            'c' => $c,
+            'cp' => $cp,
         ));
     }
     

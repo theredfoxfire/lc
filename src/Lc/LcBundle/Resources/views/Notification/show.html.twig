@@ -43,6 +43,8 @@
 												{% else %}
 													<h5 class="media-right">Mengomentari Perasaan mu, <a href="{{ path('feeling_show', {'token': entity.fromid }) }}">Lihat komentar {{ entity.user1.profile.name }}.</a></h5>
 												{% endif %}
+											{% elseif entity.frompage == 4 %}
+													<h5 class="media-right">Menyukaimu dan mengirim pertemanan dengan mu, <a href="{{ path('profile_see', {'token': entity.user1.token }) }}">Lihat Profile {{ entity.user1.profile.name }}.</a></h5>
 											{% else %}
 												<h5 class="media-right"></h5>
 											{% endif %}

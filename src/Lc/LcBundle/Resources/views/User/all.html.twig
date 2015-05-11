@@ -5,7 +5,7 @@
 {%block content%}
 				<div class="col-sm-7 column">
 				{% for entity in entities %}
-						{% if loop.index%4 == 0 %}
+						{% if loop.index%4 == 1 %}
 							<div class="row">
 						{% endif %}
 								<div class="col-md-3">
@@ -23,13 +23,15 @@
 										</div>
 									</div>
 								</div>
-						{% if loop.index%4 == 0 %}
+						{% if (loop.index%4 == 0) or (loop.index == cp) %}
 							</div>
 						{% endif %}
 						
 					{% endfor %}
 					<div class="text-center">
-							Halaman: {{ knp_pagination_render(entities) }}
+							{% if c > 16 %}
+								Halaman: <b>{{ knp_pagination_render(entities) }}</b>
+							{% endif %}
 					</div>
 					
 				</div>

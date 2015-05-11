@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Lc\LcBundle\Entity\Friend;
+use Lc\LcBundle\Entity\Notification;
 use Lc\LcBundle\Form\FriendType;
 
 /**
@@ -36,6 +37,7 @@ class FriendController extends Controller
     public function createAction($token = null)
     {
         $entity = new Friend();
+        $noty = new Notification();
         
         $em = $this->getDoctrine()->getManager();
         $is = $em->getRepository('LcLcBundle:User')->findOneByToken($token);
@@ -52,6 +54,16 @@ class FriendController extends Controller
 			$entity->setStatus(true);
 			$entity->setIsConfirmed(false);
 			$em->persist($entity);
+			$em->flush();
+			
+			//1 -> profile, 2 -> like, 3 -> comment, 4 -> ask friend
+			//user 1 is asker user 2 is asked
+			$noty->setViewed(false);
+			$noty->setUser1($this->getUid());
+			$noty->setUser2($is);
+			$noty->setSelfPage(0);
+			$noty->setFromPage(4);
+			$em->persist($noty);
 			$em->flush();
 		}else{
 			return $this->redirect($this->generateUrl('profile_see', array('token' => $token)));

@@ -17,12 +17,16 @@ class NotificationRepository extends EntityRepository
 		$query = $this->getEntityManager()
 			->createQuery('SELECT n FROM
 			LcLcBundle:Notification n
-			WHERE n.user2 = :id2 AND n.self_page != :id2 OR (n.user1 IN (SELECT IDENTITY (nf.user2) FROM LcLcBundle:Friend nf where nf.user1 = :id2) and n.user2 IN (SELECT IDENTITY (na.user2) FROM LcLcBundle:Friend na where na.user1 = :id2))
+			WHERE n.user2 = :id2 AND n.self_page != :id2 OR 
+			(n.user1 IN (SELECT IDENTITY (nf.user2) FROM LcLcBundle:Friend nf where nf.user1 = :id2 and 
+			nf.is_confirmed = :is and nf.status = :is) and n.user2 IN (SELECT IDENTITY (na.user2) FROM LcLcBundle:Friend na 
+			where na.user1 = :id2 and na.is_confirmed = :is and na.status = :is))
 			order by n.created_at DESC'
 			)
 			->setMaxResults(25)
 			->setParameters(array(
 						   'id2' => $id2,
+						   'is' => 1,
 							));
  
         try {
