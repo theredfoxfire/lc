@@ -3,6 +3,7 @@
 namespace Lc\LcBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gregwar\Image\Image;
 
 /**
  * Feeling
@@ -53,6 +54,8 @@ class Feeling
      * @var string
      */
     private $token;
+    
+    public $file;
 
 
     /**
@@ -425,5 +428,107 @@ class Feeling
     public function setUpdatedAtValue()
     {
         $this->updated_at = new \DateTime();
+    }
+    /**
+     * @var string
+     */
+    private $foto;
+
+
+    /**
+     * Set foto
+     *
+     * @param string $foto
+     * @return Feeling
+     */
+    public function setFoto($foto)
+    {
+        $this->foto = $foto;
+
+        return $this;
+    }
+
+    /**
+     * Get foto
+     *
+     * @return string 
+     */
+    public function getFoto()
+    {
+        return $this->foto;
+    }
+public function setFile($file)
+    {
+        $this->file = $file;
+
+        return $this;
+    }
+
+    /**
+     * Get foto
+     *
+     * @return string 
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+    
+    
+
+    /**
+     * @ORM\PrePersist
+     */
+    protected function getUploadDir()
+	{
+		return 'uploads/feels';
+	}
+	
+	protected function getUploadRootDir()
+	{
+		return __DIR__.'/../../../../web/'.$this->getUploadDir();
+	}
+	
+	public function getWebPath()
+	{
+		return null === $this->foto ? null : $this->getUploadDir().'/'.$this->foto;
+	}
+	
+	public function getAbsolutePath()
+	{
+		return null === $this->foto ? null : $this->getUploadRootDir().'/'.$this->foto;
+	}
+    
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function preUpload()
+    {
+        if (null !== $this->file){
+				$this->foto = uniqid().'.'.$this->file->guessExtension();
+			}
+    }
+
+    /**
+     * @ORM\PostPersist
+     */
+    public function upload()
+    {
+        if (null === $this->file){
+			return;
+		} 
+		$this->file->move($this->getUploadRootDir(), $this->foto);
+		
+		Image::open($this->getUploadRootDir().'/'.$this->foto)
+		->scaleResize(470, 250, $background = 0xffffff)
+		->save($this->getUploadRootDir().'/feel_'.$this->foto);
+		
+		$rmfile = $this->getAbsolutePath();
+        if(file_exists($rmfile)) {
+			unlink($rmfile);
+		}
+		
+		unset($this->file);
     }
 }

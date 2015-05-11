@@ -146,6 +146,11 @@ class FeelingController extends Controller
 			$noty->setUser1($this->getUid());
 			$noty->setUser2($entity->getUser());
 			$noty->setFromPage(3);
+			if($this->getUid()->getId() == $feeling->getUser()->getId()){
+				$noty->setSelfPage($this->getUid()->getId());
+			}else{
+				$noty->setSelfPage(0);
+			}
 			$noty->setFromId($entity->getToken());
 			$em->persist($noty);
 			$em->flush();

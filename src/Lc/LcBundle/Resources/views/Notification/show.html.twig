@@ -22,7 +22,6 @@
 								</div>
 								{% if entities %}
 								{% for entity in entities %}
-								{% if entity.user1.id != app.user.id %}
 								<div class="panel-body apanel-body p-border">
 									<div class="media">
 										<div class="media-left pull-left">
@@ -51,7 +50,6 @@
 										</div>
 									</div>
 								</div>
-								{% endif %}
 								{% endfor %}
 								{% else %}
 								<div class="panel-body apanel-body p-border">

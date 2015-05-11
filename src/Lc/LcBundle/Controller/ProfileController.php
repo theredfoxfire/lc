@@ -160,6 +160,7 @@ class ProfileController extends Controller
         $noty->setViewed(false);
         $noty->setUser1($this->getUid());
         $noty->setUser2($user);
+		$noty->setSelfPage(0);
         $noty->setFromPage(1);
         $em->persist($noty);
         $em->flush();

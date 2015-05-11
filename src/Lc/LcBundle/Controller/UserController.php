@@ -37,6 +37,27 @@ class UserController extends Controller
         ));
     }
     
+    
+    public function allAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        $paginator = $this->get('knp_paginator');
+        $query = $em->getRepository('LcLcBundle:User')->loadAll($this->getUid()->getSex(), $this->getUid()->getId());
+        
+        $pagination = $paginator->paginate(
+			$query,
+			$this->get('request')->query->get('page', 1),
+			16
+		);
+        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
+
+        return $this->render('LcLcBundle:User:all.html.twig', array(
+            'entities' => $pagination,
+            'others' => $others,
+        ));
+    }
+    
     public function waitAction()
     {
         return $this->render('LcLcBundle:User:wait.html.twig');
@@ -71,6 +92,7 @@ class UserController extends Controller
 		/*
 		email section
 		*/
+		
 			$message = \Swift_Message::newInstance()
                 ->setSubject('Aktivasi Akun LUCIDCOUPLE')
                 ->setFrom('member@lucidcouple.com')

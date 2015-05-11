@@ -17,9 +17,8 @@ class FeelingRepository extends EntityRepository
 	{
 		$query = $this->getEntityManager()
 			->createQuery('SELECT f FROM
-			LcLcBundle:Feeling f INNER JOIN LcLcBundle:Friend fr with f.user= fr.user2
-			WHERE fr.user1 = :id1
-			OR fr.user2 = :id1
+			LcLcBundle:Feeling f LEFT JOIN LcLcBundle:Friend fr with f.user= fr.user2
+			WHERE f.user = :id1 or (fr.user1 = :id1 OR fr.user2 = :id1)
 			AND f.is_active = :is
 			order by f.created_at DESC'
 			)

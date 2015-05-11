@@ -54,6 +54,11 @@ class FlikeController extends Controller
 			$noty->setUser1($this->getUid());
 			$noty->setUser2($feeling->getUser());
 			$noty->setFromPage(2);
+			if($this->getUid()->getId() == $feeling->getUser()->getId()){
+				$noty->setSelfPage($this->getUid()->getId());
+			}else{
+				$noty->setSelfPage(0);
+			}
 			$noty->setFromId($feeling->getToken());
 			$em->persist($noty);
 			$em->flush();

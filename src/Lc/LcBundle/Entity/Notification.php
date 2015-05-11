@@ -274,4 +274,32 @@ class Notification
     {
         return $this->user2;
     }
+    /**
+     * @var integer
+     */
+    private $self_page;
+
+
+    /**
+     * Set self_page
+     *
+     * @param integer $selfPage
+     * @return Notification
+     */
+    public function setSelfPage($selfPage)
+    {
+        $this->self_page = $selfPage;
+
+        return $this;
+    }
+
+    /**
+     * Get self_page
+     *
+     * @return integer 
+     */
+    public function getSelfPage()
+    {
+        return $this->self_page;
+    }
 }

@@ -11,6 +11,9 @@ Lc\LcBundle\Entity\Notification:
    type: boolean
   from_page:
    type: integer
+  self_page:
+   type: integer
+   nullable: true
   from_id:
    type: string
    length: 255

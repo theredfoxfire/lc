@@ -58,6 +58,22 @@ class UserRepository extends EntityRepository implements UserProviderInterface
  
         return $love;
     }
+    
+    public function loadAll($sex = null, $id1 = null) {
+
+	$query = $this->getEntityManager()
+			->createQuery('SELECT u FROM
+			LcLcBundle:User u
+			WHERE u.sex != :sex
+			AND u.id NOT IN (SELECT IDENTITY (f.user2) FROM LcLcBundle:Friend f where f.user1 = :id1)'
+			)
+			->setParameters(array(
+						   'id1' => $id1,
+						   'sex' => $sex,
+							));
+ 
+        return $query;
+    }
  
 }
 
