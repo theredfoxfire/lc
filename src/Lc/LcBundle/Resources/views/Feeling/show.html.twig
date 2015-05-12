@@ -38,9 +38,12 @@
 										</div>
 										<div class="media-body">
 											<h5 class="media-right">{{ entity.feel }}</h5>
-											<div class='pull-right created_at'><small class="text-muted"> <i class="glyphicon glyphicon-time"></i> <i>{{ entity.createdAt | date('d-m-Y H:i:s') }}</i></small></div><br>
-											<hr />
-											{% for comment in comments|sort %}
+											<div class='pull-right created_at'><small class="text-muted"> <i class="glyphicon glyphicon-time"></i> <i>{{ entity.createdAt | date('d-m-Y H:i:s') }}</i></small></div>
+										</div>
+									</div>
+								</div>
+							</div>
+							{% for comment in comments|sort %}
 											{% if entity.user.id == app.user.id %}
 													<div class="panel panel-success apanel-body">
 														<div class="panel-body">
@@ -101,11 +104,6 @@
 													</div>
 												</div>
 											</div>
-						
-										</div>
-									</div>
-								</div>
-							</div>
 						</div>
 						
 				</div>

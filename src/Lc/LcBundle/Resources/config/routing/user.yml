@@ -1,6 +1,9 @@
 user:
     path:     /
     defaults: { _controller: "LcLcBundle:User:index" }
+user_search:
+    path:     /cari
+    defaults: { _controller: "LcLcBundle:User:search" }
 user_others:
     path:     /all
     defaults: { _controller: "LcLcBundle:User:all" }

@@ -43,7 +43,7 @@ class UserController extends Controller
         $em = $this->getDoctrine()->getManager();
         
         $paginator = $this->get('knp_paginator');
-        $query = $em->getRepository('LcLcBundle:User')->loadAll($this->getUid()->getSex(), $this->getUid()->getId());
+        $query = $em->getRepository('LcLcBundle:User')->loadAll($this->getUid()->getSex(), $this->getUid()->getId(), null);
         
         $pagination = $paginator->paginate(
 			$query,
@@ -56,6 +56,38 @@ class UserController extends Controller
         $cp = count($pagination);
 
         return $this->render('LcLcBundle:User:all.html.twig', array(
+            'entities' => $pagination,
+            'others' => $others,
+            'c' => $c,
+            'cp' => $cp,
+        ));
+    }
+    
+    public function searchAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $key = $this->getRequest()->get('query');
+        $paginator = $this->get('knp_paginator');
+        if($key)
+        {
+			$query = $em->getRepository('LcLcBundle:User')->loadAll($this->getUid()->getSex(), $this->getUid()->getId(), $key);
+		}
+		else
+		{
+			$query = $em->getRepository('LcLcBundle:User')->loadAll($this->getUid()->getSex(), $this->getUid()->getId(), null);
+		}
+        
+        $pagination = $paginator->paginate(
+			$query,
+			$this->get('request')->query->get('page', 1),
+			16
+		);
+        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
+        
+        $c = $em->getRepository('LcLcBundle:User')->countAll($this->getUid()->getSex(), $this->getUid()->getId());
+        $cp = count($pagination);
+
+        return $this->render('LcLcBundle:User:search.html.twig', array(
             'entities' => $pagination,
             'others' => $others,
             'c' => $c,

@@ -1,0 +1,41 @@
+{% extends 'LcLcBundle:Default:userlayout.html.twig' %}
+{%block leftcontent%}
+	{{ include ('LcLcBundle:Default:userleftbar.html.twig') }}
+{% endblock %}
+{%block content%}
+				<div class="col-sm-7 column">
+				{% for entity in entities %}
+						{% if loop.index%4 == 1 %}
+							<div class="row">
+						{% endif %}
+								<div class="col-md-3">
+									<div class="panel panel-success">
+										<a href="{{ path('profile_see', {'token': entity.token }) }}">
+											<div class="text-center"><img src="{{ asset('uploads/users/grande_') }}{{ entity.foto }}" alt="{{ entity.profile.name }}" data-toggle="tooltip" data-placement="top"/ title="Lihat Profile"></div>
+										</a>
+										<div class="name-center">
+											<p>
+												{{ entity.profile.name }}
+											</p>
+										</div>
+										<div class="text-center">
+											<a class="label label-primary" data-toggle="tooltip" data-placement="top" title="Suka sama Dia?" href="{{ path('friend_create', {'token' : entity.token}) }}"> Tertarik</a>
+										</div>
+									</div>
+								</div>
+						{% if (loop.index%4 == 0) or (loop.index == cp) %}
+							</div>
+						{% endif %}
+						
+					{% endfor %}
+					<div class="text-center">
+							{% if c > 16 %}
+								Halaman: <b>{{ knp_pagination_render(entities) }}</b>
+							{% endif %}
+					</div>
+					
+				</div>
+{% endblock %}
+{%block rightcontent%}
+	{{ include ('LcLcBundle:Default:userrightbar.html.twig') }}
+{% endblock %}

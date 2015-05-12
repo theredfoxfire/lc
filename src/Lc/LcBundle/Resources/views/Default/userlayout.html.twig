@@ -46,12 +46,14 @@
         
         <div id="navbar" class="navbar-collapse collapse">
 			<div class="col-lg-6 centered">
+				<form action="{{ path('user_search') }}" method="get">
 				<div class="input-group">
-					<input type="text" class="form-control">
+					<input type="text" name="query" value="{{ app.request.get('query') }}" placeholder="Masukan nama yang dicari" id="search_keywords" class="form-control"/>
 						<span class="input-group-btn">
-							<button class="btn btn-default" type="button"><li class="glyphicon glyphicon-search"></li></button>
+							<button class="btn btn-default" type="submit"><li class="glyphicon glyphicon-search"></li></button>
 						</span>
 				</div><!-- /input-group -->
+				</form>
 			</div>
           <ul class="nav navbar-nav navbar-right">
 			<li><img class="img centered" src="{{ asset('uploads/users/thumb_') }}{{ app.user.foto }}" alt="{{ app.user.profile.name }}"></li>
@@ -129,7 +131,7 @@
 				</div>
 				<div class="col-md-3 column">
 					
-					 <a href="#">Privaci</a>&nbsp;&nbsp;
+					 <a href="#">Privacy</a>&nbsp;&nbsp;
 					 <a href="#">Contact Us</a>&nbsp;&nbsp;
 					 <a href="#">About Us</a>&nbsp;&nbsp;
 					 <a href="#">Help/FAQ</a>

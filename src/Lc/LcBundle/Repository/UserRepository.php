@@ -66,7 +66,8 @@ class UserRepository extends EntityRepository implements UserProviderInterface
 			->createQuery('SELECT u FROM
 			LcLcBundle:User u
 			WHERE u.sex != :sex
-			AND u.id NOT IN (SELECT IDENTITY (f.user2) FROM LcLcBundle:Friend f where f.user1 = :id1)'
+			AND u.id NOT IN (SELECT IDENTITY (f.user2) FROM LcLcBundle:Friend f where f.user1 = :id1)
+			AND u.id NOT IN (SELECT IDENTITY (fr.user1) FROM LcLcBundle:Friend fr where fr.user2 = :id1)'
 			)
 			->setParameters(array(
 						   'id1' => $id1,
@@ -84,18 +85,37 @@ class UserRepository extends EntityRepository implements UserProviderInterface
         return $love;
     }
     
-    public function loadAll($sex = null, $id1 = null) {
+    public function loadAll($sex = null, $id1 = null, $key = null) {
 
-	$query = $this->getEntityManager()
-			->createQuery('SELECT u FROM
-			LcLcBundle:User u
-			WHERE u.sex != :sex
-			AND u.id NOT IN (SELECT IDENTITY (f.user2) FROM LcLcBundle:Friend f where f.user1 = :id1)'
-			)
-			->setParameters(array(
-						   'id1' => $id1,
-						   'sex' => $sex,
-							));
+		if($key)
+		{
+		$query = $this->getEntityManager()
+		->createQuery('SELECT u FROM
+		LcLcBundle:User u
+		WHERE u.sex != :sex
+		AND u.id NOT IN (SELECT IDENTITY (f.user2) FROM LcLcBundle:Friend f where f.user1 = :id1)
+		AND u.id NOT IN (SELECT IDENTITY (fr.user1) FROM LcLcBundle:Friend fr where fr.user2 = :id1)
+		AND u.id IN (SELECT IDENTITY (p.user) FROM LcLcBundle:Profile p where p.name LIKE :key)'
+		)
+		->setParameters(array(
+					   'id1' => $id1,
+					   'sex' => $sex,
+					   'key' => '%'.$key.'%',
+		));
+		}
+		else
+		{
+		$query = $this->getEntityManager()
+		->createQuery('SELECT u FROM
+		LcLcBundle:User u
+		WHERE u.sex != :sex
+		AND u.id NOT IN (SELECT IDENTITY (f.user2) FROM LcLcBundle:Friend f where f.user1 = :id1)
+		AND u.id NOT IN (SELECT IDENTITY (fr.user1) FROM LcLcBundle:Friend fr where fr.user2 = :id1)'
+		)->setParameters(array(
+					   'id1' => $id1,
+					   'sex' => $sex,
+		));
+		}
  
         return $query;
     }
