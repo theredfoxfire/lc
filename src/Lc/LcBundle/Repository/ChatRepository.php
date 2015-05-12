@@ -86,13 +86,43 @@ class ChatRepository extends EntityRepository
         return $love;
     }
     
+    public function unreadChatCount($id1 = null, $sender = null) {
+     $query = $this->getEntityManager()
+			->createQuery('SELECT c FROM
+			LcLcBundle:Chat c
+			WHERE c.user1 = :id1
+			AND c.sender_id != :sender
+			AND c.is_read = :is
+			AND c.is_delete = :del
+			AND c.created_at = (select max(cc.created_at) from LcLcBundle:Chat cc WHERE cc.user1 = c.user2 AND cc.user2 = c.user1
+			AND cc.sender_id = c.user2)  group by c.user2 order by c.created_at DESC'
+			)
+			->setParameters(array(
+						   'id1' => $id1,
+						   'sender' => $sender,
+						   'is' => 0,
+						   'del' => 0,
+							));
+ 
+        try {
+            $love = $query->getResult();
+        } catch (\Doctrine\Orm\NoResultException $e) {
+        $love = null;
+          }
+          
+        $love = count($love);
+ 
+        return $love;
+    }
+    
     public function updateChat($id1 = null, $id2 = null) {
         $qb = $this->createQueryBuilder('');
 		$q = $qb->update('LcLcBundle:Chat', 'c')
         ->set('c.is_read', $qb->expr()->literal(true))
-        ->where('c.user1 = :id1')
+        ->where('c.user1 = :id1 and c.user2 = :id2')
+        ->orWhere('c.user1 = :id2 and c.user2 = :id1')
+        ->andWhere('c.sender_id != :id1')
         ->setParameter('id1', $id1)
-        ->andWhere('c.user2 = :id2')
         ->setParameter('id2', $id2)
         ->andWhere('c.is_read = :read')
         ->setParameter('read', 0)

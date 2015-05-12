@@ -28,6 +28,9 @@ class FeelingController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('LcLcBundle:Feeling')->getUserFeeling($this->getUid());
+        $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
+        $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
+        $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
         //exit(\Doctrine\Common\Util\Debug::dump($entities));
         $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
         $entity = new Feeling();
@@ -37,6 +40,9 @@ class FeelingController extends Controller
             'entities' => $entities,
             'others' => $others,
             'form'   => $form->createView(),
+            'fall' => $fall,
+            'chat' => $chat,
+            'notify' => $notify,
         ));
     }
     /**

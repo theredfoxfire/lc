@@ -48,6 +48,27 @@ class FriendRepository extends EntityRepository
         return $love;
     }
     
+    public function fallCount($id) {
+     $query = $this->createQueryBuilder('f')
+            ->where('f.status = :st')
+            ->setParameter('st', 1)
+            ->andWhere('f.is_confirmed = :cf')
+            ->setParameter('cf', 0)
+            ->andWhere('f.user2 = :id2')
+            ->setParameter('id2', $id)
+            ->getQuery();
+ 
+        try {
+            $love = $query->getResult();
+        } catch (\Doctrine\Orm\NoResultException $e) {
+        $love = null;
+          }
+          
+         $love = count($love);
+ 
+        return $love;
+    }
+    
     public function freez($id) {
      $query = $this->createQueryBuilder('f')
             ->where('f.status = :st')

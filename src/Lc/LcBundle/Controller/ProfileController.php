@@ -144,6 +144,9 @@ class ProfileController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $noty = new Notification();
+        $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
+        $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
+        $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
         
 		$user = $em->getRepository('LcLcBundle:User')->findOneByToken($token);
 		if (!$user) {
@@ -171,6 +174,9 @@ class ProfileController extends Controller
             'entity'      => $entity,
             'others' => $others,
             'friend' => $friend,
+            'fall' => $fall,
+            'chat' => $chat,
+            'notify' => $notify,
         ));
     }
 

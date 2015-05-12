@@ -24,11 +24,17 @@ class ChatController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('LcLcBundle:Chat')->loadChat($this->getUid(), $this->getUid()->getId());
+        $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
+        $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
+        $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
         $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
 
         return $this->render('LcLcBundle:Chat:index.html.twig', array(
             'entities' => $entities,
             'others' => $others,
+            'fall' => $fall,
+            'chat' => $chat,
+            'notify' => $notify,
         ));
     }
     
@@ -37,11 +43,17 @@ class ChatController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('LcLcBundle:Chat')->unreadChat($this->getUid(), $this->getUid()->getId());
+        $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
+        $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
+        $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
         $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
 
         return $this->render('LcLcBundle:Chat:unread.html.twig', array(
             'entities' => $entities,
             'others' => $others,
+            'fall' => $fall,
+            'chat' => $chat,
+            'notify' => $notify,
         ));
     }
     /**
@@ -111,23 +123,26 @@ class ChatController extends Controller
         $em = $this->getDoctrine()->getManager();
         
         $chit = new Chat();
-        $chat = new Chat();
-        $form   = $this->createCreateForm($chat, $token);
+        $chot = new Chat();
+        $form   = $this->createCreateForm($chot, $token);
 
         $friend = $em->getRepository('LcLcBundle:User')->findOneByToken($token);
         $entities = $em->getRepository('LcLcBundle:Chat')->chat($this->getUid()->getId(),$friend->getId());
+        $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
+        $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
+        $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
         $em->getRepository('LcLcBundle:Chat')->updateChat($this->getUid()->getId(),$friend->getId());
         $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
         
         $form->handleRequest($request);
         if ($form->isValid()) {
 			$formData = $request->get('lc_lcbundle_chat');
-            $chat->setUser1($this->getUid());
-            $chat->setUser2($friend);
-            $chat->setIsRead(false);
-            $chat->setIsDelete(false);
-            $chat->setSenderId($this->getUid()->getId());
-            $em->persist($chat);
+            $chot->setUser1($this->getUid());
+            $chot->setUser2($friend);
+            $chot->setIsRead(false);
+            $chot->setIsDelete(false);
+            $chot->setSenderId($this->getUid()->getId());
+            $em->persist($chot);
             $em->flush();
             
             $chit->setUser2($this->getUid());
@@ -146,6 +161,9 @@ class ChatController extends Controller
             'friend' => $friend,
             'others' => $others,
             'form' => $form->createView(),
+            'fall' => $fall,
+            'chat' => $chat,
+            'notify' => $notify,
         ));
     }
 

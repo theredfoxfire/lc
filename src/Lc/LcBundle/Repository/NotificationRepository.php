@@ -38,6 +38,35 @@ class NotificationRepository extends EntityRepository
         return $love;
 	}
 	
+	public function notyCount($id2)
+	{
+		$query = $this->getEntityManager()
+			->createQuery('SELECT n FROM
+			LcLcBundle:Notification n
+			WHERE n.user2 = :id2 AND n.self_page != :id2 and n.viewed = :vi OR 
+			(n.user1 IN (SELECT IDENTITY (nf.user2) FROM LcLcBundle:Friend nf where nf.user1 = :id2 and 
+			nf.is_confirmed = :is and nf.status = :is) and n.user2 IN (SELECT IDENTITY (na.user2) FROM LcLcBundle:Friend na 
+			where na.user1 = :id2 and na.is_confirmed = :is and na.status = :is))
+			order by n.created_at DESC'
+			)
+			->setMaxResults(25)
+			->setParameters(array(
+						   'id2' => $id2,
+						   'is' => 1,
+						   'vi' => 0,
+							));
+ 
+        try {
+            $love = $query->getResult();
+        } catch (\Doctrine\Orm\NoResultException $e) {
+        $love = null;
+          }
+          
+        $love = count($love);
+ 
+        return $love;
+	}
+	
 	public function updateNoty($id2)
 	{
         $qb = $this->createQueryBuilder('');
