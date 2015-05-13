@@ -30,10 +30,16 @@ class ProfileController extends Controller
         $entity = $this->getUid();
         $form = $this->createDuForm($entity);
         $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
+        $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
+        $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
+        $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
 
         return $this->render('LcLcBundle:Profile:index.html.twig', array(
             'entity' => $entity,
             'others' => $others,
+            'fall' => $fall,
+            'chat' => $chat,
+            'notify' => $notify,
             'form' => $form->createView(),
         ));
     }
@@ -44,6 +50,9 @@ class ProfileController extends Controller
         $em = $this->getDoctrine()->getManager();
         
         $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
+        $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
+        $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
+        $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
         $entity = $em->getRepository('LcLcBundle:Profile')->findOneByUser($this->getUid());
         
         if (!$entity) {
@@ -55,6 +64,9 @@ class ProfileController extends Controller
         return $this->render('LcLcBundle:Profile:profile.html.twig', array(
             'entity' => $entity,
             'others' => $others,
+            'fall' => $fall,
+            'chat' => $chat,
+            'notify' => $notify,
             'form' => $form->createView(),
         ));
     }
@@ -128,6 +140,9 @@ class ProfileController extends Controller
 
         $entity = $em->getRepository('LcLcBundle:Profile')->findOneByUser($this->getUid());
         $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
+        $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
+        $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
+        $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Profile entity.');
@@ -136,6 +151,9 @@ class ProfileController extends Controller
         return $this->render('LcLcBundle:Profile:show.html.twig', array(
             'entity'      => $entity,
             'others' => $others,
+            'fall' => $fall,
+            'chat' => $chat,
+            'notify' => $notify,
         ));
     }
     

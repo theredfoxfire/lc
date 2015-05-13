@@ -116,10 +116,16 @@ class FriendController extends Controller
 
         $entities = $em->getRepository('LcLcBundle:Friend')->freez($this->getUid()->getId());
         $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
+        $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
+        $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
+        $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
 
         return $this->render('LcLcBundle:Friend:show.html.twig', array(
             'entities'      => $entities,
             'others' => $others,
+            'fall' => $fall,
+            'chat' => $chat,
+            'notify' => $notify,
         ));
     }
     
@@ -129,12 +135,18 @@ class FriendController extends Controller
 		
         $entities = $em->getRepository('LcLcBundle:Friend')->fall($this->getUid()->getId());
         $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
+        $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
+        $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
+        $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
         
         //exit(\Doctrine\Common\Util\Debug::dump($entities));
 
         return $this->render('LcLcBundle:Friend:showfall.html.twig', array(
             'entities'      => $entities,
             'others' => $others,
+            'fall' => $fall,
+            'chat' => $chat,
+            'notify' => $notify,
         ));
     }
 

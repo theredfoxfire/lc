@@ -126,6 +126,9 @@ class FeelingController extends Controller
 
         $entity = $em->getRepository('LcLcBundle:Feeling')->findOneByToken($token);
         $comments = $em->getRepository('LcLcBundle:Fcomment')->getCommentList($entity);
+        $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
+        $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
+        $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
         $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
 
         if (!$entity) {
@@ -169,6 +172,9 @@ class FeelingController extends Controller
             'entity'      => $entity,
             'comments' 	  => $comments,
             'others' => $others,
+            'fall' => $fall,
+            'chat' => $chat,
+            'notify' => $notify,
             'form'		  => $form->createView(),
         ));
     }

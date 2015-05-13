@@ -96,11 +96,12 @@ class NotificationController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('LcLcBundle:Notification')->loadNoty($this->getUid());
+        $em->getRepository('LcLcBundle:Notification')->updateNoty($this->getUid());
+        
         $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
         $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
         $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
         $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
-        $em->getRepository('LcLcBundle:Notification')->updateNoty($this->getUid());
 
         if (!$entities) {
 				return $this->render('LcLcBundle:Notification:show.html.twig', array(

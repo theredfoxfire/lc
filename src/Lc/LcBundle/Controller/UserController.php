@@ -51,6 +51,9 @@ class UserController extends Controller
 			16
 		);
         $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
+        $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
+        $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
+        $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
         
         $c = $em->getRepository('LcLcBundle:User')->countAll($this->getUid()->getSex(), $this->getUid()->getId());
         $cp = count($pagination);
@@ -60,6 +63,9 @@ class UserController extends Controller
             'others' => $others,
             'c' => $c,
             'cp' => $cp,
+            'fall' => $fall,
+            'chat' => $chat,
+            'notify' => $notify,
         ));
     }
     
@@ -83,6 +89,9 @@ class UserController extends Controller
 			16
 		);
         $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
+        $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
+        $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
+        $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
         
         $c = $em->getRepository('LcLcBundle:User')->countAll($this->getUid()->getSex(), $this->getUid()->getId());
         $cp = count($pagination);
@@ -92,6 +101,9 @@ class UserController extends Controller
             'others' => $others,
             'c' => $c,
             'cp' => $cp,
+            'fall' => $fall,
+            'chat' => $chat,
+            'notify' => $notify,
         ));
     }
     
@@ -119,6 +131,11 @@ class UserController extends Controller
 			$ep = $encoder->encodePassword($ps, $entity->getSalt());
             
 			$entity->setUsername($formData['email']);
+			if($formData['sex'] == 1){
+				$entity->setFoto('p.jpeg');
+			} else {
+				$entity->setFoto('w.png');
+			}
 			$entity->setPassword($ep);
 			$entity->setIsActive(false);
             $em->persist($entity);
@@ -129,16 +146,16 @@ class UserController extends Controller
 		/*
 		email section
 		*/
-		
-			$message = \Swift_Message::newInstance()
-                ->setSubject('Aktivasi Akun LUCIDCOUPLE')
-                ->setFrom('member@lucidcouple.com')
-                ->setTo($entity->getEmail())
-                ->setBody(
-                    $this->renderView('LcLcBundle:User:email.txt.twig', array('token' => $entity->getToken(), 'email' => $entity->getEmail())))
-            ;
- 
-            $this->get('mailer')->send($message);
+		//~ 
+			//~ $message = \Swift_Message::newInstance()
+                //~ ->setSubject('Aktivasi Akun LUCIDCOUPLE')
+                //~ ->setFrom('member@lucidcouple.com')
+                //~ ->setTo($entity->getEmail())
+                //~ ->setBody(
+                    //~ $this->renderView('LcLcBundle:User:email.txt.twig', array('token' => $entity->getToken(), 'email' => $entity->getEmail())))
+            //~ ;
+ //~ 
+            //~ $this->get('mailer')->send($message);
 		
             return $this->redirect($this->generateUrl('user_wait'));
         }
@@ -243,6 +260,7 @@ class UserController extends Controller
         $em->flush();
         
         $profile->setUser($entity);
+        $profile->setName($entity->getEmail());
         $em->persist($profile);
         $em->flush();
         
@@ -358,6 +376,9 @@ class UserController extends Controller
 		
 	  $em = $this->getDoctrine()->getManager();
 	  $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
+	  $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
+      $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
+      $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
       $changePasswordModel = new ChangePassword();
       $form = $this->createForm(new ChangePasswordType(), $changePasswordModel);
 
@@ -382,6 +403,9 @@ class UserController extends Controller
       return $this->render('LcLcBundle:User:changePwd.html.twig', array(
           'form' => $form->createView(),
           'others' => $others,
+          'fall' => $fall,
+          'chat' => $chat,
+          'notify' => $notify,
       ));      
     }
     
@@ -392,6 +416,9 @@ class UserController extends Controller
       $entity = $this->getUid();
       
       $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
+      $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
+      $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
+      $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
       $password = $entity->getPassword();
       $form = $this->createForm(new FotoType(), $entity, array(
             'action' => $this->generateUrl('user_foto'),
@@ -414,6 +441,9 @@ class UserController extends Controller
           'form' => $form->createView(),
           'entity' => $entity,
           'others' => $others,
+          'fall' => $fall,
+          'chat' => $chat,
+          'notify' => $notify,
       ));      
     }
 }

@@ -26,8 +26,11 @@ class UsercriteriaController extends Controller
 
         $entity = $em->getRepository('LcLcBundle:Usercriteria')->findOneByUser($this->getUid());
         $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
+        $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
+        $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
+        $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
 
-                if (!$entity) {
+        if (!$entity) {
             throw $this->createNotFoundException('Unable to find Usercriteria entity.');
         }
 
@@ -36,6 +39,9 @@ class UsercriteriaController extends Controller
         return $this->render('LcLcBundle:Usercriteria:index.html.twig', array(
             'entity'      => $entity,
             'others' => $others,
+            'fall' => $fall,
+            'chat' => $chat,
+            'notify' => $notify,
             'form'   => $editForm->createView(),
         ));
     }

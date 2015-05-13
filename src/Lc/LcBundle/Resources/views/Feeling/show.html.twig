@@ -42,6 +42,11 @@
 										</div>
 									</div>
 								</div>
+								{% if entity.foto %}
+								<div class="panel-footer">
+										<center><img src="{{ asset('uploads/feels/feel_') }}{{ entity.foto }}" alt="{{ entity.user.profile.name }}" class="img-responsive"></center>
+								</div>
+								{% endif %}
 							</div>
 							{% for comment in comments|sort %}
 											{% if entity.user.id == app.user.id %}
