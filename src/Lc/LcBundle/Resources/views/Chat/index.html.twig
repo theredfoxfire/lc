@@ -20,7 +20,7 @@
 										</div>
 									</div>
 								</div>
-								{% if entities %}
+								{% set cht = 0 %}
 								{% for entity in entities %}
 								<div class="panel-body apanel-body p-border">
 									<div class="media">
@@ -40,8 +40,14 @@
 										</div>
 									</div>
 								</div>
+								{% set cht = 1 %}
 								{% endfor %}
-								{% else %}
+								<div class="text-center">
+									{% if c > 25 %}
+										Halaman: <b>{{ knp_pagination_render(entities) }}</b>
+									{% endif %}
+								</div>
+								{% if cht == 0 %}
 								<div class="panel-body apanel-body p-border">
 									<div class="media">
 										<div class="media-left pull-left">

@@ -20,13 +20,14 @@
 										</div>
 									</div>
 								</div>
-								{% if entities %}
-									
+								{% set per = 0 %}
 									{% for entity in entities %}
 									<div class="panel-body apanel-body p-border">
 										<div class="media">
 											<div class="media-left pull-left">
+											<a class="thumbnail" href="{{ path('profile_see', {'token': entity.user1.token }) }}">
 												<img src="{{ asset('uploads/users/mini_') }}{{ entity.user1.foto }}" alt="{{ entity.user1.profile.name }}" class="img-rounded">
+											</a>
 											</div>
 											<div class="media-body f-feel">
 												<h4 class="media-right">{{ entity.user1.profile.name }}</h4>
@@ -35,9 +36,14 @@
 											</div>
 										</div>
 									</div>
+									{% set per = 1 %}
 									{% endfor %}
-									
-								{% else %}
+									<div class="text-center">
+										{% if c > 25 %}
+											Halaman: <b>{{ knp_pagination_render(entities) }}</b>
+										{% endif %}
+									</div>
+								{% if per == 0 %}
 									<div class="panel-body apanel-body p-border">
 										<div class="media">
 											<div class="media-left pull-left">

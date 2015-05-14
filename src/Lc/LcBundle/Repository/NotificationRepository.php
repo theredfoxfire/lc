@@ -23,7 +23,7 @@ class NotificationRepository extends EntityRepository
 			where na.user1 = :id2 and na.is_confirmed = :is and na.status = :is))
 			order by n.created_at DESC'
 			)
-			->setMaxResults(25)
+			->setMaxResults(35)
 			->setParameters(array(
 						   'id2' => $id2,
 						   'is' => 1,

@@ -175,6 +175,9 @@ class ProfileController extends Controller
         
         $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
         $friend = $em->getRepository('LcLcBundle:Friend')->check($this->getUid()->getId(),$user->getId());
+        if(empty($friend)){
+			$friend = $em->getRepository('LcLcBundle:Friend')->check($user->getId(),$this->getUid()->getId());
+		}
         
         //1 -> profile, 2 -> like, 3 -> comment
         //user 1 is visiting user 2 is visited

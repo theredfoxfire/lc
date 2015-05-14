@@ -146,16 +146,16 @@ class UserController extends Controller
 		/*
 		email section
 		*/
-		//~ 
-			//~ $message = \Swift_Message::newInstance()
-                //~ ->setSubject('Aktivasi Akun LUCIDCOUPLE')
-                //~ ->setFrom('member@lucidcouple.com')
-                //~ ->setTo($entity->getEmail())
-                //~ ->setBody(
-                    //~ $this->renderView('LcLcBundle:User:email.txt.twig', array('token' => $entity->getToken(), 'email' => $entity->getEmail())))
-            //~ ;
- //~ 
-            //~ $this->get('mailer')->send($message);
+		
+			$message = \Swift_Message::newInstance()
+                ->setSubject('Aktivasi Akun LUCIDCOUPLE')
+                ->setFrom('member@lucidcouple.com')
+                ->setTo($entity->getEmail())
+                ->setBody(
+                    $this->renderView('LcLcBundle:User:email.txt.twig', array('token' => $entity->getToken(), 'email' => $entity->getEmail())))
+            ;
+ 
+            $this->get('mailer')->send($message);
 		
             return $this->redirect($this->generateUrl('user_wait'));
         }

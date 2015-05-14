@@ -45,6 +45,8 @@
 												{% endif %}
 											{% elseif entity.frompage == 4 %}
 													<h5 class="media-right">Menyukaimu dan mengirim pertemanan dengan mu, <a href="{{ path('profile_see', {'token': entity.user1.token }) }}">Lihat Profile {{ entity.user1.profile.name }}.</a></h5>
+											{% elseif entity.frompage == 5 %}
+													<h5 class="media-right">Menerima permintaan pertemanan mu, <a href="{{ path('profile_see', {'token': entity.user1.token }) }}">Lihat Profile {{ entity.user1.profile.name }}.</a></h5>
 											{% else %}
 												<h5 class="media-right"></h5>
 											{% endif %}

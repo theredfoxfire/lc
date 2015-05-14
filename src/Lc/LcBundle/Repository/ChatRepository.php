@@ -43,7 +43,25 @@ class ChatRepository extends EntityRepository
 			AND c.created_at = (select max(cc.created_at) from LcLcBundle:Chat cc WHERE cc.user1 = c.user2 AND cc.user2 = c.user1
 			AND cc.sender_id = c.user2)  group by c.user2 order by c.created_at DESC'
 			)
-			->setMaxResults(25)
+			->setParameters(array(
+						   'id1' => $id1,
+						   'sender' => $sender,
+						   'del' => 0,
+							));
+ 
+        return $query;
+    }
+    
+    public function loadChatCount($id1 = null, $sender = null) {
+     $query = $this->getEntityManager()
+			->createQuery('SELECT c FROM
+			LcLcBundle:Chat c
+			WHERE c.user1 = :id1
+			AND c.sender_id != :sender
+			AND c.is_delete = :del
+			AND c.created_at = (select max(cc.created_at) from LcLcBundle:Chat cc WHERE cc.user1 = c.user2 AND cc.user2 = c.user1
+			AND cc.sender_id = c.user2)  group by c.user2 order by c.created_at DESC'
+			)
 			->setParameters(array(
 						   'id1' => $id1,
 						   'sender' => $sender,
@@ -55,6 +73,8 @@ class ChatRepository extends EntityRepository
         } catch (\Doctrine\Orm\NoResultException $e) {
         $love = null;
           }
+          
+         $love = count($love);
  
         return $love;
     }
@@ -76,14 +96,7 @@ class ChatRepository extends EntityRepository
 						   'is' => 0,
 						   'del' => 0,
 							));
- 
-        try {
-            $love = $query->getResult();
-        } catch (\Doctrine\Orm\NoResultException $e) {
-        $love = null;
-          }
- 
-        return $love;
+        return $query;
     }
     
     public function unreadChatCount($id1 = null, $sender = null) {

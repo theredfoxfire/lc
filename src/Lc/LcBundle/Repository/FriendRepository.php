@@ -38,14 +38,7 @@ class FriendRepository extends EntityRepository
             ->andWhere('f.user2 = :id2')
             ->setParameter('id2', $id)
             ->getQuery();
- 
-        try {
-            $love = $query->getResult();
-        } catch (\Doctrine\Orm\NoResultException $e) {
-        $love = null;
-          }
- 
-        return $love;
+        return $query;
     }
     
     public function fallCount($id) {
@@ -79,11 +72,26 @@ class FriendRepository extends EntityRepository
             ->setParameter('id2', $id)
             ->getQuery();
  
+        return $query;
+    }
+    
+    public function freezCount($id) {
+     $query = $this->createQueryBuilder('f')
+            ->where('f.status = :st')
+            ->setParameter('st', 1)
+            ->andWhere('f.is_confirmed = :cf')
+            ->setParameter('cf', 1)
+            ->andWhere('f.user2 = :id2')
+            ->setParameter('id2', $id)
+            ->getQuery();
+ 
         try {
             $love = $query->getResult();
         } catch (\Doctrine\Orm\NoResultException $e) {
         $love = null;
           }
+          
+        $love = count($love);
  
         return $love;
     }

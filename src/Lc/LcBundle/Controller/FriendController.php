@@ -114,14 +114,23 @@ class FriendController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('LcLcBundle:Friend')->freez($this->getUid()->getId());
+        $paginator = $this->get('knp_paginator');
+        $query = $em->getRepository('LcLcBundle:Friend')->freez($this->getUid()->getId());
+        $pagination = $paginator->paginate(
+			$query,
+			$this->get('request')->query->get('page', 1),
+			25
+		);
+		$c = $em->getRepository('LcLcBundle:Friend')->freezCount($this->getUid()->getId());
+		
         $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
         $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
         $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
         $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
 
         return $this->render('LcLcBundle:Friend:show.html.twig', array(
-            'entities'      => $entities,
+            'entities'      => $pagination,
+            'c' => $c,
             'others' => $others,
             'fall' => $fall,
             'chat' => $chat,
@@ -133,7 +142,15 @@ class FriendController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 		
-        $entities = $em->getRepository('LcLcBundle:Friend')->fall($this->getUid()->getId());
+        $paginator = $this->get('knp_paginator');
+        $query = $em->getRepository('LcLcBundle:Friend')->fall($this->getUid()->getId());
+        $pagination = $paginator->paginate(
+			$query,
+			$this->get('request')->query->get('page', 1),
+			25
+		);
+		$c = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
+		
         $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
         $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
         $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
@@ -142,8 +159,9 @@ class FriendController extends Controller
         //exit(\Doctrine\Common\Util\Debug::dump($entities));
 
         return $this->render('LcLcBundle:Friend:showfall.html.twig', array(
-            'entities'      => $entities,
+            'entities'      => $pagination,
             'others' => $others,
+            'c' => $c,
             'fall' => $fall,
             'chat' => $chat,
             'notify' => $notify,
@@ -200,6 +218,7 @@ class FriendController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $mate = new Friend();
+        $noty = new Notification();
 
         $entity = $em->getRepository('LcLcBundle:Friend')->findOneByToken($token);
 
@@ -219,6 +238,16 @@ class FriendController extends Controller
 		$mate->setIsConfirmed(true);
 		$em->persist($mate);
 		$em->flush();
+		
+		//1 -> profile, 2 -> like, 3 -> comment 
+        //user 1 is visiting user 2 is visited
+        $noty->setViewed(false);
+        $noty->setUser1($this->getUid());
+        $noty->setUser2($is);
+		$noty->setSelfPage(0);
+        $noty->setFromPage(5);
+        $em->persist($noty);
+        $em->flush();
 
         return $this->redirect($this->generateUrl('friend_fall', array('token' => $token)));
 

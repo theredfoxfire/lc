@@ -23,14 +23,23 @@ class ChatController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('LcLcBundle:Chat')->loadChat($this->getUid(), $this->getUid()->getId());
+        $paginator = $this->get('knp_paginator');
+        $query = $em->getRepository('LcLcBundle:Chat')->loadChat($this->getUid(), $this->getUid()->getId());
+        $pagination = $paginator->paginate(
+			$query,
+			$this->get('request')->query->get('page', 1),
+			25
+		);
+		$c = $em->getRepository('LcLcBundle:chat')->loadChatCount($this->getUid(), $this->getUid()->getId());
+        
         $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
         $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
         $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
         $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
 
         return $this->render('LcLcBundle:Chat:index.html.twig', array(
-            'entities' => $entities,
+            'entities' => $pagination,
+            'c' => $c,
             'others' => $others,
             'fall' => $fall,
             'chat' => $chat,
@@ -42,14 +51,23 @@ class ChatController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('LcLcBundle:Chat')->unreadChat($this->getUid(), $this->getUid()->getId());
+        $paginator = $this->get('knp_paginator');
+        $query = $em->getRepository('LcLcBundle:Chat')->unreadChat($this->getUid(), $this->getUid()->getId());
+        $pagination = $paginator->paginate(
+			$query,
+			$this->get('request')->query->get('page', 1),
+			25
+		);
+		$c = $em->getRepository('LcLcBundle:chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
+		
         $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
         $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
         $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
         $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
 
         return $this->render('LcLcBundle:Chat:unread.html.twig', array(
-            'entities' => $entities,
+            'entities' => $pagination,
+            'c' => $c,
             'others' => $others,
             'fall' => $fall,
             'chat' => $chat,

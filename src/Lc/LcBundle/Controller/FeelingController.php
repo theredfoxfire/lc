@@ -27,7 +27,13 @@ class FeelingController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('LcLcBundle:Feeling')->getUserFeeling($this->getUid());
+        $paginator = $this->get('knp_paginator');
+        $query = $em->getRepository('LcLcBundle:Feeling')->getUserFeeling($this->getUid());
+        $pagination = $paginator->paginate(
+			$query,
+			$this->get('request')->query->get('page', 1),
+			25
+		);
         $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
         $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
         $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
@@ -35,14 +41,17 @@ class FeelingController extends Controller
         $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
         $entity = new Feeling();
         $form = $this->createCreateForm($entity);
+        
+        $c = $em->getRepository('LcLcBundle:Feeling')->countUserFeeling($this->getUid());
 
         return $this->render('LcLcBundle:Feeling:index.html.twig', array(
-            'entities' => $entities,
+            'entities' => $pagination,
             'others' => $others,
             'form'   => $form->createView(),
             'fall' => $fall,
             'chat' => $chat,
             'notify' => $notify,
+            'c' => $c,
         ));
     }
     /**
