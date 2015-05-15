@@ -3,7 +3,7 @@ notification:
     defaults: { _controller: "LcLcBundle:Notification:index" }
 
 notification_show:
-    path:     /show
+    path:     /see
     defaults: { _controller: "LcLcBundle:Notification:show" }
 
 notification_new:

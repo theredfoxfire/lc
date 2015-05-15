@@ -88,7 +88,6 @@
 	<div class="row clearfix">
 		<div class="col-md-12 column">
 			<div class="row clearfix">
-
 				{%block leftcontent%}
 				{% endblock %}
 				
@@ -155,4 +154,8 @@
 		$(document).ready(function() {
 			$("body").tooltip({ selector: '[data-toggle=tooltip]' });
 		});
+		
+		setTimeout(function() {
+			$('#message-session').fadeOut('slow');
+		}, 3500);
 	</script>

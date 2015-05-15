@@ -302,4 +302,9 @@ class City
     {
         $this->profile->removeElement($profile);
     }
+    
+    public function __toString()
+	{
+		return $this->getName() ? $this->getName() : "";
+	}
 }

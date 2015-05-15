@@ -24,7 +24,6 @@ Lc\LcBundle\Entity\Province:
   city:
    targetEntity: City
    mappedBy: province
- oneToMany:
   usercriteria:
    targetEntity: Usercriteria
    mappedBy: province

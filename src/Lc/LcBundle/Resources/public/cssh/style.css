@@ -17,6 +17,10 @@ body {
   padding: 0 0 60px;
 }
 
+.lebar{
+	max-width: 400px !important;
+}
+
 .centered{
 	padding-top: 10px;
 }

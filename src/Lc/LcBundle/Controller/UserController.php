@@ -312,6 +312,9 @@ class UserController extends Controller
 			$entity->setPassword($password);
 			$em->persist($entity);
             $em->flush();
+            
+            $request->getSession()->getFlashBag()->add('notice', 
+            'Data profile mu sudah terupdate! :D');
 
             return $this->redirect($this->generateUrl('profile'));
         }
@@ -397,7 +400,8 @@ class UserController extends Controller
             $em->persist($entity);
             $em->flush();
                         
-          return $this->redirect($this->generateUrl('profile'));
+			$request->getSession()->getFlashBag()->add('notice', 
+            'Password mu sudah terupdate! :D');
       }
 
       return $this->render('LcLcBundle:User:changePwd.html.twig', array(
@@ -433,8 +437,9 @@ class UserController extends Controller
 			$entity->setPassword($password);
             $em->persist($entity);
             $em->flush();
-                        
-          return $this->redirect($this->generateUrl('profile'));
+            
+            $request->getSession()->getFlashBag()->add('notice', 
+            'Foto mu sudah terupdate! :D');
       }
 
       return $this->render('LcLcBundle:User:foto.html.twig', array(

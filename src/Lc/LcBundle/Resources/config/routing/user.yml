@@ -1,29 +1,29 @@
 user:
-    path:     /
+    path:     /heaven/user
     defaults: { _controller: "LcLcBundle:User:index" }
 user_search:
-    path:     /cari
+    path:     /heaven/cari
     defaults: { _controller: "LcLcBundle:User:search" }
 user_others:
-    path:     /all
+    path:     /heaven/all
     defaults: { _controller: "LcLcBundle:User:all" }
 user_wait:
  path: /thanks
  defaults: { _controller: "LcLcBundle:User:wait"}
  
 user_foto:
- path: /foto
+ path: /heaven/foto
  defaults: { _controller: "LcLcBundle:User:foto"}
  
 user_pass:
- path: /pass
+ path: /heaven/pass
  defaults: { _controller: "LcLcBundle:User:changePasswd"}
 user_show:
-    path:     /{id}/show
+    path:     /heaven/{id}/show
     defaults: { _controller: "LcLcBundle:User:show" }
 
 user_new:
-    path:     /new
+    path:     /heaven/new
     defaults: { _controller: "LcLcBundle:User:new" }
 
 user_create:
@@ -32,18 +32,18 @@ user_create:
     requirements: { _method: post }
 
 user_edit:
-    path:     /{id}/edit
+    path:     /heaven/{id}/edit
     defaults: { _controller: "LcLcBundle:User:edit" }
 user_activate:
     path:     /activate/{token}
     defaults: { _controller: "LcLcBundle:User:activate" }
 
 user_update:
-    path:     /{token}/update
+    path:     /heaven/{token}/renew
     defaults: { _controller: "LcLcBundle:User:update" }
     requirements: { _method: post|put }
 
 user_delete:
-    path:     /{id}/delete
+    path:     /heaven/{id}/delete
     defaults: { _controller: "LcLcBundle:User:delete" }
     requirements: { _method: post|delete }

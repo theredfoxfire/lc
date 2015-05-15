@@ -3,100 +3,100 @@ lc_lc_homepage:
     defaults: { _controller: LcLcBundle:Default:index }
 LcLcBundle_admin:
         resource: "@LcLcBundle/Resources/config/routing/admin.yml"
-        prefix:   /admin
+        prefix:   /heaven/admin
 LcLcBundle_admindoing:
         resource: "@LcLcBundle/Resources/config/routing/admindoing.yml"
-        prefix:   /admindoing
+        prefix:   /heaven/admindoing
 LcLcBundle_adminlog:
         resource: "@LcLcBundle/Resources/config/routing/adminlog.yml"
-        prefix:   /adminlog
+        prefix:   /heaven/adminlog
 LcLcBundle_chat:
         resource: "@LcLcBundle/Resources/config/routing/chat.yml"
-        prefix:   /chat
+        prefix:   /heaven/chat
 LcLcBundle_city:
         resource: "@LcLcBundle/Resources/config/routing/city.yml"
-        prefix:   /city
+        prefix:   /heaven/city
 LcLcBundle_controllerlist:
         resource: "@LcLcBundle/Resources/config/routing/controllerlist.yml"
-        prefix:   /controllerlist
+        prefix:   /heaven/controllerlist
 LcLcBundle_criteria:
         resource: "@LcLcBundle/Resources/config/routing/criteria.yml"
-        prefix:   /criteria
+        prefix:   /heaven/criteria
 LcLcBundle_education:
         resource: "@LcLcBundle/Resources/config/routing/education.yml"
-        prefix:   /education
+        prefix:   /heaven/education
 LcLcBundle_fcomment:
         resource: "@LcLcBundle/Resources/config/routing/fcomment.yml"
-        prefix:   /fcomment
+        prefix:   /heaven/fcomment
 LcLcBundle_feeling:
         resource: "@LcLcBundle/Resources/config/routing/feeling.yml"
         prefix:   /heaven
 LcLcBundle_flike:
         resource: "@LcLcBundle/Resources/config/routing/flike.yml"
-        prefix:   /flike
+        prefix:   /heaven/flike
 LcLcBundle_friend:
         resource: "@LcLcBundle/Resources/config/routing/friend.yml"
-        prefix:   /friend
+        prefix:   /heaven/friend
 LcLcBundle_fshare:
         resource: "@LcLcBundle/Resources/config/routing/fshare.yml"
-        prefix:   /fshare
+        prefix:   /heaven/fshare
 LcLcBundle_gallery:
         resource: "@LcLcBundle/Resources/config/routing/gallery.yml"
-        prefix:   /gallery
+        prefix:   /heaven/gallery
 LcLcBundle_glike:
         resource: "@LcLcBundle/Resources/config/routing/glike.yml"
-        prefix:   /glike
+        prefix:   /heaven/glike
 LcLcBundle_gcomment:
         resource: "@LcLcBundle/Resources/config/routing/gcomment.yml"
-        prefix:   /gcomment
+        prefix:   /heaven/gcomment
 LcLcBundle_gshare:
         resource: "@LcLcBundle/Resources/config/routing/gshare.yml"
-        prefix:   /gshare
+        prefix:   /heaven/gshare
 LcLcBundle_hobby:
         resource: "@LcLcBundle/Resources/config/routing/hobby.yml"
-        prefix:   /hobby
+        prefix:   /heaven/hobby
 LcLcBundle_job:
         resource: "@LcLcBundle/Resources/config/routing/job.yml"
-        prefix:   /job
+        prefix:   /heaven/job
 LcLcBundle_methodlist:
         resource: "@LcLcBundle/Resources/config/routing/methodlist.yml"
-        prefix:   /methodlist
+        prefix:   /heaven/methodlist
 LcLcBundle_notification:
         resource: "@LcLcBundle/Resources/config/routing/notification.yml"
-        prefix:   /notification
+        prefix:   /heaven/notification
 LcLcBundle_plan:
         resource: "@LcLcBundle/Resources/config/routing/plan.yml"
-        prefix:   /plan
+        prefix:   /heaven/plan
 LcLcBundle_profile:
         resource: "@LcLcBundle/Resources/config/routing/profile.yml"
-        prefix:   /profile
+        prefix:   /heaven/profile
 LcLcBundle_province:
         resource: "@LcLcBundle/Resources/config/routing/province.yml"
-        prefix:   /province
+        prefix:   /heaven/province
 LcLcBundle_religy:
         resource: "@LcLcBundle/Resources/config/routing/religy.yml"
-        prefix:   /religy
+        prefix:   /heaven/religy
 LcLcBundle_sallary:
         resource: "@LcLcBundle/Resources/config/routing/sallary.yml"
-        prefix:   /sallary
+        prefix:   /heaven/sallary
 LcLcBundle_sex:
         resource: "@LcLcBundle/Resources/config/routing/sex.yml"
-        prefix:   /sex
+        prefix:   /heaven/sex
 LcLcBundle_status:
         resource: "@LcLcBundle/Resources/config/routing/status.yml"
-        prefix:   /status
+        prefix:   /heaven/status
 LcLcBundle_user:
         resource: "@LcLcBundle/Resources/config/routing/user.yml"
-        prefix:   /user
+        prefix:   /
 LcLcBundle_usercriteria:
         resource: "@LcLcBundle/Resources/config/routing/usercriteria.yml"
-        prefix:   /usercriteria
+        prefix:   /heaven/usercriteria
 LcLcBundle_userdoing:
         resource: "@LcLcBundle/Resources/config/routing/userdoing.yml"
-        prefix:   /userdoing
+        prefix:   /heaven/userdoing
 LcLcBundle_userlog:
         resource: "@LcLcBundle/Resources/config/routing/userlog.yml"
-        prefix:   /userlog
+        prefix:   /heaven/userlog
 login:
     pattern:   /login
     defaults:  { _controller: LcLcBundle:Default:login }

@@ -4,6 +4,14 @@
 {% endblock %}
 {%block content%}
 				<div class="col-sm-7 column">
+				{% if (app.session.flashbag.get('notice') is not empty) %}
+				<center id="message-session">
+				<div class="alert alert-success lebar" role="alert"> 
+					Data profile mu berhasil diubah ! :D
+				</div>
+				<hr />
+				</center>
+				{% endif %}
 						<div class="row">
 							<div class="panel panel-success">
 								<div class="panel-heading panel-success">
@@ -72,6 +80,13 @@
 												  {{ form_errors(form.province) }}
 											  </div>
 											  <div class="form-group form-group-sm">
+												<label class="col-sm-3 control-label" for="formGroupInputSmall">Kabupaten/Kota</label>
+													<div class="col-sm-9">
+														{{ form_widget(form.city) }}
+												</div>
+												  {{ form_errors(form.city) }}
+											  </div>
+											  <div class="form-group form-group-sm">
 												<label class="col-sm-3 control-label" for="formGroupInputSmall">Di mana Anda bertempat tinggal?</label>
 													<div class="col-sm-9">
 														{{ form_widget(form.lived) }}
@@ -128,6 +143,7 @@
 							</div>
 						</div>
 				</div>
+
 {% endblock %}
 {%block rightcontent%}
 	{{ include ('LcLcBundle:Default:userrightbar.html.twig') }}

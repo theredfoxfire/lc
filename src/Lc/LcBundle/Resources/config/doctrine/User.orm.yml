@@ -70,14 +70,6 @@ Lc\LcBundle\Entity\User:
   userlog:
    targetEntity: Userlog
    mappedBy: user
- oneToOne:
-  usercriteria:
-   targetEntity: Usercriteria
-   mappedBy: user
-  profile:
-   targetEntity: Profile
-   mappedBy: user
- oneToMany:
   friend1:
    targetEntity: Friend
    mappedBy: user1
@@ -96,6 +88,13 @@ Lc\LcBundle\Entity\User:
   notify2:
    targetEntity: Notification
    mappedBy: user2
+ oneToOne:
+  usercriteria:
+   targetEntity: Usercriteria
+   mappedBy: user
+  profile:
+   targetEntity: Profile
+   mappedBy: user
 
  lifecycleCallbacks:
   prePersist: [ preUpload, setCreatedAtValue, setTokenValue ]

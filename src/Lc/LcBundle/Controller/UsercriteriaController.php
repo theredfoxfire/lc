@@ -186,6 +186,9 @@ class UsercriteriaController extends Controller
 
         if ($editForm->isValid()) {
             $em->flush();
+            
+            $request->getSession()->getFlashBag()->add('notice', 
+            'Data kriteria mu sudah terupdate! :D');
 
             return $this->redirect($this->generateUrl('usercriteria'));
         }

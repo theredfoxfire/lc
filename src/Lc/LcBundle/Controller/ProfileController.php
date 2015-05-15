@@ -259,6 +259,9 @@ class ProfileController extends Controller
 
         if ($editForm->isValid()) {
             $em->flush();
+            
+            $request->getSession()->getFlashBag()->add('notice', 
+            'Data profile mu sudah terupdate! :D');
 
             return $this->redirect($this->generateUrl('profile_data'));
         }

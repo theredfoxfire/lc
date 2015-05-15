@@ -4,6 +4,7 @@ namespace Lc\LcBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 use Lc\LcBundle\Entity\Feeling;
 use Lc\LcBundle\Entity\Fcomment;
@@ -61,7 +62,6 @@ class FeelingController extends Controller
     public function createAction(Request $request)
     {
         $entity = new Feeling();
-        $user = new User();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -71,14 +71,14 @@ class FeelingController extends Controller
             $entity->setUser($this->getUid());
             $em->persist($entity);
             $em->flush();
+            
+            $request->getSession()->getFlashBag()->add('notice', 
+            'Status mu sudah terposting! :D');
 
             return $this->redirect($this->generateUrl('feeling'));
         }
-
-        return $this->render('LcLcBundle:Feeling:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
+        
+         return $this->redirect($this->generateUrl('feeling'));
     }
 
     /**
@@ -141,7 +141,7 @@ class FeelingController extends Controller
         $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Feeling entity.');
+            throw $this->createNotFoundException('Unable to find Feeling entity is this?.');
         }
         
         $fcomment = new Fcomment();
@@ -172,6 +172,9 @@ class FeelingController extends Controller
 			$noty->setFromId($entity->getToken());
 			$em->persist($noty);
 			$em->flush();
+			
+			$request->getSession()->getFlashBag()->add('notice', 
+            'Komentar mu sudah terposting! :D');
 			
             return $this->redirect($this->generateUrl('feeling_show', array('token'=>$token)));
 		}
