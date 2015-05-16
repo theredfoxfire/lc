@@ -263,7 +263,7 @@ class UserController extends Controller
         
         $st = date('Y-m-d H:i:s');
 		$st = $st.$entity->getEmail();
-		$token = $this->token = sha1($st.rand(11111, 99999));
+		$token = sha1($st.rand(11111, 99999));
 		
         $entity->setIsActive(true);
         $entity->setToken($token);

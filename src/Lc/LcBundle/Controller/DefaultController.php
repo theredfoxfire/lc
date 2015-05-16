@@ -3,9 +3,14 @@
 namespace Lc\LcBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 use Lc\LcBundle\Entity\User;
 use Lc\LcBundle\Form\UserType;
+use Lc\LcBundle\Entity\Forgot;
+use Lc\LcBundle\Form\ForgotType;
+use Lc\LcBundle\Entity\Repair;
+use Lc\LcBundle\Form\RepairType;
 
 use Symfony\Component\Security\Core\SecurityContext;
 
@@ -18,6 +23,108 @@ class DefaultController extends Controller
         
         return $this->render('LcLcBundle:Default:index.html.twig', array(
 			 'form'   => $form->createView()
+        ));
+    }
+    
+    public function repairAction(Request $request, $token)
+    {
+        $entity = new Repair();
+        $form = $this->createForm(new RepairType(), $entity,
+			array(
+			'action' => $this->generateUrl('repair', array('token' => $token)),
+            'method' => 'POST',
+            'attr' => array('class' => 'login-area', 'role'=>"form"),
+        ));
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('LcLcBundle:User')->findOneByToken($token);
+        if (!$entity) {
+			return $this->render('LcLcBundle:User:sorry.html.twig');
+		}
+        
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+			$formData = $request->get('repair');
+            $ps = $formData['password']['first'];
+            
+            $factory = $this->get('security.encoder_factory');
+			$encoder = $factory->getEncoder($entity);
+			$ep = $encoder->encodePassword($ps, $entity->getSalt());
+            
+            $st = date('Y-m-d H:i:s');
+			$st = $st.$entity->getEmail();
+			$token = sha1($st.rand(11111, 99999));
+			
+			$entity->setPassword($ep);
+			$entity->setToken($token);
+            $em->persist($entity);
+            $em->flush();
+            
+            return $this->render('LcLcBundle:Default:repaired.html.twig', array(
+					 'name'   => $entity->getProfile()->getName(),
+				));
+		}
+        
+        return $this->render('LcLcBundle:Default:repair.html.twig', array(
+			 'form'   => $form->createView()
+        ));
+    }
+    
+    public function forgotAction(Request $request)
+    {
+        $entity = new Forgot();
+        $email = "";
+        $form = $this->createForm(new ForgotType(), $entity,
+			array(
+			'action' => $this->generateUrl('forgot'),
+            'method' => 'POST',
+            'attr' => array('class' => 'login-area', 'role'=>"form"),
+            ));
+        $form->add('email', 'email',array('attr'=>array('class'=>'form-control', 'value'=>$email,'placeholder'=>'Masukan email Anda'), 'label'=>false));
+            
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+			$formData = $request->get('forgot');
+            $email = $formData['email'];
+            $form = $this->createForm(new ForgotType(), $entity,
+			array(
+				'action' => $this->generateUrl('forgot'),
+				'method' => 'POST',
+				'attr' => array('class' => 'login-area', 'role'=>"form"),
+            ));
+			$form->add('email', 'email',array('attr'=>array('class'=>'form-control', 'value'=>$email,'placeholder'=>'Masukan email Anda'), 'label'=>false));
+            $em = $this->getDoctrine()->getManager();
+            $entity = $em->getRepository('LcLcBundle:User')->findOneByEmail($email);
+
+            if (!$entity) {
+				$request->getSession()->getFlashBag()->add('notice', 
+				'Kami tidak menemukan satupun akun yang cocok dengan email tersebut');
+				
+                return $this->render('LcLcBundle:Default:forgot.html.twig', array(
+					 'form'   => $form->createView(),
+				));
+			}
+			
+		/*
+		email section
+		*/
+		
+			$message = \Swift_Message::newInstance()
+                ->setSubject('Reset Password Akun LUCIDCOUPLE')
+                ->setFrom('member@lucidcouple.com')
+                ->setTo($email)
+                ->setBody(
+                    $this->renderView('LcLcBundle:User:forgot.txt.twig', array('token' => $entity->getToken(), 'name' => $entity->getProfile()->getName())))
+            ;
+ 
+            $this->get('mailer')->send($message);
+            
+            return $this->render('LcLcBundle:Default:forgotsent.html.twig', array(
+					 'name'   => $entity->getProfile()->getName(),
+				));
+		}
+        
+        return $this->render('LcLcBundle:Default:forgot.html.twig', array(
+			 'form'   => $form->createView(),
         ));
     }
     

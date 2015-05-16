@@ -8,7 +8,7 @@ class ChangePassword
 {
     /**
      * @SecurityAssert\UserPassword(
-     *     message = "Wrong value for your current password"
+     *     message = "Password yang anda masukan tidak benar"
      * )
      */
      protected $oldPassword;
@@ -16,7 +16,7 @@ class ChangePassword
     /**
      * @Assert\Length(
      *     min = 6,
-     *     minMessage = "Password should by at least 6 chars long"
+     *     minMessage = "Password setidaknya terdiri dari 6 karakter"
      * )
      */
      protected $newPassword;

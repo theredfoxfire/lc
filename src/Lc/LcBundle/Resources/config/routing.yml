@@ -104,3 +104,9 @@ login_check:
     pattern:   /login_check
 logout:
     pattern:   /logout
+repair:
+    pattern:   /repair/{token}
+    defaults:  { _controller: LcLcBundle:Default:repair }
+forgot:
+    pattern:   /forgot
+    defaults:  { _controller: LcLcBundle:Default:forgot }

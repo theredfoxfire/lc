@@ -11,31 +11,18 @@
         <div class="download-section">
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <h2>Login LucidCouple</h2>
+                    <h2>Reset Password LucidCouple</h2>
+                    
                     <p>
-						{% if error %}
-							<div class='error_msg'>{{ error.message }}</div>
-						{% endif %}
-						<form role="form" class="login-area" action="{{ path('login_check') }}" method="post">
+						{{ form_start(form) }}
+							{{ form_errors(form) }}
 							<div class="form-group form-area">
-								<label for="InputEmail">Email</label>
-								<div class="input-group">
-									<input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" placeholder="Masukan email" required/>
-									<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-								</div>
+									{{ form_widget(form.password) }}
+									{{ form_errors(form.password) }}
 							</div>
-							<div class="form-group form-area">
-								<label for="InputEmail">Password</label>
-								<div class="input-group">
-									<input type="password" class="form-control" id="password" name="_password" placeholder="Masukan password" required/>
-									<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-								</div>
-							</div>
-							<input type="submit" name="submit" id="submit" value="Login" class="btn btn-default btn-lg pull-right">
-						</form>
-						<div class="pull-left">
-							<h4><a href="{{ path('forgot') }}">Lupa pasword?</a></h4>
-						</div>
+								<input type="submit" name="submit" id="submit" value="Submit" class="btn btn-default btn-lg pull-right">
+							{{ form_row(form._token) }}
+						{{ form_end(form) }}
 					</p>
                 </div>
             </div>
