@@ -107,6 +107,9 @@ class NotificationController extends Controller
 				return $this->render('LcLcBundle:Notification:show.html.twig', array(
 				'entities'      => $entities,
 				'others' => $others,
+				'fall' => $fall,
+				'chat' => $chat,
+				'notify' => $notify,
 			));
         }
         return $this->render('LcLcBundle:Notification:show.html.twig', array(

@@ -42,6 +42,7 @@ class UserRepository extends EntityRepository implements UserProviderInterface
 			->createQuery('SELECT u FROM
 			LcLcBundle:User u
 			WHERE u.sex != :sex
+			AND u.broad = :b
 			AND u.id NOT IN (SELECT IDENTITY (f.user2) FROM LcLcBundle:Friend f where f.user1 = :id1)
 			AND u.id NOT IN (SELECT IDENTITY (fr.user1) FROM LcLcBundle:Friend fr where fr.user2 = :id1)'
 			)
@@ -49,6 +50,7 @@ class UserRepository extends EntityRepository implements UserProviderInterface
 			->setParameters(array(
 						   'id1' => $id1,
 						   'sex' => $sex,
+						   'b' => 0,
 							));
  
         try {
@@ -66,12 +68,43 @@ class UserRepository extends EntityRepository implements UserProviderInterface
 			->createQuery('SELECT u FROM
 			LcLcBundle:User u
 			WHERE u.sex != :sex
+			AND u.broad = :b
 			AND u.id NOT IN (SELECT IDENTITY (f.user2) FROM LcLcBundle:Friend f where f.user1 = :id1)
 			AND u.id NOT IN (SELECT IDENTITY (fr.user1) FROM LcLcBundle:Friend fr where fr.user2 = :id1)'
 			)
 			->setParameters(array(
 						   'id1' => $id1,
 						   'sex' => $sex,
+						   'b' => 0,
+							));
+ 
+        try {
+            $love = $query->getResult();
+        } catch (\Doctrine\Orm\NoResultException $e) {
+        $love = null;
+          }
+          
+        $love = count($love);
+ 
+        return $love;
+    }
+    
+    public function countSearchAll($sex = null, $id1 = null, $key = null) {
+
+	$query = $this->getEntityManager()
+			->createQuery('SELECT u FROM
+			LcLcBundle:User u
+			WHERE u.sex != :sex
+			AND u.broad = :b
+			AND u.id NOT IN (SELECT IDENTITY (f.user2) FROM LcLcBundle:Friend f where f.user1 = :id1)
+			AND u.id NOT IN (SELECT IDENTITY (fr.user1) FROM LcLcBundle:Friend fr where fr.user2 = :id1)
+			AND u.id IN (SELECT IDENTITY (p.user) FROM LcLcBundle:Profile p where p.name LIKE :key)'
+			)
+			->setParameters(array(
+						   'id1' => $id1,
+						   'sex' => $sex,
+						   'b' => 0,
+						   'key' => '%'.$key.'%',
 							));
  
         try {
@@ -93,6 +126,7 @@ class UserRepository extends EntityRepository implements UserProviderInterface
 		->createQuery('SELECT u FROM
 		LcLcBundle:User u
 		WHERE u.sex != :sex
+		AND u.broad = :b
 		AND u.id NOT IN (SELECT IDENTITY (f.user2) FROM LcLcBundle:Friend f where f.user1 = :id1)
 		AND u.id NOT IN (SELECT IDENTITY (fr.user1) FROM LcLcBundle:Friend fr where fr.user2 = :id1)
 		AND u.id IN (SELECT IDENTITY (p.user) FROM LcLcBundle:Profile p where p.name LIKE :key)'
@@ -101,6 +135,7 @@ class UserRepository extends EntityRepository implements UserProviderInterface
 					   'id1' => $id1,
 					   'sex' => $sex,
 					   'key' => '%'.$key.'%',
+					   'b' => 0,
 		));
 		}
 		else
@@ -109,11 +144,13 @@ class UserRepository extends EntityRepository implements UserProviderInterface
 		->createQuery('SELECT u FROM
 		LcLcBundle:User u
 		WHERE u.sex != :sex
+		AND u.broad = :b
 		AND u.id NOT IN (SELECT IDENTITY (f.user2) FROM LcLcBundle:Friend f where f.user1 = :id1)
 		AND u.id NOT IN (SELECT IDENTITY (fr.user1) FROM LcLcBundle:Friend fr where fr.user2 = :id1)'
 		)->setParameters(array(
 					   'id1' => $id1,
 					   'sex' => $sex,
+					   'b' => 0,
 		));
 		}
  

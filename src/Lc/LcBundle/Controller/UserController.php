@@ -94,7 +94,7 @@ class UserController extends Controller
         $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
         $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
         
-        $c = $em->getRepository('LcLcBundle:User')->countAll($this->getUid()->getSex(), $this->getUid()->getId());
+        $c = $em->getRepository('LcLcBundle:User')->countSearchAll($this->getUid()->getSex(), $this->getUid()->getId(), $key);
         $cp = count($pagination);
 
         return $this->render('LcLcBundle:User:search.html.twig', array(
