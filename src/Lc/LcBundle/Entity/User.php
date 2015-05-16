@@ -1304,4 +1304,32 @@ class User implements AdvancedUserInterface
     {
         return $this->notify2;
     }
+    /**
+     * @var boolean
+     */
+    private $broad;
+
+
+    /**
+     * Set broad
+     *
+     * @param boolean $broad
+     * @return User
+     */
+    public function setBroad($broad)
+    {
+        $this->broad = $broad;
+
+        return $this;
+    }
+
+    /**
+     * Get broad
+     *
+     * @return boolean 
+     */
+    public function getBroad()
+    {
+        return $this->broad;
+    }
 }

@@ -139,6 +139,7 @@ class FeelingController extends Controller
         $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
         $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
         $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
+        $broad = $entity->getUser()->getBroad();
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Feeling entity is this?.');
@@ -149,7 +150,7 @@ class FeelingController extends Controller
         
         $form = $this->createCommentForm($fcomment, $token);
         $form->handleRequest($request);
-        if ($form->isValid()) {
+        if ($form->isValid() && ($broad == 0)) {
 			$usr= $this->get('security.context')->getToken()->getUser();
 			$uid = $usr->getId();
 			$em = $this->getDoctrine()->getManager();

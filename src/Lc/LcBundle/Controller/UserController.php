@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Lc\LcBundle\Entity\User;
+use Lc\LcBundle\Entity\Friend;
 use Lc\LcBundle\Entity\Foto;
 use Lc\LcBundle\Entity\ChangePassword;
 use Lc\LcBundle\Entity\Usercriteria;
@@ -138,6 +139,7 @@ class UserController extends Controller
 			}
 			$entity->setPassword($ep);
 			$entity->setIsActive(false);
+			$entity->setBroad(false);
             $em->persist($entity);
             $em->flush();
             
@@ -146,16 +148,16 @@ class UserController extends Controller
 		/*
 		email section
 		*/
-		
-			$message = \Swift_Message::newInstance()
-                ->setSubject('Aktivasi Akun LUCIDCOUPLE')
-                ->setFrom('member@lucidcouple.com')
-                ->setTo($entity->getEmail())
-                ->setBody(
-                    $this->renderView('LcLcBundle:User:email.txt.twig', array('token' => $entity->getToken(), 'email' => $entity->getEmail())))
-            ;
- 
-            $this->get('mailer')->send($message);
+		//~ 
+			//~ $message = \Swift_Message::newInstance()
+                //~ ->setSubject('Aktivasi Akun LUCIDCOUPLE')
+                //~ ->setFrom('member@lucidcouple.com')
+                //~ ->setTo($entity->getEmail())
+                //~ ->setBody(
+                    //~ $this->renderView('LcLcBundle:User:email.txt.twig', array('token' => $entity->getToken(), 'email' => $entity->getEmail())))
+            //~ ;
+ //~ 
+            //~ $this->get('mailer')->send($message);
 		
             return $this->redirect($this->generateUrl('user_wait'));
         }
@@ -250,13 +252,21 @@ class UserController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('LcLcBundle:User')->findOneByToken($token);
+        $broad = $em->getRepository('LcLcBundle:User')->findOneById(1);
+        
         $profile = new Profile();
         $criteria = new Usercriteria();
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find User entity.');
+            return $this->render('LcLcBundle:User:sorry.html.twig');
         }
+        
+        $st = date('Y-m-d H:i:s');
+		$st = $st.$entity->getEmail();
+		$token = $this->token = sha1($st.rand(11111, 99999));
+		
         $entity->setIsActive(true);
+        $entity->setToken($token);
         $em->flush();
         
         $profile->setUser($entity);
@@ -267,6 +277,24 @@ class UserController extends Controller
         $criteria->setUser($entity);
         $em->persist($criteria);
         $em->flush();
+        
+        $mate = new Friend();
+        $mate->setUser1($entity);
+		$mate->setUser2($broad);
+		$mate->setStatus(true);
+		$mate->setCast(true);
+		$mate->setIsConfirmed(true);
+		$em->persist($mate);
+		$em->flush();
+		
+		$cast = new Friend();
+        $cast->setUser1($broad);
+		$cast->setUser2($entity);
+		$cast->setStatus(true);
+		$cast->setCast(true);
+		$cast->setIsConfirmed(true);
+		$em->persist($cast);
+		$em->flush();
 
         return $this->render('LcLcBundle:User:thanks.html.twig', array(
             'email'      => $entity->getEmail(),

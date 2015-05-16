@@ -11,6 +11,9 @@ Lc\LcBundle\Entity\Friend:
    type: boolean
   is_confirmed:
    type: boolean
+  cast:
+   type: boolean
+   nullable: true
   created_at:
    type: datetime
   updated_at:

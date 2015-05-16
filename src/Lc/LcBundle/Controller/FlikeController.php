@@ -41,7 +41,8 @@ class FlikeController extends Controller
         $em = $this->getDoctrine()->getManager();
         $feeling = $em->getRepository('LcLcBundle:Feeling')->findOneByToken($feel);
         $check = $em->getRepository('LcLcBundle:Flike')->checkLiked($this->getUid(),$feeling);
-        if(!$check){
+        $broad = $feeling->getUser()->getBroad();
+        if(!$check && ($broad == 0)){
 			$entity->setStatus(1);
 			$entity->setUser($this->getUid());
 			$entity->setFeeling($feeling);
@@ -61,10 +62,6 @@ class FlikeController extends Controller
 			}
 			$noty->setFromId($feeling->getToken());
 			$em->persist($noty);
-			$em->flush();
-		}else{
-			($check->getStatus() == 1 ? $check->setStatus(0) : $check->setStatus(1));
-			$em->persist($check);
 			$em->flush();
 		}
 		if($page == 1)

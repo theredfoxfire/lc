@@ -28,6 +28,9 @@ Lc\LcBundle\Entity\User:
    type: date
   password:
    type: text
+  broad:
+   type: boolean
+   nullable: true
   is_active:
    type: boolean
   created_at:

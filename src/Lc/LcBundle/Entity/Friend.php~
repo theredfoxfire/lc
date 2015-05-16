@@ -248,4 +248,32 @@ class Friend
     {
         return $this->user2;
     }
+    /**
+     * @var boolean
+     */
+    private $cast;
+
+
+    /**
+     * Set cast
+     *
+     * @param boolean $cast
+     * @return Friend
+     */
+    public function setCast($cast)
+    {
+        $this->cast = $cast;
+
+        return $this;
+    }
+
+    /**
+     * Get cast
+     *
+     * @return boolean 
+     */
+    public function getCast()
+    {
+        return $this->cast;
+    }
 }

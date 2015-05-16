@@ -52,6 +52,7 @@ class FriendController extends Controller
 			$entity->setUser1($this->getUid());
 			$entity->setUser2($is);
 			$entity->setStatus(true);
+			$entity->setCast(false);
 			$entity->setIsConfirmed(false);
 			$em->persist($entity);
 			$em->flush();
@@ -235,6 +236,7 @@ class FriendController extends Controller
         $mate->setUser1($this->getUid());
 		$mate->setUser2($is);
 		$mate->setStatus(true);
+		$mate->setCast(false);
 		$mate->setIsConfirmed(true);
 		$em->persist($mate);
 		$em->flush();

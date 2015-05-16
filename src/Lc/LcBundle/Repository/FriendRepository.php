@@ -68,6 +68,8 @@ class FriendRepository extends EntityRepository
             ->setParameter('st', 1)
             ->andWhere('f.is_confirmed = :cf')
             ->setParameter('cf', 1)
+            ->andWhere('f.cast = :ca')
+            ->setParameter('ca', 0)
             ->andWhere('f.user2 = :id2')
             ->setParameter('id2', $id)
             ->getQuery();
@@ -81,6 +83,8 @@ class FriendRepository extends EntityRepository
             ->setParameter('st', 1)
             ->andWhere('f.is_confirmed = :cf')
             ->setParameter('cf', 1)
+            ->andWhere('f.cast = :ca')
+            ->setParameter('ca', 0)
             ->andWhere('f.user2 = :id2')
             ->setParameter('id2', $id)
             ->getQuery();
