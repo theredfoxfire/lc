@@ -110,3 +110,6 @@ repair:
 forgot:
     pattern:   /forgot
     defaults:  { _controller: LcLcBundle:Default:forgot }
+agreement:
+    pattern:   /agreement
+    defaults:  { _controller: LcLcBundle:Default:agreement }

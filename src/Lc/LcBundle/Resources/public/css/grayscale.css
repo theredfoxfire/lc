@@ -36,6 +36,10 @@ p {
     line-height: 1.5;
 }
 
+.agreement{
+	font-size: 14px !important;
+}
+
 @media(min-width:767px) {
     p {
         margin: 0 0 35px;

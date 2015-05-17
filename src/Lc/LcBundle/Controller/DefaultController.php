@@ -26,6 +26,12 @@ class DefaultController extends Controller
         ));
     }
     
+    public function agreementAction()
+    {
+        
+        return $this->render('LcLcBundle:Default:agreement.html.twig');
+    }
+    
     public function repairAction(Request $request, $token)
     {
         $entity = new Repair();
@@ -135,7 +141,7 @@ class DefaultController extends Controller
             'method' => 'POST',
             'attr' => array('class' => 'register-area'),
         ));        
-		$form->add('submit', 'submit', array('label' => false, 'attr' => array('class'=>'btn btn-default btn-lg pull-right')));
+		$form->add('daftar', 'submit', array('label' => false, 'attr' => array('class'=>'btn btn-default btn-lg pull-right')));
 		$form->add('file', 'hidden', array('label' => false, 'attr' => array('class'=>'btn btn-default btn-lg pull-right')));
         return $form;
     }
