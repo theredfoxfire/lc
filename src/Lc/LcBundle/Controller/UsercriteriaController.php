@@ -4,6 +4,8 @@ namespace Lc\LcBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 use Lc\LcBundle\Entity\Usercriteria;
 use Lc\LcBundle\Entity\User;
@@ -15,6 +17,25 @@ use Lc\LcBundle\Form\UsercriteriaType;
  */
 class UsercriteriaController extends Controller
 {
+	public function ajaxAction(Request $request) {
+        if (! $request->isXmlHttpRequest()) {
+            throw new NotFoundHttpException();
+        }
+
+        // Get the province ID
+        $id = $request->query->get('province_id');
+
+        $result = array();
+
+        // Return a list of cities, based on the selected province
+        $repo = $this->getDoctrine()->getManager()->getRepository('LcLcBundle:City');
+        $cities = $repo->findByProvince($id, array('name' => 'asc'));
+        foreach ($cities as $city) {
+            $result[$city->getName()] = $city->getId();
+        }
+
+        return new JsonResponse($result);
+    }
 
     /**
      * Lists all Usercriteria entities.
@@ -34,7 +55,12 @@ class UsercriteriaController extends Controller
             throw $this->createNotFoundException('Unable to find Usercriteria entity.');
         }
 
-        $editForm = $this->createEditForm($entity);
+        $editForm = $this->createForm(new UsercriteriaType($this->getDoctrine()->getManager()), $entity,
+			array(
+            'action' => $this->generateUrl('usercriteria_update', array('id' => $entity->getToken())),
+            'method' => 'POST',
+			)
+        );
 
         return $this->render('LcLcBundle:Usercriteria:index.html.twig', array(
             'entity'      => $entity,
@@ -175,13 +201,18 @@ class UsercriteriaController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('LcLcBundle:Usercriteria')->find($id);
+        $entity = $em->getRepository('LcLcBundle:Usercriteria')->findOneByToken($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Usercriteria entity.');
         }
 
-        $editForm = $this->createEditForm($entity);
+        $editForm = $this->createForm(new UsercriteriaType($this->getDoctrine()->getManager()), $entity,
+			array(
+            'action' => $this->generateUrl('usercriteria_update', array('id' => $entity->getToken())),
+            'method' => 'POST',
+			)
+        );
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {

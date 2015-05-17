@@ -4,7 +4,9 @@ profile:
 profile_data:
     path:     /data
     defaults: { _controller: "LcLcBundle:Profile:profile" }
-
+province_ajax_call:
+    path:     /province_call
+    defaults: { _controller: "LcLcBundle:Profile:ajax" }
 profile_show:
     path:     /detail
     defaults: { _controller: "LcLcBundle:Profile:show" }

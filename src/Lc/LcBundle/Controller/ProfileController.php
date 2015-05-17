@@ -4,6 +4,8 @@ namespace Lc\LcBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 use Lc\LcBundle\Entity\Profile;
 use Lc\LcBundle\Entity\Notification;
@@ -18,7 +20,27 @@ use Lc\LcBundle\Form\DatauType;
  */
 class ProfileController extends Controller
 {
+	
+	public function ajaxAction(Request $request) {
+        if (! $request->isXmlHttpRequest()) {
+            throw new NotFoundHttpException();
+        }
 
+        // Get the province ID
+        $id = $request->query->get('province_id');
+
+        $result = array();
+
+        // Return a list of cities, based on the selected province
+        $repo = $this->getDoctrine()->getManager()->getRepository('LcLcBundle:City');
+        $cities = $repo->findByProvince($id, array('name' => 'asc'));
+        foreach ($cities as $city) {
+            $result[$city->getName()] = $city->getId();
+        }
+
+        return new JsonResponse($result);
+    }
+	
     /**
      * Lists all Profile entities.
      *
@@ -59,7 +81,12 @@ class ProfileController extends Controller
             throw $this->createNotFoundException('Unable to find Profile entity.');
         }
         
-        $form = $this->createEditForm($entity);
+        $form = $this->createForm(new ProfileType($this->getDoctrine()->getManager()), $entity,
+			array(
+            'action' => $this->generateUrl('profile_update', array('id' => $entity->getToken())),
+            'method' => 'POST',
+        )
+        );
 
         return $this->render('LcLcBundle:Profile:profile.html.twig', array(
             'entity' => $entity,
@@ -222,24 +249,6 @@ class ProfileController extends Controller
             'form'   => $editForm->createView(),
         ));
     }
-
-    /**
-    * Creates a form to edit a Profile entity.
-    *
-    * @param Profile $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
-    private function createEditForm(Profile $entity)
-    {
-        $form = $this->createForm(new ProfileType(), $entity, array(
-            'action' => $this->generateUrl('profile_update', array('id' => $entity->getToken())),
-            'method' => 'PUT',
-            'attr' => array('class' => 'form-horizontal'),
-        ));
-
-        return $form;
-    }
     /**
      * Edits an existing Profile entity.
      *
@@ -254,7 +263,12 @@ class ProfileController extends Controller
             throw $this->createNotFoundException('Unable to find Profile entity.');
         }
 
-        $editForm = $this->createEditForm($entity);
+        $editForm = $this->createForm(new ProfileType($this->getDoctrine()->getManager()), $entity,
+			array(
+            'action' => $this->generateUrl('profile_update', array('id' => $entity->getToken())),
+            'method' => 'POST',
+        )
+        );
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
