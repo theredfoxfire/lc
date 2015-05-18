@@ -21,6 +21,13 @@ body {
 	max-width: 400px !important;
 }
 
+.light {
+    font-weight: 400;
+}
+.weight{
+	font-weight: 700;
+}
+
 .centered{
 	padding-top: 10px;
 }
