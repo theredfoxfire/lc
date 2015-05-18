@@ -93,6 +93,7 @@ class FeelingController extends Controller
         $form = $this->createForm(new FeelingType(), $entity, array(
             'action' => $this->generateUrl('feeling_create'),
             'method' => 'POST',
+            'attr' => array('class' => 'form-horizontal', 'onsubmit' => 'return Validate(this);'),
         ));
 
         return $form;
