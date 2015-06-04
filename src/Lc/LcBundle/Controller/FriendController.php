@@ -66,6 +66,26 @@ class FriendController extends Controller
 			$noty->setFromPage(4);
 			$em->persist($noty);
 			$em->flush();
+			
+			/*
+			email section
+			*/
+			$email = $is->getEmail();
+			
+			$transport = \Swift_SmtpTransport::newInstance('lucidcouple.com',587,'tls')
+			->setUsername('member@lucidcouple.com')->setPassword('13264656#vL');
+			
+			$mailer = \Swift_Mailer::newInstance($transport);
+			
+			$message = \Swift_Message::newInstance()
+                ->setSubject('Hey ada orang yang menyukai mu di LUCIDCOUPLE!')
+                ->setFrom('member@lucidcouple.com')
+                ->setTo($email)
+                ->setBody(
+                    $this->renderView('LcLcBundle:User:lovealert.txt.twig', array('name' => $is->getProfile()->getName())))
+            ;
+ 
+            $mailer->send($message);
 		}else{
 			return $this->redirect($this->generateUrl('profile_see', array('token' => $token)));
 		}

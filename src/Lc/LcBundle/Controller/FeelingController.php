@@ -72,6 +72,11 @@ class FeelingController extends Controller
             $em->persist($entity);
             $em->flush();
             
+            $user = $this->getUid();
+            $user->setUpdatedAt(new \DateTime());
+            $em->persist($user);
+            $em->flush();
+            
             $request->getSession()->getFlashBag()->add('notice', 
             'Status mu sudah terposting! :D');
 

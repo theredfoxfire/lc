@@ -110,10 +110,15 @@ class DefaultController extends Controller
 				));
 			}
 			
-		/*
-		email section
-		*/
-		
+			/*
+			email section
+			*/
+			
+			$transport = \Swift_SmtpTransport::newInstance('lucidcouple.com',587,'tls')
+			->setUsername('registration@lucidcouple.com')->setPassword('13264656#vL');
+			
+			$mailer = \Swift_Mailer::newInstance($transport);
+			
 			$message = \Swift_Message::newInstance()
                 ->setSubject('Reset Password Akun LUCIDCOUPLE')
                 ->setFrom('member@lucidcouple.com')
@@ -122,7 +127,7 @@ class DefaultController extends Controller
                     $this->renderView('LcLcBundle:User:forgot.txt.twig', array('token' => $entity->getToken(), 'name' => $entity->getProfile()->getName())))
             ;
  
-            $this->get('mailer')->send($message);
+            $mailer->send($message);
             
             return $this->render('LcLcBundle:Default:forgotsent.html.twig', array(
 					 'name'   => $entity->getProfile()->getName(),
@@ -141,7 +146,6 @@ class DefaultController extends Controller
             'method' => 'POST',
             'attr' => array('class' => 'register-area'),
         ));        
-		$form->add('daftar', 'submit', array('label' => false, 'attr' => array('class'=>'btn btn-default btn-lg pull-right')));
 		$form->add('file', 'hidden', array('label' => false, 'attr' => array('class'=>'btn btn-default btn-lg pull-right')));
         return $form;
     }

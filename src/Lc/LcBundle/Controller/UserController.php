@@ -132,11 +132,7 @@ class UserController extends Controller
 			$ep = $encoder->encodePassword($ps, $entity->getSalt());
             
 			$entity->setUsername($formData['email']);
-			if($formData['sex'] == 1){
-				$entity->setFoto('p.jpeg');
-			} else {
-				$entity->setFoto('w.png');
-			}
+			$entity->setFoto($formData['email'].'.png');
 			$entity->setPassword($ep);
 			$entity->setIsActive(false);
 			$entity->setBroad(false);
@@ -145,9 +141,13 @@ class UserController extends Controller
             
             $em = $this->getDoctrine()->getManager();
 			$entity = $em->getRepository('LcLcBundle:User')->findOneByEmail($formData['email']);
-		/*
-		email section
-		*/
+			/*
+			email section
+			*/
+			$transport = \Swift_SmtpTransport::newInstance('lucidcouple.com',587,'tls')
+			->setUsername('registration@lucidcouple.com')->setPassword('13264656#vL');
+			
+			$mailer = \Swift_Mailer::newInstance($transport);
 		
 			$message = \Swift_Message::newInstance()
                 ->setSubject('Aktivasi Akun LUCIDCOUPLE')
@@ -157,7 +157,7 @@ class UserController extends Controller
                     $this->renderView('LcLcBundle:User:email.txt.twig', array('token' => $entity->getToken(), 'email' => $entity->getEmail())))
             ;
  
-            $this->get('mailer')->send($message);
+            $mailer->send($message);
 		
             return $this->redirect($this->generateUrl('user_wait'));
         }
@@ -182,7 +182,6 @@ class UserController extends Controller
             'method' => 'POST',
             'attr' => array('class' => 'register-area'),
         ));        
-		$form->add('submit', 'submit', array('label' => false, 'attr' => array('class'=>'btn btn-default btn-lg pull-right', 'focus' =>'focus')));
 		$form->add('file', 'hidden', array('label' => false, 'attr' => array('class'=>'btn btn-default btn-lg pull-right')));
 
         return $form;
@@ -260,6 +259,20 @@ class UserController extends Controller
         if (!$entity) {
             return $this->render('LcLcBundle:User:sorry.html.twig');
         }
+        
+        if($entity->getSex() == 1)
+		{
+			copy(__DIR__.'/../../../../web/uploads/users/grande_p.png', __DIR__.'/../../../../web/uploads/users/grande_'.$entity->getFoto().'');
+			copy(__DIR__.'/../../../../web/uploads/users/index_p.png', __DIR__.'/../../../../web/uploads/users/index_'.$entity->getFoto().'');
+			copy(__DIR__.'/../../../../web/uploads/users/mini_p.png', __DIR__.'/../../../../web/uploads/users/mini_'.$entity->getFoto().'');
+			copy(__DIR__.'/../../../../web/uploads/users/thumb_p.png', __DIR__.'/../../../../web/uploads/users/thumb_'.$entity->getFoto().'');
+		}else
+		{
+			copy(__DIR__.'/../../../../web/uploads/users/grande_w.png', __DIR__.'/../../../../web/uploads/users/grande_'.$entity->getFoto().'');
+			copy(__DIR__.'/../../../../web/uploads/users/index_w.png', __DIR__.'/../../../../web/uploads/users/index_'.$entity->getFoto().'');
+			copy(__DIR__.'/../../../../web/uploads/users/mini_w.png', __DIR__.'/../../../../web/uploads/users/mini_'.$entity->getFoto().'');
+			copy(__DIR__.'/../../../../web/uploads/users/thumb_w.png', __DIR__.'/../../../../web/uploads/users/thumb_'.$entity->getFoto().'');
+		}
         
         $st = date('Y-m-d H:i:s');
 		$st = $st.$entity->getEmail();

@@ -43,14 +43,17 @@ class UserRepository extends EntityRepository implements UserProviderInterface
 			LcLcBundle:User u
 			WHERE u.sex != :sex
 			AND u.broad = :b
+			AND u.is_active = :is
 			AND u.id NOT IN (SELECT IDENTITY (f.user2) FROM LcLcBundle:Friend f where f.user1 = :id1)
-			AND u.id NOT IN (SELECT IDENTITY (fr.user1) FROM LcLcBundle:Friend fr where fr.user2 = :id1)'
+			AND u.id NOT IN (SELECT IDENTITY (fr.user1) FROM LcLcBundle:Friend fr where fr.user2 = :id1)
+			ORDER BY u.updated_at DESC'
 			)
 			->setMaxResults(8)
 			->setParameters(array(
 						   'id1' => $id1,
 						   'sex' => $sex,
 						   'b' => 0,
+						   'is' => 1,
 							));
  
         try {
@@ -69,6 +72,7 @@ class UserRepository extends EntityRepository implements UserProviderInterface
 			LcLcBundle:User u
 			WHERE u.sex != :sex
 			AND u.broad = :b
+			AND u.is_active = :is
 			AND u.id NOT IN (SELECT IDENTITY (f.user2) FROM LcLcBundle:Friend f where f.user1 = :id1)
 			AND u.id NOT IN (SELECT IDENTITY (fr.user1) FROM LcLcBundle:Friend fr where fr.user2 = :id1)'
 			)
@@ -76,6 +80,7 @@ class UserRepository extends EntityRepository implements UserProviderInterface
 						   'id1' => $id1,
 						   'sex' => $sex,
 						   'b' => 0,
+						   'is' => 1,
 							));
  
         try {
@@ -96,6 +101,7 @@ class UserRepository extends EntityRepository implements UserProviderInterface
 			LcLcBundle:User u
 			WHERE u.sex != :sex
 			AND u.broad = :b
+			AND u.is_active = :is
 			AND u.id NOT IN (SELECT IDENTITY (f.user2) FROM LcLcBundle:Friend f where f.user1 = :id1)
 			AND u.id NOT IN (SELECT IDENTITY (fr.user1) FROM LcLcBundle:Friend fr where fr.user2 = :id1)
 			AND u.id IN (SELECT IDENTITY (p.user) FROM LcLcBundle:Profile p where p.name LIKE :key)'
@@ -105,6 +111,7 @@ class UserRepository extends EntityRepository implements UserProviderInterface
 						   'sex' => $sex,
 						   'b' => 0,
 						   'key' => '%'.$key.'%',
+						   'is' => 1,
 							));
  
         try {
@@ -127,15 +134,18 @@ class UserRepository extends EntityRepository implements UserProviderInterface
 		LcLcBundle:User u
 		WHERE u.sex != :sex
 		AND u.broad = :b
+		AND u.is_active = :is
 		AND u.id NOT IN (SELECT IDENTITY (f.user2) FROM LcLcBundle:Friend f where f.user1 = :id1)
 		AND u.id NOT IN (SELECT IDENTITY (fr.user1) FROM LcLcBundle:Friend fr where fr.user2 = :id1)
-		AND u.id IN (SELECT IDENTITY (p.user) FROM LcLcBundle:Profile p where p.name LIKE :key)'
+		AND u.id IN (SELECT IDENTITY (p.user) FROM LcLcBundle:Profile p where p.name LIKE :key)
+		ORDER BY u.updated_at DESC'
 		)
 		->setParameters(array(
 					   'id1' => $id1,
 					   'sex' => $sex,
 					   'key' => '%'.$key.'%',
 					   'b' => 0,
+					   'is' => 1,
 		));
 		}
 		else
@@ -145,12 +155,15 @@ class UserRepository extends EntityRepository implements UserProviderInterface
 		LcLcBundle:User u
 		WHERE u.sex != :sex
 		AND u.broad = :b
+		AND u.is_active = :is
 		AND u.id NOT IN (SELECT IDENTITY (f.user2) FROM LcLcBundle:Friend f where f.user1 = :id1)
-		AND u.id NOT IN (SELECT IDENTITY (fr.user1) FROM LcLcBundle:Friend fr where fr.user2 = :id1)'
+		AND u.id NOT IN (SELECT IDENTITY (fr.user1) FROM LcLcBundle:Friend fr where fr.user2 = :id1)
+		ORDER BY u.updated_at DESC'
 		)->setParameters(array(
 					   'id1' => $id1,
 					   'sex' => $sex,
 					   'b' => 0,
+					   'is' => 1,
 		));
 		}
  
