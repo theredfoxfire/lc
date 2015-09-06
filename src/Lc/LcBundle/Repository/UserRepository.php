@@ -27,6 +27,19 @@ class UserRepository extends EntityRepository implements UserProviderInterface
                         ))
          ->getOneOrNullResult();
     }
+    
+    public function forgot($email) {
+     return $this->getEntityManager()
+         ->createQuery('SELECT u FROM
+         LcLcBundle:User u
+         WHERE u.email = :email
+         AND u.is_active = 1'
+         )
+         ->setParameters(array(
+                       'email' => $email
+                        ))
+         ->getResult();
+    }
  
     public function refreshUser(UserInterface $user) {
         return $this->loadUserByUsername($user->getUsername());

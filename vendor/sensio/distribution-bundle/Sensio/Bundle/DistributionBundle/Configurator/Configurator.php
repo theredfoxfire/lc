@@ -162,7 +162,11 @@ class Configurator
             $filename = $this->getCacheFilename();
         }
 
-        $ret = Yaml::parse($filename);
+        if (!file_exists($filename)) {
+            return array();
+        }
+
+        $ret = Yaml::parse(file_get_contents($filename));
         if (false === $ret || array() === $ret) {
             throw new \InvalidArgumentException(sprintf('The %s file is not valid.', $filename));
         }

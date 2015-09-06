@@ -25,11 +25,13 @@
 									<div class="panel-body apanel-body p-border">
 										<div class="media">
 											<div class="media-left pull-left">
+											<a class="thumbnail" href="{{ path('profile_see', {'token': entity.user1.token }) }}">
 												<img src="{{ asset('uploads/users/mini_') }}{{ entity.user1.foto }}" alt="{{ entity.user1.profile.name }}" class="img-rounded">
+											</a>
 											</div>
 											<div class="media-body f-feel">
 												<h4 class="media-right">{{ entity.user1.profile.name }}</h4>
-												<a class="a-act pull-right" href="{{ path('friend_block', {'token': entity.token }) }}" data-toggle="tooltip" data-placement="top" title="Blokir"><i class="glyphicon glyphicon-eye-close"></i></a>
+												<a class="a-act pull-right" onclick="tanya('{{ entity.user1.profile.name }}','{{ entity.token }}')" href="#" data-toggle="tooltip" data-placement="top" title="Blokir"><i class="glyphicon glyphicon-eye-close"></i></a>
 												<a class="a-act pull-right" href="{{ path('chat_show', {'token': entity.user1.token }) }}" data-toggle="tooltip" data-placement="top" title="Kirim pesan"><i class="glyphicon glyphicon-envelope"></i></a>
 											</div>
 										</div>
@@ -56,6 +58,15 @@
 						</div>
 						
 				</div>
+<script>
+	function tanya(nama,token){
+		var con = confirm('Kamu yakin akan memblokir '+nama+'?');
+		
+		if (con){
+			window.open('{{ app.request.getBaseURL() }}/heaven/friend/'+token+'/block', '_top');
+		}
+	}
+</script>
 {% endblock %}
 {%block rightcontent%}
 	{{ include ('LcLcBundle:Default:userrightbar.html.twig') }}

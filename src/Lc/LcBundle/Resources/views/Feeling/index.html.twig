@@ -19,7 +19,7 @@
 								<div class="panel-body apanel-body">
 									<div class="media">
 										<div class="media-left pull-left">
-											<img src="{{ asset('uploads/users/mini_') }}{{ app.user.foto }}" alt="{{ app.user.profile.name }}" class="img-rounded">
+											<img src="{{ asset('uploads/users/mini_') }}{{ app.user.foto }}" alt="{% if app.user.profile.name is defined %}{{ app.user.profile.name }} {% else %} {{ app.user.email }} {% endif %}" class="img-rounded">
 										</div>
 										<div class="media-body">
 											 <div class="col-md-12">

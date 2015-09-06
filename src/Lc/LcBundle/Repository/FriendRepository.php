@@ -101,19 +101,17 @@ class FriendRepository extends EntityRepository
     }
     
     public function block($id1,$id2) {
-     $query = $this->createQueryBuilder('f')
+		$qb = $this->createQueryBuilder('');
+		$q = $qb->update('LcLcBundle:Friend', 'f')
+			->set('f.status', $qb->expr()->literal(false))
             ->where('f.user1 = :id1')
             ->setParameter('id1', $id1)
             ->andWhere('f.user2 = :id2')
             ->setParameter('id2', $id2)
+            ->andWhere('f.cast = :cast')
+            ->setParameter('cast', 0)
             ->getQuery();
  
-        try {
-            $love = $query->getResult();
-        } catch (\Doctrine\Orm\NoResultException $e) {
-        $love = null;
-          }
- 
-        return $love;
+        $p = $q->execute();
     }
 }

@@ -6,6 +6,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Session\Session;
 
+use Lc\LcBundle\Entity\Friend;
+use Lc\LcBundle\Entity\Foto;
+use Lc\LcBundle\Entity\ChangePassword;
+use Lc\LcBundle\Entity\Usercriteria;
+use Lc\LcBundle\Entity\Profile;
 use Lc\LcBundle\Entity\Feeling;
 use Lc\LcBundle\Entity\Fcomment;
 use Lc\LcBundle\Entity\Notification;
@@ -29,7 +34,61 @@ class FeelingController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $paginator = $this->get('knp_paginator');
-        $query = $em->getRepository('LcLcBundle:Feeling')->getUserFeeling($this->getUid());
+        $is_user = $em->getRepository('LcLcBundle:Profile')->findOneByUser($this->getUid());
+        if(empty($is_user)){
+		
+        $broad = $em->getRepository('LcLcBundle:User')->findOneById(1);
+        
+        $profile = new Profile();
+        $criteria = new Usercriteria();
+        $entity = $this->getUid();
+        
+        if($entity->getSex() == 1)
+		{
+			copy(__DIR__.'/../../../../web/uploads/users/grande_p.png', __DIR__.'/../../../../web/uploads/users/grande_'.$entity->getFoto().'');
+			copy(__DIR__.'/../../../../web/uploads/users/index_p.png', __DIR__.'/../../../../web/uploads/users/index_'.$entity->getFoto().'');
+			copy(__DIR__.'/../../../../web/uploads/users/mini_p.png', __DIR__.'/../../../../web/uploads/users/mini_'.$entity->getFoto().'');
+			copy(__DIR__.'/../../../../web/uploads/users/thumb_p.png', __DIR__.'/../../../../web/uploads/users/thumb_'.$entity->getFoto().'');
+		}else
+		{
+			copy(__DIR__.'/../../../../web/uploads/users/grande_w.png', __DIR__.'/../../../../web/uploads/users/grande_'.$entity->getFoto().'');
+			copy(__DIR__.'/../../../../web/uploads/users/index_w.png', __DIR__.'/../../../../web/uploads/users/index_'.$entity->getFoto().'');
+			copy(__DIR__.'/../../../../web/uploads/users/mini_w.png', __DIR__.'/../../../../web/uploads/users/mini_'.$entity->getFoto().'');
+			copy(__DIR__.'/../../../../web/uploads/users/thumb_w.png', __DIR__.'/../../../../web/uploads/users/thumb_'.$entity->getFoto().'');
+		}
+        
+        $st = date('Y-m-d H:i:s');
+		$st = $st.$entity->getEmail();
+		$token = sha1($st.rand(11111, 99999));
+        
+        $profile->setUser($entity);
+        $profile->setName($entity->getEmail());
+        $em->persist($profile);
+        $em->flush();
+        
+        $criteria->setUser($entity);
+        $em->persist($criteria);
+        $em->flush();
+        
+        $mate = new Friend();
+        $mate->setUser1($entity);
+		$mate->setUser2($broad);
+		$mate->setStatus(true);
+		$mate->setCast(true);
+		$mate->setIsConfirmed(true);
+		$em->persist($mate);
+		$em->flush();
+		
+		$cast = new Friend();
+        $cast->setUser1($broad);
+		$cast->setUser2($entity);
+		$cast->setStatus(true);
+		$cast->setCast(true);
+		$cast->setIsConfirmed(true);
+		$em->persist($cast);
+		$em->flush();
+		}
+		$query = $em->getRepository('LcLcBundle:Feeling')->getUserFeeling($this->getUid());
         $pagination = $paginator->paginate(
 			$query,
 			$this->get('request')->query->get('page', 1),

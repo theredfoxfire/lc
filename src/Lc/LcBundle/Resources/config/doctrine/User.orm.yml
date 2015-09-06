@@ -7,12 +7,22 @@ Lc\LcBundle\Entity\User:
    type: integer
    generator: { strategy: AUTO }
  fields:
-  username:
+  facebook_id:
    type: string
    length: 255
-  email:
+   nullable: true
+  facebook_access_token:
    type: string
    length: 255
+   nullable: true
+  google_id:
+   type: string
+   length: 255
+   nullable: true
+  google_access_token:
+   type: string
+   length: 255
+   nullable: true
   sex:
    type: integer
    length: 1
@@ -26,8 +36,6 @@ Lc\LcBundle\Entity\User:
    nullable: true
   birthday:
    type: date
-  password:
-   type: text
   broad:
    type: boolean
    nullable: true

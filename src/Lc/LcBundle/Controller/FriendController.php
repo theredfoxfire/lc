@@ -72,20 +72,20 @@ class FriendController extends Controller
 			*/
 			$email = $is->getEmail();
 			
-			$transport = \Swift_SmtpTransport::newInstance('lucidcouple.com',587,'tls')
-			->setUsername('member@lucidcouple.com')->setPassword('13264656#vL');
-			
-			$mailer = \Swift_Mailer::newInstance($transport);
-			
-			$message = \Swift_Message::newInstance()
-                ->setSubject('Hey ada orang yang menyukai mu di LUCIDCOUPLE!')
-                ->setFrom('member@lucidcouple.com')
-                ->setTo($email)
-                ->setBody(
-                    $this->renderView('LcLcBundle:User:lovealert.txt.twig', array('name' => $is->getProfile()->getName())))
-            ;
- 
-            $mailer->send($message);
+			//~ $transport = \Swift_SmtpTransport::newInstance('lucidcouple.com',587,'tls')
+			//~ ->setUsername('member@lucidcouple.com')->setPassword('13264656#vL');
+			//~ 
+			//~ $mailer = \Swift_Mailer::newInstance($transport);
+			//~ 
+			//~ $message = \Swift_Message::newInstance()
+                //~ ->setSubject('Hey ada orang yang menyukai mu di LUCIDCOUPLE!')
+                //~ ->setFrom('member@lucidcouple.com')
+                //~ ->setTo($email)
+                //~ ->setBody(
+                    //~ $this->renderView('LcLcBundle:User:lovealert.txt.twig', array('name' => $is->getProfile()->getName())))
+            //~ ;
+ //~ 
+            //~ $mailer->send($message);
 		}else{
 			return $this->redirect($this->generateUrl('profile_see', array('token' => $token)));
 		}
@@ -283,27 +283,14 @@ class FriendController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('LcLcBundle:Friend')->findOneByToken($token);
-        if($this->getUid() == $entity->getUser2()){
-			$mate = $em->getRepository('LcLcBundle:Friend')->findOneByUser1($entity->getUser2());
-		}else{
-			$mate = $em->getRepository('LcLcBundle:Friend')->findOneByUser1($entity->getUser1());
-		}
+        
+		$em->getRepository('LcLcBundle:Friend')->block($entity->getUser2(), $entity->getUser1());
+		$em->getRepository('LcLcBundle:Friend')->block($entity->getUser1(), $entity->getUser2());
 		
 		$em->getRepository('LcLcBundle:Chat')->deleteChat($entity->getUser1(),$entity->getUser2());
+		$user = $this->getUid();
 
-        if (empty($mate)) {
-            throw $this->createNotFoundException('Unable to find Friend entity.');
-        }
-
-		$entity->setStatus(false);
-		$em->persist($entity);
-        $em->flush();
-        
-        $mate->setStatus(false);
-		$em->persist($mate);
-        $em->flush();
-
-        return $this->redirect($this->generateUrl('friend_show', array('token' => $token)));
+        return $this->redirect($this->generateUrl('friend_show', array('token' => $user->getToken())));
 
     }
     /**

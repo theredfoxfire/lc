@@ -7,62 +7,56 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Gregwar\Image\Image;
+use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * User
  */
-class User implements AdvancedUserInterface
+class User extends BaseUser
 {
     /**
      * @var integer
      */
-    private $id;
-
+    protected $id;
+        /** @ORM\Column(name="facebook_id", type="string", length=255, nullable=true) */
+    protected $facebook_id;
+    /** @ORM\Column(name="facebook_access_token", type="string", length=255, nullable=true) */
+    protected $facebook_access_token;
+    /** @ORM\Column(name="google_id", type="string", length=255, nullable=true) */
+    protected $google_id;
+    /** @ORM\Column(name="google_access_token", type="string", length=255, nullable=true) */
+    protected $google_access_token;
     /**
      * @var string
      */
-    private $username;
-
-    /**
-     * @var string
-     */
-    private $email;
-
-    /**
-     * @var string
-     */
-    private $phone;
-
-    /**
-     * @var string
-     */
-    private $password;
+    protected $phone;
+    protected $username;
+    protected $email;
+    protected $password2;
     
-    private $password2;
-    
-    private $birthday;
-    private $sex;
+    protected $birthday;
+    protected $sex;
     public $file;
 
     /**
      * @var boolean
      */
-    private $is_active;
+    protected $is_active;
 
     /**
      * @var \DateTime
      */
-    private $created_at;
+    protected $created_at;
 
     /**
      * @var \DateTime
      */
-    private $updated_at;
+    protected $updated_at;
 
     /**
      * @var string
      */
-    private $token;
+    protected $token;
 
     /**
      * Get id
@@ -80,6 +74,75 @@ class User implements AdvancedUserInterface
      * @param string $username
      * @return User
      */
+     
+    public function setFacebookId($facebook_id)
+    {
+        $this->username = $facebook_id;
+
+        return $this;
+    }
+
+    /**
+     * Get username
+     *
+     * @return string 
+     */
+    public function getFacebookId()
+    {
+        return $this->facebook_id;
+    }
+    
+    public function setGoogleId($google_id)
+    {
+        $this->username = $google_id;
+
+        return $this;
+    }
+
+    /**
+     * Get username
+     *
+     * @return string 
+     */
+    public function getGoogleId()
+    {
+        return $this->google_id;
+    }
+    
+    public function setGoogleAccessToken($google_access_token)
+    {
+        $this->username = $google_access_token;
+
+        return $this;
+    }
+
+    /**
+     * Get username
+     *
+     * @return string 
+     */
+    public function getGoogleAccessToken()
+    {
+        return $this->google_access_token;
+    }
+    
+    public function setFacebookAccessToken($facebook_access_token)
+    {
+        $this->username = $facebook_access_token;
+
+        return $this;
+    }
+
+    /**
+     * Get username
+     *
+     * @return string 
+     */
+    public function getFacebookAccessToken()
+    {
+        return $this->facebook_access_token;
+    }
+    
     public function setUsername($username)
     {
         $this->username = $username;
@@ -311,7 +374,7 @@ class User implements AdvancedUserInterface
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $feeling;
+    protected $feeling;
 
     /**
      * Constructor
@@ -319,6 +382,7 @@ class User implements AdvancedUserInterface
     public function __construct()
     {
         $this->feeling = new \Doctrine\Common\Collections\ArrayCollection();
+        parent::__construct();
     }
 
     /**
@@ -356,12 +420,12 @@ class User implements AdvancedUserInterface
     /**
      * @var \Lc\LcBundle\Entity\Usercriteria
      */
-    private $usercriteria;
+    protected $usercriteria;
 
     /**
      * @var \Lc\LcBundle\Entity\Profile
      */
-    private $profile;
+    protected $profile;
 
 
     /**
@@ -412,47 +476,47 @@ class User implements AdvancedUserInterface
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $fcomment;
+    protected $fcomment;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $flike;
+    protected $flike;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $fshare;
+    protected $fshare;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $gshare;
+    protected $gshare;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $gcomment;
+    protected $gcomment;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $glike;
+    protected $glike;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $gallery;
+    protected $gallery;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $userdoing;
+    protected $userdoing;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $userlog;
+    protected $userlog;
 
 
     /**
@@ -789,34 +853,34 @@ class User implements AdvancedUserInterface
         return null;
     }
  
-    public function eraseCredentials()
-    {
- 
-    }
- 
-    public function equals(User $user)
-    {
-        return $user->getUsername() == $this->getUsername();
-    } 
-    
-    public function isEnabled(){
-		return $this->getIsActive();
-	}
-	public function isCredentialsNonExpired(){
-		return true;
-	}
-	
-	public function isAccountNonExpired(){
-		return true;
-	}
-	
-	public function isAccountNonLocked(){
-		return true;
-	}
+    //~ public function eraseCredentials()
+    //~ {
+ //~ 
+    //~ }
+ //~ 
+    //~ public function equals(User $user)
+    //~ {
+        //~ return $user->getUsername() == $this->getUsername();
+    //~ } 
+    //~ 
+    //~ public function isEnabled(){
+		//~ return $this->getIsActive();
+	//~ }
+	//~ public function isCredentialsNonExpired(){
+		//~ return true;
+	//~ }
+	//~ 
+	//~ public function isAccountNonExpired(){
+		//~ return true;
+	//~ }
+	//~ 
+	//~ public function isAccountNonLocked(){
+		//~ return true;
+	//~ }
     /**
      * @var string
      */
-    private $foto;
+    protected $foto;
 
 
     /**
@@ -989,12 +1053,12 @@ class User implements AdvancedUserInterface
     /**
      * @var \Lc\LcBundle\Entity\Friend
      */
-    private $friend1;
+    protected $friend1;
 
     /**
      * @var \Lc\LcBundle\Entity\Friend
      */
-    private $friend2;
+    protected $friend2;
 
 
     /**
@@ -1045,12 +1109,12 @@ class User implements AdvancedUserInterface
     /**
      * @var \Lc\LcBundle\Entity\Friend
      */
-    private $chat1;
+    protected $chat1;
 
     /**
      * @var \Lc\LcBundle\Entity\Friend
      */
-    private $chat2;
+    protected $chat2;
 
 
     /**
@@ -1193,7 +1257,7 @@ class User implements AdvancedUserInterface
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $notify;
+    protected $notify;
 
 
     /**
@@ -1231,12 +1295,12 @@ class User implements AdvancedUserInterface
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $notify1;
+    protected $notify1;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $notify2;
+    protected $notify2;
 
 
     /**
@@ -1307,7 +1371,7 @@ class User implements AdvancedUserInterface
     /**
      * @var boolean
      */
-    private $broad;
+    protected $broad;
 
 
     /**

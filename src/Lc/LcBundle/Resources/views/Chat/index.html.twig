@@ -35,7 +35,7 @@
 										{% endif %}
 											
 											<h5 class="media-right">{{ entity.message }}</h5>
-											<a class="a-act pull-right" href="{{ path('chat_delete', {'token': entity.user2.token }) }}" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="glyphicon glyphicon-trash"></i></a>
+											<a class="a-act pull-right" onclick="tanya('{{ entity.user2.profile.name }}','{{ entity.user2.token }}')" href="#" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="glyphicon glyphicon-trash"></i></a>
 											<a class="a-act pull-right" href="{{ path('chat_show', {'token': entity.user2.token }) }}" data-toggle="tooltip" data-placement="top" title="Balas"><i class="glyphicon glyphicon-share-alt"></i></a>
 										</div>
 									</div>
@@ -63,6 +63,15 @@
 						</div>
 						
 				</div>
+<script>
+	function tanya(nama,token){
+		var con = confirm('Kamu yakin akan menghapus percakapan mu dengan '+nama+'?');
+		
+		if (con){
+			window.open('{{ app.request.getBaseURL() }}/heaven/chat/delete/'+token+'', '_top');
+		}
+	}
+</script>
 {% endblock %}
 {%block rightcontent%}
 	{{ include ('LcLcBundle:Default:userrightbar.html.twig') }}

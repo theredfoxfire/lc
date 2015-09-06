@@ -51,7 +51,7 @@
 				</form>
 			</div>
           <ul class="nav navbar-nav navbar-right">
-			<li><img class="img centered" src="{{ asset('uploads/users/thumb_') }}{{ app.user.foto }}" alt="{{ app.user.profile.name }}"></li>
+			<li><img class="img centered" src="{{ asset('uploads/users/thumb_') }}{{ app.user.foto }}" alt="{% if app.user.profile.name is defined %}{{ app.user.profile.name }} {% else %} {{ app.user.email }} {% endif %}"></li>
             <li><a href="{{ path('feeling') }}" data-toggle="tooltip" data-placement="top" title="Beranda"><b>Beranda</b></a></li>
             <li><a href="{{ path('friend_fall', {'token': app.user.token }) }}" data-toggle="tooltip" data-placement="top" title="Suka Kamu"><span class="glyphicon glyphicon-heart knowing"></span>{% if fall %}<span class="badge">{{ fall }}</span>{% endif %}</a></li>
 			<li><a href="{{ path('unread_chat') }}" data-toggle="tooltip" data-placement="top" title="Pesan"><span class="glyphicon glyphicon-envelope knowing"></span>{% if chat %}<span class="badge">{{ chat }}</span>{% endif %}</a></li>

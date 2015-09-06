@@ -144,20 +144,20 @@ class UserController extends Controller
 			/*
 			email section
 			*/
-			$transport = \Swift_SmtpTransport::newInstance('lucidcouple.com',587,'tls')
-			->setUsername('registration@lucidcouple.com')->setPassword('13264656#vL');
-			
-			$mailer = \Swift_Mailer::newInstance($transport);
-		
-			$message = \Swift_Message::newInstance()
-                ->setSubject('Aktivasi Akun LUCIDCOUPLE')
-                ->setFrom('registration@lucidcouple.com')
-                ->setTo($entity->getEmail())
-                ->setBody(
-                    $this->renderView('LcLcBundle:User:email.txt.twig', array('token' => $entity->getToken(), 'email' => $entity->getEmail())))
-            ;
- 
-            $mailer->send($message);
+			//~ $transport = \Swift_SmtpTransport::newInstance('lucidcouple.com',587,'tls')
+			//~ ->setUsername('registration@lucidcouple.com')->setPassword('13264656#vL');
+			//~ 
+			//~ $mailer = \Swift_Mailer::newInstance($transport);
+		//~ 
+			//~ $message = \Swift_Message::newInstance()
+                //~ ->setSubject('Aktivasi Akun LUCIDCOUPLE')
+                //~ ->setFrom('registration@lucidcouple.com')
+                //~ ->setTo($entity->getEmail())
+                //~ ->setBody(
+                    //~ $this->renderView('LcLcBundle:User:email.txt.twig', array('token' => $entity->getToken(), 'email' => $entity->getEmail())))
+            //~ ;
+ //~ 
+            //~ $mailer->send($message);
 		
             return $this->redirect($this->generateUrl('user_wait'));
         }

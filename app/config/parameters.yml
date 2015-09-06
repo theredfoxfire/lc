@@ -5,10 +5,10 @@ parameters:
     database_port: null
     database_name: lc
     database_user: root
-    database_password: 13264656#vL
-    mailer_transport:  gmail
-    mailer_host:       ~
-    mailer_user:       vizzlearn@gmail.com
-    mailer_password:   13264656&vL
+    database_password: 12345
+    mailer_transport: gmail
+    mailer_host: null
+    mailer_user: vizzlearn@gmail.com
+    mailer_password: '13264656&vL'
     locale: en
     secret: eb0e9d9261a5855343f50a4ea9c7fc07f7080c48

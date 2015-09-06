@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # This file is part of the Symfony Standard Edition.
 #
@@ -45,7 +45,7 @@ git reset --hard origin/$2
 composer install --prefer-dist -n
 
 # cleanup
-sudo rm -rf app/cache/* app/logs/* .git*
+rm -rf app/cache/* app/logs/* .git*
 chmod 777 app/cache app/logs
 find . -name .DS_Store | xargs rm -rf -
 
@@ -73,7 +73,11 @@ cd $TARGET/monolog/monolog && rm -rf README.markdown phpunit.xml* tests
 
 # Sensio
 cd $TARGET/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle && rm -rf phpunit.xml* Tests CHANGELOG* Resources/doc
-cd $TARGET/sensio/framework-extra-bundle/Sensio/Bundle/FrameworkExtraBundle && rm -rf phpunit.xml* Tests CHANGELOG* Resources/doc
+if [ -d $TARGET/sensio/framework-extra-bundle/Sensio/Bundle/FrameworkExtraBundle ]; then
+    cd $TARGET/sensio/framework-extra-bundle/Sensio/Bundle/FrameworkExtraBundle && rm -rf phpunit.xml* Tests CHANGELOG* Resources/doc
+else
+    cd $TARGET/sensio/framework-extra-bundle && rm -rf phpunit.xml* Tests CHANGELOG* Resources/doc
+fi
 cd $TARGET/sensio/generator-bundle/Sensio/Bundle/GeneratorBundle && rm -rf phpunit.xml* Tests CHANGELOG* Resources/doc
 
 # Swiftmailer
@@ -110,12 +114,12 @@ find $TARGET -name .svn | xargs rm -rf -
 # With vendors
 cd /tmp
 tar zcpf $DIR/Symfony_Standard_Vendors_$VERSION.tgz Symfony
-sudo rm -f $DIR/Symfony_Standard_Vendors_$VERSION.zip
+rm -f $DIR/Symfony_Standard_Vendors_$VERSION.zip
 zip -rq $DIR/Symfony_Standard_Vendors_$VERSION.zip Symfony
 
 # Without vendors
 cd /tmp
 rm -rf Symfony/vendor
 tar zcpf $DIR/Symfony_Standard_$VERSION.tgz Symfony
-sudo rm -f $DIR/Symfony_Standard_$VERSION.zip
+rm -f $DIR/Symfony_Standard_$VERSION.zip
 zip -rq $DIR/Symfony_Standard_$VERSION.zip Symfony

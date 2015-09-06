@@ -2,7 +2,7 @@
 				<div class="col-md-2 column">
 				<a href="{{ path('user_foto') }}" data-toggle="tooltip" data-placement="top" title="Ubah foto profile Anda">
 				<div class="thumbnail">
-					<img src="{{ asset('uploads/users/grande_') }}{{ app.user.foto }}" alt="{{ app.user.profile.name }}">
+					<img src="{{ asset('uploads/users/grande_') }}{{ app.user.foto }}" alt="{% if app.user.profile.name is defined %}{{ app.user.profile.name }} {% else %} {{ app.user.email }} {% endif %}">
 				</div>
 				</a>
 					<div id="navbar" class="navbar">

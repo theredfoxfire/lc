@@ -67,3 +67,27 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     disable_delivery:  false
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: Lc\LcBundle\Entity\User
+hwi_oauth:
+    #this is my custom user provider, created from FOSUBUserProvider - will manage the 
+    #automatic user registration on your site, with data from the provider (facebook. google, etc.)
+    #and also, the connecting part (get the token and the user_id)
+    connect:
+        account_connector: my_user_provider
+    # name of the firewall in which this bundle is active, this setting MUST be set
+    firewall_name: main
+    fosub:
+        username_iterations: 30
+        properties:
+            # these properties will be used/redefined later in the custom FOSUBUserProvider service.
+            facebook: facebook_id
+            google: google_id
+    resource_owners:
+        facebook:
+            type:                facebook
+            client_id:           "1501834740106964"
+            client_secret:       "bbe662554b813f7642c85d4f1de7c801"
+            scope:               "email, basic_info, user_birthday"
