@@ -18,7 +18,6 @@ Lc\LcBundle\Entity\User:
   birthday:
    - NotBlank:
       message: 'Tanggal lahir harap diisi.'
-   - ContainsAlphanumeric: ~
   password2:
    - NotBlank:
       message: 'Ulangi password harap diisi.'

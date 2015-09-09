@@ -32,6 +32,43 @@
 			dateFormat:'yy-mm-dd'
 		});
 	});
+	//show login 
+	$(function () {
+
+		$('.toggle').click(function (event) {
+			event.preventDefault();
+			var target = $(this).attr('href');
+			$(target).toggleClass('hidden show');
+			document.getElementById('lost').innerHTML='';
+			document.getElementById('daftar').innerHTML='';
+			document.getElementById('contact').innerHTML='';
+		});
+
+	});
+	//endof show login
+	
+	//FB share page script
+	window.fbAsyncInit = function(){
+		FB.init({
+			appId: '1501834740106964',status: true, cookie: true, xfbml: true }); 
+		};
+		(function(d, debug){var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+			if(d.getElementById(id)) {return;}
+			js = d.createElement('script'); js.id = id; 
+			js.async = true;js.src = "//connect.facebook.net/en_US/all" + (debug ? "/debug" : "") + ".js";
+			ref.parentNode.insertBefore(js, ref);}(document, /*debug*/ false));
+		function postToFeed(title, desc, url, image){
+		var obj = {method: 'feed',redirect_uri:'http://www.lucidcouple.com/web/login/facebook',link: url, picture: 'http://www.lucidcouple.com/web/bundles/lclc/img/'+image,name: title,description: desc};
+		function callback(response){}
+		FB.ui(obj, callback);
+		}
+	//End of FB share page
+	
+	// Custom Js for FB share
+	function share(){
+		postToFeed("Gabung yuk di LUCIDCOUPLE-Temukan aku di sini!", "Layanan aplikasi yang membantumu agar bisa terhubung dengan mereka yang single. Buatlah hidup mu menjadi lebih berwarna, dan temukan takdirmu disini Daftar sekarang! Geratis, akses penuh, selamanya.", 'http://lucidcouple.com', 'intro-bg1.jpg');
+		}
+	//End of custom FB share button
 	</script>
     <!--<link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">-->
@@ -87,7 +124,7 @@
         <div class="intro-body">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
+                    <div class="col-md-8 col-md-offset-2" id='lost'>
                         <h1 class="brand-heading">LucidCouple</h1>
                         <p class="intro-text">Layanan aplikasi yang membantumu agar bisa terhubung dengan mereka yang single. 
                         Buatlah hidup mu menjadi lebih berwarna, dan temukan takdirmu disini
@@ -96,13 +133,18 @@
                             <i class="fa fa-angle-double-down animated"></i>
                         </a>
                     </div>
+                    <div class="col-lg-8 col-lg-offset-2 well hidden" id='login'>
+						<h2>Terima Kasih Sudah Bergabung di LucidCouple</h2>
+						<p><a href="{{ path('hwi_oauth_service_redirect', {'service': 'facebook' }) }}" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Klik Untuk Login</span></a>
+						</p>
+					</div>
                 </div>
             </div>
         </div>
     </header>
-
     <!-- About Section -->
-    <section id="daftar" class="container content-section text-center">
+    <div id='daftar'>
+    <section class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>Daftar LucidCouple</h2>
@@ -119,19 +161,22 @@
 						</div>
 					</div>
 					</li>
+					{{ path('hwi_oauth_service_redirect', {'service': 'facebook' }) }}
 -->
 					<li>
-					<a href="{{ path('hwi_oauth_service_redirect', {'service': 'facebook' }) }}" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Melalui Facebook</span></a>
+					<a href="#login" onclick="return share()" class="toggle btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Klik Untuk Daftar</span></a>
 					</li>
 					</ul>
 				</p>
             </div>
         </div>
     </section>
+    </div>
 
 
     <!-- Contact Section -->
-    <section id="contact" class="container content-section text-center">
+    <div id="contact">
+    <section class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>Hubungi LucidCouple</h2>
@@ -154,6 +199,7 @@
             </div>
         </div>
     </section>
+    </div>
 
     <!-- Map Section -->
     

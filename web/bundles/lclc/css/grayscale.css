@@ -227,6 +227,11 @@ a:focus {
     }
 }
 
+.well{
+	background-color: #49112A !important;
+	opacity: 0.6 !important;
+}
+
 .btn-circle {
     width: 70px;
     height: 70px;

@@ -4,7 +4,9 @@
 {% endblock %}
 {%block content%}
 				<div class="col-sm-7 column">
-				{% for entity in entities %}
+				
+				{% set fr = 0 %}
+				{% for entity in entities %}						
 						{% if loop.index%4 == 1 %}
 							<div class="row">
 						{% endif %}
@@ -27,7 +29,14 @@
 							</div>
 						{% endif %}
 						
+						{% set fr = 1 %}
 					{% endfor %}
+					
+					{% if fr == 0 %}
+						<div class="row">
+							<h4>Maaf kami tidak menemukan orang yang Anda cari, coba dengan Nama lain.</h4>
+						</div>
+					{% endif %}
 					<div class="text-center">
 							{% if c > 16 %}
 								Halaman: <b>{{ knp_pagination_render(entities) }}</b>
