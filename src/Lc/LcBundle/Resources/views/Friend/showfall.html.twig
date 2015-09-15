@@ -31,7 +31,7 @@
 											</div>
 											<div class="media-body f-feel">
 												<h4 class="media-right">{{ entity.user1.profile.name }}</h4>
-												<a class="a-act pull-right" href="{{ path('friend_delete', {'token': entity.token }) }}" data-toggle="tooltip" data-placement="top" title="Tolak"><i class="glyphicon glyphicon-remove-sign"></i></a>
+												<a class="a-act pull-right" onclick="tanya('{{ entity.user1.profile.name }}','{{ entity.token }}')" href="#" data-toggle="tooltip" data-placement="top" title="Tolak"><i class="glyphicon glyphicon-remove-sign"></i></a>
 												<a class="a-act pull-right" href="{{ path('friend_update', {'token': entity.token }) }}" data-toggle="tooltip" data-placement="top" title="Terima"><i class="glyphicon glyphicon-heart-empty"></i></a>
 											</div>
 										</div>
@@ -58,6 +58,15 @@
 						</div>
 						
 				</div>
+<script>
+	function tanya(nama,token){
+		var con = confirm('Kamu yakin menolak permintaan '+nama+' untuk berteman?');
+		
+		if (con){
+			window.open('{{ app.request.getBaseURL() }}/heaven/friend/'+token+'/reject', '_top');
+		}
+	}
+</script>
 {% endblock %}
 {%block rightcontent%}
 	{{ include ('LcLcBundle:Default:userrightbar.html.twig') }}

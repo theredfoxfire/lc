@@ -11,15 +11,13 @@
         <div class="download-section">
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <h2>Login Lucidcouple</h2>
-                    {% if (app.session.flashbag.get('notice') is not empty) %}
+                    <h2>Login LucidCouple</h2>
 					<center id="message-session">
 					<div class="alert alert-danger lebar" role="alert"> 
-						Koneksi jaringan internet Anda kurang baik, coba klik login lagi.
+						Anda sepertinya mencoba mengakses halaman yang tidak diijinkan, silahkan klik login untuk masuk ke halaman aplikasi.
 					</div>
 					<hr />
 					</center>
-					{% endif %}
                     <p><a href="{{ path('hwi_oauth_service_redirect', {'service': 'facebook' }) }}" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Klik Untuk Login</span></a>
 					</p>
                 </div>
