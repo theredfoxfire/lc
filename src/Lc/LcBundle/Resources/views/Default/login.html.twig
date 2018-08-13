@@ -2,31 +2,46 @@
 	{% block menu %}
     {{ include ('LcLcBundle:Default:menu.thank.html.twig') }}
 	{% endblock %}
-	
+
 	{% block content %}
     <!-- Intro Header -->
 
     <!-- Download Section -->
-    <section id="login" class="content-section text-center">
+		<section id="login" class="content-section text-center">
         <div class="download-section">
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <h2>Login Lucidcouple</h2>
-                    {% if (app.session.flashbag.get('notice') is not empty) %}
-					<center id="message-session">
-					<div class="alert alert-danger lebar" role="alert"> 
-						Koneksi jaringan internet Anda kurang baik, coba klik login lagi.
-					</div>
-					<hr />
-					</center>
-					{% endif %}
-                    <p><a href="{{ path('hwi_oauth_service_redirect', {'service': 'facebook' }) }}" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Klik Untuk Login</span></a>
+                    <h2>Login LucidCouple</h2>
+                    <p>
+						{% if error %}
+							<div>{{ error.message }}</div>
+						{% endif %}
+						<form role="form" class="login-area" action="{{ path('login_check') }}" method="post">
+						<input type="hidden" name="_csrf_token"
+				        value="{{ csrf_token('authenticate') }}"
+				    >
+							<div class="form-group form-area">
+								<label for="InputEmail">Email</label>
+								<div class="input-group">
+									<input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" placeholder="Masukan email" required/>
+									<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+								</div>
+							</div>
+							<div class="form-group form-area">
+								<label for="InputEmail">Password</label>
+								<div class="input-group">
+									<input type="password" class="form-control" id="password" name="_password" placeholder="Masukan password" required/>
+									<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+								</div>
+							</div>
+							<input type="submit" name="submit" id="submit" value="Login" class="btn btn-default btn-lg pull-right">
+						</form>
 					</p>
                 </div>
             </div>
         </div>
     </section>
-    
+
     <!-- Contact Section -->
     <section id="contact" class="container content-section text-center">
         <div class="row">

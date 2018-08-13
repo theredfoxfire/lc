@@ -11,6 +11,22 @@ Lc\LcBundle\Entity\User:
    type: string
    length: 255
    nullable: true
+  email:
+   type: string
+   length: 255
+   nullable: true
+  password:
+   type: string
+   length: 255
+   nullable: true
+  username:
+   type: string
+   length: 255
+   nullable: true
+  email_canonical:
+   type: string
+   length: 255
+   nullable: true
   facebook_access_token:
    type: string
    length: 255

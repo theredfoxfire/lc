@@ -1,4 +1,4 @@
-var _validFileExtensions = [".jpg", ".jpeg", ".gif", ".png"];    
+var _validFileExtensions = [".jpg", ".jpeg", ".gif", ".png"];
 function Validate(oForm) {
     var arrInputs = oForm.getElementsByTagName("input");
     var input, file;
@@ -15,16 +15,16 @@ function Validate(oForm) {
                         break;
                     }
                 }
-                
+
                 if (!blnValid) {
                     alert("Silahkan pilih file image, dengan type: " + _validFileExtensions.join(", "));
                     return false;
                 }
-                
-                
+
+
             }
         }
-        
+
     }
     if (!window.FileReader) {
 					alert("The file API isn't supported on this browser yet.");
@@ -40,11 +40,15 @@ function Validate(oForm) {
 					alert("This browser doesn't seem to support the `files` property of file inputs.");
 					return false;
 				}
+				// if (!input.files[0]) {
+				// 	alert("Please select a file before clicking 'Load'");
+				// 	return false;
+				// }
 				file = input.files[0];
 				if(file.size > 3000000) {
 					alert("Ukuran file tidak boleh melebihi 3 MB.");
 					return false;
 				}
-  
+
     return true;
 }

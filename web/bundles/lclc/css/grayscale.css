@@ -223,13 +223,8 @@ a:focus {
     }
 
     .intro .intro-body .intro-text {
-        font-size: 19px;
+        font-size: 25px;
     }
-}
-
-.well{
-	background-color: #49112A !important;
-	opacity: 0.6 !important;
 }
 
 .btn-circle {

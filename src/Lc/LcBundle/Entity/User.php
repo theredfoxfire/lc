@@ -12,13 +12,13 @@ use FOS\UserBundle\Model\User as BaseUser;
 /**
  * User
  */
-class User extends BaseUser
+class User implements UserInterface, \Serializable
 {
     /**
      * @var integer
      */
     protected $id;
-        /** @ORM\Column(name="facebook_id", type="string", length=255, nullable=true) */
+    /** @ORM\Column(name="facebook_id", type="string", length=255, nullable=true) */
     protected $facebook_id;
     /** @ORM\Column(name="facebook_access_token", type="string", length=255, nullable=true) */
     protected $facebook_access_token;
@@ -32,8 +32,10 @@ class User extends BaseUser
     protected $phone;
     protected $username;
     protected $email;
+    protected $email_canonical;
     protected $password2;
-    
+    protected $password;
+
     protected $birthday;
     protected $sex;
     public $file;
@@ -61,7 +63,7 @@ class User extends BaseUser
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -74,7 +76,7 @@ class User extends BaseUser
      * @param string $username
      * @return User
      */
-     
+
     public function setFacebookId($facebook_id)
     {
         $this->username = $facebook_id;
@@ -85,13 +87,13 @@ class User extends BaseUser
     /**
      * Get username
      *
-     * @return string 
+     * @return string
      */
     public function getFacebookId()
     {
         return $this->facebook_id;
     }
-    
+
     public function setGoogleId($google_id)
     {
         $this->username = $google_id;
@@ -102,13 +104,13 @@ class User extends BaseUser
     /**
      * Get username
      *
-     * @return string 
+     * @return string
      */
     public function getGoogleId()
     {
         return $this->google_id;
     }
-    
+
     public function setGoogleAccessToken($google_access_token)
     {
         $this->username = $google_access_token;
@@ -119,13 +121,13 @@ class User extends BaseUser
     /**
      * Get username
      *
-     * @return string 
+     * @return string
      */
     public function getGoogleAccessToken()
     {
         return $this->google_access_token;
     }
-    
+
     public function setFacebookAccessToken($facebook_access_token)
     {
         $this->username = $facebook_access_token;
@@ -136,13 +138,13 @@ class User extends BaseUser
     /**
      * Get username
      *
-     * @return string 
+     * @return string
      */
     public function getFacebookAccessToken()
     {
         return $this->facebook_access_token;
     }
-    
+
     public function setUsername($username)
     {
         $this->username = $username;
@@ -153,7 +155,7 @@ class User extends BaseUser
     /**
      * Get username
      *
-     * @return string 
+     * @return string
      */
     public function getUsername()
     {
@@ -176,11 +178,33 @@ class User extends BaseUser
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
         return $this->email;
+    }
+    /**
+     * Set email_canonical
+     *
+     * @param string email_canonical
+     * @return User
+     */
+    public function setEmailCanonical($email_canonical)
+    {
+        $this->email_canonical = $email_canonical;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmailCanonical()
+    {
+        return $this->email_canonical;
     }
 
     /**
@@ -199,11 +223,35 @@ class User extends BaseUser
     /**
      * Get phone
      *
-     * @return string 
+     * @return string
      */
     public function getPhone()
     {
         return $this->phone;
+    }
+
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list(
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt
+        ) = unserialize($serialized);
     }
 
     /**
@@ -222,13 +270,13 @@ class User extends BaseUser
     /**
      * Get password
      *
-     * @return string 
+     * @return string
      */
     public function getPassword()
     {
         return $this->password;
     }
-    
+
     public function setSex($sex)
     {
         $this->sex = $sex;
@@ -239,13 +287,13 @@ class User extends BaseUser
     /**
      * Get password
      *
-     * @return string 
+     * @return string
      */
     public function getSex()
     {
         return $this->sex;
     }
-    
+
     public function setPassword2($password2)
     {
         $this->password2 = $password2;
@@ -256,13 +304,13 @@ class User extends BaseUser
     /**
      * Get password
      *
-     * @return string 
+     * @return string
      */
     public function getPassword2()
     {
         return $this->password2;
     }
-    
+
     public function setBirthday($birthday)
     {
         $this->birthday = new \DateTime($birthday);
@@ -273,7 +321,7 @@ class User extends BaseUser
     /**
      * Get password
      *
-     * @return string 
+     * @return string
      */
     public function getBirthday()
     {
@@ -296,7 +344,7 @@ class User extends BaseUser
     /**
      * Get is_active
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsActive()
     {
@@ -319,7 +367,7 @@ class User extends BaseUser
     /**
      * Get created_at
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -342,7 +390,7 @@ class User extends BaseUser
     /**
      * Get updated_at
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -365,7 +413,7 @@ class User extends BaseUser
     /**
      * Get token
      *
-     * @return string 
+     * @return string
      */
     public function getToken()
     {
@@ -379,11 +427,11 @@ class User extends BaseUser
     /**
      * Constructor
      */
-    public function __construct()
-    {
-        $this->feeling = new \Doctrine\Common\Collections\ArrayCollection();
-        parent::__construct();
-    }
+    // public function __construct()
+    // {
+    //     $this->feeling = new \Doctrine\Common\Collections\ArrayCollection();
+    //     parent::__construct();
+    // }
 
     /**
      * Add feeling
@@ -411,7 +459,7 @@ class User extends BaseUser
     /**
      * Get feeling
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getFeeling()
     {
@@ -444,7 +492,7 @@ class User extends BaseUser
     /**
      * Get usercriteria
      *
-     * @return \Lc\LcBundle\Entity\Usercriteria 
+     * @return \Lc\LcBundle\Entity\Usercriteria
      */
     public function getUsercriteria()
     {
@@ -467,7 +515,7 @@ class User extends BaseUser
     /**
      * Get profile
      *
-     * @return \Lc\LcBundle\Entity\Profile 
+     * @return \Lc\LcBundle\Entity\Profile
      */
     public function getProfile()
     {
@@ -545,7 +593,7 @@ class User extends BaseUser
     /**
      * Get fcomment
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getFcomment()
     {
@@ -578,7 +626,7 @@ class User extends BaseUser
     /**
      * Get flike
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getFlike()
     {
@@ -611,7 +659,7 @@ class User extends BaseUser
     /**
      * Get fshare
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getFshare()
     {
@@ -644,7 +692,7 @@ class User extends BaseUser
     /**
      * Get gshare
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getGshare()
     {
@@ -677,7 +725,7 @@ class User extends BaseUser
     /**
      * Get gcomment
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getGcomment()
     {
@@ -710,7 +758,7 @@ class User extends BaseUser
     /**
      * Get glike
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getGlike()
     {
@@ -743,7 +791,7 @@ class User extends BaseUser
     /**
      * Get gallery
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getGallery()
     {
@@ -776,7 +824,7 @@ class User extends BaseUser
     /**
      * Get userdoing
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getUserdoing()
     {
@@ -809,7 +857,7 @@ class User extends BaseUser
     /**
      * Get userlog
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getUserlog()
     {
@@ -829,10 +877,10 @@ class User extends BaseUser
      */
     public function setTokenValue()
     {
-        if(!$this->getToken()) {
+        if (!$this->getToken()) {
             $st = date('Y-m-d H:i:s');
-			$st = $st.$this->getEmail();
-			$this->token = sha1($st.rand(11111, 99999));
+            $st = $st.$this->getEmail();
+            $this->token = sha1($st.rand(11111, 99999));
         }
     }
     /**
@@ -842,41 +890,40 @@ class User extends BaseUser
     {
         $this->updated_at = new \DateTime();
     }
-    
-	public function getRoles()
+
+    public function getRoles()
     {
         return array('ROLE_USER');
     }
- 
+
     public function getSalt()
     {
         return null;
     }
- 
-    //~ public function eraseCredentials()
-    //~ {
- //~ 
-    //~ }
- //~ 
+
+    public function eraseCredentials()
+    {
+    }
+    //~
     //~ public function equals(User $user)
     //~ {
-        //~ return $user->getUsername() == $this->getUsername();
-    //~ } 
-    //~ 
+    //~ return $user->getUsername() == $this->getUsername();
+    //~ }
+    //~
     //~ public function isEnabled(){
-		//~ return $this->getIsActive();
-	//~ }
-	//~ public function isCredentialsNonExpired(){
-		//~ return true;
-	//~ }
-	//~ 
-	//~ public function isAccountNonExpired(){
-		//~ return true;
-	//~ }
-	//~ 
-	//~ public function isAccountNonLocked(){
-		//~ return true;
-	//~ }
+    //~ return $this->getIsActive();
+    //~ }
+    //~ public function isCredentialsNonExpired(){
+    //~ return true;
+    //~ }
+    //~
+    //~ public function isAccountNonExpired(){
+    //~ return true;
+    //~ }
+    //~
+    //~ public function isAccountNonLocked(){
+    //~ return true;
+    //~ }
     /**
      * @var string
      */
@@ -899,13 +946,13 @@ class User extends BaseUser
     /**
      * Get foto
      *
-     * @return string 
+     * @return string
      */
     public function getFoto()
     {
         return $this->foto;
     }
-    
+
     public function setFile($file)
     {
         $this->file = $file;
@@ -916,52 +963,52 @@ class User extends BaseUser
     /**
      * Get foto
      *
-     * @return string 
+     * @return string
      */
     public function getFile()
     {
         return $this->file;
     }
-    
-    
+
+
 
     /**
      * @ORM\PrePersist
      */
     protected function getUploadDir()
-	{
-		return 'uploads/users';
-	}
-	
-	protected function getUploadRootDir()
-	{
-		return __DIR__.'/../../../../web/'.$this->getUploadDir();
-	}
-	
-	public function getWebPath()
-	{
-		return null === $this->foto ? null : $this->getUploadDir().'/'.$this->foto;
-	}
-	
-	public function getWebPathMini()
-	{
-		return null === $this->foto ? null : $this->getUploadDir().'/mini_'.$this->foto;
-	}
-	
-	public function getAbsolutePath()
-	{
-		return null === $this->foto ? null : $this->getUploadRootDir().'/'.$this->foto;
-	}
-    
+    {
+        return 'uploads/users';
+    }
+
+    protected function getUploadRootDir()
+    {
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->foto ? null : $this->getUploadDir().'/'.$this->foto;
+    }
+
+    public function getWebPathMini()
+    {
+        return null === $this->foto ? null : $this->getUploadDir().'/mini_'.$this->foto;
+    }
+
+    public function getAbsolutePath()
+    {
+        return null === $this->foto ? null : $this->getUploadRootDir().'/'.$this->foto;
+    }
+
 
     /**
      * @ORM\PrePersist
      */
     public function preUpload()
     {
-        if (null !== $this->file){
-				$this->foto = uniqid().'.'.$this->file->guessExtension();
-			}
+        if (null !== $this->file) {
+            $this->foto = uniqid().'.'.$this->file->guessExtension();
+        }
     }
 
     /**
@@ -969,33 +1016,33 @@ class User extends BaseUser
      */
     public function upload()
     {
-        if (null === $this->file){
-			return;
-		} 
-		$this->file->move($this->getUploadRootDir(), $this->foto);
-		
-		Image::open($this->getUploadRootDir().'/'.$this->foto)
-		->scaleResize(200, 200, $background = 0xffffff)
-		->save($this->getUploadRootDir().'/index_'.$this->foto);
-		
-		Image::open($this->getUploadRootDir().'/'.$this->foto)
-		->scaleResize(128, 128, $background = 0xffffff)
-		->save($this->getUploadRootDir().'/grande_'.$this->foto);
-		
-		Image::open($this->getUploadRootDir().'/'.$this->foto)
-		->scaleResize(48, 48, $background = 0xffffff)
-		->save($this->getUploadRootDir().'/mini_'.$this->foto);
-		
-		Image::open($this->getUploadRootDir().'/'.$this->foto)
-		->scaleResize(36, 36, $background = 0xffffff)
-		->save($this->getUploadRootDir().'/thumb_'.$this->foto);
-		
-		$rmfile = $this->getAbsolutePath();
-        if(file_exists($rmfile)) {
-			unlink($rmfile);
-		}
-		
-		unset($this->file);
+        if (null === $this->file) {
+            return;
+        }
+        $this->file->move($this->getUploadRootDir(), $this->foto);
+
+        Image::open($this->getUploadRootDir().'/'.$this->foto)
+        ->scaleResize(200, 200, $background = 0xffffff)
+        ->save($this->getUploadRootDir().'/index_'.$this->foto);
+
+        Image::open($this->getUploadRootDir().'/'.$this->foto)
+        ->scaleResize(128, 128, $background = 0xffffff)
+        ->save($this->getUploadRootDir().'/grande_'.$this->foto);
+
+        Image::open($this->getUploadRootDir().'/'.$this->foto)
+        ->scaleResize(48, 48, $background = 0xffffff)
+        ->save($this->getUploadRootDir().'/mini_'.$this->foto);
+
+        Image::open($this->getUploadRootDir().'/'.$this->foto)
+        ->scaleResize(36, 36, $background = 0xffffff)
+        ->save($this->getUploadRootDir().'/thumb_'.$this->foto);
+
+        $rmfile = $this->getAbsolutePath();
+        if (file_exists($rmfile)) {
+            unlink($rmfile);
+        }
+
+        unset($this->file);
     }
 
 
@@ -1013,33 +1060,33 @@ class User extends BaseUser
     public function removeUpload()
     {
         $file = $this->getAbsolutePath();
-        if(file_exists($file)) {
-			unlink($file);
-		}
+        if (file_exists($file)) {
+            unlink($file);
+        }
     }
-    
+
     public function removeUploaded()
     {
-        if (null === $this->file){
-			return;
-		}
-		
-		$rmfilei = $this->getUploadRootDir().'/index_'.$this->getFoto();
-		$rmfilem = $this->getUploadRootDir().'/mini_'.$this->getFoto();
-		$rmfileg = $this->getUploadRootDir().'/grande_'.$this->getFoto();
-		$rmfilez = $this->getUploadRootDir().'/thumb_'.$this->getFoto();
-        if(file_exists($rmfilei)) {
-			unlink($rmfilei);
-		}
-		if(file_exists($rmfilem)) {
-			unlink($rmfilem);
-		}
-		if(file_exists($rmfileg)) {
-			unlink($rmfileg);
-		}
-		if(file_exists($rmfilez)) {
-			unlink($rmfilez);
-		}
+        if (null === $this->file) {
+            return;
+        }
+
+        $rmfilei = $this->getUploadRootDir().'/index_'.$this->getFoto();
+        $rmfilem = $this->getUploadRootDir().'/mini_'.$this->getFoto();
+        $rmfileg = $this->getUploadRootDir().'/grande_'.$this->getFoto();
+        $rmfilez = $this->getUploadRootDir().'/thumb_'.$this->getFoto();
+        if (file_exists($rmfilei)) {
+            unlink($rmfilei);
+        }
+        if (file_exists($rmfilem)) {
+            unlink($rmfilem);
+        }
+        if (file_exists($rmfileg)) {
+            unlink($rmfileg);
+        }
+        if (file_exists($rmfilez)) {
+            unlink($rmfilez);
+        }
     }
 
     /**
@@ -1049,7 +1096,7 @@ class User extends BaseUser
     {
         // Add your code here
     }
-    
+
     /**
      * @var \Lc\LcBundle\Entity\Friend
      */
@@ -1077,7 +1124,7 @@ class User extends BaseUser
     /**
      * Get friend1
      *
-     * @return \Lc\LcBundle\Entity\Friend 
+     * @return \Lc\LcBundle\Entity\Friend
      */
     public function getFriend1()
     {
@@ -1100,7 +1147,7 @@ class User extends BaseUser
     /**
      * Get friend2
      *
-     * @return \Lc\LcBundle\Entity\Friend 
+     * @return \Lc\LcBundle\Entity\Friend
      */
     public function getFriend2()
     {
@@ -1133,7 +1180,7 @@ class User extends BaseUser
     /**
      * Get chat1
      *
-     * @return \Lc\LcBundle\Entity\Friend 
+     * @return \Lc\LcBundle\Entity\Friend
      */
     public function getChat1()
     {
@@ -1156,7 +1203,7 @@ class User extends BaseUser
     /**
      * Get chat2
      *
-     * @return \Lc\LcBundle\Entity\Friend 
+     * @return \Lc\LcBundle\Entity\Friend
      */
     public function getChat2()
     {
@@ -1286,7 +1333,7 @@ class User extends BaseUser
     /**
      * Get notify
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getNotify()
     {
@@ -1329,7 +1376,7 @@ class User extends BaseUser
     /**
      * Get notify1
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getNotify1()
     {
@@ -1362,7 +1409,7 @@ class User extends BaseUser
     /**
      * Get notify2
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getNotify2()
     {
@@ -1390,7 +1437,7 @@ class User extends BaseUser
     /**
      * Get broad
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getBroad()
     {

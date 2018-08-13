@@ -37,25 +37,25 @@ class UserController extends Controller
             'entities' => $entities,
         ));
     }
-    
-    
+
+
     public function allAction()
     {
         $em = $this->getDoctrine()->getManager();
-        
+
         $paginator = $this->get('knp_paginator');
         $query = $em->getRepository('LcLcBundle:User')->loadAll($this->getUid()->getSex(), $this->getUid()->getId(), null);
-        
+
         $pagination = $paginator->paginate(
-			$query,
-			$this->get('request')->query->get('page', 1),
-			16
-		);
+            $query,
+            $this->get('request')->query->get('page', 1),
+            16
+        );
         $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
         $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
         $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
         $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
-        
+
         $c = $em->getRepository('LcLcBundle:User')->countAll($this->getUid()->getSex(), $this->getUid()->getId());
         $cp = count($pagination);
 
@@ -69,31 +69,28 @@ class UserController extends Controller
             'notify' => $notify,
         ));
     }
-    
+
     public function searchAction()
     {
         $em = $this->getDoctrine()->getManager();
         $key = $this->getRequest()->get('query');
         $paginator = $this->get('knp_paginator');
-        if($key)
-        {
-			$query = $em->getRepository('LcLcBundle:User')->loadAll($this->getUid()->getSex(), $this->getUid()->getId(), $key);
-		}
-		else
-		{
-			$query = $em->getRepository('LcLcBundle:User')->loadAll($this->getUid()->getSex(), $this->getUid()->getId(), null);
-		}
-        
+        if ($key) {
+            $query = $em->getRepository('LcLcBundle:User')->loadAll($this->getUid()->getSex(), $this->getUid()->getId(), $key);
+        } else {
+            $query = $em->getRepository('LcLcBundle:User')->loadAll($this->getUid()->getSex(), $this->getUid()->getId(), null);
+        }
+
         $pagination = $paginator->paginate(
-			$query,
-			$this->get('request')->query->get('page', 1),
-			16
-		);
+            $query,
+            $this->get('request')->query->get('page', 1),
+            16
+        );
         $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
         $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
         $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
         $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
-        
+
         $c = $em->getRepository('LcLcBundle:User')->countSearchAll($this->getUid()->getSex(), $this->getUid()->getId(), $key);
         $cp = count($pagination);
 
@@ -107,7 +104,7 @@ class UserController extends Controller
             'notify' => $notify,
         ));
     }
-    
+
     public function waitAction()
     {
         return $this->render('LcLcBundle:User:wait.html.twig');
@@ -126,39 +123,41 @@ class UserController extends Controller
             $em = $this->getDoctrine()->getManager();
             $formData = $request->get('lc_lcbundle_user');
             $ps = $formData['password'];
-            
+
             $factory = $this->get('security.encoder_factory');
-			$encoder = $factory->getEncoder($entity);
-			$ep = $encoder->encodePassword($ps, $entity->getSalt());
-            
-			$entity->setUsername($formData['email']);
-			$entity->setFoto($formData['email'].'.png');
-			$entity->setPassword($ep);
-			$entity->setIsActive(false);
-			$entity->setBroad(false);
+            $encoder = $factory->getEncoder($entity);
+            $ep = $encoder->encodePassword($ps, $entity->getSalt());
+
+            $entity->setUsername($formData['email']);
+            $entity->setFoto($formData['email'].'.png');
+            $entity->setPassword($ep);
+            $entity->setIsActive(false);
+            $entity->setBroad(false);
             $em->persist($entity);
             $em->flush();
-            
+
             $em = $this->getDoctrine()->getManager();
-			$entity = $em->getRepository('LcLcBundle:User')->findOneByEmail($formData['email']);
-			/*
-			email section
-			*/
-			//~ $transport = \Swift_SmtpTransport::newInstance('lucidcouple.com',587,'tls')
-			//~ ->setUsername('registration@lucidcouple.com')->setPassword('13264656#vL');
-			//~ 
-			//~ $mailer = \Swift_Mailer::newInstance($transport);
-		//~ 
-			//~ $message = \Swift_Message::newInstance()
-                //~ ->setSubject('Aktivasi Akun LUCIDCOUPLE')
-                //~ ->setFrom('registration@lucidcouple.com')
-                //~ ->setTo($entity->getEmail())
-                //~ ->setBody(
-                    //~ $this->renderView('LcLcBundle:User:email.txt.twig', array('token' => $entity->getToken(), 'email' => $entity->getEmail())))
+            $entity = $em->getRepository('LcLcBundle:User')->findOneByEmail($formData['email']);
+
+            $this->activateAction($entity->getToken());
+            /*
+              email section
+            */
+            //~ $transport = \Swift_SmtpTransport::newInstance('lucidcouple.com',587,'tls')
+            //~ ->setUsername('registration@lucidcouple.com')->setPassword('13264656#vL');
+            //~
+            //~ $mailer = \Swift_Mailer::newInstance($transport);
+            //~
+            //~ $message = \Swift_Message::newInstance()
+            //~ ->setSubject('Aktivasi Akun LUCIDCOUPLE')
+            //~ ->setFrom('registration@lucidcouple.com')
+            //~ ->setTo($entity->getEmail())
+            //~ ->setBody(
+            //~ $this->renderView('LcLcBundle:User:email.txt.twig', array('token' => $entity->getToken(), 'email' => $entity->getEmail())))
             //~ ;
- //~ 
+            //~
             //~ $mailer->send($message);
-		
+
             return $this->redirect($this->generateUrl('user_wait'));
         }
 
@@ -181,8 +180,8 @@ class UserController extends Controller
             'action' => $this->generateUrl('user_create'),
             'method' => 'POST',
             'attr' => array('class' => 'register-area'),
-        ));        
-		$form->add('file', 'hidden', array('label' => false, 'attr' => array('class'=>'btn btn-default btn-lg pull-right')));
+        ));
+        $form->add('file', 'hidden', array('label' => false, 'attr' => array('class'=>'btn btn-default btn-lg pull-right')));
 
         return $form;
     }
@@ -245,69 +244,67 @@ class UserController extends Controller
             'edit_form'   => $editForm->createView(),
         ));
     }
-    
-	public function activateAction($token)
+
+    public function activateAction($token)
     {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('LcLcBundle:User')->findOneByToken($token);
         $broad = $em->getRepository('LcLcBundle:User')->findOneById(1);
-        
+
         $profile = new Profile();
         $criteria = new Usercriteria();
 
         if (!$entity) {
             return $this->render('LcLcBundle:User:sorry.html.twig');
         }
-        
-        if($entity->getSex() == 1)
-		{
-			copy(__DIR__.'/../../../../web/uploads/users/grande_p.png', __DIR__.'/../../../../web/uploads/users/grande_'.$entity->getFoto().'');
-			copy(__DIR__.'/../../../../web/uploads/users/index_p.png', __DIR__.'/../../../../web/uploads/users/index_'.$entity->getFoto().'');
-			copy(__DIR__.'/../../../../web/uploads/users/mini_p.png', __DIR__.'/../../../../web/uploads/users/mini_'.$entity->getFoto().'');
-			copy(__DIR__.'/../../../../web/uploads/users/thumb_p.png', __DIR__.'/../../../../web/uploads/users/thumb_'.$entity->getFoto().'');
-		}else
-		{
-			copy(__DIR__.'/../../../../web/uploads/users/grande_w.png', __DIR__.'/../../../../web/uploads/users/grande_'.$entity->getFoto().'');
-			copy(__DIR__.'/../../../../web/uploads/users/index_w.png', __DIR__.'/../../../../web/uploads/users/index_'.$entity->getFoto().'');
-			copy(__DIR__.'/../../../../web/uploads/users/mini_w.png', __DIR__.'/../../../../web/uploads/users/mini_'.$entity->getFoto().'');
-			copy(__DIR__.'/../../../../web/uploads/users/thumb_w.png', __DIR__.'/../../../../web/uploads/users/thumb_'.$entity->getFoto().'');
-		}
-        
+
+        if ($entity->getSex() == 1) {
+            copy(__DIR__.'/../../../../web/uploads/users/grande_p.png', __DIR__.'/../../../../web/uploads/users/grande_'.$entity->getFoto().'');
+            copy(__DIR__.'/../../../../web/uploads/users/index_p.png', __DIR__.'/../../../../web/uploads/users/index_'.$entity->getFoto().'');
+            copy(__DIR__.'/../../../../web/uploads/users/mini_p.png', __DIR__.'/../../../../web/uploads/users/mini_'.$entity->getFoto().'');
+            copy(__DIR__.'/../../../../web/uploads/users/thumb_p.png', __DIR__.'/../../../../web/uploads/users/thumb_'.$entity->getFoto().'');
+        } else {
+            copy(__DIR__.'/../../../../web/uploads/users/grande_w.png', __DIR__.'/../../../../web/uploads/users/grande_'.$entity->getFoto().'');
+            copy(__DIR__.'/../../../../web/uploads/users/index_w.png', __DIR__.'/../../../../web/uploads/users/index_'.$entity->getFoto().'');
+            copy(__DIR__.'/../../../../web/uploads/users/mini_w.png', __DIR__.'/../../../../web/uploads/users/mini_'.$entity->getFoto().'');
+            copy(__DIR__.'/../../../../web/uploads/users/thumb_w.png', __DIR__.'/../../../../web/uploads/users/thumb_'.$entity->getFoto().'');
+        }
+
         $st = date('Y-m-d H:i:s');
-		$st = $st.$entity->getEmail();
-		$token = sha1($st.rand(11111, 99999));
-		
+        $st = $st.$entity->getEmail();
+        $token = sha1($st.rand(11111, 99999));
+
         $entity->setIsActive(true);
         $entity->setToken($token);
         $em->flush();
-        
+
         $profile->setUser($entity);
         $profile->setName($entity->getEmail());
         $em->persist($profile);
         $em->flush();
-        
+
         $criteria->setUser($entity);
         $em->persist($criteria);
         $em->flush();
-        
+
         $mate = new Friend();
         $mate->setUser1($entity);
-		$mate->setUser2($broad);
-		$mate->setStatus(true);
-		$mate->setCast(true);
-		$mate->setIsConfirmed(true);
-		$em->persist($mate);
-		$em->flush();
-		
-		$cast = new Friend();
+        $mate->setUser2($broad);
+        $mate->setStatus(true);
+        $mate->setCast(true);
+        $mate->setIsConfirmed(true);
+        $em->persist($mate);
+        $em->flush();
+
+        $cast = new Friend();
         $cast->setUser1($broad);
-		$cast->setUser2($entity);
-		$cast->setStatus(true);
-		$cast->setCast(true);
-		$cast->setIsConfirmed(true);
-		$em->persist($cast);
-		$em->flush();
+        $cast->setUser2($entity);
+        $cast->setStatus(true);
+        $cast->setCast(true);
+        $cast->setIsConfirmed(true);
+        $em->persist($cast);
+        $em->flush();
 
         return $this->render('LcLcBundle:User:thanks.html.twig', array(
             'email'      => $entity->getEmail(),
@@ -327,7 +324,7 @@ class UserController extends Controller
             'action' => $this->generateUrl('user_update', array('token' => $entity->getToken())),
             'method' => 'POST',
             'attr' => array('class' => 'form-horizontal'),
-        ));        
+        ));
         return $form;
     }
     /**
@@ -340,7 +337,7 @@ class UserController extends Controller
 
         $entity = $em->getRepository('LcLcBundle:User')->findOneByToken($token);
         $password = $entity->getPassword();
-        
+
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
@@ -348,14 +345,16 @@ class UserController extends Controller
 
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
-        
+
         if ($editForm->isValid()) {
-			$entity->setPassword($password);
-			$em->persist($entity);
+            $entity->setPassword($password);
+            $em->persist($entity);
             $em->flush();
-            
-            $request->getSession()->getFlashBag()->add('notice', 
-            'Data profile mu sudah terupdate! :D');
+
+            $request->getSession()->getFlashBag()->add(
+                'notice',
+            'Data profile mu sudah terupdate! :D'
+            );
 
             return $this->redirect($this->generateUrl('profile'));
         }
@@ -405,91 +404,94 @@ class UserController extends Controller
             ->getForm()
         ;
     }
-    
-    public function getUid(){
-		$usr= $this->get('security.context')->getToken()->getUser();
-		$uid = $usr->getId();
-		$em = $this->getDoctrine()->getManager();
-		$userId = $em->getRepository('LcLcBundle:User')->find($uid);
-		return $userId;
-		
-	}
-	
-	public function changePasswdAction(Request $request)
+
+    public function getUid()
     {
-		
-	  $em = $this->getDoctrine()->getManager();
-	  $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
-	  $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
-      $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
-      $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
-      $changePasswordModel = new ChangePassword();
-      $form = $this->createForm(new ChangePasswordType(), $changePasswordModel);
+        $usr= $this->get('security.context')->getToken()->getUser();
+        $uid = $usr->getId();
+        $em = $this->getDoctrine()->getManager();
+        $userId = $em->getRepository('LcLcBundle:User')->find($uid);
+        return $userId;
+    }
 
-      $form->handleRequest($request);
+    public function changePasswdAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
+        $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
+        $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
+        $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
+        $changePasswordModel = new ChangePassword();
+        $form = $this->createForm(new ChangePasswordType(), $changePasswordModel);
 
-      if ($form->isSubmitted() && $form->isValid()) {
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
             $formData = $request->get('change_passwd');
             $ps = $formData['newPassword']['first'];
             $entity = $this->getUid();
-            
+
             $factory = $this->get('security.encoder_factory');
-			$encoder = $factory->getEncoder($entity);
-			$ep = $encoder->encodePassword($ps, $entity->getSalt());
-			
-			$entity->setPassword($ep);
+            $encoder = $factory->getEncoder($entity);
+            $ep = $encoder->encodePassword($ps, $entity->getSalt());
+
+            $entity->setPassword($ep);
             $em->persist($entity);
             $em->flush();
-                        
-			$request->getSession()->getFlashBag()->add('notice', 
-            'Password mu sudah terupdate! :D');
-      }
 
-      return $this->render('LcLcBundle:User:changePwd.html.twig', array(
+            $request->getSession()->getFlashBag()->add(
+                'notice',
+            'Password mu sudah terupdate! :D'
+            );
+        }
+
+        return $this->render('LcLcBundle:User:changePwd.html.twig', array(
           'form' => $form->createView(),
           'others' => $others,
           'fall' => $fall,
           'chat' => $chat,
           'notify' => $notify,
-      ));      
+      ));
     }
-    
+
     public function fotoAction(Request $request)
     {
-	  $em = $this->getDoctrine()->getManager();
-		
-      $entity = $this->getUid();
-      
-      $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
-      $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
-      $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
-      $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
-      $password = $entity->getPassword();
-      $form = $this->createForm(new FotoType(), $entity, array(
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $this->getUid();
+
+        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
+        $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
+        $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
+        $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
+        $password = $entity->getPassword();
+        $form = $this->createForm(new FotoType(), $entity, array(
             'action' => $this->generateUrl('user_foto'),
             'method' => 'POST',
             'attr' => array('class' => 'form-horizontal', 'onsubmit' => 'return Validate(this);'),
-            
-        ));        
 
-      $form->handleRequest($request);
+        ));
 
-      if ($form->isValid()) {
-			$entity->setPassword($password);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $entity->setPassword($password);
             $em->persist($entity);
             $em->flush();
-            
-            $request->getSession()->getFlashBag()->add('notice', 
-            'Foto mu sudah terupdate! :D');
-      }
 
-      return $this->render('LcLcBundle:User:foto.html.twig', array(
+            $request->getSession()->getFlashBag()->add(
+                'notice',
+            'Foto mu sudah terupdate! :D'
+            );
+        }
+
+        return $this->render('LcLcBundle:User:foto.html.twig', array(
           'form' => $form->createView(),
           'entity' => $entity,
           'others' => $others,
           'fall' => $fall,
           'chat' => $chat,
           'notify' => $notify,
-      ));      
+      ));
     }
 }

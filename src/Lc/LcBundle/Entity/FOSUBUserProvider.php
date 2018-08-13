@@ -49,17 +49,17 @@ class FOSUBUserProvider extends BaseClass
             $user = $this->userManager->createUser();
             $user->$setter_id($username);
             $user->$setter_token($response->getAccessToken());
-            
-			$user->setUsername($data['email']);
+
+            $user->setUsername($data['email']);
             $user->setEmail($data['email']);
             $user->setBirthday($data['birthday']);
             $user->setEnabled(true);
             $user->setSex($this->setGender($data['gender']));
-			$user->setFoto($data['email'].'.png');
-			$user->setPassword($data['email']);
-			$user->setIsActive(true);
-			$user->setBroad(false);
-			$this->userManager->updateUser($user);
+            $user->setFoto($data['email'].'.png');
+            $user->setPassword($data['email']);
+            $user->setIsActive(true);
+            $user->setBroad(false);
+            $this->userManager->updateUser($user);
             return $user;
         }
         //if user exists - go with the HWIOAuth way
@@ -69,8 +69,9 @@ class FOSUBUserProvider extends BaseClass
         $setter_token = $setter.'AccessToken';
         return $user;
     }
-    
-    private function setGender($gender) {
-		return ($gender === 'male') ? '1' : '2' ;
-	}
+
+    private function setGender($gender)
+    {
+        return ($gender === 'male') ? '1' : '2' ;
+    }
 }

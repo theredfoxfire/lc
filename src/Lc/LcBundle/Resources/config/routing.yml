@@ -102,6 +102,7 @@ login:
     defaults:  { _controller: LcLcBundle:Default:login }
 login_check:
     pattern:   /login_check
+    defaults:  { _controller: LcLcBundle:Default:login }
 logout:
     pattern:   /logout
 repair:

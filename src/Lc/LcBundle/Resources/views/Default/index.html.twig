@@ -32,7 +32,7 @@
 			dateFormat:'yy-mm-dd'
 		});
 	});
-	//show login 
+	//show login
 	$(function () {
 
 		$('.toggle').click(function (event) {
@@ -46,27 +46,27 @@
 
 	});
 	//endof show login
-	
+
 	//FB share page script
 	window.fbAsyncInit = function(){
 		FB.init({
-			appId: '1501834740106964',status: true, cookie: true, xfbml: true }); 
+			appId: '1501834740106964',status: true, cookie: true, xfbml: true });
 		};
 		(function(d, debug){var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
 			if(d.getElementById(id)) {return;}
-			js = d.createElement('script'); js.id = id; 
+			js = d.createElement('script'); js.id = id;
 			js.async = true;js.src = "//connect.facebook.net/en_US/all" + (debug ? "/debug" : "") + ".js";
 			ref.parentNode.insertBefore(js, ref);}(document, /*debug*/ false));
 		function postToFeed(title, desc, url, image){
-		var obj = {method: 'feed',redirect_uri:'http://www.lucidcouple.com/web/login/facebook',link: url, picture: 'http://www.lucidcouple.com/web/bundles/lclc/img/'+image,name: title,description: desc};
+		var obj = {method: 'feed',redirect_uri:'http://localhost/lc/web/app_dev.php/login/facebook',link: url, picture: 'http://localhost/lc/web/app_dev.php/bundles/lclc/img/'+image,name: title,description: desc};
 		function callback(response){}
 		FB.ui(obj, callback);
 		}
 	//End of FB share page
-	
+
 	// Custom Js for FB share
 	function share(){
-		postToFeed("Gabung yuk di LUCIDCOUPLE-Temukan aku di sini!", "Layanan aplikasi yang membantumu agar bisa terhubung dengan mereka yang single. Buatlah hidup mu menjadi lebih berwarna, dan temukan takdirmu disini Daftar sekarang! Geratis, akses penuh, selamanya.", 'http://lucidcouple.com', 'intro-bg1.jpg');
+		postToFeed("test", 'http://lucidcouple.com', 'intro-bg1.jpg');
 		}
 	//End of custom FB share button
 	</script>
@@ -102,9 +102,9 @@
                     <li class="hidden">
                         <a href="#page-top"></a>
                     </li>
-                    
+
                     <li>
-                        <a class="page-scroll" href="#daftar">Daftar</a>
+                        <a class="page-scroll" href="{{ path('user_new') }}">Daftar</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="{{ path('login') }}">Login</a>
@@ -126,7 +126,7 @@
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2" id='lost'>
                         <h1 class="brand-heading">LucidCouple</h1>
-                        <p class="intro-text">Layanan aplikasi yang membantumu agar bisa terhubung dengan mereka yang single. 
+                        <p class="intro-text">Layanan aplikasi yang membantumu agar bisa terhubung dengan mereka yang single.
                         Buatlah hidup mu menjadi lebih berwarna, dan temukan takdirmu disini
                         <br>Daftar sekarang! Geratis, akses penuh, selamanya.</p>
                         <a href="#daftar" class="btn btn-circle page-scroll" data-toggle="tooltip" data-placement="top" title="Daftar!">
@@ -143,7 +143,7 @@
         </div>
     </header>
     <!-- About Section -->
-    <div id='daftar'>
+    <!-- <div id='daftar'>
     <section class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
@@ -151,18 +151,6 @@
                 <p>
 					<h6>Dengan mendaftar ke LUCIDCOUPLE, berarti Anda telah menyetujui <a href="{{ path('agreement') }}" target="_blank"> kesepakatan dan persyaratan </a> penggunaan aplikasi ini</h6>
 					<ul class="list-inline banner-social-buttons">
-<!--
-					<li>
-					<div id="gSignInWrapper">
-						<span class="label"></span>
-						<div id="customBtn" class="customGPlusSignIn">
-						  <span class="icon"></span>
-						  <span class="buttonText btn btn-default btn-lg"><i class="fa fa-google-plus fa-fw"></i> <span class="network-name">Melalui GMAIL</span></span>
-						</div>
-					</div>
-					</li>
-					{{ path('hwi_oauth_service_redirect', {'service': 'facebook' }) }}
--->
 					<li>
 					<a href="#login" onclick="return share()" class="toggle btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Klik Untuk Daftar</span></a>
 					</li>
@@ -171,7 +159,7 @@
             </div>
         </div>
     </section>
-    </div>
+    </div> -->
 
 
     <!-- Contact Section -->
@@ -185,7 +173,7 @@
 					<br>Ikuti kami di:
                 </p>
                 <ul class="list-inline banner-social-buttons">
-					
+
                     <li>
                         <a href="https://twitter.com/lucidcouple" target="_blank" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
                     </li>
@@ -202,7 +190,7 @@
     </div>
 
     <!-- Map Section -->
-    
+
 
     <!-- Footer -->
     <footer>
@@ -214,11 +202,11 @@
             <script type="text/javascript" src="{{ asset('bundles/lclc/js/jquery.easing.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('bundles/lclc/js/bootstrap.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('bundles/lclc/js/grayscale.js') }}"></script>
-            
+
     <!-- Bootstrap Core JavaScript -->
 
     <!-- Custom Theme JavaScript -->
-    
+
 	<script>
 		$(function(){
 			$('[data-toggle="tooltip"]').tooltip();

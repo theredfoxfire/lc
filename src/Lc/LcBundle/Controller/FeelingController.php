@@ -35,65 +35,62 @@ class FeelingController extends Controller
 
         $paginator = $this->get('knp_paginator');
         $is_user = $em->getRepository('LcLcBundle:Profile')->findOneByUser($this->getUid());
-        if(empty($is_user)){
-		
-        $broad = $em->getRepository('LcLcBundle:User')->findOneById(1);
-        
-        $profile = new Profile();
-        $criteria = new Usercriteria();
-        $entity = $this->getUid();
-        
-        if($entity->getSex() == 1)
-		{
-			copy(__DIR__.'/../../../../web/uploads/users/grande_p.png', __DIR__.'/../../../../web/uploads/users/grande_'.$entity->getFoto().'');
-			copy(__DIR__.'/../../../../web/uploads/users/index_p.png', __DIR__.'/../../../../web/uploads/users/index_'.$entity->getFoto().'');
-			copy(__DIR__.'/../../../../web/uploads/users/mini_p.png', __DIR__.'/../../../../web/uploads/users/mini_'.$entity->getFoto().'');
-			copy(__DIR__.'/../../../../web/uploads/users/thumb_p.png', __DIR__.'/../../../../web/uploads/users/thumb_'.$entity->getFoto().'');
-		}else
-		{
-			copy(__DIR__.'/../../../../web/uploads/users/grande_w.png', __DIR__.'/../../../../web/uploads/users/grande_'.$entity->getFoto().'');
-			copy(__DIR__.'/../../../../web/uploads/users/index_w.png', __DIR__.'/../../../../web/uploads/users/index_'.$entity->getFoto().'');
-			copy(__DIR__.'/../../../../web/uploads/users/mini_w.png', __DIR__.'/../../../../web/uploads/users/mini_'.$entity->getFoto().'');
-			copy(__DIR__.'/../../../../web/uploads/users/thumb_w.png', __DIR__.'/../../../../web/uploads/users/thumb_'.$entity->getFoto().'');
-		}
-        
-        $st = date('Y-m-d H:i:s');
-		$st = $st.$entity->getEmail();
-		$token = sha1($st.rand(11111, 99999));
-        
-        $profile->setUser($entity);
-        $profile->setName($entity->getEmail());
-        $em->persist($profile);
-        $em->flush();
-        
-        $criteria->setUser($entity);
-        $em->persist($criteria);
-        $em->flush();
-        
-        $mate = new Friend();
-        $mate->setUser1($entity);
-		$mate->setUser2($broad);
-		$mate->setStatus(true);
-		$mate->setCast(true);
-		$mate->setIsConfirmed(true);
-		$em->persist($mate);
-		$em->flush();
-		
-		$cast = new Friend();
-        $cast->setUser1($broad);
-		$cast->setUser2($entity);
-		$cast->setStatus(true);
-		$cast->setCast(true);
-		$cast->setIsConfirmed(true);
-		$em->persist($cast);
-		$em->flush();
-		}
-		$query = $em->getRepository('LcLcBundle:Feeling')->getUserFeeling($this->getUid());
+        if (empty($is_user)) {
+            $broad = $em->getRepository('LcLcBundle:User')->findOneById(1);
+
+            $profile = new Profile();
+            $criteria = new Usercriteria();
+            $entity = $this->getUid();
+
+            if ($entity->getSex() == 1) {
+                copy(__DIR__.'/../../../../web/uploads/users/grande_p.png', __DIR__.'/../../../../web/uploads/users/grande_'.$entity->getFoto().'');
+                copy(__DIR__.'/../../../../web/uploads/users/index_p.png', __DIR__.'/../../../../web/uploads/users/index_'.$entity->getFoto().'');
+                copy(__DIR__.'/../../../../web/uploads/users/mini_p.png', __DIR__.'/../../../../web/uploads/users/mini_'.$entity->getFoto().'');
+                copy(__DIR__.'/../../../../web/uploads/users/thumb_p.png', __DIR__.'/../../../../web/uploads/users/thumb_'.$entity->getFoto().'');
+            } else {
+                copy(__DIR__.'/../../../../web/uploads/users/grande_w.png', __DIR__.'/../../../../web/uploads/users/grande_'.$entity->getFoto().'');
+                copy(__DIR__.'/../../../../web/uploads/users/index_w.png', __DIR__.'/../../../../web/uploads/users/index_'.$entity->getFoto().'');
+                copy(__DIR__.'/../../../../web/uploads/users/mini_w.png', __DIR__.'/../../../../web/uploads/users/mini_'.$entity->getFoto().'');
+                copy(__DIR__.'/../../../../web/uploads/users/thumb_w.png', __DIR__.'/../../../../web/uploads/users/thumb_'.$entity->getFoto().'');
+            }
+
+            $st = date('Y-m-d H:i:s');
+            $st = $st.$entity->getEmail();
+            $token = sha1($st.rand(11111, 99999));
+
+            $profile->setUser($entity);
+            $profile->setName($entity->getEmail());
+            $em->persist($profile);
+            $em->flush();
+
+            $criteria->setUser($entity);
+            $em->persist($criteria);
+            $em->flush();
+
+            $mate = new Friend();
+            $mate->setUser1($entity);
+            $mate->setUser2($broad);
+            $mate->setStatus(true);
+            $mate->setCast(true);
+            $mate->setIsConfirmed(true);
+            $em->persist($mate);
+            $em->flush();
+
+            $cast = new Friend();
+            $cast->setUser1($broad);
+            $cast->setUser2($entity);
+            $cast->setStatus(true);
+            $cast->setCast(true);
+            $cast->setIsConfirmed(true);
+            $em->persist($cast);
+            $em->flush();
+        }
+        $query = $em->getRepository('LcLcBundle:Feeling')->getUserFeeling($this->getUid());
         $pagination = $paginator->paginate(
-			$query,
-			$this->get('request')->query->get('page', 1),
-			25
-		);
+            $query,
+            $this->get('request')->query->get('page', 1),
+            25
+        );
         $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
         $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
         $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
@@ -101,7 +98,7 @@ class FeelingController extends Controller
         $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
         $entity = new Feeling();
         $form = $this->createCreateForm($entity);
-        
+
         $c = $em->getRepository('LcLcBundle:Feeling')->countUserFeeling($this->getUid());
 
         return $this->render('LcLcBundle:Feeling:index.html.twig', array(
@@ -130,19 +127,21 @@ class FeelingController extends Controller
             $entity->setUser($this->getUid());
             $em->persist($entity);
             $em->flush();
-            
+
             $user = $this->getUid();
             $user->setUpdatedAt(new \DateTime());
             $em->persist($user);
             $em->flush();
-            
-            $request->getSession()->getFlashBag()->add('notice', 
-            'Status mu sudah terposting! :D');
+
+            $request->getSession()->getFlashBag()->add(
+                'notice',
+            'Status mu sudah terposting! :D'
+            );
 
             return $this->redirect($this->generateUrl('feeling'));
         }
-        
-         return $this->redirect($this->generateUrl('feeling'));
+
+        return $this->redirect($this->generateUrl('feeling'));
     }
 
     /**
@@ -162,12 +161,14 @@ class FeelingController extends Controller
 
         return $form;
     }
-    
+
     private function createCommentForm(Fcomment $entity, $token)
     {
         $form = $this->createForm(new FcommentType(), $entity, array(
-            'action' => $this->generateUrl('feeling_show', array(
-				'token' => $token,)
+            'action' => $this->generateUrl(
+                'feeling_show',
+                array(
+                'token' => $token,)
             ),
             'method' => 'POST',
         ));
@@ -209,42 +210,44 @@ class FeelingController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Feeling entity is this?.');
         }
-        
+
         $fcomment = new Fcomment();
         $noty = new Notification();
-        
+
         $form = $this->createCommentForm($fcomment, $token);
         $form->handleRequest($request);
         if ($form->isValid() && ($broad == 0)) {
-			$usr= $this->get('security.context')->getToken()->getUser();
-			$uid = $usr->getId();
-			$em = $this->getDoctrine()->getManager();
+            $usr= $this->get('security.context')->getToken()->getUser();
+            $uid = $usr->getId();
+            $em = $this->getDoctrine()->getManager();
             $fcomment->setIsPublish(true);
             $fcomment->setUser($this->getUid());
             $fcomment->setFeeling($entity);
             $em->persist($fcomment);
             $em->flush();
-            
-			//user 1 is commenter user 2 is commented
-			$noty->setViewed(false);
-			$noty->setUser1($this->getUid());
-			$noty->setUser2($entity->getUser());
-			$noty->setFromPage(3);
-			if($this->getUid()->getId() == $entity->getUser()->getId()){
-				$noty->setSelfPage($this->getUid()->getId());
-			}else{
-				$noty->setSelfPage(0);
-			}
-			$noty->setFromId($entity->getToken());
-			$em->persist($noty);
-			$em->flush();
-			
-			$request->getSession()->getFlashBag()->add('notice', 
-            'Komentar mu sudah terposting! :D');
-			
+
+            //user 1 is commenter user 2 is commented
+            $noty->setViewed(false);
+            $noty->setUser1($this->getUid());
+            $noty->setUser2($entity->getUser());
+            $noty->setFromPage(3);
+            if ($this->getUid()->getId() == $entity->getUser()->getId()) {
+                $noty->setSelfPage($this->getUid()->getId());
+            } else {
+                $noty->setSelfPage(0);
+            }
+            $noty->setFromId($entity->getToken());
+            $em->persist($noty);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add(
+                'notice',
+            'Komentar mu sudah terposting! :D'
+            );
+
             return $this->redirect($this->generateUrl('feeling_show', array('token'=>$token)));
-		}
-        
+        }
+
 
         return $this->render('LcLcBundle:Feeling:show.html.twig', array(
             'entity'      => $entity,
@@ -369,13 +372,13 @@ class FeelingController extends Controller
             ->getForm()
         ;
     }
-    
-    public function getUid(){
-		$usr= $this->get('security.context')->getToken()->getUser();
-		$uid = $usr->getId();
-		$em = $this->getDoctrine()->getManager();
-		$userId = $em->getRepository('LcLcBundle:User')->find($uid);
-		return $userId;
-		
-	}
+
+    public function getUid()
+    {
+        $usr= $this->get('security.context')->getToken()->getUser();
+        $uid = $usr->getId();
+        $em = $this->getDoctrine()->getManager();
+        $userId = $em->getRepository('LcLcBundle:User')->find($uid);
+        return $userId;
+    }
 }

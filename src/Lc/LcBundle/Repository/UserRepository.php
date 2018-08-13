@@ -14,9 +14,11 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class UserRepository extends EntityRepository implements UserProviderInterface
 {
-   public function loadUserByUsername($username) {
-     return $this->getEntityManager()
-         ->createQuery('SELECT u FROM
+    public function loadUserByUsername($username)
+    {
+        return $this->getEntityManager()
+         ->createQuery(
+             'SELECT u FROM
          LcLcBundle:User u
          WHERE u.username = :username
          OR u.email = :username
@@ -27,10 +29,12 @@ class UserRepository extends EntityRepository implements UserProviderInterface
                         ))
          ->getOneOrNullResult();
     }
-    
-    public function forgot($email) {
-     return $this->getEntityManager()
-         ->createQuery('SELECT u FROM
+
+    public function forgot($email)
+    {
+        return $this->getEntityManager()
+         ->createQuery(
+             'SELECT u FROM
          LcLcBundle:User u
          WHERE u.email = :email
          AND u.is_active = 1'
@@ -40,77 +44,81 @@ class UserRepository extends EntityRepository implements UserProviderInterface
                         ))
          ->getResult();
     }
- 
-    public function refreshUser(UserInterface $user) {
+
+    public function refreshUser(UserInterface $user)
+    {
         return $this->loadUserByUsername($user->getUsername());
     }
- 
-    public function supportsClass($class) {
+
+    public function supportsClass($class)
+    {
         return $class === 'Lc\LcBundle\Entity\User';
     }
-    
-    public function loadOthers($sex = null, $id1 = null) {
 
-	$query = $this->getEntityManager()
-			->createQuery('SELECT u FROM
+    public function loadOthers($sex = null, $id1 = null)
+    {
+        $query = $this->getEntityManager()
+            ->createQuery(
+                'SELECT u FROM
 			LcLcBundle:User u
-			WHERE u.sex != :sex
+			WHERE u.id != :id1
 			AND u.broad = :b
 			AND u.is_active = :is
 			AND u.id NOT IN (SELECT IDENTITY (f.user2) FROM LcLcBundle:Friend f where f.user1 = :id1)
 			AND u.id NOT IN (SELECT IDENTITY (fr.user1) FROM LcLcBundle:Friend fr where fr.user2 = :id1)
 			ORDER BY u.updated_at DESC'
-			)
-			->setMaxResults(8)
-			->setParameters(array(
-						   'id1' => $id1,
-						   'sex' => $sex,
-						   'b' => 0,
-						   'is' => 1,
-							));
- 
+            )
+            ->setMaxResults(8)
+            ->setParameters(array(
+                           'id1' => $id1,
+                           'b' => 0,
+                           'is' => 1,
+                            ));
+
         try {
             $love = $query->getResult();
         } catch (\Doctrine\Orm\NoResultException $e) {
-        $love = null;
-          }
- 
+            $love = null;
+        }
+
         return $love;
     }
-    
-    public function countAll($sex = null, $id1 = null) {
 
-	$query = $this->getEntityManager()
-			->createQuery('SELECT u FROM
+    public function countAll($sex = null, $id1 = null)
+    {
+        $query = $this->getEntityManager()
+            ->createQuery(
+                'SELECT u FROM
 			LcLcBundle:User u
 			WHERE u.sex != :sex
 			AND u.broad = :b
 			AND u.is_active = :is
 			AND u.id NOT IN (SELECT IDENTITY (f.user2) FROM LcLcBundle:Friend f where f.user1 = :id1)
 			AND u.id NOT IN (SELECT IDENTITY (fr.user1) FROM LcLcBundle:Friend fr where fr.user2 = :id1)'
-			)
-			->setParameters(array(
-						   'id1' => $id1,
-						   'sex' => $sex,
-						   'b' => 0,
-						   'is' => 1,
-							));
- 
+            )
+            ->setParameters(array(
+                           'id1' => $id1,
+                           'sex' => $sex,
+                           'b' => 0,
+                           'is' => 1,
+                            ));
+
         try {
             $love = $query->getResult();
         } catch (\Doctrine\Orm\NoResultException $e) {
-        $love = null;
-          }
-          
+            $love = null;
+        }
+
         $love = count($love);
- 
+
         return $love;
     }
-    
-    public function countSearchAll($sex = null, $id1 = null, $key = null) {
 
-	$query = $this->getEntityManager()
-			->createQuery('SELECT u FROM
+    public function countSearchAll($sex = null, $id1 = null, $key = null)
+    {
+        $query = $this->getEntityManager()
+            ->createQuery(
+                'SELECT u FROM
 			LcLcBundle:User u
 			WHERE u.sex != :sex
 			AND u.broad = :b
@@ -118,71 +126,65 @@ class UserRepository extends EntityRepository implements UserProviderInterface
 			AND u.id NOT IN (SELECT IDENTITY (f.user2) FROM LcLcBundle:Friend f where f.user1 = :id1)
 			AND u.id NOT IN (SELECT IDENTITY (fr.user1) FROM LcLcBundle:Friend fr where fr.user2 = :id1)
 			AND u.id IN (SELECT IDENTITY (p.user) FROM LcLcBundle:Profile p where p.name LIKE :key)'
-			)
-			->setParameters(array(
-						   'id1' => $id1,
-						   'sex' => $sex,
-						   'b' => 0,
-						   'key' => '%'.$key.'%',
-						   'is' => 1,
-							));
- 
+            )
+            ->setParameters(array(
+                           'id1' => $id1,
+                           'sex' => $sex,
+                           'b' => 0,
+                           'key' => '%'.$key.'%',
+                           'is' => 1,
+                            ));
+
         try {
             $love = $query->getResult();
         } catch (\Doctrine\Orm\NoResultException $e) {
-        $love = null;
-          }
-          
+            $love = null;
+        }
+
         $love = count($love);
- 
+
         return $love;
     }
-    
-    public function loadAll($sex = null, $id1 = null, $key = null) {
 
-		if($key)
-		{
-		$query = $this->getEntityManager()
-		->createQuery('SELECT u FROM
+    public function loadAll($sex = null, $id1 = null, $key = null)
+    {
+        if ($key) {
+            $query = $this->getEntityManager()
+        ->createQuery(
+            'SELECT u FROM
 		LcLcBundle:User u
-		WHERE u.sex != :sex
+		WHERE u.id != :id1
 		AND u.broad = :b
 		AND u.is_active = :is
 		AND u.id NOT IN (SELECT IDENTITY (f.user2) FROM LcLcBundle:Friend f where f.user1 = :id1)
 		AND u.id NOT IN (SELECT IDENTITY (fr.user1) FROM LcLcBundle:Friend fr where fr.user2 = :id1)
 		AND u.id IN (SELECT IDENTITY (p.user) FROM LcLcBundle:Profile p where p.name LIKE :key)
 		ORDER BY u.updated_at DESC'
-		)
-		->setParameters(array(
-					   'id1' => $id1,
-					   'sex' => $sex,
-					   'key' => '%'.$key.'%',
-					   'b' => 0,
-					   'is' => 1,
-		));
-		}
-		else
-		{
-		$query = $this->getEntityManager()
-		->createQuery('SELECT u FROM
+        )
+        ->setParameters(array(
+                       'id1' => $id1,
+                       'key' => '%'.$key.'%',
+                       'b' => 0,
+                       'is' => 1,
+        ));
+        } else {
+            $query = $this->getEntityManager()
+        ->createQuery(
+            'SELECT u FROM
 		LcLcBundle:User u
-		WHERE u.sex != :sex
+		WHERE u.id != :id1
 		AND u.broad = :b
 		AND u.is_active = :is
 		AND u.id NOT IN (SELECT IDENTITY (f.user2) FROM LcLcBundle:Friend f where f.user1 = :id1)
 		AND u.id NOT IN (SELECT IDENTITY (fr.user1) FROM LcLcBundle:Friend fr where fr.user2 = :id1)
 		ORDER BY u.updated_at DESC'
-		)->setParameters(array(
-					   'id1' => $id1,
-					   'sex' => $sex,
-					   'b' => 0,
-					   'is' => 1,
-		));
-		}
- 
+        )->setParameters(array(
+                       'id1' => $id1,
+                       'b' => 0,
+                       'is' => 1,
+        ));
+        }
+
         return $query;
     }
- 
 }
-
-

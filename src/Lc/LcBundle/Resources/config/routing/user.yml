@@ -10,11 +10,11 @@ user_others:
 user_wait:
  path: /thanks
  defaults: { _controller: "LcLcBundle:User:wait"}
- 
+
 user_foto:
  path: /heaven/foto
  defaults: { _controller: "LcLcBundle:User:foto"}
- 
+
 user_pass:
  path: /heaven/pass
  defaults: { _controller: "LcLcBundle:User:changePasswd"}
@@ -23,7 +23,7 @@ user_show:
     defaults: { _controller: "LcLcBundle:User:show" }
 
 user_new:
-    path:     /heaven/new
+    path:     /new
     defaults: { _controller: "LcLcBundle:User:new" }
 
 user_create:

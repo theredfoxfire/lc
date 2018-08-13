@@ -21,7 +21,7 @@ Lc\LcBundle\Entity\User:
   password2:
    - NotBlank:
       message: 'Ulangi password harap diisi.'
-   - ComparePassword: 
+   - Lc\LcBundle\Validator\Constraints\ComparePassword:
       field: password
   password:
    - NotBlank:
@@ -32,7 +32,7 @@ Lc\LcBundle\Entity\Feeling:
       message: 'Tulis apa yang sedang kamu rasakan.'
 Lc\LcBundle\Entity\Foto:
   foto:
-   - Image: 
+   - Image:
       message: 'Pilih file foto/image.'
 Lc\LcBundle\Entity\Fcomment:
   comment:
