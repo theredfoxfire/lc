@@ -40,7 +40,7 @@
 									{% endfor %}
 									<div class="text-center">
 										{% if c > 25 %}
-											Halaman: <b>{{ knp_pagination_render(entities) }}</b>
+											{{ knp_pagination_render(entities) }}</b>
 										{% endif %}
 									</div>
 								{% if per == 0 %}
