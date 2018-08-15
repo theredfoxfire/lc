@@ -6,7 +6,7 @@
 				<div class="col-sm-7 column">
 				{% if (app.session.flashbag.get('notice') is not empty) %}
 				<center id="message-session">
-				<div class="alert alert-success lebar" role="alert"> 
+				<div class="alert alert-success lebar" role="alert">
 					Data profile mu berhasil diubah ! :D
 				</div>
 				<hr />
@@ -47,27 +47,11 @@
 											  </div>
 											  <br><br><br>
 											  <div class="form-group form-group-sm">
-												<label class="col-sm-5 control-label" for="formGroupInputSmall">Hobby</label>
-													<div class="col-sm-7">
-														{{ form_widget(form.hobby) }}
-												</div>
-												  {{ form_errors(form.hobby) }}
-											  </div>
-											  <br><br>
-											  <div class="form-group form-group-sm">
 												<label class="col-sm-5 control-label" for="formGroupInputSmall">Pekerjaan</label>
 													<div class="col-sm-7">
 														{{ form_widget(form.job) }}
 												</div>
 												  {{ form_errors(form.job) }}
-											  </div>
-											  <br><br>
-											  <div class="form-group form-group-sm">
-												<label class="col-sm-5 control-label" for="formGroupInputSmall">Gaji</label>
-													<div class="col-sm-7">
-														{{ form_widget(form.sallary) }}
-												</div>
-												  {{ form_errors(form.sallary) }}
 											  </div>
 											  <br><br>
 											  <div class="form-group form-group-sm">
@@ -95,22 +79,6 @@
 											  </div>
 											  <br><br>
 											  <div class="form-group form-group-sm">
-												<label class="col-sm-5 control-label" for="formGroupInputSmall">Di mana Anda bertempat tinggal?</label>
-													<div class="col-sm-7">
-														{{ form_widget(form.lived) }}
-												</div>
-												  {{ form_errors(form.lived) }}
-											  </div>
-											  <br><br>
-											  <div class="form-group form-group-sm">
-												<label class="col-sm-5 control-label" for="formGroupInputSmall">Apakah Anda perokok?</label>
-													<div class="col-sm-7">
-														{{ form_widget(form.smoking) }}
-												</div>
-												  {{ form_errors(form.smoking) }}
-											  </div>
-											  <br><br>
-											  <div class="form-group form-group-sm">
 												<label class="col-sm-5 control-label" for="formGroupInputSmall">Status pernikahan Anda</label>
 													<div class="col-sm-7">
 														{{ form_widget(form.status) }}
@@ -126,29 +94,14 @@
 												  {{ form_errors(form.religy) }}
 											  </div>
 											  <br><br>
-											  <div class="form-group form-group-sm">
-												<label class="col-sm-5 control-label" for="formGroupInputSmall">Apakah Anda peminum alkohol?</label>
-													<div class="col-sm-7">
-														{{ form_widget(form.alcoholic) }}
-												</div>
-												  {{ form_errors(form.alcoholic) }}
-											  </div>
-											  <br><br>
-											  <div class="form-group form-group-sm">
-												<label class="col-sm-5 control-label" for="formGroupInputSmall">Rencana akan menikah dalam?</label>
-													<div class="col-sm-7">
-														{{ form_widget(form.plan) }}
-												</div>
-												  {{ form_errors(form.plan) }}
-											  </div>
-											  
+
 											  <div class="form-group form-group-sm pull-right">
 													<div class="col-sm-7">
 													<br><br>
 														<button type="submit" class="btn btn-primary btn-feel"><i class="glyphicon glyphicon-floppy-disk"></i> &nbsp;Update</button>
 													</div>
 											  </div>
-											  
+
 											{{ form_row(form._token) }}
 											{{ form_end(form) }}
 											<br /><br />

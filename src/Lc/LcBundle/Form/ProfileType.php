@@ -13,45 +13,43 @@ use Symfony\Component\Form\FormInterface;
 
 class ProfileType extends AbstractType
 {
-        /**
+    /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
-     
+
     protected $em;
 
-    function __construct(EntityManager $em)
+    public function __construct(EntityManager $em)
     {
         $this->em = $em;
     }
-    
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-			->add('name', 'text', array('attr'=>array('class'=>'form-control', 'placeholder'=>'Nama Lengkap'), 'required'=> true, 'label'=>false))
+            ->add('name', 'text', array('attr'=>array('class'=>'form-control', 'placeholder'=>'Nama Lengkap'), 'required'=> true, 'label'=>false))
             ->add('about', 'textarea', array('attr'=>array('class'=>'form-control', 'placeholder'=>'Tentang Anda'), 'required'=> false, 'label'=>false))
             ->add('address', 'textarea', array('attr'=>array('class'=>'form-control', 'placeholder'=>'Alamat lengkap'), 'required'=> false, 'label'=>false))
-            ->add('hobby', null, array('attr'=>array('class'=>'form-control','placeholder'=>'Hobby Anda'), 'required'=> false, 'label'=>false))
             ->add('job', null, array( 'attr'=>array('class'=>'form-control', 'placeholder'=>'Pekerjaan Anda'), 'required'=> false, 'label'=>false))
             ->add('education', null, array( 'attr'=>array('class'=>'form-control','placeholder'=>'Pendidikan Anda'), 'required'=> false, 'label'=>false))
-            ->add('sallary', null, array( 'attr'=>array('class'=>'form-control', 'placeholder'=>'Kisaran gaji Anda'), 'required'=> false, 'label'=>false))
-            ->add('lived', null, array( 'attr'=>array('class'=>'form-control', 'placeholder'=>'Tempat tinggal Anda'), 'required'=> false, 'label'=>false))
-            ->add('smoking', null, array( 'attr'=>array('class'=>'form-control','placeholder'=>'Anda seorang perokok?'), 'required'=> false, 'label'=>false))
             ->add('status', null, array( 'attr'=>array('class'=>'form-control', 'placeholder'=>'Status pernikahan Anda'), 'required'=> false, 'label'=>false))
             ->add('religy', null, array( 'attr'=>array('class'=>'form-control', 'placeholder'=>'Agama Anda'), 'required'=> false, 'label'=>false))
-            ->add('alcoholic', null, array( 'attr'=>array('class'=>'form-control','placeholder'=>'Anda meminum minuman beralkohol?'), 'required'=> false, 'label'=>false))
-            ->add('plan', null, array( 'attr'=>array('class'=>'form-control','placeholder'=>'Rencana Anda menikah'), 'required'=> false, 'label'=>false))
         ;
-        
+
         // Add listeners
         $builder->addEventListener(FormEvents::PRE_SET_DATA, array($this, 'onPreSetData'));
         $builder->addEventListener(FormEvents::PRE_SUBMIT, array($this, 'onPreSubmit'));
     }
-    
-     protected function addElements(FormInterface $form, Province $province = null) {
+
+    protected function addElements(FormInterface $form, Province $province = null)
+    {
         // Add the province element
-        $form->add('province', 'entity', array(
-			'attr'=>array('class'=>'form-control', 'placeholder'=>'Province Anda'),
+        $form->add(
+            'province',
+            'entity',
+            array(
+            'attr'=>array('class'=>'form-control', 'placeholder'=>'Province Anda'),
             'data' => $province,
             'required'=> false,
             'empty_value' => '-- Pilih Provinsi --',
@@ -69,15 +67,16 @@ class ProfileType extends AbstractType
 
         // Add the city element
         $form->add('city', 'entity', array(
-			'attr'=>array('class'=>'form-control', 'placeholder'=>'Kota/Kabupaten Anda'),
-			'required'=> false,
+            'attr'=>array('class'=>'form-control', 'placeholder'=>'Kota/Kabupaten Anda'),
+            'required'=> false,
             'empty_value' => '-- Pilih provinsi dulu --',
             'class' => 'LcLcBundle:City',
             'choices' => $cities,
         ));
     }
-    
-    function onPreSubmit(FormEvent $event) {
+
+    public function onPreSubmit(FormEvent $event)
+    {
         $form = $event->getForm();
         $data = $event->getData();
 
@@ -85,8 +84,9 @@ class ProfileType extends AbstractType
         $province = $this->em->getRepository('LcLcBundle:Province')->find($data['province']);
         $this->addElements($form, $province);
     }
-    
-    function onPreSetData(FormEvent $event) {
+
+    public function onPreSetData(FormEvent $event)
+    {
         $account = $event->getData();
         $form = $event->getForm();
 

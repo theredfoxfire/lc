@@ -7,7 +7,7 @@
 				<div class="col-sm-7 column">
 				{% if (app.session.flashbag.get('notice') is not empty) %}
 				<center id="message-session">
-				<div class="alert alert-success lebar" role="alert"> 
+				<div class="alert alert-success lebar" role="alert">
 					Komentar mu sudah diposting ! :D
 				</div>
 				<hr />
@@ -22,6 +22,7 @@
 										</div>
 										<div class="media-body">
 											<h5 class="media-right pull-right">
+											<span class="counter-activity">{{ entity.fcomment|length > 0 ? entity.fcomment|length|number_format(0, ',', ' ') : '' }}</span>
 											<a class="a-act" href="#comment" onclick="setFocus()" data-toggle="tooltip" data-placement="top" title="Tulis balasan"><i class="glyphicon glyphicon-comment"></i></a>
 											</h5>
 											<h5 class="media-right pull-right">
@@ -32,7 +33,11 @@
 												{% endif %}
 											{% endfor %}
 											{% if lk == 0 %}
+											<span class="counter-activity">{{ entity.flike|length > 0 ? entity.flike|length|number_format(0, ',', ' ') : '' }}</span>
 											<a class="a-act" href="{{ path('flike_create', {'feel': entity.token, 'page': '1' }) }}" data-toggle="tooltip" data-placement="top" title="Beri simpati"><i class="glyphicon glyphicon-thumbs-up"></i></a>
+											{% else %}
+											<span class="counter-activity">{{ entity.flike|length > 0 ? entity.flike|length|number_format(0, ',', ' ') : '' }}</span>
+											<i class="glyphicon glyphicon-thumbs-up disabled-like"></i>
 											{% endif %}
 											</h5>
 										</div>
@@ -41,7 +46,7 @@
 								<div class="panel-body">
 									<div class="media">
 										<div class="media-left pull-left">
-											<img src="{{ asset('uploads/users/mini_') }}{{ entity.user.foto }}" alt="{{ entity.user.profile.name }}">
+											<img src="{{ asset('web/uploads/users/mini_') }}{{ entity.user.foto }}" alt="{{ entity.user.profile.name }}">
 										</div>
 										<div class="media-body">
 											<h5 class="media-right">{{ entity.feel }}</h5>
@@ -51,17 +56,17 @@
 								</div>
 								{% if entity.foto %}
 								<div class="panel-footer">
-										<center><img src="{{ asset('uploads/feels/feel_') }}{{ entity.foto }}" alt="{{ entity.user.profile.name }}" class="img-responsive"></center>
+										<center><img src="{{ asset('web/uploads/feels/feel_') }}{{ entity.foto }}" alt="{{ entity.user.profile.name }}" class="img-responsive"></center>
 								</div>
 								{% endif %}
 							</div>
 							{% for comment in comments|sort %}
 											{% if entity.user.id == app.user.id %}
-													<div class="panel panel-success apanel-body">
+													<div class="panel panel-success apanel-body margin-feel">
 														<div class="panel-body">
 															<div class="media">
 																<a class="media-left pull-left" href="#">
-																	<img src="{{ asset('uploads/users/mini_') }}{{ comment.user.foto }}" class="img-rounded" alt="{{ comment.user.profile.name }}">
+																	<img src="{{ asset('web/uploads/users/mini_') }}{{ comment.user.foto }}" class="img-rounded" alt="{{ comment.user.profile.name }}">
 																</a>
 																<div class="media-body">
 																	<h5 class="media-right">{{ comment.comment }}</h5>
@@ -74,11 +79,11 @@
 													</div>
 											{% else %}
 												{% if (comment.user.id == app.user.id) or (comment.user.id == entity.user.id)  %}
-													<div class="panel panel-success apanel-body">
+													<div class="panel panel-success apanel-body  margin-feel">
 														<div class="panel-body">
 															<div class="media">
 																<a class="media-left pull-left" href="#">
-																	<img src="{{ asset('uploads/users/mini_') }}{{ comment.user.foto }}" class="img-rounded" alt="{{ comment.user.profile.name }}">
+																	<img src="{{ asset('web/uploads/users/mini_') }}{{ comment.user.foto }}" class="img-rounded" alt="{{ comment.user.profile.name }}">
 																</a>
 																<div class="media-body">
 																	<h5 class="media-right">{{ comment.comment }}</h5>
@@ -92,13 +97,13 @@
 												{% endif %}
 											{% endif %}
 											{% endfor %}
-						
-						
+
+
 											<div class="panel panel-success apanel-body" id="comments">
 												<div class="panel-body">
 													<div class="media">
 														<a class="media-left pull-left" href="#">
-															<img src="{{ asset('uploads/users/mini_') }}{{ app.user.foto }}" class="img-rounded" alt="{{ app.user.profile.name }}">
+															<img src="{{ asset('web/uploads/users/mini_') }}{{ app.user.foto }}" class="img-rounded" alt="{{ app.user.profile.name }}">
 														</a>
 														<div class="media-body">
 														{{ form_start(form) }}
@@ -117,7 +122,7 @@
 												</div>
 											</div>
 						</div>
-						
+
 				</div>
 <script>
 function setFocus(){

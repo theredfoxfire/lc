@@ -10,7 +10,7 @@
 								<div class="panel-heading panel-success">
 									<div class="media">
 										<div class="media-left pull-left knowing">
-											<img src="{{ asset('uploads/users/mini_') }}{{ app.user.foto }}" alt="{{ app.user.profile.name }}" class="img-rounded a-act">
+											<img src="{{ asset('web/uploads/users/mini_') }}{{ app.user.foto }}" alt="{{ app.user.profile.name }}" class="img-rounded a-act">
 											Pesan baru untukmu
 										</div>
 										<div class="media-body">
@@ -26,7 +26,7 @@
 									<div class="media">
 										<div class="media-left pull-left">
 										{% if entity.user2.foto != app.user.foto %}
-											<img src="{{ asset('uploads/users/mini_') }}{{ entity.user2.foto }}" alt="{{ entity.user2.profile.name }}" class="img-rounded">
+											<img src="{{ asset('web/uploads/users/mini_') }}{{ entity.user2.foto }}" alt="{{ entity.user2.profile.name }}" class="img-rounded">
 										{% endif %}
 										</div>
 										<div class="media-body f-feel">

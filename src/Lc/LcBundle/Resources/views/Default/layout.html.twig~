@@ -9,18 +9,18 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Lucidcouple - Temukan takdirmu disini!</title>
+    <title>kenalan - Temukan takdirmu disini!</title>
 
     <!-- Bootstrap Core CSS -->
     {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('bundles/lclc/css/bootstrap.min.css') }}" type="text/css" media="all" />
-            <link rel="stylesheet" href="{{ asset('bundles/lclc/css/grayscale.css') }}" type="text/css" media="all" />
-            <link rel="stylesheet" href="{{ asset('bundles/lclc/css/jquery-ui.css') }}" type="text/css" media="all" />
-            <link rel="stylesheet" href="{{ asset('bundles/lclc/font-awesome/css/font-awesome.min.css') }}" type="text/css" media="all" />
+            <link rel="stylesheet" href="{{ asset('web/bundles/lclc/css/bootstrap.min.css') }}" type="text/css" media="all" />
+            <link rel="stylesheet" href="{{ asset('web/bundles/lclc/css/grayscale.css') }}" type="text/css" media="all" />
+            <link rel="stylesheet" href="{{ asset('web/bundles/lclc/css/jquery-ui.css') }}" type="text/css" media="all" />
+            <link rel="stylesheet" href="{{ asset('web/bundles/lclc/font-awesome/css/font-awesome.min.css') }}" type="text/css" media="all" />
     {% endblock %}
     {% block javascripts %}
-            <script type="text/javascript" src="{{ asset('bundles/lclc/js/jquery-1.10.2.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('bundles/lclc/js/jquery-ui.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('web/bundles/lclc/js/jquery-1.10.2.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('web/bundles/lclc/js/jquery-ui.js') }}"></script>
     {% endblock %}
 	<script>
 		$(function() {
@@ -52,13 +52,13 @@
     <!-- Footer -->
     <footer>
         <div class="container text-center">
-            <p>Copyright &copy; lucidcouple.com {{ "now"|date("Y") }}</p>
+            <p>Copyright &copy; kenalan.com {{ "now"|date("Y") }}</p>
         </div>
     </footer>
 
-            <script type="text/javascript" src="{{ asset('bundles/lclc/js/jquery.easing.min.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('bundles/lclc/js/bootstrap.min.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('bundles/lclc/js/grayscale.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('web/bundles/lclc/js/jquery.easing.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('web/bundles/lclc/js/bootstrap.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('web/bundles/lclc/js/grayscale.js') }}"></script>
             
     <!-- Bootstrap Core JavaScript -->
 

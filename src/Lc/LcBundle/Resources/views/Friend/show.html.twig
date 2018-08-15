@@ -10,12 +10,12 @@
 								<div class="panel-heading panel-success">
 									<div class="media">
 										<div class="media-left pull-left knowing">
-											<img src="{{ asset('uploads/users/mini_') }}{{ app.user.foto }}" alt="{{ app.user.profile.name }}" class="img-rounded a-act">
+											<img src="{{ asset('web/uploads/users/mini_') }}{{ app.user.foto }}" alt="{{ app.user.profile.name }}" class="img-rounded a-act">
 											Daftar Kenalanmu
 										</div>
 										<div class="media-body">
 											<h5 class="media-right pull-right">
-												<a class="a-act" href="#" data-toggle="tooltip" data-placement="top" title="Daftar kenalanmu"><i class="glyphicon glyphicon-heart knowing"></i></a>
+												<a class="a-act" href="#" data-toggle="tooltip" data-placement="top" title="Daftar kenalanmu"><i class="glyphicon glyphicon-user knowing"></i></a>
 											</h5>
 										</div>
 									</div>
@@ -26,7 +26,7 @@
 										<div class="media">
 											<div class="media-left pull-left">
 											<a class="thumbnail" href="{{ path('profile_see', {'token': entity.user1.token }) }}">
-												<img src="{{ asset('uploads/users/mini_') }}{{ entity.user1.foto }}" alt="{{ entity.user1.profile.name }}" class="img-rounded">
+												<img src="{{ asset('web/uploads/users/mini_') }}{{ entity.user1.foto }}" alt="{{ entity.user1.profile.name }}" class="img-rounded">
 											</a>
 											</div>
 											<div class="media-body f-feel">

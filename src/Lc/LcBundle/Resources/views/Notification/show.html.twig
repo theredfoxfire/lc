@@ -4,13 +4,13 @@
 {% endblock %}
 {%block content%}
 				<div class="col-sm-7 column">
-						
+
 						<div class="row">
 							<div class="panel panel-success">
 								<div class="panel-heading panel-success">
 									<div class="media">
 										<div class="media-left pull-left knowing">
-											<img src="{{ asset('uploads/users/mini_') }}{{ app.user.foto }}" alt="{{ app.user.profile.name }}" class="img-rounded a-act">
+											<img src="{{ asset('web/uploads/users/mini_') }}{{ app.user.foto }}" alt="{{ app.user.profile.name }}" class="img-rounded a-act">
 											Pemberitahuan untukmu
 										</div>
 										<div class="media-body">
@@ -25,7 +25,7 @@
 								<div class="panel-body apanel-body p-border">
 									<div class="media">
 										<div class="media-left pull-left">
-											<img src="{{ asset('uploads/users/mini_') }}{{ entity.user1.foto }}" alt="{{ entity.user1.profile.name }}" class="img-rounded">
+											<img src="{{ asset('web/uploads/users/mini_') }}{{ entity.user1.foto }}" alt="{{ entity.user1.profile.name }}" class="img-rounded">
 										</div>
 										<div class="media-body f-feel">
 											<h4 class="media-right">{{ entity.user1.profile.name }}</h4>
@@ -44,7 +44,7 @@
 													<h5 class="media-right">Mengomentari Perasaan mu, <a href="{{ path('feeling_show', {'token': entity.fromid }) }}">Lihat komentar {{ entity.user1.profile.name }}.</a></h5>
 												{% endif %}
 											{% elseif entity.frompage == 4 %}
-													<h5 class="media-right">Menyukaimu dan mengirim pertemanan dengan mu, <a href="{{ path('profile_see', {'token': entity.user1.token }) }}">Lihat Profile {{ entity.user1.profile.name }}.</a></h5>
+													<h5 class="media-right">Mengirim permintaan pertemanan dengan mu, <a href="{{ path('profile_see', {'token': entity.user1.token }) }}">Lihat Profile {{ entity.user1.profile.name }}.</a></h5>
 											{% elseif entity.frompage == 5 %}
 													<h5 class="media-right">Menerima permintaan pertemanan mu, <a href="{{ path('profile_see', {'token': entity.user1.token }) }}">Lihat Profile {{ entity.user1.profile.name }}.</a></h5>
 											{% else %}
@@ -59,7 +59,7 @@
 								<div class="panel-body apanel-body p-border">
 									<div class="media">
 										<div class="media-left pull-left">
-											
+
 										</div>
 										<div class="media-body f-feel">
 											<h4 class="media-right">Sementara ini masih belum ada.</h4>
@@ -69,7 +69,7 @@
 								{% endif %}
 							</div>
 						</div>
-						
+
 				</div>
 {% endblock %}
 {%block rightcontent%}

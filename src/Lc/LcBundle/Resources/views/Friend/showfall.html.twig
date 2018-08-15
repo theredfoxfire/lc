@@ -4,18 +4,18 @@
 {% endblock %}
 {%block content%}
 				<div class="col-sm-7 column">
-						
+
 						<div class="row">
 							<div class="panel panel-success">
 								<div class="panel-heading panel-success">
 									<div class="media">
 										<div class="media-left pull-left knowing">
-											<img src="{{ asset('uploads/users/mini_') }}{{ app.user.foto }}" alt="{{ app.user.profile.name }}" class="img-rounded a-act">
-											Orang yang menyukai mu dan ingin menjadi teman mu
+											<img src="{{ asset('web/uploads/users/mini_') }}{{ app.user.foto }}" alt="{{ app.user.profile.name }}" class="img-rounded a-act">
+											Orang yang ingin menjadi teman mu
 										</div>
 										<div class="media-body">
 											<h5 class="media-right pull-right">
-												<a class="a-act" href="#" data-toggle="tooltip" data-placement="top" title="Yang menyukaimu"><i class="glyphicon glyphicon-heart knowing"></i></a>
+												<a class="a-act" href="#" data-toggle="tooltip" data-placement="top" title="Yang ingin kenalan"><i class="glyphicon glyphicon-hand-up knowing"></i></a>
 											</h5>
 										</div>
 									</div>
@@ -26,13 +26,13 @@
 										<div class="media">
 											<div class="media-left pull-left">
 											<a class="thumbnail" href="{{ path('profile_see', {'token': entity.user1.token }) }}">
-												<img src="{{ asset('uploads/users/mini_') }}{{ entity.user1.foto }}" alt="{{ entity.user1.profile.name }}" class="img-rounded">
+												<img src="{{ asset('web/uploads/users/mini_') }}{{ entity.user1.foto }}" alt="{{ entity.user1.profile.name }}" class="img-rounded">
 											</a>
 											</div>
 											<div class="media-body f-feel">
 												<h4 class="media-right">{{ entity.user1.profile.name }}</h4>
 												<a class="a-act pull-right" onclick="tanya('{{ entity.user1.profile.name }}','{{ entity.token }}')" href="#" data-toggle="tooltip" data-placement="top" title="Tolak"><i class="glyphicon glyphicon-remove-sign"></i></a>
-												<a class="a-act pull-right" href="{{ path('friend_update', {'token': entity.token }) }}" data-toggle="tooltip" data-placement="top" title="Terima"><i class="glyphicon glyphicon-heart-empty"></i></a>
+												<a class="a-act pull-right" href="{{ path('friend_update', {'token': entity.token }) }}" data-toggle="tooltip" data-placement="top" title="Terima"><i class="glyphicon glyphicon-user"></i></a>
 											</div>
 										</div>
 									</div>
@@ -56,12 +56,12 @@
 								{% endif %}
 							</div>
 						</div>
-						
+
 				</div>
 <script>
 	function tanya(nama,token){
 		var con = confirm('Kamu yakin menolak permintaan '+nama+' untuk berteman?');
-		
+
 		if (con){
 			window.open('{{ app.request.getBaseURL() }}/heaven/friend/'+token+'/reject', '_top');
 		}

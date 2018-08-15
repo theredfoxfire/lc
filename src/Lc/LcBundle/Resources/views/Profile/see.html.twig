@@ -10,13 +10,13 @@
 									<i class="glyphicon glyphicon-user"></i>&nbsp;Preview Akun {{ entity.name }}
 								</div>
 											<center>
-											<img class="thumbnail" src="{{ asset('uploads/users/index_') }}{{ entity.user.foto }}" alt="{{ entity.name }}">
+											<img class="thumbnail" src="{{ asset('web/uploads/users/index_') }}{{ entity.user.foto }}" alt="{{ entity.name }}">
 											{% if friend and friend.isconfirmed == 0 %}
 												<div class="label label-success">Permintaan pertemanan sudah dikirim</div>
 											{% elseif friend and friend.isconfirmed == 1 %}
 												<div class="label label-success">Dia sudah berteman denganmu</div><br /><br / >
 											{% else %}
-												<a class="label label-primary" data-toggle="tooltip" data-placement="top" title="Suka sama Dia?" href="{{ path('friend_create', {'token' : entity.user.token}) }}"> Tertarik</a>
+												<a class="label label-primary" data-toggle="tooltip" data-placement="top" title="Kenal sama Dia?" href="{{ path('friend_create', {'token' : entity.user.token}) }}"> Kenalan</a>
 											{% endif %}
 											</center>
 								<hr />
@@ -27,15 +27,9 @@
 										<tr class="profile"><td valign="top"> Tentang saya</td><td valign="top">:</td><td valign="top">{{ entity.about }}</td></tr>
 										<tr class="profile"><td valign="top"> Alamat</td><td valign="top">:</td><td valign="top">{{ entity.address }}</td></tr>
 										<tr class="profile"><td valign="top"> Status pernikahan</td><td valign="top">:</td><td valign="top">{{ entity.status }}</td></tr>
-										<tr class="profile"><td valign="top"> Hobi</td><td valign="top">:</td><td valign="top">{{ entity.hobby }}</td></tr>
 										<tr class="profile"><td valign="top"> Pekerjaan</td><td valign="top">:</td><td valign="top">{{ entity.job }}</td></tr>
 										<tr class="profile"><td valign="top"> Pendidikan</td><td valign="top">:</td><td valign="top">{{ entity.education }}</td></tr>
-										<tr class="profile"><td valign="top"> Gaji</td><td valign="top">:</td><td valign="top">{{ entity.sallary }}</td></tr>
-										<tr class="profile"><td valign="top"> Tempat tinggal</td><td valign="top">:</td><td valign="top">{{ entity.lived }}</td></tr>
-										<tr class="profile"><td valign="top"> Perokok</td><td valign="top">:</td><td valign="top">{{ entity.smoking }}</td></tr>
-										<tr class="profile"><td valign="top"> Peminum alkohol</td><td valign="top">:</td><td valign="top">{{ entity.alcoholic }}</td></tr>
 										<tr class="profile"><td valign="top"> Agama</td><td valign="top">:</td><td valign="top">{{ entity.religy }}</td></tr>
-										<tr class="profile"><td valign="top"> Rencana akan menikah</td><td valign="top">:</td><td valign="top">{{ entity.plan }} lagi</td></tr>
 									</table>
 								</div>
 								</center>

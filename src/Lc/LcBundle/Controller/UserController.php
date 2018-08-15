@@ -107,7 +107,7 @@ class UserController extends Controller
 
     public function waitAction()
     {
-        return $this->render('LcLcBundle:User:wait.html.twig');
+        return $this->render('LcLcBundle:User:thanks.html.twig');
     }
     /**
      * Creates a new User entity.

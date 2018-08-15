@@ -1,15 +1,15 @@
 lc_lc_homepage:
     path:     /
     defaults: { _controller: LcLcBundle:Default:index }
-LcLcBundle_admin:
-        resource: "@LcLcBundle/Resources/config/routing/admin.yml"
-        prefix:   /heaven/admin
-LcLcBundle_admindoing:
-        resource: "@LcLcBundle/Resources/config/routing/admindoing.yml"
-        prefix:   /heaven/admindoing
-LcLcBundle_adminlog:
-        resource: "@LcLcBundle/Resources/config/routing/adminlog.yml"
-        prefix:   /heaven/adminlog
+# LcLcBundle_admin:
+#         resource: "@LcLcBundle/Resources/config/routing/admin.yml"
+#         prefix:   /heaven/admin
+# LcLcBundle_admindoing:
+#         resource: "@LcLcBundle/Resources/config/routing/admindoing.yml"
+#         prefix:   /heaven/admindoing
+# LcLcBundle_adminlog:
+#         resource: "@LcLcBundle/Resources/config/routing/adminlog.yml"
+#         prefix:   /heaven/adminlog
 LcLcBundle_chat:
         resource: "@LcLcBundle/Resources/config/routing/chat.yml"
         prefix:   /heaven/chat

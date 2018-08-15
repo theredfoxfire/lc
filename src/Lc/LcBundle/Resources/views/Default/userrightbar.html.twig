@@ -2,14 +2,14 @@
 						<div class="col-sm-3 column">
 							<div class="panel panel-success">
 								<div class="panel-heading">
-									<h3 class="panel-title">Mungkin kamu suka</h3>
+									<h3 class="panel-title">Mungkin kamu kenal</h3>
 								</div>
 								{% if others %}
 									{% for other in others %}
 										<div class="panel-body apanel-body p-border">
 											<div class="media">
 												<a class="media-left pull-left thumbnail" href="{{ path('profile_see', {'token': other.token }) }}">
-													<img src="{{ asset('uploads/users/thumb_') }}{{ other.foto }}" alt="{% if other.profile.name is defined %}{{ other.profile.name }} {% else %} {{ other.email }} {% endif %}">
+													<img src="{{ asset('web/uploads/users/thumb_') }}{{ other.foto }}" alt="{% if other.profile.name is defined %}{{ other.profile.name }} {% else %} {{ other.email }} {% endif %}">
 												</a>
 												<div class="media-body">
 													<h5 class="media-right">{% if other.profile.name is defined %}{{ other.profile.name }} {% else %} {{ other.email }} {% endif %}</h5>
@@ -27,7 +27,7 @@
 												<h5 class="media-right">Belum ada saran untuk mu.</h5>
 											</div>
 										</div>
-									</div>	
+									</div>
 								{% endif %}
 							</div>
 						</div>

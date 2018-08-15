@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Lucidcouple</title>
+  <title>kenalan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="">
@@ -12,8 +12,8 @@
 	<!--script src="js/less-1.3.3.min.js"></script-->
 	<!--append ‘#!watch’ to the browser URL, then refresh the page. -->
 	
-	<link rel="stylesheet" href="{{ asset('bundles/lclc/cssh/bootstrap.min.css') }}" type="text/css" media="all" />
-	<link rel="stylesheet" href="{{ asset('bundles/lclc/cssh/style.css') }}" type="text/css" media="all" />
+	<link rel="stylesheet" href="{{ asset('web/bundles/lclc/cssh/bootstrap.min.css') }}" type="text/css" media="all" />
+	<link rel="stylesheet" href="{{ asset('web/bundles/lclc/cssh/style.css') }}" type="text/css" media="all" />
 
   <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
   <!--[if lt IE 9]>
@@ -22,15 +22,15 @@
 
   <!-- Fav and touch icons -->
 
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('bundles/lclc/img/apple-touch-icon-144-precomposed.png') }}">
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('bundles/lclc/img/apple-touch-icon-114-precomposed.png') }}">
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('bundles/lclc/img/apple-touch-icon-72-precomposed.png') }}">
-  <link rel="apple-touch-icon-precomposed" href="{{ asset('bundles/lclc/img/apple-touch-icon-57-precomposed.png') }}">
-  <link rel="shortcut icon" href="{{ asset('bundles/lclc/img/favicon.png') }}">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('web/bundles/lclc/img/apple-touch-icon-144-precomposed.png') }}">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('web/bundles/lclc/img/apple-touch-icon-114-precomposed.png') }}">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('web/bundles/lclc/img/apple-touch-icon-72-precomposed.png') }}">
+  <link rel="apple-touch-icon-precomposed" href="{{ asset('web/bundles/lclc/img/apple-touch-icon-57-precomposed.png') }}">
+  <link rel="shortcut icon" href="{{ asset('web/bundles/lclc/img/favicon.png') }}">
 	
-	<script type="text/javascript" src="{{ asset('bundles/lclc/jsh/jquery.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('bundles/lclc/jsh/bootstrap.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('bundles/lclc/jsh/scripts.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('web/bundles/lclc/jsh/jquery.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('web/bundles/lclc/jsh/bootstrap.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('web/bundles/lclc/jsh/scripts.js') }}"></script>
 </head>
 
 <body>
@@ -48,7 +48,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="{{ path('feeling') }}"><i class="glyphicon glyphicon-heart-empty"></i>&nbsp;LUCIDCOUPLE</a>
+          <a class="navbar-brand" href="{{ path('feeling') }}"><i class="glyphicon glyphicon-user-empty"></i>&nbsp;kenalan</a>
         </div>
         
         <div id="navbar" class="navbar-collapse collapse">
@@ -61,9 +61,9 @@
 				</div><!-- /input-group -->
 			</div>
           <ul class="nav navbar-nav navbar-right">
-			<li><center><img src="{{ asset('bundles/lclc/img/wedus-36.jpeg') }}" class="img-tumbnail centered"></center></li>
+			<li><center><img src="{{ asset('web/bundles/lclc/img/wedus-36.jpeg') }}" class="img-tumbnail centered"></center></li>
             <li><a href="#" data-toggle="tooltip" data-placement="top" title="Beranda">Beranda</a></li>
-            <li><a href="fall-with-you.html" data-toggle="tooltip" data-placement="top" title="Suka Kamu"><span class="glyphicon glyphicon-heart knowing"></span><span class="badge">2</span></a></li>
+            <li><a href="fall-with-you.html" data-toggle="tooltip" data-placement="top" title="Suka Kamu"><span class="glyphicon glyphicon-user knowing"></span><span class="badge">2</span></a></li>
 			<li><a href="message.html" data-toggle="tooltip" data-placement="top" title="Pesan"><span class="glyphicon glyphicon-envelope knowing"></span><span class="badge">7</span></a></li>
 			<li><a href="announcement.html" data-toggle="tooltip" data-placement="top" title="Pemberitahuan"><span class="glyphicon glyphicon-bell knowing"></span><span class="badge">8</span></a></li>
             <li class="dropdown">
@@ -117,7 +117,7 @@
 		<div class="row clearfix">
 			<div class="col-md-12 column">
 				<div class="col-md-11">
-					<p class="text-muted credit"><a href="http://lucidcouple.com">&copy;&nbsp;lucidcouple.com Yogyakarta {{ "now"|date("Y") }}</a>.</p>
+					<p class="text-muted credit"><a href="http://kenalan.com">&copy;&nbsp;kenalan.com Yogyakarta {{ "now"|date("Y") }}</a>.</p>
 				</div>
 				<div class="col-md-1">
 					<span class="label">

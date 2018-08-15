@@ -6,7 +6,7 @@
                     <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand page-scroll" href="{{ path('lc_lc_homepage') }}">
-                    <i class="glyphicon glyphicon-heart-empty"></i>  <span class="light">Lucid</span>Couple
+                    <i class="glyphicon glyphicon-user-empty"></i>  <span class="light">Lucid</span>Couple
                 </a>
             </div>
 

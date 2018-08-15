@@ -40,37 +40,35 @@ class FlikeController extends Controller
         $entity = new Flike();
         $em = $this->getDoctrine()->getManager();
         $feeling = $em->getRepository('LcLcBundle:Feeling')->findOneByToken($feel);
-        $check = $em->getRepository('LcLcBundle:Flike')->checkLiked($this->getUid(),$feeling);
+        $check = $em->getRepository('LcLcBundle:Flike')->checkLiked($this->getUid(), $feeling);
         $broad = $feeling->getUser()->getBroad();
-        if(!$check && ($broad == 0)){
-			$entity->setStatus(1);
-			$entity->setUser($this->getUid());
-			$entity->setFeeling($feeling);
-			$em->persist($entity);
-			$em->flush();
-			
-			$noty = new Notification();
-			//user 1 is liker user 2 is liked
-			$noty->setViewed(false);
-			$noty->setUser1($this->getUid());
-			$noty->setUser2($feeling->getUser());
-			$noty->setFromPage(2);
-			if($this->getUid()->getId() == $feeling->getUser()->getId()){
-				$noty->setSelfPage($this->getUid()->getId());
-			}else{
-				$noty->setSelfPage(0);
-			}
-			$noty->setFromId($feeling->getToken());
-			$em->persist($noty);
-			$em->flush();
-		}
-		if($page == 1)
-		{
-			return $this->redirect($this->generateUrl('feeling_show', array('token' => $feel)));
-		} else 
-		{
-			return $this->redirect($this->generateUrl('feeling'));
-		}
+        if (!$check) {
+            $entity->setStatus(1);
+            $entity->setUser($this->getUid());
+            $entity->setFeeling($feeling);
+            $em->persist($entity);
+            $em->flush();
+
+            $noty = new Notification();
+            //user 1 is liker user 2 is liked
+            $noty->setViewed(false);
+            $noty->setUser1($this->getUid());
+            $noty->setUser2($feeling->getUser());
+            $noty->setFromPage(2);
+            if ($this->getUid()->getId() == $feeling->getUser()->getId()) {
+                $noty->setSelfPage($this->getUid()->getId());
+            } else {
+                $noty->setSelfPage(0);
+            }
+            $noty->setFromId($feeling->getToken());
+            $em->persist($noty);
+            $em->flush();
+        }
+        if ($page == 1) {
+            return $this->redirect($this->generateUrl('feeling_show', array('token' => $feel)));
+        } else {
+            return $this->redirect($this->generateUrl('feeling'));
+        }
     }
 
     /**
@@ -241,13 +239,13 @@ class FlikeController extends Controller
             ->getForm()
         ;
     }
-    
-    public function getUid(){
-		$usr= $this->get('security.context')->getToken()->getUser();
-		$uid = $usr->getId();
-		$em = $this->getDoctrine()->getManager();
-		$userId = $em->getRepository('LcLcBundle:User')->find($uid);
-		return $userId;
-		
-	}
+
+    public function getUid()
+    {
+        $usr= $this->get('security.context')->getToken()->getUser();
+        $uid = $usr->getId();
+        $em = $this->getDoctrine()->getManager();
+        $userId = $em->getRepository('LcLcBundle:User')->find($uid);
+        return $userId;
+    }
 }

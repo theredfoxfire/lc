@@ -1,7 +1,7 @@
 {%block leftcontent%}
 				<div class="col-md-2 column">
 				<div class="thumbnail">
-					<img src="{{ asset('bundles/lclc/img/wedus.jpeg') }}" alt="Profile">
+					<img src="{{ asset('web/bundles/lclc/img/wedus.jpeg') }}" alt="Profile">
 				</div>
 					<div id="navbar" class="navbar">
 						
