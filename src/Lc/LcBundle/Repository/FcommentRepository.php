@@ -4,6 +4,7 @@ namespace Lc\LcBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Lc\LcBundle\Entity\Fcomment;
+
 /**
  * FcommentRepository
  *
@@ -12,16 +13,45 @@ use Lc\LcBundle\Entity\Fcomment;
  */
 class FcommentRepository extends EntityRepository
 {
-	public function getCommentList($feel = null){
-		$query = $this->createQueryBuilder('c')
-		->andWhere('c.feeling = :fe')
-		->setParameter('fe', $feel)
-		->andWhere('c.is_publish = :is')
-		->setParameter('is', 1)
-		->setMaxResults(25)
-		->orderBy('c.created_at', 'DESC')
-		->getQuery();
-		
-		return $query->getResult();
-	}
+    public function getCommentList($feel = null)
+    {
+        $query = $this->createQueryBuilder('c')
+        ->andWhere('c.feeling = :fe')
+        ->setParameter('fe', $feel)
+        ->andWhere('c.is_publish = :is')
+        ->setParameter('is', 1)
+        ->setMaxResults(25)
+        ->orderBy('c.created_at', 'DESC')
+        ->getQuery();
+
+        return $query->getResult();
+    }
+
+    public function countCommentList($feel = null)
+    {
+        $query = $this->createQueryBuilder('c')
+        ->andWhere('c.feeling = :fe')
+        ->setParameter('fe', $feel)
+        ->andWhere('c.is_publish = :is')
+        ->setParameter('is', 1)
+        ->setMaxResults(25)
+        ->orderBy('c.created_at', 'DESC')
+        ->getQuery();
+
+        return count($query->getResult());
+    }
+
+    public function getCommentListQuery($feel = null)
+    {
+        $query = $this->createQueryBuilder('c')
+        ->andWhere('c.feeling = :fe')
+        ->setParameter('fe', $feel)
+        ->andWhere('c.is_publish = :is')
+        ->setParameter('is', 1)
+        ->setMaxResults(25)
+        ->orderBy('c.created_at', 'DESC')
+        ->getQuery();
+
+        return $query;
+    }
 }

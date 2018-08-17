@@ -198,9 +198,17 @@ class FeelingController extends Controller
     public function showAction(Request $request, $token)
     {
         $em = $this->getDoctrine()->getManager();
+        $paginator = $this->get('knp_paginator');
 
         $entity = $em->getRepository('LcLcBundle:Feeling')->findOneByToken($token);
-        $comments = $em->getRepository('LcLcBundle:Fcomment')->getCommentList($entity);
+        $query = $em->getRepository('LcLcBundle:Fcomment')->getCommentListQuery($entity);
+        $c = $em->getRepository('LcLcBundle:Fcomment')->countCommentList($entity);
+        $pagination = $paginator->paginate(
+            $query,
+            $this->get('request')->query->get('page', 1),
+            25
+        );
+
         $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
         $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
         $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
@@ -216,7 +224,7 @@ class FeelingController extends Controller
 
         $form = $this->createCommentForm($fcomment, $token);
         $form->handleRequest($request);
-        if ($form->isValid() && ($broad == 0)) {
+        if ($form->isValid()) {
             $usr= $this->get('security.context')->getToken()->getUser();
             $uid = $usr->getId();
             $em = $this->getDoctrine()->getManager();
@@ -251,12 +259,13 @@ class FeelingController extends Controller
 
         return $this->render('LcLcBundle:Feeling:show.html.twig', array(
             'entity'      => $entity,
-            'comments' 	  => $comments,
+            'comments' 	  => $pagination,
             'others' => $others,
             'fall' => $fall,
             'chat' => $chat,
             'notify' => $notify,
             'form'		  => $form->createView(),
+            'c' => $c,
         ));
     }
 

@@ -45,69 +45,9 @@ class Profile
     private $token;
 
     /**
-     * @var \Lc\LcBundle\Entity\Status
-     */
-    private $status;
-
-    /**
-     * @var \Lc\LcBundle\Entity\Hobby
-     */
-    private $hobby;
-
-    /**
-     * @var \Lc\LcBundle\Entity\Job
-     */
-    private $job;
-
-    /**
-     * @var \Lc\LcBundle\Entity\Education
-     */
-    private $education;
-
-    /**
-     * @var \Lc\LcBundle\Entity\Sallary
-     */
-    private $sallary;
-
-    /**
-     * @var \Lc\LcBundle\Entity\Province
-     */
-    private $province;
-
-    /**
-     * @var \Lc\LcBundle\Entity\City
-     */
-    private $city;
-
-    /**
-     * @var \Lc\LcBundle\Entity\Lived
-     */
-    private $lived;
-
-    /**
-     * @var \Lc\LcBundle\Entity\Smoking
-     */
-    private $smoking;
-
-    /**
      * @var \Lc\LcBundle\Entity\Sex
      */
     private $sex;
-
-    /**
-     * @var \Lc\LcBundle\Entity\Religy
-     */
-    private $religy;
-
-    /**
-     * @var \Lc\LcBundle\Entity\Alcoholic
-     */
-    private $alcoholic;
-
-    /**
-     * @var \Lc\LcBundle\Entity\Plan
-     */
-    private $plan;
 
     /**
      * @var \Lc\LcBundle\Entity\User
@@ -118,7 +58,7 @@ class Profile
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -141,7 +81,7 @@ class Profile
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -164,7 +104,7 @@ class Profile
     /**
      * Get address
      *
-     * @return string 
+     * @return string
      */
     public function getAddress()
     {
@@ -187,7 +127,7 @@ class Profile
     /**
      * Get about
      *
-     * @return string 
+     * @return string
      */
     public function getAbout()
     {
@@ -210,7 +150,7 @@ class Profile
     /**
      * Get created_at
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -233,7 +173,7 @@ class Profile
     /**
      * Get updated_at
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -256,218 +196,11 @@ class Profile
     /**
      * Get token
      *
-     * @return string 
+     * @return string
      */
     public function getToken()
     {
         return $this->token;
-    }
-
-    /**
-     * Set status
-     *
-     * @param \Lc\LcBundle\Entity\Status $status
-     * @return Profile
-     */
-    public function setStatus(\Lc\LcBundle\Entity\Status $status = null)
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    /**
-     * Get status
-     *
-     * @return \Lc\LcBundle\Entity\Status 
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    /**
-     * Set hobby
-     *
-     * @param \Lc\LcBundle\Entity\Hobby $hobby
-     * @return Profile
-     */
-    public function setHobby(\Lc\LcBundle\Entity\Hobby $hobby = null)
-    {
-        $this->hobby = $hobby;
-
-        return $this;
-    }
-
-    /**
-     * Get hobby
-     *
-     * @return \Lc\LcBundle\Entity\Hobby 
-     */
-    public function getHobby()
-    {
-        return $this->hobby;
-    }
-
-    /**
-     * Set job
-     *
-     * @param \Lc\LcBundle\Entity\Job $job
-     * @return Profile
-     */
-    public function setJob(\Lc\LcBundle\Entity\Job $job = null)
-    {
-        $this->job = $job;
-
-        return $this;
-    }
-
-    /**
-     * Get job
-     *
-     * @return \Lc\LcBundle\Entity\Job 
-     */
-    public function getJob()
-    {
-        return $this->job;
-    }
-
-    /**
-     * Set education
-     *
-     * @param \Lc\LcBundle\Entity\Education $education
-     * @return Profile
-     */
-    public function setEducation(\Lc\LcBundle\Entity\Education $education = null)
-    {
-        $this->education = $education;
-
-        return $this;
-    }
-
-    /**
-     * Get education
-     *
-     * @return \Lc\LcBundle\Entity\Education 
-     */
-    public function getEducation()
-    {
-        return $this->education;
-    }
-
-    /**
-     * Set sallary
-     *
-     * @param \Lc\LcBundle\Entity\Sallary $sallary
-     * @return Profile
-     */
-    public function setSallary(\Lc\LcBundle\Entity\Sallary $sallary = null)
-    {
-        $this->sallary = $sallary;
-
-        return $this;
-    }
-
-    /**
-     * Get sallary
-     *
-     * @return \Lc\LcBundle\Entity\Sallary 
-     */
-    public function getSallary()
-    {
-        return $this->sallary;
-    }
-
-    /**
-     * Set province
-     *
-     * @param \Lc\LcBundle\Entity\Province $province
-     * @return Profile
-     */
-    public function setProvince(\Lc\LcBundle\Entity\Province $province = null)
-    {
-        $this->province = $province;
-
-        return $this;
-    }
-
-    /**
-     * Get province
-     *
-     * @return \Lc\LcBundle\Entity\Province 
-     */
-    public function getProvince()
-    {
-        return $this->province;
-    }
-
-    /**
-     * Set city
-     *
-     * @param \Lc\LcBundle\Entity\City $city
-     * @return Profile
-     */
-    public function setCity(\Lc\LcBundle\Entity\City $city = null)
-    {
-        $this->city = $city;
-
-        return $this;
-    }
-
-    /**
-     * Get city
-     *
-     * @return \Lc\LcBundle\Entity\City 
-     */
-    public function getCity()
-    {
-        return $this->city;
-    }
-
-    /**
-     * Set lived
-     *
-     * @param \Lc\LcBundle\Entity\Lived $lived
-     * @return Profile
-     */
-    public function setLived(\Lc\LcBundle\Entity\Lived $lived = null)
-    {
-        $this->lived = $lived;
-
-        return $this;
-    }
-
-    /**
-     * Get lived
-     *
-     * @return \Lc\LcBundle\Entity\Lived 
-     */
-    public function getLived()
-    {
-        return $this->lived;
-    }
-
-    /**
-     * Set smoking
-     *
-     * @param \Lc\LcBundle\Entity\Smoking $smoking
-     * @return Profile
-     */
-    public function setSmoking(\Lc\LcBundle\Entity\Smoking $smoking = null)
-    {
-        $this->smoking = $smoking;
-
-        return $this;
-    }
-
-    /**
-     * Get smoking
-     *
-     * @return \Lc\LcBundle\Entity\Smoking 
-     */
-    public function getSmoking()
-    {
-        return $this->smoking;
     }
 
     /**
@@ -486,80 +219,11 @@ class Profile
     /**
      * Get sex
      *
-     * @return \Lc\LcBundle\Entity\Sex 
+     * @return \Lc\LcBundle\Entity\Sex
      */
     public function getSex()
     {
         return $this->sex;
-    }
-
-    /**
-     * Set religy
-     *
-     * @param \Lc\LcBundle\Entity\Religy $religy
-     * @return Profile
-     */
-    public function setReligy(\Lc\LcBundle\Entity\Religy $religy = null)
-    {
-        $this->religy = $religy;
-
-        return $this;
-    }
-
-    /**
-     * Get religy
-     *
-     * @return \Lc\LcBundle\Entity\Religy 
-     */
-    public function getReligy()
-    {
-        return $this->religy;
-    }
-
-    /**
-     * Set alcoholic
-     *
-     * @param \Lc\LcBundle\Entity\Alcoholic $alcoholic
-     * @return Profile
-     */
-    public function setAlcoholic(\Lc\LcBundle\Entity\Alcoholic $alcoholic = null)
-    {
-        $this->alcoholic = $alcoholic;
-
-        return $this;
-    }
-
-    /**
-     * Get alcoholic
-     *
-     * @return \Lc\LcBundle\Entity\Alcoholic 
-     */
-    public function getAlcoholic()
-    {
-        return $this->alcoholic;
-    }
-
-    /**
-     * Set plan
-     *
-     * @param \Lc\LcBundle\Entity\Plan $plan
-     * @return Profile
-     */
-    public function setPlan(\Lc\LcBundle\Entity\Plan $plan = null)
-    {
-        $this->plan = $plan;
-
-        return $this;
-    }
-
-    /**
-     * Get plan
-     *
-     * @return \Lc\LcBundle\Entity\Plan 
-     */
-    public function getPlan()
-    {
-        return $this->plan;
     }
 
     /**
@@ -578,7 +242,7 @@ class Profile
     /**
      * Get user
      *
-     * @return \Lc\LcBundle\Entity\User 
+     * @return \Lc\LcBundle\Entity\User
      */
     public function getUser()
     {
@@ -598,9 +262,9 @@ class Profile
      */
     public function setTokenValue()
     {
-        if(!$this->getToken()) {
+        if (!$this->getToken()) {
             $st = date('Y-m-d H:i:s');
-			$this->token = sha1($st.rand(11111, 99999));
+            $this->token = sha1($st.rand(11111, 99999));
         }
     }
 
@@ -610,5 +274,90 @@ class Profile
     public function setUpdatedAtValue()
     {
         $this->updated_at = new \DateTime();
+    }
+    /**
+     * @var string
+     */
+    private $job;
+
+    /**
+     * @var string
+     */
+    private $school;
+
+    /**
+     * @var string
+     */
+    private $city;
+
+
+    /**
+     * Set job
+     *
+     * @param string $job
+     * @return Profile
+     */
+    public function setJob($job)
+    {
+        $this->job = $job;
+
+        return $this;
+    }
+
+    /**
+     * Get job
+     *
+     * @return string
+     */
+    public function getJob()
+    {
+        return $this->job;
+    }
+
+    /**
+     * Set school
+     *
+     * @param string $school
+     * @return Profile
+     */
+    public function setSchool($school)
+    {
+        $this->school = $school;
+
+        return $this;
+    }
+
+    /**
+     * Get school
+     *
+     * @return string
+     */
+    public function getSchool()
+    {
+        return $this->school;
+    }
+
+
+    /**
+     * Set school
+     *
+     * @param string $city
+     * @return Profile
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get school
+     *
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
     }
 }

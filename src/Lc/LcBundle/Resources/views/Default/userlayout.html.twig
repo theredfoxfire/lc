@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>kenalan</title>
+  <title>bukuteman</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="">
@@ -36,7 +36,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="{{ path('feeling') }}"> <i class="glyphicon glyphicon-user-empty"></i>  <span class="light"></span><span class="weight">kenalan</span></a>
+          <a class="navbar-brand" href="{{ path('feeling') }}"> <i class="glyphicon glyphicon-user-empty"></i>  <span class="light"></span><span class="weight">bukuteman</span></a>
         </div>
 
         <div id="navbar" class="navbar-collapse collapse">
@@ -53,7 +53,7 @@
           <ul class="nav navbar-nav navbar-right">
 			<li><img class="img centered mini-left" src="{{ asset('web/uploads/users/thumb_') }}{{ app.user.foto }}" alt="{% if app.user.profile.name is defined %}{{ app.user.profile.name }} {% else %} {{ app.user.email }} {% endif %}"></li>
             <li><a href="{{ path('feeling') }}" data-toggle="tooltip" data-placement="top" title="Beranda"><b>Beranda</b></a></li>
-            <li><a href="{{ path('friend_fall', {'token': app.user.token }) }}" data-toggle="tooltip" data-placement="top" title="Mau kenalan"><span class="glyphicon glyphicon-hand-up knowing"></span>{% if fall %}<span class="badge">{{ fall }}</span>{% endif %}</a></li>
+            <li><a href="{{ path('friend_fall', {'token': app.user.token }) }}" data-toggle="tooltip" data-placement="top" title="Mau bukuteman"><span class="glyphicon glyphicon-hand-up knowing"></span>{% if fall %}<span class="badge">{{ fall }}</span>{% endif %}</a></li>
 			<li><a href="{{ path('unread_chat') }}" data-toggle="tooltip" data-placement="top" title="Pesan"><span class="glyphicon glyphicon-envelope knowing"></span>{% if chat %}<span class="badge">{{ chat }}</span>{% endif %}</a></li>
 			<li><a href="{{ path('notification_show') }}" data-toggle="tooltip" data-placement="top" title="Pemberitahuan"><span class="glyphicon glyphicon-bell knowing"></span>{% if notify %}<span class="badge">{{ notify }}</span>{% endif %}</a></li>
             <li class="dropdown">
@@ -103,7 +103,7 @@
 		<div class="row clearfix">
 			<div class="col-md-12 column">
 				<div class="col-md-11">
-					<p class="text-muted credit"><a href="http://kenalan.com">&copy;&nbsp;kenalan.com Yogyakarta {{ "now"|date("Y") }}</a>.</p>
+					<p class="text-muted credit"><a href="http://bukuteman.com">&copy;&nbsp;bukuteman.com Yogyakarta {{ "now"|date("Y") }}</a>.</p>
 				</div>
 				<div class="col-md-1">
 					<span class="label">

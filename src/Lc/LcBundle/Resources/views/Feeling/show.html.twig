@@ -3,7 +3,7 @@
 	{{ include ('LcLcBundle:Default:userleftbar.html.twig') }}
 {% endblock %}
 {%block content%}
-
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
 				<div class="col-sm-7 column">
 				{% if (app.session.flashbag.get('notice') is not empty) %}
 				<center id="message-session">
@@ -49,7 +49,7 @@
 											<img src="{{ asset('web/uploads/users/mini_') }}{{ entity.user.foto }}" alt="{{ entity.user.profile.name }}">
 										</div>
 										<div class="media-body">
-											<h5 class="media-right">{{ entity.feel }}</h5>
+											<h5 class="media-right">{{ entity.feel|raw }}</h5>
 											<div class='pull-right created_at'><small class="text-muted"> <i class="glyphicon glyphicon-time"></i> <i>{{ entity.createdAt | date('d-m-Y H:i:s') }}</i></small></div>
 										</div>
 									</div>
@@ -69,7 +69,7 @@
 																	<img src="{{ asset('web/uploads/users/mini_') }}{{ comment.user.foto }}" class="img-rounded" alt="{{ comment.user.profile.name }}">
 																</a>
 																<div class="media-body">
-																	<h5 class="media-right">{{ comment.comment }}</h5>
+																	<h5 class="media-right">{{ comment.comment|raw }}</h5>
 																</div>
 															</div>
 														</div>
@@ -86,7 +86,7 @@
 																	<img src="{{ asset('web/uploads/users/mini_') }}{{ comment.user.foto }}" class="img-rounded" alt="{{ comment.user.profile.name }}">
 																</a>
 																<div class="media-body">
-																	<h5 class="media-right">{{ comment.comment }}</h5>
+																	<h5 class="media-right">{{ comment.comment|raw }}</h5>
 																</div>
 															</div>
 														</div>
@@ -98,7 +98,11 @@
 											{% endif %}
 											{% endfor %}
 
-
+											<div class="text-center">
+												{% if c > 25 %}
+													{{ knp_pagination_render(comments) }}</b>
+												{% endif %}
+											</div>
 											<div class="panel panel-success apanel-body" id="comments">
 												<div class="panel-body">
 													<div class="media">
@@ -124,6 +128,22 @@
 						</div>
 
 				</div>
+<script src="{{ asset('web/bundles/lclc/js/summernote.js') }}"></script>
+<script>
+$(document).ready(function() {
+    $('#lc_lcbundle_fcomment_comment').summernote({
+				placeholder: 'bagikan sesuatu...',
+				tooltip: false,
+				height: 100,
+				toolbar: [
+			    // [groupName, [list of button]]
+			    ['style', ['bold', 'italic', 'underline']],
+			    ['font', ['strikethrough', 'superscript', 'subscript']],
+			    ['para', ['ul', 'ol',]]
+			  ]
+		});
+});
+</script>
 <script>
 function setFocus(){
     document.getElementById("lc_lcbundle_fcomment_comment").focus();

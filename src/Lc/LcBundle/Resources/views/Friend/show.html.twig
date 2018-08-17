@@ -4,18 +4,18 @@
 {% endblock %}
 {%block content%}
 				<div class="col-sm-7 column">
-						
+
 						<div class="row">
 							<div class="panel panel-success">
 								<div class="panel-heading panel-success">
 									<div class="media">
 										<div class="media-left pull-left knowing">
 											<img src="{{ asset('web/uploads/users/mini_') }}{{ app.user.foto }}" alt="{{ app.user.profile.name }}" class="img-rounded a-act">
-											Daftar Kenalanmu
+											Daftar Temanmu
 										</div>
 										<div class="media-body">
 											<h5 class="media-right pull-right">
-												<a class="a-act" href="#" data-toggle="tooltip" data-placement="top" title="Daftar kenalanmu"><i class="glyphicon glyphicon-user knowing"></i></a>
+												<a class="a-act" href="#" data-toggle="tooltip" data-placement="top" title="Daftar Temanmu"><i class="glyphicon glyphicon-user knowing"></i></a>
 											</h5>
 										</div>
 									</div>
@@ -56,12 +56,12 @@
 								{% endif %}
 							</div>
 						</div>
-						
+
 				</div>
 <script>
 	function tanya(nama,token){
 		var con = confirm('Kamu yakin akan memblokir '+nama+'?');
-		
+
 		if (con){
 			window.open('{{ app.request.getBaseURL() }}/heaven/friend/'+token+'/block', '_top');
 		}

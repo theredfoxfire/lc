@@ -8,18 +8,18 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class FeelingType extends AbstractType
 {
-        /**
+    /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('feel', 'textarea', array('attr' => array('class' => 'form-control', 'required' => true, 'placeholder' => 'Apa perasaanmu?'), 'label'=>false))
-            ->add('file', 'file',array('attr'=>array('class'=>'', 'placeholder'=>'Password lama'), 'required' =>false, 'label'=>false))
+            ->add('feel', 'textarea', array('attr' => array( 'class' => 'form-control', 'required' => true, 'placeholder' => 'Apa perasaanmu?'), 'label'=>false))
+            ->add('file', 'file', array('attr'=>array('class'=>'', 'placeholder'=>'Password lama'), 'required' =>false, 'label'=>false))
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

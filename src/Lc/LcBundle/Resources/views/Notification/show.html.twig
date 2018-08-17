@@ -20,7 +20,7 @@
 										</div>
 									</div>
 								</div>
-								{% if entities %}
+								{% if c > 0 %}
 								{% for entity in entities %}
 								<div class="panel-body apanel-body p-border">
 									<div class="media">
@@ -33,15 +33,15 @@
 													<h5 class="media-right">Berkunjung ke halaman Profile mu, <a href="{{ path('profile_see', {'token': entity.user1.token }) }}">Lihat Profile {{ entity.user1.profile.name }}.</a></h5>
 											{% elseif entity.frompage == 2 %}
 												{% if entity.user2.id != app.user.id %}
-													<h5 class="media-right">Bersimpati dengan Perasaannya sendiri, <a href="{{ path('feeling_show', {'token': entity.fromid }) }}">Lihat status Perasaannya.</a></h5>
+													<h5 class="media-right">Bersimpati dengan postingannya sendiri, <a href="{{ path('feeling_show', {'token': entity.fromid }) }}">Lihat status postingannya.</a></h5>
 												{% else %}
-													<h5 class="media-right">Bersimpati dengan Perasaan mu, <a href="{{ path('feeling_show', {'token': entity.fromid }) }}">Lihat status Perasaan mu.</a></h5>
+													<h5 class="media-right">Bersimpati dengan postingan mu, <a href="{{ path('feeling_show', {'token': entity.fromid }) }}">Lihat postingan mu.</a></h5>
 												{% endif %}
 											{% elseif entity.frompage == 3 %}
 												{% if entity.user2.id != app.user.id %}
-													<h5 class="media-right">Mengomentari Perasaannya sendiri, <a href="{{ path('feeling_show', {'token': entity.fromid }) }}">Lihat komentar {{ entity.user1.profile.name }}.</a></h5>
+													<h5 class="media-right">Mengomentari postingannya sendiri, <a href="{{ path('feeling_show', {'token': entity.fromid }) }}">Lihat komentar {{ entity.user1.profile.name }}.</a></h5>
 												{% else %}
-													<h5 class="media-right">Mengomentari Perasaan mu, <a href="{{ path('feeling_show', {'token': entity.fromid }) }}">Lihat komentar {{ entity.user1.profile.name }}.</a></h5>
+													<h5 class="media-right">Mengomentari postingan mu, <a href="{{ path('feeling_show', {'token': entity.fromid }) }}">Lihat komentar {{ entity.user1.profile.name }}.</a></h5>
 												{% endif %}
 											{% elseif entity.frompage == 4 %}
 													<h5 class="media-right">Mengirim permintaan pertemanan dengan mu, <a href="{{ path('profile_see', {'token': entity.user1.token }) }}">Lihat Profile {{ entity.user1.profile.name }}.</a></h5>
@@ -55,6 +55,11 @@
 									</div>
 								</div>
 								{% endfor %}
+								<div class="text-center">
+									{% if c > 25 %}
+										{{ knp_pagination_render(entities) }}</b>
+									{% endif %}
+								</div>
 								{% else %}
 								<div class="panel-body apanel-body p-border">
 									<div class="media">

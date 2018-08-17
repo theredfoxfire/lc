@@ -14,7 +14,9 @@ h5 {
 .mini-left {
   margin-left: 35px;
 }
-
+.panel-image {
+  background-color: #fff !important;
+}
 .profile{
 	border-bottom: solid 0.1px; border-color:#D4BFC8;
 }

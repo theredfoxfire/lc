@@ -9,22 +9,23 @@ Lc\LcBundle\Entity\Profile:
   name:
    type: string
    length: 255
-  birthdate:
-   type: date
+   nullable: true
   address:
    type: text
+   nullable: true
   about:
    type: text
+   nullable: true
   created_at:
    type: datetime
   updated_at:
    type: datetime
    nullable: true
-  token: 
+  token:
    type: string
    length: 255
    unique: true
- oneToOne:
+ manyToOne:
   status:
    targetEntity: Status
    inversedBy: profile
@@ -103,9 +104,13 @@ Lc\LcBundle\Entity\Profile:
    joinColumn:
     name: plan_id
     referencedColumnName: id
+ oneToOne:
   user:
    targetEntity: User
    inversedBy: profile
    joinColumn:
     name: user_id
     referencedColumnName: id
+ lifecycleCallbacks:
+  prePersist: [ setCreatedAtValue, setTokenValue ]
+  preUpdate: [ setUpdatedAtValue ]

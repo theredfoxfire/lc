@@ -14,18 +14,50 @@
 										<div class="media-left pull-left">
 											<img class="thumbnail" src="{{ asset('web/uploads/users/index_') }}{{ entity.user.foto }}" alt="{{ entity.name }}">
 										</div>
-										<div class="media-body">
-											<div class="media-right">
-											<table>
-												<tr style="border-bottom: solid 0.1px; border-color:#D4BFC8"><td valign="top">Nama Lengkap</td><td valign="top">:</td><td valign="top">{{ entity.name }}</td></tr>
-												<tr style="border-bottom: solid 0.1px; border-color:#D4BFC8"><td valign="top">Tentang saya</td><td valign="top">:</td><td valign="top">{{ entity.about }}</td></tr>
-												<tr style="border-bottom: solid 0.1px; border-color:#D4BFC8"><td valign="top">Alamat</td><td valign="top">:</td><td valign="top">{{ entity.address }}</td></tr>
-												<tr style="border-bottom: solid 0.1px; border-color:#D4BFC8"><td valign="top">Status pernikahan</td><td valign="top">:</td><td valign="top">{{ entity.status }}</td></tr>
-												<tr style="border-bottom: solid 0.1px; border-color:#D4BFC8"><td valign="top">Pekerjaan</td><td valign="top">:</td><td valign="top">{{ entity.job }}</td></tr>
-												<tr style="border-bottom: solid 0.1px; border-color:#D4BFC8"><td valign="top">Pendidikan</td><td valign="top">:</td><td valign="top">{{ entity.education }}</td></tr>
-												<tr style="border-bottom: solid 0.1px; border-color:#D4BFC8"><td valign="top">Tempat tinggal</td><td valign="top">:</td><td valign="top">{{ entity.lived }}</td></tr>
-												<tr style="border-bottom: solid 0.1px; border-color:#D4BFC8"><td valign="top">Agama</td><td valign="top">:</td><td valign="top">{{ entity.religy }}</td></tr>
-											</table>
+										<div class="media">
+											<div class="media-body f-feel">
+												  <div class="form-group form-group-sm">
+													<label class="col-sm-5 control-label" for="formGroupInputSmall"><h5>Nama Lengkap</h5></label>
+													<div class="col-sm-7">
+													  <h5>{{ entity.name }}</h5>
+													</div>
+												  </div>
+												  <br><br>
+												  <div class="form-group form-group-sm">
+													<label class="col-sm-5 control-label" for="formGroupInputSmall"><h5>Tentang Anda</h5></label>
+													<div class="col-sm-7">
+													  <h5>{{ entity.about }}</h5>
+													</div>
+												  </div>
+												  <br><br><br>
+												  <div class="form-group form-group-sm">
+													<label class="col-sm-5 control-label" for="formGroupInputSmall"><h5>Alamat lengkap</h5></label>
+													<div class="col-sm-7">
+													  <h5>{{ entity.address }}</h5>
+													</div>
+												  </div>
+												  <br><br><br>
+												  <div class="form-group form-group-sm">
+													<label class="col-sm-5 control-label" for="formGroupInputSmall"><h5>Pekerjaan</h5></label>
+														<div class="col-sm-7">
+															<h5>{{ entity.job }}</h5>
+													</div>
+												  </div>
+												  <br><br>
+												  <div class="form-group form-group-sm">
+													<label class="col-sm-5 control-label" for="formGroupInputSmall"><h5>Asal Sekolah</h5></label>
+														<div class="col-sm-7">
+															<h5>{{ entity.school }}</h5>
+													</div>
+												  </div>
+												  <br><br>
+												  <div class="form-group form-group-sm">
+													<label class="col-sm-5 control-label" for="formGroupInputSmall"><h5>Asal Kota/Kabupaten</h5></label>
+														<div class="col-sm-7">
+															<h5>{{ entity.city }}</h5>
+													</div>
+												  </div>
+													<br /><br />
 											</div>
 										</div>
 									</div>

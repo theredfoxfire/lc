@@ -3,7 +3,7 @@
 	{{ include ('LcLcBundle:Default:userleftbar.html.twig') }}
 {% endblock %}
 {%block content%}
-
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
 				<div class="col-sm-7 column">
 				{% if (app.session.flashbag.get('notice') is not empty) %}
 				<center id="message-session">
@@ -30,10 +30,10 @@
 													</div>
 													{{ form_errors(form.feel) }}
 
-													Tambahkan foto:{{ form_widget(form.file) }}
+													<h5>Tambahkan foto:{{ form_widget(form.file) }}</h5>
 													{{ form_errors(form.file) }}
 													<div class="form-group right">
-														<button type="submit" class="btn btn-primary btn-feel"><i class="glyphicon glyphicon-send"></i> &nbsp;Posting</button>
+														<button type="submit" id="btn-feel-new" class="btn btn-primary btn-feel"><i class="glyphicon glyphicon-send"></i> &nbsp;Posting&nbsp;&nbsp;</button>
 													</div>
 												{{ form_row(form._token) }}
 												{{ form_end(form) }}
@@ -56,14 +56,14 @@
 											</div>
 										</div>
 										<div class="media-body f-feel">
-											<h5 class="media-right">{{ entity.feel }}</h5>
+											<h5 class="media-right">{{ entity.feel|raw }}</h5>
 											<div class='pull-right created_at'><small class="text-muted"> <i class="glyphicon glyphicon-time"></i> <i>{{ entity.createdAt | date('d-m-Y H:i:s') }}</i></small></div>
 										</div>
 									</div>
 								</div>
 
 								{% if entity.foto %}
-								<div class="panel-footer">
+								<div class="panel-footer panel-image">
 										<center><img src="{{ asset('web/uploads/feels/feel_') }}{{ entity.foto }}" alt="{{ entity.user.profile.name }}" class="img-responsive"></center>
 								</div>
 								{% endif %}
@@ -103,6 +103,23 @@
 						</div>
 				</div>
 <script type="text/javascript" src="{{ asset('web/bundles/lclc/js/validate-image-feel.js') }}"></script>
+<script src="{{ asset('web/bundles/lclc/js/summernote.js') }}"></script>
+<script>
+$(document).ready(function() {
+    $('#lc_lcbundle_feeling_feel').summernote({
+				placeholder: 'bagikan sesuatu...',
+				tooltip: false,
+				height: 100,
+				toolbar: [
+			    // [groupName, [list of button]]
+			    ['style', ['bold', 'italic', 'underline']],
+			    ['font', ['strikethrough', 'superscript', 'subscript']],
+			    ['para', ['ul', 'ol',]]
+			  ]
+		});
+});
+</script>
+
 {% endblock %}
 {%block rightcontent%}
 	{{ include ('LcLcBundle:Default:userrightbar.html.twig') }}

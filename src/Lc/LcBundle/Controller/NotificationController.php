@@ -94,30 +94,28 @@ class NotificationController extends Controller
     public function showAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $paginator = $this->get('knp_paginator');
 
-        $entities = $em->getRepository('LcLcBundle:Notification')->loadNoty($this->getUid());
+        $query = $em->getRepository('LcLcBundle:Notification')->loadNoty($this->getUid());
         $em->getRepository('LcLcBundle:Notification')->updateNoty($this->getUid());
-        
+        $pagination = $paginator->paginate(
+            $query,
+            $this->get('request')->query->get('page', 1),
+            25
+        );
         $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
         $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
         $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
+        $c = $em->getRepository('LcLcBundle:Notification')->countTotalNoty($this->getUid());
         $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
 
-        if (!$entities) {
-				return $this->render('LcLcBundle:Notification:show.html.twig', array(
-				'entities'      => $entities,
-				'others' => $others,
-				'fall' => $fall,
-				'chat' => $chat,
-				'notify' => $notify,
-			));
-        }
         return $this->render('LcLcBundle:Notification:show.html.twig', array(
-            'entities'      => $entities,
+            'entities'      => $pagination,
             'others' => $others,
             'fall' => $fall,
             'chat' => $chat,
             'notify' => $notify,
+            'c' => $c,
         ));
     }
 
@@ -233,13 +231,13 @@ class NotificationController extends Controller
             ->getForm()
         ;
     }
-    
-    public function getUid(){
-		$usr= $this->get('security.context')->getToken()->getUser();
-		$uid = $usr->getId();
-		$em = $this->getDoctrine()->getManager();
-		$userId = $em->getRepository('LcLcBundle:User')->find($uid);
-		return $userId;
-		
-	}
+
+    public function getUid()
+    {
+        $usr= $this->get('security.context')->getToken()->getUser();
+        $uid = $usr->getId();
+        $em = $this->getDoctrine()->getManager();
+        $userId = $em->getRepository('LcLcBundle:User')->find($uid);
+        return $userId;
+    }
 }
