@@ -68,7 +68,7 @@ class UserRepository extends EntityRepository implements UserProviderInterface
 			AND u.id NOT IN (SELECT IDENTITY (fr.user1) FROM LcLcBundle:Friend fr where fr.user2 = :id1)
 			ORDER BY u.updated_at DESC'
             )
-            ->setMaxResults(8)
+            ->setMaxResults(6)
             ->setParameters(array(
                            'id1' => $id1,
                            'b' => 0,

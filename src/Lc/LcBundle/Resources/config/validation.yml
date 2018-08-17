@@ -27,14 +27,50 @@ Lc\LcBundle\Entity\User:
    - NotBlank:
       message: 'Password harap diisi.'
 Lc\LcBundle\Entity\Feeling:
+ properties:
   feel:
    - NotBlank:
-      message: 'Tulis apa yang sedang kamu rasakan.'
+      message: 'Tulis apa yang ingin kamu bagikan.'
+   - Length:
+      max: 850
+      maxMessage: 'Postingan mu melibihi batas maksimal jumlah karater, maksimal {{ limit }} karater.'
+Lc\LcBundle\Entity\Profile:
+ properties:
+  name:
+   - NotBlank:
+      message: 'Mohon isi nama.'
+   - Length:
+      max: 200
+      maxMessage: 'Nama mu melibihi batas maksimal jumlah karater, maksimal {{ limit }} karater.'
+  about:
+   - Length:
+      max: 850
+      maxMessage: 'Kolom tentang melibihi batas maksimal jumlah karater, maksimal {{ limit }} karater.'
+  address:
+   - Length:
+      max: 850
+      maxMessage: 'Kolom alamat melibihi batas maksimal jumlah karater, maksimal {{ limit }} karater.'
+  job:
+   - Length:
+      max: 200
+      maxMessage: 'Kolom pekerjaan melibihi batas maksimal jumlah karater, maksimal {{ limit }} karater.'
+  school:
+   - Length:
+      max: 200
+      maxMessage: 'Kolom sekolah melibihi batas maksimal jumlah karater, maksimal {{ limit }} karater.'
+  city:
+   - Length:
+      max: 200
+      maxMessage: 'Kolom kota/kabupaten melibihi batas maksimal jumlah karater, maksimal {{ limit }} karater.'
 Lc\LcBundle\Entity\Foto:
   foto:
    - Image:
       message: 'Pilih file foto/image.'
 Lc\LcBundle\Entity\Fcomment:
-  comment:
-   - NotBlank:
-      message: 'Tulis apa komentarmu.'
+  properties:
+   comment:
+    - NotBlank:
+       message: 'Tulis apa komentarmu.'
+    - Length:
+       max: 850
+       maxMessage: 'Postingan mu melibihi batas maksimal jumlah karater, maksimal {{ limit }} karater.'

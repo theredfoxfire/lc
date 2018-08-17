@@ -4,9 +4,9 @@
 {% endblock %}
 {%block content%}
 				<div class="col-sm-7 column">
-				
+
 				{% set fr = 0 %}
-				{% for entity in entities %}						
+				{% for entity in entities %}
 						{% if loop.index%4 == 1 %}
 							<div class="row">
 						{% endif %}
@@ -21,17 +21,17 @@
 											</p>
 										</div>
 										<div class="text-center">
-											<a class="label label-primary" data-toggle="tooltip" data-placement="top" title="Kenal sama Dia?" href="{{ path('friend_create', {'token' : entity.token}) }}"> bukuteman</a>
+											<a class="label label-primary" data-toggle="tooltip" data-placement="top" title="Kenal sama Dia?" href="{{ path('friend_create', {'token' : entity.token}) }}"> kenalan</a>
 										</div>
 									</div>
 								</div>
 						{% if (loop.index%4 == 0) or (loop.index == cp) %}
 							</div>
 						{% endif %}
-						
+
 						{% set fr = 1 %}
 					{% endfor %}
-					
+
 					{% if fr == 0 %}
 						<div class="row">
 							<h4>Maaf kami tidak menemukan orang yang Anda cari, coba dengan Nama lain.</h4>
@@ -42,7 +42,7 @@
 								{{ knp_pagination_render(entities) }}</b>
 							{% endif %}
 					</div>
-					
+
 				</div>
 {% endblock %}
 {%block rightcontent%}

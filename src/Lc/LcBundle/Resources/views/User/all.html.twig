@@ -19,21 +19,21 @@
 											</p>
 										</div>
 										<div class="text-center">
-											<a class="label label-primary" data-toggle="tooltip" data-placement="top" title="Kenal sama Dia?" href="{{ path('friend_create', {'token' : entity.token}) }}"> bukuteman</a>
+											<a class="label label-primary" data-toggle="tooltip" data-placement="top" title="Kenal sama Dia?" href="{{ path('friend_create', {'token' : entity.token}) }}"> kenalan</a>
 										</div>
 									</div>
 								</div>
 						{% if (loop.index%4 == 0) or (loop.index == cp) %}
 							</div>
 						{% endif %}
-						
+
 					{% endfor %}
 					<div class="text-center">
 							{% if c > 16 %}
 								{{ knp_pagination_render(entities) }}</b>
 							{% endif %}
 					</div>
-					
+
 				</div>
 {% endblock %}
 {%block rightcontent%}

@@ -33,7 +33,7 @@
 													<h5>Tambahkan foto:{{ form_widget(form.file) }}</h5>
 													{{ form_errors(form.file) }}
 													<div class="form-group right">
-														<button type="submit" id="btn-feel-new" class="btn btn-primary btn-feel"><i class="glyphicon glyphicon-send"></i> &nbsp;Posting&nbsp;&nbsp;</button>
+														<button onclick="return checkLength()" type="submit" id="btn-feel-new" class="btn btn-primary btn-feel"><i class="glyphicon glyphicon-send"></i> &nbsp;Posting&nbsp;&nbsp;</button>
 													</div>
 												{{ form_row(form._token) }}
 												{{ form_end(form) }}
@@ -118,6 +118,20 @@ $(document).ready(function() {
 			  ]
 		});
 });
+function checkLength(){
+    var textbox = document.getElementById("lc_lcbundle_feeling_feel");
+		if (textbox.value.length == 0) {
+			alert('Tuliskan sesuatu, sebelum posting.');
+			return false;
+		}
+    else if(textbox.value.length <= 850){
+        //Validate();
+    }
+    else{
+        alert("Postingan tidak boleh melibihi 850 karater.");
+				return false;
+    }
+}
 </script>
 
 {% endblock %}

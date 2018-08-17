@@ -16,6 +16,7 @@
 										</div>
 										<div class="media">
 											<div class="media-body f-feel">
+											{% if entity.name != '' %}
 												  <div class="form-group form-group-sm">
 													<label class="col-sm-5 control-label" for="formGroupInputSmall"><h5>Nama Lengkap</h5></label>
 													<div class="col-sm-7">
@@ -23,6 +24,8 @@
 													</div>
 												  </div>
 												  <br><br>
+											{% endif %}
+											{% if entity.about != '' %}
 												  <div class="form-group form-group-sm">
 													<label class="col-sm-5 control-label" for="formGroupInputSmall"><h5>Tentang Anda</h5></label>
 													<div class="col-sm-7">
@@ -30,6 +33,8 @@
 													</div>
 												  </div>
 												  <br><br><br>
+											{% endif %}
+											{% if entity.address != '' %}
 												  <div class="form-group form-group-sm">
 													<label class="col-sm-5 control-label" for="formGroupInputSmall"><h5>Alamat lengkap</h5></label>
 													<div class="col-sm-7">
@@ -37,6 +42,8 @@
 													</div>
 												  </div>
 												  <br><br><br>
+											{% endif %}
+											{% if entity.job != '' %}
 												  <div class="form-group form-group-sm">
 													<label class="col-sm-5 control-label" for="formGroupInputSmall"><h5>Pekerjaan</h5></label>
 														<div class="col-sm-7">
@@ -44,6 +51,8 @@
 													</div>
 												  </div>
 												  <br><br>
+											{% endif %}
+											{% if entity.school != '' %}
 												  <div class="form-group form-group-sm">
 													<label class="col-sm-5 control-label" for="formGroupInputSmall"><h5>Asal Sekolah</h5></label>
 														<div class="col-sm-7">
@@ -51,6 +60,8 @@
 													</div>
 												  </div>
 												  <br><br>
+											{% endif %}
+											{% if entity.city != '' %}
 												  <div class="form-group form-group-sm">
 													<label class="col-sm-5 control-label" for="formGroupInputSmall"><h5>Asal Kota/Kabupaten</h5></label>
 														<div class="col-sm-7">
@@ -58,6 +69,7 @@
 													</div>
 												  </div>
 													<br /><br />
+											{% endif %}
 											</div>
 										</div>
 									</div>

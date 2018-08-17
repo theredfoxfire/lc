@@ -21,6 +21,7 @@
 											</center>
 								<hr />
 								<div class="media-body f-feel">
+								{% if entity.name != '' %}
 										<div class="form-group form-group-sm">
 										<label class="col-sm-5 control-label" for="formGroupInputSmall"><h5>Nama Lengkap</h5></label>
 										<div class="col-sm-7">
@@ -28,6 +29,8 @@
 										</div>
 										</div>
 										<br><br>
+								{% endif %}
+								{% if entity.about != '' %}
 										<div class="form-group form-group-sm">
 										<label class="col-sm-5 control-label" for="formGroupInputSmall"><h5>Tentang Anda</h5></label>
 										<div class="col-sm-7">
@@ -35,6 +38,8 @@
 										</div>
 										</div>
 										<br><br><br>
+								{% endif %}
+								{% if entity.address != '' %}
 										<div class="form-group form-group-sm">
 										<label class="col-sm-5 control-label" for="formGroupInputSmall"><h5>Alamat lengkap</h5></label>
 										<div class="col-sm-7">
@@ -42,6 +47,8 @@
 										</div>
 										</div>
 										<br><br><br>
+								{% endif %}
+								{% if entity.job != '' %}
 										<div class="form-group form-group-sm">
 										<label class="col-sm-5 control-label" for="formGroupInputSmall"><h5>Pekerjaan</h5></label>
 											<div class="col-sm-7">
@@ -49,6 +56,8 @@
 										</div>
 										</div>
 										<br><br>
+								{% endif %}
+								{% if entity.school != '' %}
 										<div class="form-group form-group-sm">
 										<label class="col-sm-5 control-label" for="formGroupInputSmall"><h5>Asal Sekolah</h5></label>
 											<div class="col-sm-7">
@@ -56,6 +65,8 @@
 										</div>
 										</div>
 										<br><br>
+								{% endif %}
+								{% if entity.city != '' %}
 										<div class="form-group form-group-sm">
 										<label class="col-sm-5 control-label" for="formGroupInputSmall"><h5>Asal Kota/Kabupaten</h5></label>
 											<div class="col-sm-7">
@@ -63,9 +74,68 @@
 										</div>
 										</div>
 										<br /><br />
+								{% endif %}
 								</div>
 								<br>
 							</div>
+						</div>
+						{% for entity in entities %}
+						<div class="row margin-feel">
+							<div class="panel panel-success">
+								<a href="{{ path('feeling_show', {'token': entity.token }) }}">
+								<div class="panel-body apanel-body">
+									<div class="media">
+										<div class="media-left pull-left">
+											<img src="{{ asset('web/uploads/users/mini_') }}{{ entity.user.foto }}" alt="{{ entity.user.profile.name }}" class="img-rounded">
+											<div class="media-left knowing limit-string">
+												<h5>{{ entity.user.profile.name }}</h5>
+											</div>
+										</div>
+										<div class="media-body f-feel">
+											<h5 class="media-right">{{ entity.feel|raw }}</h5>
+											<div class='pull-right created_at'><small class="text-muted"> <i class="glyphicon glyphicon-time"></i> <i>{{ entity.createdAt | date('d-m-Y H:i:s') }}</i></small></div>
+										</div>
+									</div>
+								</div>
+
+								{% if entity.foto %}
+								<div class="panel-footer panel-image">
+										<center><img src="{{ asset('web/uploads/feels/feel_') }}{{ entity.foto }}" alt="{{ entity.user.profile.name }}" class="img-responsive"></center>
+								</div>
+								{% endif %}
+								<div class="panel-footer panel-success right">
+									<div class="media">
+										<div class="media-body">
+											<h5 class="media-right pull-right">
+											<span class="counter-activity">{{ entity.fcomment|length > 0 ? entity.fcomment|length|number_format(0, ',', ' ') : '' }}</span>
+											<a class="a-act" href="{{ path('feeling_show', {'token': entity.token }) }}" data-toggle="tooltip" data-placement="top" title="Tulis balasan"><i class="glyphicon glyphicon-comment"></i></a>
+											</h5>
+											<h5 class="media-right pull-right">
+											{% set lk = 0 %}
+											{% for like in entity.flike %}
+												{% if like.user.id == app.user.id %}
+													{% set lk = 1 %}
+												{% endif %}
+											{% endfor %}
+											{% if lk == 0 %}
+											<span class="counter-activity">{{ entity.flike|length > 0 ? entity.flike|length|number_format(0, ',', ' ') : '' }}</span>
+											<a class="a-act" href="{{ path('flike_create', {'feel': entity.token, 'page': '2' }) }}" data-toggle="tooltip" data-placement="top" title="Beri simpati"><i class="glyphicon glyphicon-thumbs-up"></i></a>
+											{% else %}
+											<span class="counter-activity">{{ entity.flike|length > 0 ? entity.flike|length|number_format(0, ',', ' ') : '' }}</span>
+											<i class="glyphicon glyphicon-thumbs-up disabled-like"></i>
+											{% endif %}
+											</h5>
+										</div>
+									</div>
+								</div>
+								</a>
+							</div>
+						</div>
+						{% endfor %}
+						<div class="text-center">
+							{% if c > 25 %}
+								{{ knp_pagination_render(entities) }}</b>
+							{% endif %}
 						</div>
 				</div>
 
