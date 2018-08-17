@@ -13,10 +13,11 @@
                 <div class="col-lg-8 col-lg-offset-2">
                     <h2>Login bukuteman</h2>
                     <p>
-						{% if error %}
-							<div>{{ error.message }}</div>
-						{% endif %}
 						<form role="form" class="login-area" action="{{ path('login_check') }}" method="post">
+						{% if error %}
+							<div class="error-login">{{ error.message }}</div>
+							<div class="error-login">Periksa ulang email dan password anda, login gagal.</div>
+						{% endif %}
 						<input type="hidden" name="_csrf_token"
 				        value="{{ csrf_token('authenticate') }}"
 				    >
