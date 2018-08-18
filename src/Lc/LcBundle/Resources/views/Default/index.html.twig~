@@ -65,7 +65,7 @@
                     <li class="hidden">
                         <a href="#page-top"></a>
                     </li>
-                    
+
                     <li>
                         <a class="page-scroll" href="#daftar">Daftar</a>
                     </li>
@@ -196,13 +196,10 @@
                 </p>
                 <ul class="list-inline banner-social-buttons">
                     <li>
-                        <a href="#" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                      <a href="https://twitter.com/bukutemanID" target="_blank" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
                     </li>
                     <li>
-                        <a href="#" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
-                    </li>
-                    <li>
-                        <a href="#" class="btn btn-default btn-lg"><i class="fa fa-google-plus fa-fw"></i> <span class="network-name">Google+</span></a>
+                      <a href="https://www.facebook.com/bukutemanID" target="_blank" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
                     </li>
                 </ul>
             </div>
@@ -210,7 +207,7 @@
     </section>
 
     <!-- Map Section -->
-    
+
 
     <!-- Footer -->
     <footer>
@@ -222,11 +219,11 @@
             <script type="text/javascript" src="{{ asset('web/bundles/lclc/js/jquery.easing.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('web/bundles/lclc/js/bootstrap.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('web/bundles/lclc/js/grayscale.js') }}"></script>
-            
+
     <!-- Bootstrap Core JavaScript -->
 
     <!-- Custom Theme JavaScript -->
-    
+
 	<script>
 		$(function(){
 			$('[data-toggle="tooltip"]').tooltip();
