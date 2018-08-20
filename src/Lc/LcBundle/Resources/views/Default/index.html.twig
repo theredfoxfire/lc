@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('web/lc.ico') }}?v=2">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('web/bukuteman-ico.png') }}?v=2">
 
-    <title>bukuteman - Temukan temanmu disini!</title>
+    <title>Bukuteman - Temukan temanmu disini!</title>
 
     <!-- Bootstrap Core CSS -->
     {% block stylesheets %}
@@ -91,7 +91,7 @@
                     <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand page-scroll" href="#page-top">
-                    <i class="glyphicon glyphicon-user-empty"></i>  <span class="light">bukuteman</span>
+                    <i class="glyphicon glyphicon-user-empty"></i>  <span class="light"><img src={{ asset('web/bukuteman-home.png') }} style="height: 20px; width: auto;">bukuteman</span>
                 </a>
             </div>
 
@@ -126,8 +126,8 @@
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2" id='lost'>
                         <h1 class="brand-heading">bukuteman</h1>
-                        <p class="intro-text">Layanan aplikasi yang membantumu agar bisa terhubung dengan teman-temanmu.
-                        <br>Daftar sekarang! Geratis, akses penuh, selamanya.</p>
+                        <p class="intro-text">Sosial media Indonesia, yang membuatmu terhubung dengan teman-temanmu.
+                        <br>Daftar sekarang!</p>
                         <a href="{{ path('user_new') }}" class="btn btn-circle page-scroll" data-toggle="tooltip" data-placement="top" title="Daftar!">
                             <i class="fa fa-angle-double-down animated"></i>
                         </a>
