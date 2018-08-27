@@ -178,12 +178,13 @@ a:focus {
 }
 
 .intro .intro-body .intro-text {
-    font-size: 18px;
+    font-size: 16px;
     background-color: #00838F;
     border-radius:4px;
-	border: 0px solid black;
-	opacity:0.8;
-	filter:alpha(opacity=80); /* For IE8 and earlier */
+  	border: 0px solid black;
+  	opacity:0.8;
+  	filter:alpha(opacity=80); /* For IE8 and earlier */
+    padding: 10px;
 }
 
 .login-area {
@@ -235,7 +236,8 @@ a:focus {
     }
 
     .intro .intro-body .intro-text {
-        font-size: 20px;
+        font-size: 16px;
+        padding: 10px;
     }
 }
 

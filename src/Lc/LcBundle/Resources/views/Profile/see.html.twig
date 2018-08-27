@@ -16,7 +16,9 @@
 											{% elseif friend and friend.isconfirmed == 1 %}
 												<div class="label label-success">Dia sudah berteman denganmu</div><br /><br / >
 											{% else %}
-												<a class="label label-primary" data-toggle="tooltip" data-placement="top" title="Kenal sama Dia?" href="{{ path('friend_create', {'token' : entity.user.token}) }}"> Kenalan</a>
+												{% if app.user.id != entity.user.id %}
+													<a class="label label-primary" data-toggle="tooltip" data-placement="top" title="Kenal sama Dia?" href="{{ path('friend_create', {'token' : entity.user.token}) }}"> Kenalan</a>
+												{% endif %}
 											{% endif %}
 											</center>
 								<hr />

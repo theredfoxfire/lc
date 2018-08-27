@@ -33,7 +33,7 @@
 													<h5>Tambahkan foto:{{ form_widget(form.file) }}</h5>
 													{{ form_errors(form.file) }}
 													<div class="form-group right">
-														<button onclick="return checkLength()" type="submit" id="btn-feel-new" class="btn btn-primary btn-feel"><i class="glyphicon glyphicon-send"></i> &nbsp;Posting&nbsp;&nbsp;</button>
+														<button onclick="return checkLength()" type="submit" id="btn-feel-new" class="btn btn-primary btn-feel"><i class="glyphicon glyphicon-send"></i> &nbsp;Posting</button>
 													</div>
 												{{ form_row(form._token) }}
 												{{ form_end(form) }}
@@ -46,26 +46,31 @@
 						{% for entity in entities %}
 						<div class="row margin-feel">
 							<div class="panel panel-success">
-								<a href="{{ path('feeling_show', {'token': entity.token }) }}">
 								<div class="panel-body apanel-body">
 									<div class="media">
 										<div class="media-left pull-left">
-											<img src="{{ asset('web/uploads/users/mini_') }}{{ entity.user.foto }}" alt="{{ entity.user.profile.name }}" class="img-rounded">
+											<a href="{{ path('profile_see', {'token': entity.user.token }) }}">
+												<img src="{{ asset('web/uploads/users/mini_') }}{{ entity.user.foto }}" alt="{{ entity.user.profile.name }}" class="img-rounded">
+											</a>
 											<div class="media-left knowing limit-string">
 												<h5>{{ entity.user.profile.name }}</h5>
 											</div>
 										</div>
-										<div class="media-body f-feel">
-											<h5 class="media-right">{{ entity.feel|raw }}</h5>
-											<div class='pull-right created_at'><small class="text-muted"> <i class="glyphicon glyphicon-time"></i> <i>{{ entity.createdAt | date('d-m-Y H:i:s') }}</i></small></div>
-										</div>
+										<a href="{{ path('feeling_show', {'token': entity.token }) }}">
+											<div class="media-body f-feel">
+												<h5 class="media-right">{{ entity.feel|raw }}</h5>
+												<div class='pull-right created_at'><small class="text-muted"> <i class="glyphicon glyphicon-time"></i> <i>{{ entity.createdAt | date('d-m-Y H:i:s') }}</i></small></div>
+											</div>
+										</a>
 									</div>
 								</div>
 
 								{% if entity.foto %}
-								<div class="panel-footer panel-image">
-										<center><img src="{{ asset('web/uploads/feels/feel_') }}{{ entity.foto }}" alt="{{ entity.user.profile.name }}" class="img-responsive img-full"></center>
-								</div>
+								<a href="{{ path('feeling_show', {'token': entity.token }) }}">
+									<div class="panel-footer panel-image">
+											<center><img src="{{ asset('web/uploads/feels/feel_') }}{{ entity.foto }}" alt="{{ entity.user.profile.name }}" class="img-responsive img-full"></center>
+									</div>
+								</a>
 								{% endif %}
 								<div class="panel-footer panel-success right">
 									<div class="media">
@@ -92,7 +97,6 @@
 										</div>
 									</div>
 								</div>
-								</a>
 							</div>
 						</div>
 						{% endfor %}

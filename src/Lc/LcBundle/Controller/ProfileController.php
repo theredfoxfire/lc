@@ -216,13 +216,15 @@ class ProfileController extends Controller
 
         //1 -> profile, 2 -> like, 3 -> comment
         //user 1 is visiting user 2 is visited
-        $noty->setViewed(false);
-        $noty->setUser1($this->getUid());
-        $noty->setUser2($user);
-        $noty->setSelfPage(0);
-        $noty->setFromPage(1);
-        $em->persist($noty);
-        $em->flush();
+        if ($this->getUid()->getId() != $user->getId()) {
+            $noty->setViewed(false);
+            $noty->setUser1($this->getUid());
+            $noty->setUser2($user);
+            $noty->setSelfPage(0);
+            $noty->setFromPage(1);
+            $em->persist($noty);
+            $em->flush();
+        }
 
         //exit(\Doctrine\Common\Util\Debug::dump($friend));
 
