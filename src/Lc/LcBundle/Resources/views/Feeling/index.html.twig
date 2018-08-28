@@ -56,6 +56,11 @@
 												<h5>{{ entity.user.profile.name }}</h5>
 											</div>
 										</div>
+										{% if entity.shared %}
+											<a href="{{ path('profile_see', {'token': entity.parent.user.token }) }}">
+												<i class="glyphicon glyphicon-retweet"></i> {{ entity.parent.user.profile.name }}
+											</a>
+										{% endif %}
 										<a href="{{ path('feeling_show', {'token': entity.token }) }}">
 											<div class="media-body f-feel">
 												<h5 class="media-right">{{ entity.feel|raw }}</h5>
@@ -80,6 +85,10 @@
 											<a class="a-act" href="{{ path('feeling_show', {'token': entity.token }) }}" data-toggle="tooltip" data-placement="top" title="Tulis balasan"><i class="glyphicon glyphicon-comment"></i></a>
 											</h5>
 											<h5 class="media-right pull-right">
+											<span class="counter-activity">{{ entity.fshare|length > 0 ? entity.fshare|length|number_format(0, ',', ' ') : '' }}</span>
+											<a class="a-act" href="{{ path('fshare_create', {'feel': entity.token }) }}" data-toggle="tooltip" data-placement="top" title="Re-Post"><i class="glyphicon glyphicon-retweet"></i></a>
+											</h5>
+											<h5 class="media-right pull-right">
 											{% set lk = 0 %}
 											{% for like in entity.flike %}
 												{% if like.user.id == app.user.id %}
@@ -91,7 +100,7 @@
 											<a class="a-act" href="{{ path('flike_create', {'feel': entity.token, 'page': '2' }) }}" data-toggle="tooltip" data-placement="top" title="Beri simpati"><i class="glyphicon glyphicon-thumbs-up"></i></a>
 											{% else %}
 											<span class="counter-activity">{{ entity.flike|length > 0 ? entity.flike|length|number_format(0, ',', ' ') : '' }}</span>
-											<i class="glyphicon glyphicon-thumbs-up disabled-like"></i>
+											<i class="glyphicon glyphicon-thumbs-up disabled-like a-act"></i>
 											{% endif %}
 											</h5>
 										</div>

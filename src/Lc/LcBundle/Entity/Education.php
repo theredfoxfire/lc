@@ -221,4 +221,27 @@ class Education
     {
         $this->profile->removeElement($profile);
     }
+
+    /**
+     * Add usercriteria
+     *
+     * @param \Lc\LcBundle\Entity\Usercriteria $usercriteria
+     * @return Education
+     */
+    public function addUsercriterion(\Lc\LcBundle\Entity\Usercriteria $usercriteria)
+    {
+        $this->usercriteria[] = $usercriteria;
+
+        return $this;
+    }
+
+    /**
+     * Remove usercriteria
+     *
+     * @param \Lc\LcBundle\Entity\Usercriteria $usercriteria
+     */
+    public function removeUsercriterion(\Lc\LcBundle\Entity\Usercriteria $usercriteria)
+    {
+        $this->usercriteria->removeElement($usercriteria);
+    }
 }

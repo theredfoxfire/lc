@@ -204,29 +204,6 @@ class Profile
     }
 
     /**
-     * Set city
-     *
-     * @param \Lc\LcBundle\Entity\City $city
-     * @return Profile
-     */
-    public function setCity(\Lc\LcBundle\Entity\City $city = null)
-    {
-        $this->city = $city;
-
-        return $this;
-    }
-
-    /**
-     * Get city
-     *
-     * @return \Lc\LcBundle\Entity\City
-     */
-    public function getCity()
-    {
-        return $this->city;
-    }
-
-    /**
      * Set sex
      *
      * @param \Lc\LcBundle\Entity\Sex $sex
@@ -297,5 +274,90 @@ class Profile
     public function setUpdatedAtValue()
     {
         $this->updated_at = new \DateTime();
+    }
+    /**
+     * @var string
+     */
+    private $job;
+
+    /**
+     * @var string
+     */
+    private $school;
+
+    /**
+     * @var string
+     */
+    private $city;
+
+
+    /**
+     * Set job
+     *
+     * @param string $job
+     * @return Profile
+     */
+    public function setJob($job)
+    {
+        $this->job = $job;
+
+        return $this;
+    }
+
+    /**
+     * Get job
+     *
+     * @return string
+     */
+    public function getJob()
+    {
+        return $this->job;
+    }
+
+    /**
+     * Set school
+     *
+     * @param string $school
+     * @return Profile
+     */
+    public function setSchool($school)
+    {
+        $this->school = $school;
+
+        return $this;
+    }
+
+    /**
+     * Get school
+     *
+     * @return string
+     */
+    public function getSchool()
+    {
+        return $this->school;
+    }
+
+
+    /**
+     * Set school
+     *
+     * @param string $city
+     * @return Profile
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get school
+     *
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
     }
 }

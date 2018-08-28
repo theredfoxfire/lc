@@ -7,67 +7,63 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Gregwar\Image\Image;
+use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * User
  */
-class User implements AdvancedUserInterface
+class User implements UserInterface, \Serializable
 {
     /**
      * @var integer
      */
-    private $id;
-
+    protected $id;
+    /** @ORM\Column(name="facebook_id", type="string", length=255, nullable=true) */
+    protected $facebook_id;
+    /** @ORM\Column(name="facebook_access_token", type="string", length=255, nullable=true) */
+    protected $facebook_access_token;
+    /** @ORM\Column(name="google_id", type="string", length=255, nullable=true) */
+    protected $google_id;
+    /** @ORM\Column(name="google_access_token", type="string", length=255, nullable=true) */
+    protected $google_access_token;
     /**
      * @var string
      */
-    private $username;
+    protected $phone;
+    protected $username;
+    protected $email;
+    protected $email_canonical;
+    protected $password2;
+    protected $password;
 
-    /**
-     * @var string
-     */
-    private $email;
-
-    /**
-     * @var string
-     */
-    private $phone;
-
-    /**
-     * @var string
-     */
-    private $password;
-    
-    private $password2;
-    
-    private $birthday;
-    private $sex;
+    protected $birthday;
+    protected $sex;
     public $file;
 
     /**
      * @var boolean
      */
-    private $is_active;
+    protected $is_active;
 
     /**
      * @var \DateTime
      */
-    private $created_at;
+    protected $created_at;
 
     /**
      * @var \DateTime
      */
-    private $updated_at;
+    protected $updated_at;
 
     /**
      * @var string
      */
-    private $token;
+    protected $token;
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -80,6 +76,75 @@ class User implements AdvancedUserInterface
      * @param string $username
      * @return User
      */
+
+    public function setFacebookId($facebook_id)
+    {
+        $this->username = $facebook_id;
+
+        return $this;
+    }
+
+    /**
+     * Get username
+     *
+     * @return string
+     */
+    public function getFacebookId()
+    {
+        return $this->facebook_id;
+    }
+
+    public function setGoogleId($google_id)
+    {
+        $this->username = $google_id;
+
+        return $this;
+    }
+
+    /**
+     * Get username
+     *
+     * @return string
+     */
+    public function getGoogleId()
+    {
+        return $this->google_id;
+    }
+
+    public function setGoogleAccessToken($google_access_token)
+    {
+        $this->username = $google_access_token;
+
+        return $this;
+    }
+
+    /**
+     * Get username
+     *
+     * @return string
+     */
+    public function getGoogleAccessToken()
+    {
+        return $this->google_access_token;
+    }
+
+    public function setFacebookAccessToken($facebook_access_token)
+    {
+        $this->username = $facebook_access_token;
+
+        return $this;
+    }
+
+    /**
+     * Get username
+     *
+     * @return string
+     */
+    public function getFacebookAccessToken()
+    {
+        return $this->facebook_access_token;
+    }
+
     public function setUsername($username)
     {
         $this->username = $username;
@@ -90,7 +155,7 @@ class User implements AdvancedUserInterface
     /**
      * Get username
      *
-     * @return string 
+     * @return string
      */
     public function getUsername()
     {
@@ -113,11 +178,33 @@ class User implements AdvancedUserInterface
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
         return $this->email;
+    }
+    /**
+     * Set email_canonical
+     *
+     * @param string email_canonical
+     * @return User
+     */
+    public function setEmailCanonical($email_canonical)
+    {
+        $this->email_canonical = $email_canonical;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmailCanonical()
+    {
+        return $this->email_canonical;
     }
 
     /**
@@ -136,11 +223,35 @@ class User implements AdvancedUserInterface
     /**
      * Get phone
      *
-     * @return string 
+     * @return string
      */
     public function getPhone()
     {
         return $this->phone;
+    }
+
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list(
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt
+        ) = unserialize($serialized);
     }
 
     /**
@@ -159,13 +270,13 @@ class User implements AdvancedUserInterface
     /**
      * Get password
      *
-     * @return string 
+     * @return string
      */
     public function getPassword()
     {
         return $this->password;
     }
-    
+
     public function setSex($sex)
     {
         $this->sex = $sex;
@@ -176,13 +287,13 @@ class User implements AdvancedUserInterface
     /**
      * Get password
      *
-     * @return string 
+     * @return string
      */
     public function getSex()
     {
         return $this->sex;
     }
-    
+
     public function setPassword2($password2)
     {
         $this->password2 = $password2;
@@ -193,13 +304,13 @@ class User implements AdvancedUserInterface
     /**
      * Get password
      *
-     * @return string 
+     * @return string
      */
     public function getPassword2()
     {
         return $this->password2;
     }
-    
+
     public function setBirthday($birthday)
     {
         $this->birthday = new \DateTime($birthday);
@@ -210,7 +321,7 @@ class User implements AdvancedUserInterface
     /**
      * Get password
      *
-     * @return string 
+     * @return string
      */
     public function getBirthday()
     {
@@ -233,7 +344,7 @@ class User implements AdvancedUserInterface
     /**
      * Get is_active
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsActive()
     {
@@ -256,7 +367,7 @@ class User implements AdvancedUserInterface
     /**
      * Get created_at
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -279,7 +390,7 @@ class User implements AdvancedUserInterface
     /**
      * Get updated_at
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -302,7 +413,7 @@ class User implements AdvancedUserInterface
     /**
      * Get token
      *
-     * @return string 
+     * @return string
      */
     public function getToken()
     {
@@ -311,15 +422,16 @@ class User implements AdvancedUserInterface
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $feeling;
+    protected $feeling;
 
     /**
      * Constructor
      */
-    public function __construct()
-    {
-        $this->feeling = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+    // public function __construct()
+    // {
+    //     $this->feeling = new \Doctrine\Common\Collections\ArrayCollection();
+    //     parent::__construct();
+    // }
 
     /**
      * Add feeling
@@ -347,7 +459,7 @@ class User implements AdvancedUserInterface
     /**
      * Get feeling
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getFeeling()
     {
@@ -356,12 +468,12 @@ class User implements AdvancedUserInterface
     /**
      * @var \Lc\LcBundle\Entity\Usercriteria
      */
-    private $usercriteria;
+    protected $usercriteria;
 
     /**
      * @var \Lc\LcBundle\Entity\Profile
      */
-    private $profile;
+    protected $profile;
 
 
     /**
@@ -380,7 +492,7 @@ class User implements AdvancedUserInterface
     /**
      * Get usercriteria
      *
-     * @return \Lc\LcBundle\Entity\Usercriteria 
+     * @return \Lc\LcBundle\Entity\Usercriteria
      */
     public function getUsercriteria()
     {
@@ -403,7 +515,7 @@ class User implements AdvancedUserInterface
     /**
      * Get profile
      *
-     * @return \Lc\LcBundle\Entity\Profile 
+     * @return \Lc\LcBundle\Entity\Profile
      */
     public function getProfile()
     {
@@ -412,47 +524,47 @@ class User implements AdvancedUserInterface
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $fcomment;
+    protected $fcomment;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $flike;
+    protected $flike;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $fshare;
+    protected $fshare;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $gshare;
+    protected $gshare;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $gcomment;
+    protected $gcomment;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $glike;
+    protected $glike;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $gallery;
+    protected $gallery;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $userdoing;
+    protected $userdoing;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $userlog;
+    protected $userlog;
 
 
     /**
@@ -481,7 +593,7 @@ class User implements AdvancedUserInterface
     /**
      * Get fcomment
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getFcomment()
     {
@@ -514,7 +626,7 @@ class User implements AdvancedUserInterface
     /**
      * Get flike
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getFlike()
     {
@@ -547,7 +659,7 @@ class User implements AdvancedUserInterface
     /**
      * Get fshare
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getFshare()
     {
@@ -580,7 +692,7 @@ class User implements AdvancedUserInterface
     /**
      * Get gshare
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getGshare()
     {
@@ -613,7 +725,7 @@ class User implements AdvancedUserInterface
     /**
      * Get gcomment
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getGcomment()
     {
@@ -646,7 +758,7 @@ class User implements AdvancedUserInterface
     /**
      * Get glike
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getGlike()
     {
@@ -679,7 +791,7 @@ class User implements AdvancedUserInterface
     /**
      * Get gallery
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getGallery()
     {
@@ -712,7 +824,7 @@ class User implements AdvancedUserInterface
     /**
      * Get userdoing
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getUserdoing()
     {
@@ -745,7 +857,7 @@ class User implements AdvancedUserInterface
     /**
      * Get userlog
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getUserlog()
     {
@@ -765,10 +877,10 @@ class User implements AdvancedUserInterface
      */
     public function setTokenValue()
     {
-        if(!$this->getToken()) {
+        if (!$this->getToken()) {
             $st = date('Y-m-d H:i:s');
-			$st = $st.$this->getEmail();
-			$this->token = sha1($st.rand(11111, 99999));
+            $st = $st.$this->getEmail();
+            $this->token = sha1($st.rand(11111, 99999));
         }
     }
     /**
@@ -778,45 +890,44 @@ class User implements AdvancedUserInterface
     {
         $this->updated_at = new \DateTime();
     }
-    
-	public function getRoles()
+
+    public function getRoles()
     {
         return array('ROLE_USER');
     }
- 
+
     public function getSalt()
     {
         return null;
     }
- 
+
     public function eraseCredentials()
     {
- 
     }
- 
-    public function equals(User $user)
-    {
-        return $user->getUsername() == $this->getUsername();
-    } 
-    
-    public function isEnabled(){
-		return $this->getIsActive();
-	}
-	public function isCredentialsNonExpired(){
-		return true;
-	}
-	
-	public function isAccountNonExpired(){
-		return true;
-	}
-	
-	public function isAccountNonLocked(){
-		return true;
-	}
+    //~
+    //~ public function equals(User $user)
+    //~ {
+    //~ return $user->getUsername() == $this->getUsername();
+    //~ }
+    //~
+    //~ public function isEnabled(){
+    //~ return $this->getIsActive();
+    //~ }
+    //~ public function isCredentialsNonExpired(){
+    //~ return true;
+    //~ }
+    //~
+    //~ public function isAccountNonExpired(){
+    //~ return true;
+    //~ }
+    //~
+    //~ public function isAccountNonLocked(){
+    //~ return true;
+    //~ }
     /**
      * @var string
      */
-    private $foto;
+    protected $foto;
 
 
     /**
@@ -835,13 +946,13 @@ class User implements AdvancedUserInterface
     /**
      * Get foto
      *
-     * @return string 
+     * @return string
      */
     public function getFoto()
     {
         return $this->foto;
     }
-    
+
     public function setFile($file)
     {
         $this->file = $file;
@@ -852,52 +963,52 @@ class User implements AdvancedUserInterface
     /**
      * Get foto
      *
-     * @return string 
+     * @return string
      */
     public function getFile()
     {
         return $this->file;
     }
-    
-    
+
+
 
     /**
      * @ORM\PrePersist
      */
     protected function getUploadDir()
-	{
-		return 'uploads/users';
-	}
-	
-	protected function getUploadRootDir()
-	{
-		return __DIR__.'/../../../../web/'.$this->getUploadDir();
-	}
-	
-	public function getWebPath()
-	{
-		return null === $this->foto ? null : $this->getUploadDir().'/'.$this->foto;
-	}
-	
-	public function getWebPathMini()
-	{
-		return null === $this->foto ? null : $this->getUploadDir().'/mini_'.$this->foto;
-	}
-	
-	public function getAbsolutePath()
-	{
-		return null === $this->foto ? null : $this->getUploadRootDir().'/'.$this->foto;
-	}
-    
+    {
+        return 'uploads/users';
+    }
+
+    protected function getUploadRootDir()
+    {
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->foto ? null : $this->getUploadDir().'/'.$this->foto;
+    }
+
+    public function getWebPathMini()
+    {
+        return null === $this->foto ? null : $this->getUploadDir().'/mini_'.$this->foto;
+    }
+
+    public function getAbsolutePath()
+    {
+        return null === $this->foto ? null : $this->getUploadRootDir().'/'.$this->foto;
+    }
+
 
     /**
      * @ORM\PrePersist
      */
     public function preUpload()
     {
-        if (null !== $this->file){
-				$this->foto = uniqid().'.'.$this->file->guessExtension();
-			}
+        if (null !== $this->file) {
+            $this->foto = uniqid().'.'.$this->file->guessExtension();
+        }
     }
 
     /**
@@ -905,33 +1016,33 @@ class User implements AdvancedUserInterface
      */
     public function upload()
     {
-        if (null === $this->file){
-			return;
-		} 
-		$this->file->move($this->getUploadRootDir(), $this->foto);
-		
-		Image::open($this->getUploadRootDir().'/'.$this->foto)
-		->scaleResize(200, 200, $background = 0xffffff)
-		->save($this->getUploadRootDir().'/index_'.$this->foto);
-		
-		Image::open($this->getUploadRootDir().'/'.$this->foto)
-		->scaleResize(128, 128, $background = 0xffffff)
-		->save($this->getUploadRootDir().'/grande_'.$this->foto);
-		
-		Image::open($this->getUploadRootDir().'/'.$this->foto)
-		->scaleResize(48, 48, $background = 0xffffff)
-		->save($this->getUploadRootDir().'/mini_'.$this->foto);
-		
-		Image::open($this->getUploadRootDir().'/'.$this->foto)
-		->scaleResize(36, 36, $background = 0xffffff)
-		->save($this->getUploadRootDir().'/thumb_'.$this->foto);
-		
-		$rmfile = $this->getAbsolutePath();
-        if(file_exists($rmfile)) {
-			unlink($rmfile);
-		}
-		
-		unset($this->file);
+        if (null === $this->file) {
+            return;
+        }
+        $this->file->move($this->getUploadRootDir(), $this->foto);
+
+        Image::open($this->getUploadRootDir().'/'.$this->foto)
+        ->scaleResize(200, 200, $background = 0xffffff)
+        ->save($this->getUploadRootDir().'/index_'.$this->foto);
+
+        Image::open($this->getUploadRootDir().'/'.$this->foto)
+        ->scaleResize(128, 128, $background = 0xffffff)
+        ->save($this->getUploadRootDir().'/grande_'.$this->foto);
+
+        Image::open($this->getUploadRootDir().'/'.$this->foto)
+        ->scaleResize(48, 48, $background = 0xffffff)
+        ->save($this->getUploadRootDir().'/mini_'.$this->foto);
+
+        Image::open($this->getUploadRootDir().'/'.$this->foto)
+        ->scaleResize(36, 36, $background = 0xffffff)
+        ->save($this->getUploadRootDir().'/thumb_'.$this->foto);
+
+        $rmfile = $this->getAbsolutePath();
+        if (file_exists($rmfile)) {
+            unlink($rmfile);
+        }
+
+        unset($this->file);
     }
 
 
@@ -949,33 +1060,33 @@ class User implements AdvancedUserInterface
     public function removeUpload()
     {
         $file = $this->getAbsolutePath();
-        if(file_exists($file)) {
-			unlink($file);
-		}
+        if (file_exists($file)) {
+            unlink($file);
+        }
     }
-    
+
     public function removeUploaded()
     {
-        if (null === $this->file){
-			return;
-		}
-		
-		$rmfilei = $this->getUploadRootDir().'/index_'.$this->getFoto();
-		$rmfilem = $this->getUploadRootDir().'/mini_'.$this->getFoto();
-		$rmfileg = $this->getUploadRootDir().'/grande_'.$this->getFoto();
-		$rmfilez = $this->getUploadRootDir().'/thumb_'.$this->getFoto();
-        if(file_exists($rmfilei)) {
-			unlink($rmfilei);
-		}
-		if(file_exists($rmfilem)) {
-			unlink($rmfilem);
-		}
-		if(file_exists($rmfileg)) {
-			unlink($rmfileg);
-		}
-		if(file_exists($rmfilez)) {
-			unlink($rmfilez);
-		}
+        if (null === $this->file) {
+            return;
+        }
+
+        $rmfilei = $this->getUploadRootDir().'/index_'.$this->getFoto();
+        $rmfilem = $this->getUploadRootDir().'/mini_'.$this->getFoto();
+        $rmfileg = $this->getUploadRootDir().'/grande_'.$this->getFoto();
+        $rmfilez = $this->getUploadRootDir().'/thumb_'.$this->getFoto();
+        if (file_exists($rmfilei)) {
+            unlink($rmfilei);
+        }
+        if (file_exists($rmfilem)) {
+            unlink($rmfilem);
+        }
+        if (file_exists($rmfileg)) {
+            unlink($rmfileg);
+        }
+        if (file_exists($rmfilez)) {
+            unlink($rmfilez);
+        }
     }
 
     /**
@@ -985,16 +1096,16 @@ class User implements AdvancedUserInterface
     {
         // Add your code here
     }
-    
-    /**
-     * @var \Lc\LcBundle\Entity\Friend
-     */
-    private $friend1;
 
     /**
      * @var \Lc\LcBundle\Entity\Friend
      */
-    private $friend2;
+    protected $friend1;
+
+    /**
+     * @var \Lc\LcBundle\Entity\Friend
+     */
+    protected $friend2;
 
 
     /**
@@ -1013,7 +1124,7 @@ class User implements AdvancedUserInterface
     /**
      * Get friend1
      *
-     * @return \Lc\LcBundle\Entity\Friend 
+     * @return \Lc\LcBundle\Entity\Friend
      */
     public function getFriend1()
     {
@@ -1036,7 +1147,7 @@ class User implements AdvancedUserInterface
     /**
      * Get friend2
      *
-     * @return \Lc\LcBundle\Entity\Friend 
+     * @return \Lc\LcBundle\Entity\Friend
      */
     public function getFriend2()
     {
@@ -1045,12 +1156,12 @@ class User implements AdvancedUserInterface
     /**
      * @var \Lc\LcBundle\Entity\Friend
      */
-    private $chat1;
+    protected $chat1;
 
     /**
      * @var \Lc\LcBundle\Entity\Friend
      */
-    private $chat2;
+    protected $chat2;
 
 
     /**
@@ -1069,7 +1180,7 @@ class User implements AdvancedUserInterface
     /**
      * Get chat1
      *
-     * @return \Lc\LcBundle\Entity\Friend 
+     * @return \Lc\LcBundle\Entity\Friend
      */
     public function getChat1()
     {
@@ -1092,7 +1203,7 @@ class User implements AdvancedUserInterface
     /**
      * Get chat2
      *
-     * @return \Lc\LcBundle\Entity\Friend 
+     * @return \Lc\LcBundle\Entity\Friend
      */
     public function getChat2()
     {
@@ -1193,7 +1304,7 @@ class User implements AdvancedUserInterface
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $notify;
+    protected $notify;
 
 
     /**
@@ -1222,7 +1333,7 @@ class User implements AdvancedUserInterface
     /**
      * Get notify
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getNotify()
     {
@@ -1231,12 +1342,12 @@ class User implements AdvancedUserInterface
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $notify1;
+    protected $notify1;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $notify2;
+    protected $notify2;
 
 
     /**
@@ -1265,7 +1376,7 @@ class User implements AdvancedUserInterface
     /**
      * Get notify1
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getNotify1()
     {
@@ -1298,10 +1409,38 @@ class User implements AdvancedUserInterface
     /**
      * Get notify2
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getNotify2()
     {
         return $this->notify2;
+    }
+    /**
+     * @var boolean
+     */
+    protected $broad;
+
+
+    /**
+     * Set broad
+     *
+     * @param boolean $broad
+     * @return User
+     */
+    public function setBroad($broad)
+    {
+        $this->broad = $broad;
+
+        return $this;
+    }
+
+    /**
+     * Get broad
+     *
+     * @return boolean
+     */
+    public function getBroad()
+    {
+        return $this->broad;
     }
 }

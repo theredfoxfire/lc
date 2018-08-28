@@ -29,11 +29,14 @@ Lc\LcBundle\Entity\Feeling:
   updated_at:
    type: datetime
    nullable: true
-  token: 
+  token:
    type: string
    length: 255
    unique: true
  oneToMany:
+  children:
+   targetEntity: Feeling
+   mappedBy: parent
   fcomment:
    targetEntity: Fcomment
    mappedBy: feeling
@@ -44,6 +47,12 @@ Lc\LcBundle\Entity\Feeling:
    targetEntity: Fshare
    mappedBy: feeling
  manyToOne:
+  parent:
+   targetEntity: Feeling
+   inversedBy: children
+   joinColumn:
+    name: shared
+    referencedColumnName: id
   user:
    targetEntity: User
    inversedBy: feeling

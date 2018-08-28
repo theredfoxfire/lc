@@ -531,4 +531,70 @@ public function setFile($file)
 		
 		unset($this->file);
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $children;
+
+    /**
+     * @var \Lc\LcBundle\Entity\Feeling
+     */
+    private $parent;
+
+
+    /**
+     * Add children
+     *
+     * @param \Lc\LcBundle\Entity\Feeling $children
+     * @return Feeling
+     */
+    public function addChild(\Lc\LcBundle\Entity\Feeling $children)
+    {
+        $this->children[] = $children;
+
+        return $this;
+    }
+
+    /**
+     * Remove children
+     *
+     * @param \Lc\LcBundle\Entity\Feeling $children
+     */
+    public function removeChild(\Lc\LcBundle\Entity\Feeling $children)
+    {
+        $this->children->removeElement($children);
+    }
+
+    /**
+     * Get children
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    /**
+     * Set parent
+     *
+     * @param \Lc\LcBundle\Entity\Feeling $parent
+     * @return Feeling
+     */
+    public function setParent(\Lc\LcBundle\Entity\Feeling $parent = null)
+    {
+        $this->parent = $parent;
+
+        return $this;
+    }
+
+    /**
+     * Get parent
+     *
+     * @return \Lc\LcBundle\Entity\Feeling 
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
 }

@@ -43,7 +43,7 @@ class Friend
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -66,7 +66,7 @@ class Friend
     /**
      * Get status
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getStatus()
     {
@@ -89,7 +89,7 @@ class Friend
     /**
      * Get is_confirmed
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsConfirmed()
     {
@@ -112,7 +112,7 @@ class Friend
     /**
      * Get created_at
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -135,7 +135,7 @@ class Friend
     /**
      * Get updated_at
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -158,7 +158,7 @@ class Friend
     /**
      * Get token
      *
-     * @return string 
+     * @return string
      */
     public function getToken()
     {
@@ -178,9 +178,9 @@ class Friend
      */
     public function setTokenValue()
     {
-        if(!$this->getToken()) {
+        if (!$this->getToken()) {
             $st = date('Y-m-d H:i:s');
-			$this->token = sha1($st.rand(11111, 99999));
+            $this->token = sha1($st.rand(11111, 99999));
         }
     }
 
@@ -219,7 +219,7 @@ class Friend
     /**
      * Get user1
      *
-     * @return \Lc\LcBundle\Entity\User 
+     * @return \Lc\LcBundle\Entity\User
      */
     public function getUser1()
     {
@@ -242,7 +242,7 @@ class Friend
     /**
      * Get user2
      *
-     * @return \Lc\LcBundle\Entity\User 
+     * @return \Lc\LcBundle\Entity\User
      */
     public function getUser2()
     {
@@ -270,7 +270,7 @@ class Friend
     /**
      * Get cast
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getCast()
     {

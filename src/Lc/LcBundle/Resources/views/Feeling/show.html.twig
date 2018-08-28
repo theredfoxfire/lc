@@ -26,6 +26,10 @@
 											<a class="a-act" href="#comments" onclick="setFocus()" data-toggle="tooltip" data-placement="top" title="Tulis balasan"><i class="glyphicon glyphicon-comment"></i></a>
 											</h5>
 											<h5 class="media-right pull-right">
+											<span class="counter-activity">{{ entity.fshare|length > 0 ? entity.fshare|length|number_format(0, ',', ' ') : '' }}</span>
+											<a class="a-act" href="{{ path('fshare_create', {'feel': entity.token }) }}" data-toggle="tooltip" data-placement="top" title="Re-Post"><i class="glyphicon glyphicon-retweet"></i></a>
+											</h5>
+											<h5 class="media-right pull-right">
 											{% set lk = 0 %}
 											{% for like in entity.flike %}
 												{% if like.user.id == app.user.id %}
@@ -49,6 +53,11 @@
 											<img src="{{ asset('web/uploads/users/mini_') }}{{ entity.user.foto }}" alt="{{ entity.user.profile.name }}">
 										</div>
 										<div class="media-body">
+											{% if entity.shared %}
+												<a href="{{ path('profile_see', {'token': entity.parent.user.token }) }}">
+													<i class="glyphicon glyphicon-retweet"></i> {{ entity.parent.user.profile.name }}
+												</a>
+											{% endif %}
 											<h5 class="media-right">{{ entity.feel|raw }}</h5>
 											<div class='pull-right created_at'><small class="text-muted"> <i class="glyphicon glyphicon-time"></i> <i>{{ entity.createdAt | date('d-m-Y H:i:s') }}</i></small></div>
 										</div>

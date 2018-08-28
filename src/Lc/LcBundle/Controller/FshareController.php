@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Lc\LcBundle\Entity\Fshare;
 use Lc\LcBundle\Entity\Feeling;
 use Lc\LcBundle\Form\FshareType;
+use Lc\LcBundle\Entity\Notification;
 
 /**
  * Fshare controller.
@@ -37,20 +38,43 @@ class FshareController extends Controller
     public function createAction($feel)
     {
         $entity = new Fshare();
+        $feelNew = new Feeling();
         $em = $this->getDoctrine()->getManager();
         $feeling = $em->getRepository('LcLcBundle:Feeling')->findOneByToken($feel);
-        $check = $em->getRepository('LcLcBundle:Fshare')->checkShared($this->getUid(),$feeling);
-        if(!$check){
-			$entity->setStatus(1);
-			$entity->setUser($this->getUid());
-			$entity->setFeeling($feeling);
-			$em->persist($entity);
-			$em->flush();
-		}else{
-			($check->getStatus() == 1 ? $check->setStatus(0) : $check->setStatus(1));
-			$em->persist($check);
-			$em->flush();
-		}
+        $feelNew->setIsActive(true);
+        $feelNew->setUser($this->getUid());
+        $feelNew->setFeel($feeling->getFeel());
+        $feelNew->setFoto($feeling->getFoto());
+        $feelNew->setParent($feeling);
+        $em->persist($feelNew);
+        $em->flush();
+
+        $user = $this->getUid();
+        $user->setUpdatedAt(new \DateTime());
+        $em->persist($user);
+        $em->flush();
+
+        $noty = new Notification();
+        //user 1 is liker user 2 is liked
+        $noty->setViewed(false);
+        $noty->setUser1($this->getUid());
+        $noty->setUser2($feeling->getUser());
+        $noty->setFromPage(6);
+        if ($this->getUid()->getId() == $feeling->getUser()->getId()) {
+            $noty->setSelfPage($this->getUid()->getId());
+        } else {
+            $noty->setSelfPage(0);
+        }
+        $noty->setFromId($feelNew->getToken());
+        $em->persist($noty);
+        $em->flush();
+
+        $entity->setStatus(1);
+        $entity->setUser($this->getUid());
+        $entity->setFeeling($feeling);
+        $em->persist($entity);
+        $em->flush();
+
         return $this->redirect($this->generateUrl('feeling'));
     }
 
@@ -222,13 +246,13 @@ class FshareController extends Controller
             ->getForm()
         ;
     }
-    
-    public function getUid(){
-		$usr= $this->get('security.context')->getToken()->getUser();
-		$uid = $usr->getId();
-		$em = $this->getDoctrine()->getManager();
-		$userId = $em->getRepository('LcLcBundle:User')->find($uid);
-		return $userId;
-		
-	}
+
+    public function getUid()
+    {
+        $usr= $this->get('security.context')->getToken()->getUser();
+        $uid = $usr->getId();
+        $em = $this->getDoctrine()->getManager();
+        $userId = $em->getRepository('LcLcBundle:User')->find($uid);
+        return $userId;
+    }
 }
