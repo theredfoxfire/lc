@@ -11,6 +11,9 @@
 								</div>
 											<center>
 											<img class="thumbnail" src="{{ asset('web/uploads/users/index_') }}{{ entity.user.foto }}" alt="{{ entity.name }}">
+											{% if entity.user.isverified == 1 %}
+												<span style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i> Verified Account</span><br><br>
+											{% endif %}
 											{% if friend and friend.isconfirmed == 0 %}
 												<div class="label label-success">Permintaan pertemanan sudah dikirim</div>
 											{% elseif friend and friend.isconfirmed == 1 %}

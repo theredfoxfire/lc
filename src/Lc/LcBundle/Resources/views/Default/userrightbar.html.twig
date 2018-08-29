@@ -13,10 +13,12 @@
 												</a>
 												<div class="media-body">
 													<h5 class="media-right">
+													<a href="{{ path('profile_see', {'token': other.token }) }}">
 														{% if other.profile.name is defined %}{{ other.profile.name }} {% else %} {{ other.email }} {% endif %}
 														{% if other.isverified == 1 %}
 															<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
 														{% endif %}
+													</a>
 													</h5>
 												</div>
 											</div>
