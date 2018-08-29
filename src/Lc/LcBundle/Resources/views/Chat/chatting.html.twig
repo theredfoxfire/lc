@@ -4,7 +4,7 @@
 {% endblock %}
 {%block content%}
 				<div class="col-sm-7 column">
-						
+
 						<div class="row">
 							<div class="panel panel-success">
 								<div class="panel-heading panel-success">
@@ -12,6 +12,9 @@
 										<div class="media-left pull-left knowing">
 											<img src="{{ asset('web/uploads/users/mini_') }}{{ friend.foto }}" alt="{{ friend.profile.name }}" class="img-rounded a-act" >
 											Obrolanmu dengan {{ friend.profile.name }}
+											{% if friend.profile.user.isverified == 1 %}
+												<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
+											{% endif %}
 										</div>
 										<div class="media-body">
 											<h5 class="media-right pull-right">
@@ -40,7 +43,12 @@
 												<img src="{{ asset('web/uploads/users/thumb_') }}{{ friend.foto }}" alt="{{ friend.profile.name }}" class="img-circle" >
 											</div>
 											<div class="media-body f-feel">
-												<h4 class="media-right">{{ friend.profile.name }}</h4>
+												<h4 class="media-right">
+													{{ friend.profile.name }}
+													{% if friend.profile.user.isverified == 1 %}
+														<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
+													{% endif %}
+												</h4>
 												<h5 class="media-right">{{ entity.message }}</h5>
 												<small class="text-muted"> <i class="glyphicon glyphicon-time"></i> <i>{{ entity.createdAt | date('d-m-Y H:i:s') }}</i></small>
 											</div>
@@ -64,9 +72,9 @@
 								</div>
 							</div>
 						</div>
-						
+
 				</div>
-				
+
 <script>
 	window.onload = function() {
 	document.getElementById("lc_lcbundle_chat_message").focus();
@@ -76,4 +84,3 @@
 {%block rightcontent%}
 	{{ include ('LcLcBundle:Default:userrightbar.html.twig') }}
 {% endblock %}
-

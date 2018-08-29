@@ -18,6 +18,9 @@
 										<div class="name-center">
 											<p>
 												{{ entity.profile.name }}
+												{% if entity.isverified == 1 %}
+													<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
+												{% endif %}
 											</p>
 										</div>
 										<div class="text-center">

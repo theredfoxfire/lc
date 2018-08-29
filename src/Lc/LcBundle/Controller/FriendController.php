@@ -38,57 +38,57 @@ class FriendController extends Controller
     {
         $entity = new Friend();
         $noty = new Notification();
-        
+
         $em = $this->getDoctrine()->getManager();
         $is = $em->getRepository('LcLcBundle:User')->findOneByToken($token);
-        if(!$is){
-			throw $this->createNotFoundException('Unable to find Friend entity.');
-		}
-		
-        $friend = $em->getRepository('LcLcBundle:Friend')->check($this->getUid()->getId(),$is->getId());
-        $req = $em->getRepository('LcLcBundle:Friend')->check($is->getId(),$this->getUid()->getId());
-        
-        if(empty($friend) && empty($req)){
-			$entity->setUser1($this->getUid());
-			$entity->setUser2($is);
-			$entity->setStatus(true);
-			$entity->setCast(false);
-			$entity->setIsConfirmed(false);
-			$em->persist($entity);
-			$em->flush();
-			
-			//1 -> profile, 2 -> like, 3 -> comment, 4 -> ask friend
-			//user 1 is asker user 2 is asked
-			$noty->setViewed(false);
-			$noty->setUser1($this->getUid());
-			$noty->setUser2($is);
-			$noty->setSelfPage(0);
-			$noty->setFromPage(4);
-			$em->persist($noty);
-			$em->flush();
-			
-			/*
-			email section
-			*/
-			$email = $is->getEmail();
-			
-			//~ $transport = \Swift_SmtpTransport::newInstance('lucidcouple.com',587,'tls')
-			//~ ->setUsername('member@lucidcouple.com')->setPassword('13264656#vL');
-			//~ 
-			//~ $mailer = \Swift_Mailer::newInstance($transport);
-			//~ 
-			//~ $message = \Swift_Message::newInstance()
+        if (!$is) {
+            throw $this->createNotFoundException('Unable to find Friend entity.');
+        }
+
+        $friend = $em->getRepository('LcLcBundle:Friend')->check($this->getUid()->getId(), $is->getId());
+        $req = $em->getRepository('LcLcBundle:Friend')->check($is->getId(), $this->getUid()->getId());
+
+        if (empty($friend) && empty($req)) {
+            $entity->setUser1($this->getUid());
+            $entity->setUser2($is);
+            $entity->setStatus(true);
+            $entity->setCast(false);
+            $entity->setIsConfirmed(false);
+            $em->persist($entity);
+            $em->flush();
+
+            //1 -> profile, 2 -> like, 3 -> comment, 4 -> ask friend
+            //user 1 is asker user 2 is asked
+            $noty->setViewed(false);
+            $noty->setUser1($this->getUid());
+            $noty->setUser2($is);
+            $noty->setSelfPage(0);
+            $noty->setFromPage(4);
+            $em->persist($noty);
+            $em->flush();
+
+            /*
+            email section
+            */
+            $email = $is->getEmail();
+
+        //~ $transport = \Swift_SmtpTransport::newInstance('lucidcouple.com',587,'tls')
+            //~ ->setUsername('member@lucidcouple.com')->setPassword('13264656#vL');
+            //~
+            //~ $mailer = \Swift_Mailer::newInstance($transport);
+            //~
+            //~ $message = \Swift_Message::newInstance()
                 //~ ->setSubject('Hey ada orang yang menyukai mu di LUCIDCOUPLE!')
                 //~ ->setFrom('member@lucidcouple.com')
                 //~ ->setTo($email)
                 //~ ->setBody(
                     //~ $this->renderView('LcLcBundle:User:lovealert.txt.twig', array('name' => $is->getProfile()->getName())))
             //~ ;
- //~ 
+ //~
             //~ $mailer->send($message);
-		}else{
-			return $this->redirect($this->generateUrl('profile_see', array('token' => $token)));
-		}
+        } else {
+            return $this->redirect($this->generateUrl('profile_see', array('token' => $token)));
+        }
 
         return $this->redirect($this->generateUrl('profile_see', array('token' => $token)));
     }
@@ -138,12 +138,12 @@ class FriendController extends Controller
         $paginator = $this->get('knp_paginator');
         $query = $em->getRepository('LcLcBundle:Friend')->freez($this->getUid()->getId());
         $pagination = $paginator->paginate(
-			$query,
-			$this->get('request')->query->get('page', 1),
-			25
-		);
-		$c = $em->getRepository('LcLcBundle:Friend')->freezCount($this->getUid()->getId());
-		
+            $query,
+            $this->get('request')->query->get('page', 1),
+            25
+        );
+        $c = $em->getRepository('LcLcBundle:Friend')->freezCount($this->getUid()->getId());
+
         $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
         $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
         $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
@@ -158,25 +158,25 @@ class FriendController extends Controller
             'notify' => $notify,
         ));
     }
-    
+
     public function showfallAction($token)
     {
         $em = $this->getDoctrine()->getManager();
-		
+
         $paginator = $this->get('knp_paginator');
         $query = $em->getRepository('LcLcBundle:Friend')->fall($this->getUid()->getId());
         $pagination = $paginator->paginate(
-			$query,
-			$this->get('request')->query->get('page', 1),
-			25
-		);
-		$c = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
-		
+            $query,
+            $this->get('request')->query->get('page', 1),
+            25
+        );
+        $c = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
+
         $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
         $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
         $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
         $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
-        
+
         //exit(\Doctrine\Common\Util\Debug::dump($entities));
 
         return $this->render('LcLcBundle:Friend:showfall.html.twig', array(
@@ -247,32 +247,31 @@ class FriendController extends Controller
             throw $this->createNotFoundException('Unable to find Friend entity.');
         }
 
-		$entity->setIsConfirmed(true);
-		$em->persist($entity);
+        $entity->setIsConfirmed(true);
+        $em->persist($entity);
         $em->flush();
-        
+
         $is = $em->getRepository('LcLcBundle:User')->findOneById($entity->getUser1());
-        
+
         $mate->setUser1($this->getUid());
-		$mate->setUser2($is);
-		$mate->setStatus(true);
-		$mate->setCast(false);
-		$mate->setIsConfirmed(true);
-		$em->persist($mate);
-		$em->flush();
-		
-		//1 -> profile, 2 -> like, 3 -> comment 
+        $mate->setUser2($is);
+        $mate->setStatus(true);
+        $mate->setCast(false);
+        $mate->setIsConfirmed(true);
+        $em->persist($mate);
+        $em->flush();
+
+        //1 -> profile, 2 -> like, 3 -> comment
         //user 1 is visiting user 2 is visited
         $noty->setViewed(false);
         $noty->setUser1($this->getUid());
         $noty->setUser2($is);
-		$noty->setSelfPage(0);
+        $noty->setSelfPage(0);
         $noty->setFromPage(5);
         $em->persist($noty);
         $em->flush();
 
         return $this->redirect($this->generateUrl('friend_fall', array('token' => $token)));
-
     }
     /**
      * Edits an existing Friend entity.
@@ -283,15 +282,14 @@ class FriendController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('LcLcBundle:Friend')->findOneByToken($token);
-        
-		$em->getRepository('LcLcBundle:Friend')->block($entity->getUser2(), $entity->getUser1());
-		$em->getRepository('LcLcBundle:Friend')->block($entity->getUser1(), $entity->getUser2());
-		
-		$em->getRepository('LcLcBundle:Chat')->deleteChat($entity->getUser1(),$entity->getUser2());
-		$user = $this->getUid();
+
+        $em->getRepository('LcLcBundle:Friend')->block($entity->getUser2(), $entity->getUser1());
+        $em->getRepository('LcLcBundle:Friend')->block($entity->getUser1(), $entity->getUser2());
+
+        $em->getRepository('LcLcBundle:Chat')->deleteChat($entity->getUser1(), $entity->getUser2());
+        $user = $this->getUid();
 
         return $this->redirect($this->generateUrl('friend_show', array('token' => $user->getToken())));
-
     }
     /**
      * Deletes a Friend entity.
@@ -309,7 +307,7 @@ class FriendController extends Controller
         $em->remove($entity);
         $em->flush();
 
-        return $this->redirect($this->generateUrl('friend_fall',array('token' => $token)));
+        return $this->redirect($this->generateUrl('friend_fall', array('token' => $token)));
     }
 
     /**
@@ -328,13 +326,13 @@ class FriendController extends Controller
             ->getForm()
         ;
     }
-    
-    public function getUid(){
-		$usr= $this->get('security.context')->getToken()->getUser();
-		$uid = $usr->getId();
-		$em = $this->getDoctrine()->getManager();
-		$userId = $em->getRepository('LcLcBundle:User')->find($uid);
-		return $userId;
-		
-	}
+
+    public function getUid()
+    {
+        $usr= $this->get('security.context')->getToken()->getUser();
+        $uid = $usr->getId();
+        $em = $this->getDoctrine()->getManager();
+        $userId = $em->getRepository('LcLcBundle:User')->find($uid);
+        return $userId;
+    }
 }

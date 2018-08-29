@@ -56,8 +56,15 @@
 											{% else %}
 												<img src="{{ asset('web/uploads/users/mini_') }}{{ entity.user.foto }}" alt="{{ entity.user.profile.name }}" class="img-rounded">
 											{% endif %}
-											<div class="media-left knowing limit-string">
-												<h5>{{ entity.user.profile.name }}</h5>
+											<div class="media-left knowing">
+												<h5 style="margin-bottom:-20px;margin-left:70%;">
+													{% if entity.user.isverified == 1 %}
+														<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
+													{% endif %}
+												</h5>
+												<div class="limit-string">
+													<h5>{{ entity.user.profile.name }}</h5>
+												</div>
 											</div>
 										</div>
 										{% if entity.shared %}
@@ -75,11 +82,6 @@
 												{% endif %}
 											{% endif %}
 										{% endif %}
-										<h5 class="pull-right">
-											{% if entity.user.isverified == 1 %}
-												<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i> verified</i>
-											{% endif %}
-										</h5>
 										<a href="{{ path('feeling_show', {'token': entity.token }) }}">
 											<div class="media-body f-feel">
 												<h5 class="media-right">{{ entity.feel|raw }}</h5>
