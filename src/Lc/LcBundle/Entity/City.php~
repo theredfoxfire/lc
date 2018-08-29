@@ -307,4 +307,27 @@ class City
 	{
 		return $this->getName() ? $this->getName() : "";
 	}
+
+    /**
+     * Add usercriteria
+     *
+     * @param \Lc\LcBundle\Entity\Usercriteria $usercriteria
+     * @return City
+     */
+    public function addUsercriterion(\Lc\LcBundle\Entity\Usercriteria $usercriteria)
+    {
+        $this->usercriteria[] = $usercriteria;
+
+        return $this;
+    }
+
+    /**
+     * Remove usercriteria
+     *
+     * @param \Lc\LcBundle\Entity\Usercriteria $usercriteria
+     */
+    public function removeUsercriterion(\Lc\LcBundle\Entity\Usercriteria $usercriteria)
+    {
+        $this->usercriteria->removeElement($usercriteria);
+    }
 }

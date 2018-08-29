@@ -1443,4 +1443,27 @@ class User implements UserInterface, \Serializable
     {
         return $this->broad;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->feeling = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->fcomment = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->flike = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->fshare = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->gshare = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->gcomment = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->glike = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->gallery = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->userdoing = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->userlog = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->friend1 = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->friend2 = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->chat1 = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->chat2 = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->notify1 = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->notify2 = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
 }

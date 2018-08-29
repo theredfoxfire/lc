@@ -46,6 +46,9 @@ Lc\LcBundle\Entity\User:
    type: string
    length: 20
    nullable: true
+  is_verified:
+   type: boolean
+   nullable: true
   foto:
    type: string
    length: 255

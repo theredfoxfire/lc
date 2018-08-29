@@ -49,18 +49,37 @@
 								<div class="panel-body apanel-body">
 									<div class="media">
 										<div class="media-left pull-left">
+											{% if entity.user.broad != 1 %}
 											<a href="{{ path('profile_see', {'token': entity.user.token }) }}">
 												<img src="{{ asset('web/uploads/users/mini_') }}{{ entity.user.foto }}" alt="{{ entity.user.profile.name }}" class="img-rounded">
 											</a>
+											{% else %}
+												<img src="{{ asset('web/uploads/users/mini_') }}{{ entity.user.foto }}" alt="{{ entity.user.profile.name }}" class="img-rounded">
+											{% endif %}
 											<div class="media-left knowing limit-string">
 												<h5>{{ entity.user.profile.name }}</h5>
 											</div>
 										</div>
 										{% if entity.shared %}
+											{% if entity.parent.user.broad != 1 %}
 											<a href="{{ path('profile_see', {'token': entity.parent.user.token }) }}">
 												<i class="glyphicon glyphicon-retweet"></i> {{ entity.parent.user.profile.name }}
+												{% if entity.parent.user.isverified == 1 %}
+													<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
+												{% endif %}
 											</a>
+											{% else %}
+												<i class="glyphicon glyphicon-retweet"></i> {{ entity.parent.user.profile.name }}
+												{% if entity.parent.user.isverified == 1 %}
+													<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
+												{% endif %}
+											{% endif %}
 										{% endif %}
+										<h5 class="pull-right">
+											{% if entity.user.isverified == 1 %}
+												<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i> verified</i>
+											{% endif %}
+										</h5>
 										<a href="{{ path('feeling_show', {'token': entity.token }) }}">
 											<div class="media-body f-feel">
 												<h5 class="media-right">{{ entity.feel|raw }}</h5>
@@ -80,6 +99,11 @@
 								<div class="panel-footer panel-success right">
 									<div class="media">
 										<div class="media-body">
+											<h5 class="pull-left">
+											  {% if entity.user.broad == 1 %}
+												  <i><i class="glyphicon glyphicon-export"></i> broadcast</i>
+											  {% endif %}
+											</h5>
 											<h5 class="media-right pull-right">
 											<span class="counter-activity">{{ entity.fcomment|length > 0 ? entity.fcomment|length|number_format(0, ',', ' ') : '' }}</span>
 											<a class="a-act" href="{{ path('feeling_show', {'token': entity.token }) }}" data-toggle="tooltip" data-placement="top" title="Tulis balasan"><i class="glyphicon glyphicon-comment"></i></a>

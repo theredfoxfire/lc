@@ -1466,4 +1466,32 @@ class User implements UserInterface, \Serializable
         $this->notify2 = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
+    /**
+     * @var boolean
+     */
+    private $is_verified;
+
+
+    /**
+     * Set is_verified
+     *
+     * @param boolean $isVerified
+     * @return User
+     */
+    public function setIsVerified($isVerified)
+    {
+        $this->is_verified = $isVerified;
+
+        return $this;
+    }
+
+    /**
+     * Get is_verified
+     *
+     * @return boolean 
+     */
+    public function getIsVerified()
+    {
+        return $this->is_verified;
+    }
 }
