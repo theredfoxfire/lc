@@ -46,42 +46,77 @@
 						{% for entity in entities %}
 						<div class="row margin-feel">
 							<div class="panel panel-success">
+								{% if entity.shared %}
+									{% if entity.user.broad != 1 %}
+									<a class="share-link" href="{{ path('profile_see', {'token': entity.user.token }) }}">
+										<i class="glyphicon glyphicon-retweet"></i> {{ entity.user.profile.name }}
+										{% if entity.user.isverified == 1 %}
+											<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
+										{% endif %}
+										repost
+									</a>
+									{% else %}
+										<div class="share-link">
+											<i class="glyphicon glyphicon-retweet"></i> {{ entity.user.profile.name }}
+											{% if entity.user.isverified == 1 %}
+												<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
+											{% endif %}
+											repost
+										</div>
+									{% endif %}
+								{% endif %}
 								<div class="panel-body apanel-body">
 									<div class="media">
 										<div class="media-left pull-left">
-											{% if entity.user.broad != 1 %}
-											<a href="{{ path('profile_see', {'token': entity.user.token }) }}">
-												<img src="{{ asset('web/uploads/users/mini_') }}{{ entity.user.foto }}" alt="{{ entity.user.profile.name }}" class="img-rounded">
-											</a>
+											{% if entity.shared %}
+												{% if entity.parent.user.broad != 1 %}
+												<a href="{{ path('profile_see', {'token': entity.parent.user.token }) }}">
+													<img src="{{ asset('web/uploads/users/mini_') }}{{ entity.parent.user.foto }}" alt="{{ entity.parent.user.profile.name }}" class="img-rounded">
+												</a>
+												{% else %}
+													<img src="{{ asset('web/uploads/users/mini_') }}{{ entity.parent.user.foto }}" alt="{{ entity.parent.user.profile.name }}" class="img-rounded">
+												{% endif %}
 											{% else %}
-												<img src="{{ asset('web/uploads/users/mini_') }}{{ entity.user.foto }}" alt="{{ entity.user.profile.name }}" class="img-rounded">
+												{% if entity.user.broad != 1 %}
+												<a href="{{ path('profile_see', {'token': entity.user.token }) }}">
+													<img src="{{ asset('web/uploads/users/mini_') }}{{ entity.user.foto }}" alt="{{ entity.user.profile.name }}" class="img-rounded">
+												</a>
+												{% else %}
+													<img src="{{ asset('web/uploads/users/mini_') }}{{ entity.user.foto }}" alt="{{ entity.user.profile.name }}" class="img-rounded">
+												{% endif %}
 											{% endif %}
-											<div class="media-left knowing">
-												<h5 style="margin-bottom:-20px;margin-left:70%;">
+										</div>
+										<h5>
+											{% if entity.shared %}
+												{% if entity.parent.user.broad != 1 %}
+													<a href="{{ path('profile_see', {'token': entity.parent.user.token }) }}">
+														{{ entity.parent.user.profile.name }}
+														{% if entity.parent.user.isverified == 1 %}
+															<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
+														{% endif %}
+													</a>
+												{% else %}
+													{{ entity.parent.user.profile.name }}
+													{% if entity.parent.user.isverified == 1 %}
+														<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
+													{% endif %}
+												{% endif %}
+											{% else %}
+												{% if entity.user.broad != 1 %}
+													<a href="{{ path('profile_see', {'token': entity.user.token }) }}">
+														{{ entity.user.profile.name }}
+														{% if entity.user.isverified == 1 %}
+															<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
+														{% endif %}
+													</a>
+												{% else %}
+													{{ entity.user.profile.name }}
 													{% if entity.user.isverified == 1 %}
 														<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
 													{% endif %}
-												</h5>
-												<div class="limit-string">
-													<h5>{{ entity.user.profile.name }}</h5>
-												</div>
-											</div>
-										</div>
-										{% if entity.shared %}
-											{% if entity.parent.user.broad != 1 %}
-											<a class="share-link" href="{{ path('profile_see', {'token': entity.parent.user.token }) }}">
-												<i class="glyphicon glyphicon-retweet"></i> postingan dari {{ entity.parent.user.profile.name }}
-												{% if entity.parent.user.isverified == 1 %}
-													<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
-												{% endif %}
-											</a>
-											{% else %}
-												<i class="glyphicon glyphicon-retweet share-link"></i> postingan dari {{ entity.parent.user.profile.name }}
-												{% if entity.parent.user.isverified == 1 %}
-													<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
 												{% endif %}
 											{% endif %}
-										{% endif %}
+										</h5>
 										<a href="{{ path('feeling_show', {'token': entity.token }) }}">
 											<div class="media-body f-feel">
 												<h5 class="media-right">{{ entity.feel|raw }}</h5>
@@ -101,34 +136,38 @@
 								<div class="panel-footer panel-success right">
 									<div class="media">
 										<div class="media-body">
-											<h5 class="pull-left">
-											  {% if entity.user.broad == 1 %}
-												  <i><i class="glyphicon glyphicon-export"></i> broadcast</i>
-											  {% endif %}
-											</h5>
-											<h5 class="media-right pull-right">
-											<span class="counter-activity">{{ entity.fcomment|length > 0 ? entity.fcomment|length|number_format(0, ',', ' ') : '' }}</span>
-											<a class="a-act" href="{{ path('feeling_show', {'token': entity.token }) }}" data-toggle="tooltip" data-placement="top" title="Tulis balasan"><i class="glyphicon glyphicon-comment"></i></a>
-											</h5>
-											<h5 class="media-right pull-right">
-											<span class="counter-activity">{{ entity.fshare|length > 0 ? entity.fshare|length|number_format(0, ',', ' ') : '' }}</span>
-											<a class="a-act" href="{{ path('fshare_create', {'feel': entity.token }) }}" data-toggle="tooltip" data-placement="top" title="Re-Post"><i class="glyphicon glyphicon-retweet"></i></a>
-											</h5>
-											<h5 class="media-right pull-right">
-											{% set lk = 0 %}
-											{% for like in entity.flike %}
-												{% if like.user.id == app.user.id %}
-													{% set lk = 1 %}
-												{% endif %}
-											{% endfor %}
-											{% if lk == 0 %}
-											<span class="counter-activity">{{ entity.flike|length > 0 ? entity.flike|length|number_format(0, ',', ' ') : '' }}</span>
-											<a class="a-act" href="{{ path('flike_create', {'feel': entity.token, 'page': '2' }) }}" data-toggle="tooltip" data-placement="top" title="Beri simpati"><i class="glyphicon glyphicon-thumbs-up"></i></a>
-											{% else %}
-											<span class="counter-activity">{{ entity.flike|length > 0 ? entity.flike|length|number_format(0, ',', ' ') : '' }}</span>
-											<i class="glyphicon glyphicon-thumbs-up disabled-like a-act"></i>
-											{% endif %}
-											</h5>
+											<div class="col-sm-4">
+												<h5 class="pull-left">
+													{% if entity.user.broad == 1 %}
+														<i><i class="glyphicon glyphicon-export"></i> broadcast</i>
+													{% endif %}
+												</h5>
+											</div>
+											<div class="col-sm-8" style="display: flex; flex-direction: row; justify-content: space-between;">
+												<h5 class="media-right pull-right">
+													<span class="counter-activity">{{ entity.fcomment|length > 0 ? entity.fcomment|length|number_format(0, ',', ' ') : '' }}</span>
+													<a class="a-act" href="{{ path('feeling_show', {'token': entity.token }) }}" data-toggle="tooltip" data-placement="left" title="Tulis balasan"><i class="glyphicon glyphicon-comment"></i></a>
+												</h5>
+												<h5 class="media-right pull-right">
+													<span class="counter-activity">{{ entity.fshare|length > 0 ? entity.fshare|length|number_format(0, ',', ' ') : '' }}</span>
+													<a class="a-act" href="{{ path('fshare_create', {'feel': entity.token }) }}" data-toggle="tooltip" data-placement="left" title="Re-Post"><i class="glyphicon glyphicon-retweet"></i></a>
+												</h5>
+												<h5 class="media-right pull-right">
+													{% set lk = 0 %}
+													{% for like in entity.flike %}
+														{% if like.user.id == app.user.id %}
+															{% set lk = 1 %}
+														{% endif %}
+													{% endfor %}
+													{% if lk == 0 %}
+													<span class="counter-activity">{{ entity.flike|length > 0 ? entity.flike|length|number_format(0, ',', ' ') : '' }}</span>
+													<a class="a-act" href="{{ path('flike_create', {'feel': entity.token, 'page': '2' }) }}" data-toggle="tooltip" data-placement="left" title="Beri simpati"><i class="glyphicon glyphicon-thumbs-up"></i></a>
+													{% else %}
+													<span class="counter-activity">{{ entity.flike|length > 0 ? entity.flike|length|number_format(0, ',', ' ') : '' }}</span>
+													<i class="glyphicon glyphicon-thumbs-up disabled-like a-act"></i>
+													{% endif %}
+												</h5>
+											</div>
 										</div>
 									</div>
 								</div>

@@ -21,6 +21,10 @@ h5 {
   width: 100%;
   height: auto;
 }
+.share-link {
+  font-size: 11px !important;
+  margin-left: 20px;
+}
 .profile{
 	border-bottom: solid 0.1px; border-color:#D4BFC8;
 }
@@ -96,6 +100,13 @@ h5 {
     width: 128px;
 }
 .tooltip.top .tooltip-arrow {
+      border-top-color: #8F8888;
+}
+.tooltip.left .tooltip-inner {
+    background-color:#8F8888;
+    width: 128px;
+}
+.tooltip.left .tooltip-arrow {
       border-top-color: #8F8888;
 }
 .c-black{
