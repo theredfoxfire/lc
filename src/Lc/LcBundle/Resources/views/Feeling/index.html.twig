@@ -69,14 +69,14 @@
 										</div>
 										{% if entity.shared %}
 											{% if entity.parent.user.broad != 1 %}
-											<a href="{{ path('profile_see', {'token': entity.parent.user.token }) }}">
-												<i class="glyphicon glyphicon-retweet"></i> {{ entity.parent.user.profile.name }}
+											<a class="share-link" href="{{ path('profile_see', {'token': entity.parent.user.token }) }}">
+												<i class="glyphicon glyphicon-retweet"></i> postingan dari {{ entity.parent.user.profile.name }}
 												{% if entity.parent.user.isverified == 1 %}
 													<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
 												{% endif %}
 											</a>
 											{% else %}
-												<i class="glyphicon glyphicon-retweet"></i> {{ entity.parent.user.profile.name }}
+												<i class="glyphicon glyphicon-retweet share-link"></i> postingan dari {{ entity.parent.user.profile.name }}
 												{% if entity.parent.user.isverified == 1 %}
 													<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
 												{% endif %}

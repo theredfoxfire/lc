@@ -5,3 +5,4 @@
 !app/logs/.gitkeep
 .DS_Store
 web/uploads
+vendor
