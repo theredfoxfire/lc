@@ -135,80 +135,70 @@
 								{% endif %}
 							</div>
 							{% for comment in comments|sort %}
-											{% if entity.user.id == app.user.id %}
-													<div class="panel panel-success apanel-body margin-feel">
-														<div class="panel-body">
-															<div class="media">
-																<a class="media-left pull-left" href="#">
-																	<img src="{{ asset('web/uploads/users/mini_') }}{{ comment.user.foto }}" class="img-rounded" alt="{{ comment.user.profile.name }}">
-																</a>
-																<div class="media-body">
-																	<h5 class="media-right">{{ comment.comment|raw }}</h5>
-																</div>
-															</div>
-														</div>
-														<div class="panel-footer">
-															{{ comment.user.profile.name }}
-															{% if comment.user.isverified == 1 %}
-																<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
-															{% endif %}
-															<div class="pull-right"> <small class="text-muted"> <i class="glyphicon glyphicon-time"></i> <i>{{ comment.createdAt | date('d-m-Y H:i:s') }}</i></small></div>
-														</div>
-													</div>
-											{% else %}
-												{% if (comment.user.id == app.user.id) or (comment.user.id == entity.user.id)  %}
-													<div class="panel panel-success apanel-body  margin-feel">
-														<div class="panel-body">
-															<div class="media">
-																<a class="media-left pull-left" href="#">
-																	<img src="{{ asset('web/uploads/users/mini_') }}{{ comment.user.foto }}" class="img-rounded" alt="{{ comment.user.profile.name }}">
-																</a>
-																<div class="media-body">
-																	<h5 class="media-right">{{ comment.comment|raw }}</h5>
-																</div>
-															</div>
-														</div>
-														<div class="panel-footer">
-															{{ comment.user.profile.name }}
-															{% if comment.user.isverified == 1 %}
-																<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
-															{% endif %}
-															<div class="pull-right"> <small class="text-muted"> <i class="glyphicon glyphicon-time"></i> <i>{{ comment.createdAt | date('d-m-Y H:i:s') }}</i></small></div>
-														</div>
-													</div>
+								<div class="panel panel-success apanel-body  margin-feel">
+									<div class="panel-body">
+										<div class="media">
+											<div class="media-left pull-left">
+												{% if comment.user.broad != 1 %}
+													<a href="{{ path('profile_see', {'token': comment.user.token }) }}">
+														<img src="{{ asset('web/uploads/users/mini_') }}{{ comment.user.foto }}" class="img-rounded" alt="{{ comment.user.profile.name }}">
+													</a>
+												{% else %}
+													<img src="{{ asset('web/uploads/users/mini_') }}{{ comment.user.foto }}" class="img-rounded" alt="{{ comment.user.profile.name }}">
 												{% endif %}
-											{% endif %}
-											{% endfor %}
+											</div>
+											<div class="media-body">
+												{% if comment.user.broad != 1 %}
+													<a href="{{ path('profile_see', {'token': comment.user.token }) }}">
+														{{ comment.user.profile.name }}
+														{% if comment.user.isverified == 1 %}
+															<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
+														{% endif %}
+													</a>
+												{% else %}
+													{{ comment.user.profile.name }}
+													{% if comment.user.isverified == 1 %}
+														<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
+													{% endif %}
+												{% endif %}
+												<h5 class="media-right">{{ comment.comment|raw }}</h5>
+											</div>
+										</div>
+									</div>
+									<div class="panel-footer" style="height: 40px;">
+										<div class="pull-right"> <small class="text-muted"> <i class="glyphicon glyphicon-time"></i> <i>{{ comment.createdAt | date('d-m-Y H:i:s') }}</i></small></div>
+									</div>
+								</div>
+						{% endfor %}
 
-											<div class="text-center">
-												{% if c > 25 %}
-													{{ knp_pagination_render(comments) }}</b>
-												{% endif %}
-											</div>
-											<div class="panel panel-success apanel-body" id="comments">
-												<div class="panel-body">
-													<div class="media">
-														<a class="media-left pull-left" href="#">
-															<img src="{{ asset('web/uploads/users/mini_') }}{{ app.user.foto }}" class="img-rounded" alt="{{ app.user.profile.name }}">
-														</a>
-														<div class="media-body">
-														{{ form_start(form) }}
-														{{ form_errors(form) }}
-															<div class="form-group">
-															{{ form_widget(form.comment) }}
-															</div>
-															{{ form_errors(form.comment) }}
-															<div class="form-group right">
-																<button onclick="return checkLength()" type="submit" class="btn btn-primary btn-feel"><i class="glyphicon glyphicon-send"></i> &nbsp;Kirim</button>
-															</div>
-														{{ form_row(form._token) }}
-														{{ form_end(form) }}
-														</div>
-													</div>
-												</div>
-											</div>
+						<div class="text-center">
+							{% if c > 25 %}
+								{{ knp_pagination_render(comments) }}</b>
+							{% endif %}
 						</div>
-
+						<div class="panel panel-success apanel-body" id="comments">
+							<div class="panel-body">
+								<div class="media">
+									<a class="media-left pull-left" href="#">
+										<img src="{{ asset('web/uploads/users/mini_') }}{{ app.user.foto }}" class="img-rounded" alt="{{ app.user.profile.name }}">
+									</a>
+									<div class="media-body">
+									{{ form_start(form) }}
+									{{ form_errors(form) }}
+										<div class="form-group">
+										{{ form_widget(form.comment) }}
+										</div>
+										{{ form_errors(form.comment) }}
+										<div class="form-group right">
+											<button onclick="return checkLength()" type="submit" class="btn btn-primary btn-feel"><i class="glyphicon glyphicon-send"></i> &nbsp;Kirim</button>
+										</div>
+									{{ form_row(form._token) }}
+									{{ form_end(form) }}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 <script src="{{ asset('web/bundles/lclc/js/summernote.js') }}"></script>
 <script>

@@ -146,7 +146,7 @@
 											<div class="col-sm-8" style="display: flex; flex-direction: row; justify-content: space-between;">
 												<h5 class="media-right pull-right">
 													<span class="counter-activity">{{ entity.fcomment|length > 0 ? entity.fcomment|length|number_format(0, ',', ' ') : '' }}</span>
-													<a class="a-act" href="{{ path('feeling_show', {'token': entity.token }) }}" data-toggle="tooltip" data-placement="left" title="Tulis balasan"><i class="glyphicon glyphicon-comment"></i></a>
+													<a class="a-act" href="{{ path('feeling_show', {'token': entity.token }) }}#comments" data-toggle="tooltip" data-placement="left" title="Tulis balasan"><i class="glyphicon glyphicon-comment"></i></a>
 												</h5>
 												<h5 class="media-right pull-right">
 													<span class="counter-activity">{{ entity.fshare|length > 0 ? entity.fshare|length|number_format(0, ',', ' ') : '' }}</span>

@@ -217,7 +217,7 @@ class FeelingController extends Controller
         $broad = $entity->getUser()->getBroad();
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Feeling entity is this?.');
+            throw $this->createNotFoundException('Unable to find Feeling entity.');
         }
 
         $fcomment = new Fcomment();
