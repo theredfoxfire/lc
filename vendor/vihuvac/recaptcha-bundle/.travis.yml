@@ -1,0 +1,42 @@
+branches:
+  only:
+    - master
+
+language: php
+
+php:
+  - 7.0
+  - 7.1
+  - 7.2
+  - nightly
+
+sudo: false
+dist: trusty
+
+matrix:
+  fast_finish: true
+  include:
+    - php: 7.0
+      env: SYMFONY_VERSION=2.3.*
+    - php: 7.0
+      env: SYMFONY_VERSION=2.7.*
+    - php: 7.0
+      env: SYMFONY_VERSION=2.8.*
+    - php: 7.1
+      env: SYMFONY_VERSION=3.1.*
+    - php: 7.1
+      env: SYMFONY_VERSION=3.2.*
+    - php: 7.1
+      env: SYMFONY_VERSION=3.3.*
+    - php: 7.1
+      env: SYMFONY_VERSION=3.4.*
+    - php: 7.2
+      env: DEPENDENCIES=beta
+
+before_script:
+  - if [ "$DEPENDENCIES" = "beta" ]; then composer config minimum-stability beta; fi;
+  - composer self-update
+  - composer install
+
+script:
+  - vendor/bin/phpunit

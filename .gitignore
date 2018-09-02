@@ -1,8 +1,7 @@
 /app/cache/*
 /app/logs/*
-/app/config/*
+/app/config/parameters.yml
 !app/cache/.gitkeep
 !app/logs/.gitkeep
 .DS_Store
 web/uploads
-vendor
