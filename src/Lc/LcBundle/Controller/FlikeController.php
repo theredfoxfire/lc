@@ -66,8 +66,10 @@ class FlikeController extends Controller
         }
         if ($page == 1) {
             return $this->redirect($this->generateUrl('feeling_show', array('token' => $feel)));
+        } elseif ($page == 3) {
+            return $this->redirect($this->generateUrl('profile_see', array('token' => $feeling->getUser()->getToken())).'?page='.$_GET['page'].'#'.$feel);
         } else {
-            return $this->redirect($this->generateUrl('feeling'));
+            return $this->redirect($this->generateUrl('feeling').'?page='.$_GET['page'].'#'.$feel);
         }
     }
 

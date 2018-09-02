@@ -108,6 +108,7 @@ class FeelingController extends Controller
             'fall' => $fall,
             'chat' => $chat,
             'notify' => $notify,
+            'page' => $_GET['page'] ?? 1,
             'c' => $c,
         ));
     }

@@ -44,7 +44,7 @@
 							</div>
 						</div>
 						{% for entity in entities %}
-						<div class="row margin-feel">
+						<div class="row margin-feel" id="{{ entity.token }}">
 							<div class="panel panel-success">
 								{% if entity.shared %}
 									{% if entity.user.broad != 1 %}
@@ -150,7 +150,7 @@
 												</h5>
 												<h5 class="media-right pull-right">
 													<span class="counter-activity">{{ entity.fshare|length > 0 ? entity.fshare|length|number_format(0, ',', ' ') : '' }}</span>
-													<a class="a-act" href="{{ path('fshare_create', {'feel': entity.token }) }}" data-toggle="tooltip" data-placement="left" title="Re-Post"><i class="glyphicon glyphicon-retweet"></i></a>
+													<a class="a-act" href="{{ path('fshare_create', {'feel': entity.token, 'page': '2' }) }}?page={{ page }}" data-toggle="tooltip" data-placement="left" title="Re-Post"><i class="glyphicon glyphicon-retweet"></i></a>
 												</h5>
 												<h5 class="media-right pull-right">
 													{% set lk = 0 %}
@@ -161,7 +161,7 @@
 													{% endfor %}
 													{% if lk == 0 %}
 													<span class="counter-activity">{{ entity.flike|length > 0 ? entity.flike|length|number_format(0, ',', ' ') : '' }}</span>
-													<a class="a-act" href="{{ path('flike_create', {'feel': entity.token, 'page': '2' }) }}" data-toggle="tooltip" data-placement="left" title="Beri simpati"><i class="glyphicon glyphicon-thumbs-up"></i></a>
+													<a class="a-act" href="{{ path('flike_create', {'feel': entity.token, 'page': '2' }) }}?page={{ page }}" data-toggle="tooltip" data-placement="left" title="Beri simpati"><i class="glyphicon glyphicon-thumbs-up"></i></a>
 													{% else %}
 													<span class="counter-activity">{{ entity.flike|length > 0 ? entity.flike|length|number_format(0, ',', ' ') : '' }}</span>
 													<i class="glyphicon glyphicon-thumbs-up disabled-like a-act"></i>

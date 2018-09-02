@@ -35,7 +35,7 @@ class FshareController extends Controller
      * Creates a new Fshare entity.
      *
      */
-    public function createAction($feel)
+    public function createAction($feel, $page = null)
     {
         $entity = new Fshare();
         $feelNew = new Feeling();
@@ -74,8 +74,13 @@ class FshareController extends Controller
         $entity->setFeeling($feeling);
         $em->persist($entity);
         $em->flush();
-
-        return $this->redirect($this->generateUrl('feeling'));
+        if ($page == 1) {
+            return $this->redirect($this->generateUrl('feeling_show', array('token' => $feel)));
+        } elseif ($page == 3) {
+            return $this->redirect($this->generateUrl('profile_see', array('token' => $feeling->getUser()->getToken())).'?page='.$_GET['page'].'#'.$feel);
+        } else {
+            return $this->redirect($this->generateUrl('feeling').'?page='.$_GET['page'].'#'.$feel);
+        }
     }
 
     /**

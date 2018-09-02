@@ -236,6 +236,7 @@ class ProfileController extends Controller
             'friend' => $friend,
             'fall' => $fall,
             'chat' => $chat,
+            'page' => $_GET['page'] ?? 1,
             'notify' => $notify,
         ));
     }
