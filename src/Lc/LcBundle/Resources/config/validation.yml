@@ -26,6 +26,9 @@ Lc\LcBundle\Entity\User:
   password:
    - NotBlank:
       message: 'Password harap diisi.'
+  fullname:
+   - NotBlank:
+      message: 'Nama Lengkap harap diisi.'
 Lc\LcBundle\Entity\Feeling:
  properties:
   feel:

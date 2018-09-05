@@ -35,9 +35,10 @@ class User implements UserInterface, \Serializable
     protected $email_canonical;
     protected $password2;
     protected $password;
-
     protected $birthday;
     protected $sex;
+    
+    public $fullname;
     public $file;
 
     /**
@@ -1488,7 +1489,7 @@ class User implements UserInterface, \Serializable
     /**
      * Get is_verified
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsVerified()
     {

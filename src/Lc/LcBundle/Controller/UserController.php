@@ -139,7 +139,7 @@ class UserController extends Controller
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('LcLcBundle:User')->findOneByEmail($formData['email']);
 
-            $this->activateAction($entity->getToken());
+            $this->activateAction($entity->getToken(), $formData['fullname']);
             /*
               email section
             */
@@ -245,7 +245,7 @@ class UserController extends Controller
         ));
     }
 
-    public function activateAction($token)
+    public function activateAction($token, $fullName = null)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -280,7 +280,7 @@ class UserController extends Controller
         $em->flush();
 
         $profile->setUser($entity);
-        $profile->setName($entity->getEmail());
+        $profile->setName($fullName);
         $em->persist($profile);
         $em->flush();
 
