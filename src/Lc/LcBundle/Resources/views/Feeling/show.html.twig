@@ -162,11 +162,9 @@
 													{% endif %}
 												{% endif %}
 												<h5 class="media-right">{{ comment.comment|raw }}</h5>
+												<div class="pull-right created_at"> <small class="text-muted"> <i class="glyphicon glyphicon-time"></i> <i>{{ comment.createdAt | date('d-m-Y H:i:s') }}</i></small></div>
 											</div>
 										</div>
-									</div>
-									<div class="panel-footer" style="height: 40px;">
-										<div class="pull-right"> <small class="text-muted"> <i class="glyphicon glyphicon-time"></i> <i>{{ comment.createdAt | date('d-m-Y H:i:s') }}</i></small></div>
 									</div>
 								</div>
 						{% endfor %}
