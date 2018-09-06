@@ -15,6 +15,9 @@ Lc\LcBundle\Entity\User:
       message: 'Alamat email tidak benar.'
    - NotBlank:
       message: 'Email harap diisi.'
+   - Length:
+      max: 70
+      maxMessage: 'Email mu melebihi batas maksimal karater, maksimal {{ limit }} karater.'
   birthday:
    - NotBlank:
       message: 'Tanggal lahir harap diisi.'
@@ -26,9 +29,15 @@ Lc\LcBundle\Entity\User:
   password:
    - NotBlank:
       message: 'Password harap diisi.'
+   - Length:
+      max: 30
+      maxMessage: 'Password mu melebihi batas maksimal karater, maksimal {{ limit }} karater.'
   fullname:
    - NotBlank:
       message: 'Nama Lengkap harap diisi.'
+   - Length:
+      max: 50
+      maxMessage: 'Nama mu melebihi batas maksimal karater, maksimal {{ limit }} karater.'
 Lc\LcBundle\Entity\Feeling:
  properties:
   feel:
