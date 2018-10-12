@@ -14,6 +14,7 @@ class FotoType extends AbstractType
         ->add('email', 'hidden', array('attr'=>array('class'=>'form-control', 'required'=> true,'placeholder'=>'Masukan Alamat Email'), 'label'=>false))
 			->add('password', 'hidden', array('attr'=>array('value'=>'love','class'=>'form-control', 'required'=> true,'placeholder'=>'Masukan Password'), 'label'=>false))
 			->add('password2', 'hidden', array('attr'=>array('value'=>'love','class'=>'form-control', 'required'=> true,'placeholder'=>'Ulangi Password'), 'label'=>false))
+            ->add('fullname', 'hidden', array('attr' => array('value'=>'love','class' => 'form-control', 'required' => true, 'placeholder'=>'Nama Lengkap')))
 			->add('sex', 'hidden', array('attr'=>array('class'=>''),'required' => true,))
         ;
     }
