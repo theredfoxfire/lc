@@ -28,6 +28,17 @@ h5 {
 .profile{
 	border-bottom: solid 0.1px; border-color:#D4BFC8;
 }
+.text-muted {
+  padding-top: 15px;
+}
+.gotop {
+  margin-bottom: 20px;
+  float: left;
+  text-align: left;
+}
+.footer {
+  border-top: solid 1px #f5f5f5;
+}
 /* Wrapper for page content to push down footer */
 #wrap {
   min-height: 100%;
@@ -51,9 +62,18 @@ h5 {
 .weight{
 	font-weight: 700;
 }
-
 .centered{
 	padding-top: 10px;
+}
+.space-header {
+  height: 110px;
+}
+.navbar-collapse.collapse {
+  display: block!important;
+}
+
+.navbar-nav>li, .navbar-nav {
+  float: left !important;
 }
 .name-center{
 	text-align: center;
@@ -61,25 +81,30 @@ h5 {
 	height: 52px;
 
 }
-
-/* Set the fixed height of the footer here */
-#footer {
-  height: 60px;
-  background-color: #f5f5f5;
-
+.top-menu-container {
+  background-color: #ECEFF1;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
 }
 .top{
 	font-size:12px;
 }
-@media(max-width: 786px) {
-	#footer {
-		height: 80px;
-		background-color: #f5f5f5;
-
-	}
+@media(min-width: 16px) {
+  .navbar-nav .open .dropdown-menu {
+    background-color: #008390de;
+    left: auto;
+    right: 0;
+    position: absolute;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+  }
+  .dropdown-menu>li>a {
+    color: #fff;
+  }
 }
 .knowing{
 	font-size: 16px;
+  color: #008390;
 }
 .left-menu{
 	background-color:#FAF8F8;

@@ -3,7 +3,7 @@
 	{{ include ('LcLcBundle:Default:userleftbar.profile.html.twig') }}
 {% endblock %}
 {%block content%}
-				<div class="col-sm-7 column">
+				<div class="column">
 				{% if (app.session.flashbag.get('notice') is not empty) %}
 				<center id="message-session">
 				<div class="alert alert-success lebar" role="alert">
