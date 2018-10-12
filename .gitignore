@@ -4,5 +4,5 @@
 !app/cache/.gitkeep
 !app/logs/.gitkeep
 .DS_Store
-web/uploads
+/web/uploads/*
 vendor
