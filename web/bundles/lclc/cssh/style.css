@@ -16,6 +16,7 @@ h5 {
 }
 .panel-image {
   background-color: #fff !important;
+  padding: 0;
 }
 .img-full {
   width: 100%;
@@ -30,6 +31,14 @@ h5 {
 }
 .text-muted {
   padding-top: 15px;
+}
+#message-session {
+  position: absolute;
+  z-index: 2500;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-left: -15px;
 }
 .gotop {
   margin-bottom: 20px;
@@ -53,7 +62,8 @@ h5 {
 }
 
 .lebar{
-	max-width: 400px !important;
+	width: 100% !important;
+  text-align: center;
 }
 
 .light {

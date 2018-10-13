@@ -45,8 +45,8 @@ function Validate(oForm) {
 				// 	return false;
 				// }
 				file = input.files[0];
-				if(file.size > 3000000) {
-					alert("Ukuran file tidak boleh melebihi 3 MB.");
+				if(file.size > 10200000) {
+					alert("Ukuran file tidak boleh melebihi 10 MB.");
 					return false;
 				}
 
