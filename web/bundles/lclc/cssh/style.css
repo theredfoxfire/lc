@@ -102,7 +102,7 @@ h5 {
 }
 @media(min-width: 16px) {
   .navbar-nav .open .dropdown-menu {
-    background-color: rgb(0,131,144, 0.8);
+    background-color: rgb(0,131,144, 0.8) !important;
     left: auto;
     right: 0;
     position: absolute;
