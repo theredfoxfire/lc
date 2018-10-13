@@ -37,7 +37,7 @@ class User implements UserInterface, \Serializable
     protected $password;
     protected $birthday;
     protected $sex;
-    
+
     public $fullname;
     public $file;
 
@@ -1023,19 +1023,19 @@ class User implements UserInterface, \Serializable
         $this->file->move($this->getUploadRootDir(), $this->foto);
 
         Image::open($this->getUploadRootDir().'/'.$this->foto)
-        ->scaleResize(200, 200, $background = 0xffffff)
+        ->cropResize(200, 200, $background = 0xffffff)
         ->save($this->getUploadRootDir().'/index_'.$this->foto);
 
         Image::open($this->getUploadRootDir().'/'.$this->foto)
-        ->scaleResize(128, 128, $background = 0xffffff)
+        ->cropResize(128, 128, $background = 0xffffff)
         ->save($this->getUploadRootDir().'/grande_'.$this->foto);
 
         Image::open($this->getUploadRootDir().'/'.$this->foto)
-        ->scaleResize(48, 48, $background = 0xffffff)
+        ->cropResize(48, 48, $background = 0xffffff)
         ->save($this->getUploadRootDir().'/mini_'.$this->foto);
 
         Image::open($this->getUploadRootDir().'/'.$this->foto)
-        ->scaleResize(36, 36, $background = 0xffffff)
+        ->cropResize(36, 36, $background = 0xffffff)
         ->save($this->getUploadRootDir().'/thumb_'.$this->foto);
 
         $rmfile = $this->getAbsolutePath();
