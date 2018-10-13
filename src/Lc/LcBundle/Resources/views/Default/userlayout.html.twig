@@ -28,75 +28,75 @@
 </head>
 
 <body>
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="{{ path('feeling') }}"> <i class="glyphicon glyphicon-user-empty"></i>  <span class="light"></span>
+<div class="container">
+  <nav class="navbar navbar-default navbar-fixed-top col-md-offset-4 col-md-4" role="navigation">
+    <div class="row">
+      <div class="navbar-header">
+        <div>
+          <a class="navbar-brand" href="{{ path('feeling') }}">
+            <i class="glyphicon glyphicon-user-empty"></i>  <span class="light"></span>
             <span class="weight">
               <i class="fa fa-address-book-o"></i>
               bukuteman
-            </span></a>
+            </span>
+          </a>
         </div>
-
-        <div id="navbar" class="navbar-collapse collapse">
-			<div class="col-lg-6 centered">
-				<form action="{{ path('user_search') }}" method="get">
-				<div class="input-group">
-					<input type="text" name="query" value="{{ app.request.get('query') }}" placeholder="Masukan nama yang dicari" id="search_keywords" class="form-control"/>
-						<span class="input-group-btn">
-							<button class="btn btn-default" type="submit"><li class="glyphicon glyphicon-search"></li></button>
-						</span>
-				</div><!-- /input-group -->
-				</form>
-			</div>
-          <ul class="nav navbar-nav navbar-right">
-			     <li>
-              <img class="img centered mini-left" src="{{ asset('web/uploads/users/thumb_') }}{{ app.user.foto }}" alt="{% if app.user.profile.name is defined %}{{ app.user.profile.name }} {% else %} {{ app.user.email }} {% endif %}"></li>
-            <li><a href="{{ path('feeling') }}" data-toggle="tooltip" data-placement="top" title="Beranda"><b>Beranda</b></a></li>
-            <li><a href="{{ path('friend_fall', {'token': app.user.token }) }}" data-toggle="tooltip" data-placement="top" title="Mau berkenalan"><span class="fa fa-handshake-o knowing"></span>{% if fall %}<span class="badge">{{ fall }}</span>{% endif %}</a></li>
-			<li><a href="{{ path('unread_chat') }}" data-toggle="tooltip" data-placement="top" title="Pesan"><span class="fa fa-envelope-o knowing"></span>{% if chat %}<span class="badge">{{ chat }}</span>{% endif %}</a></li>
-			<li><a href="{{ path('notification_show') }}" data-toggle="tooltip" data-placement="top" title="Pemberitahuan"><span class="fa fa-bell-o knowing"></span>{% if notify %}<span class="badge">{{ notify }}</span>{% endif %}</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="{{ path('profile_data') }}">Profile</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Action</li>
-                <li><a href="{{ path('logout') }}">Logout</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div><!--/.nav-collapse -->
       </div>
-    </nav>
+    </div>
+    <div class="row top-menu-container">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="{{ path('feeling') }}" data-toggle="tooltip" data-placement="top" title="Home">
+            <span class="fa fa-home knowing"></span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ path('friend_fall', {'token': app.user.token }) }}" data-toggle="tooltip" data-placement="top" title="Mau berkenalan">
+            <span class="fa fa-handshake-o knowing"></span>{% if fall %}<span class="badge">{{ fall }}</span>{% endif %}
+          </a>
+        </li>
+  			<li>
+          <a href="{{ path('unread_chat') }}" data-toggle="tooltip" data-placement="top" title="Pesan">
+            <span class="fa fa-envelope-o knowing"></span>{% if chat %}<span class="badge">{{ chat }}</span>{% endif %}
+          </a>
+        </li>
+  			<li>
+          <a href="{{ path('notification_show') }}" data-toggle="tooltip" data-placement="top" title="Pemberitahuan">
+            <span class="fa fa-bell-o knowing"></span>{% if notify %}<span class="badge">{{ notify }}</span>{% endif %}
+          </a>
+        </li>
+  			<li>
+          <a href="{{ path('user_others') }}" data-toggle="tooltip" data-placement="top" title="Cari teman">
+            <span class="fa fa-search knowing"></span>
+          </a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="fa fa-cog knowing"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="{{ path('profile_data') }}">Profile</a></li>
+            <li><a href="{{ path('friend_show', {'token': app.user.token}) }}">Temanmu&nbsp;</a></li>
+						<li><a href="{{ path('chat') }}">Obrolan</a></li>
+            <li class="divider"></li>
+            <li><a href="{{ path('logout') }}">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
 <div id="wrap">
-<div class="container">
-	<div class="row clearfix">
-		<div class="col-md-12 column">
-			<div class="page-header">
-			</div>
-		</div>
-	</div>
-	<div class="row clearfix">
-		<div class="col-md-12 column">
-			<div class="row clearfix">
-				{%block leftcontent%}
-				{% endblock %}
+<div class="container-fluid">
+	<div class="row clearfix"></div>
+	<div class="col-md-4 col-md-offset-4 space-header"></div>
+	<div class="col-md-4 col-md-offset-4">
+		{%block leftcontent%}
+		{% endblock %}
 
-				{%block content%}
-				{% endblock %}
+		{%block content%}
+		{% endblock %}
 
-
-				{%block rightcontent%}
-				{% endblock %}
-			</div>
-		</div>
+    {%block rightcontent%}
+    {% endblock %}
 	</div>
 
 </div>
@@ -104,25 +104,22 @@
 </div>
 </div>
 
-    <div id="footer">
-      <div class="container">
-		<div class="row clearfix">
-			<div class="col-md-12 column">
-				<div class="col-md-11">
-					<p class="text-muted credit"><a href="http://bukuteman.com">&copy;&nbsp;bukuteman.com Yogyakarta {{ "now"|date("Y") }}</a>.</p>
-				</div>
-				<div class="col-md-1">
-					<span class="label">
-						<a href="#top" class="label label-default" style="float: left; text-align: left;" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
-							<b class="top"><i class="glyphicon glyphicon-chevron-up"></i>&nbsp;Ke Atas
-						</a>
-					</span><!-- /top-link-block -->
-				</div>
-				<div class="centered"></div>
+<div class="container">
+	<div class="col-md-4 col-md-offset-4 column footer">
+		<div class="row">
+			<div class="col-sm-10">
+				<p class="text-muted"><a href="http://bukuteman.com">&copy;&nbsp;bukuteman.com Yogyakarta {{ "now"|date("Y") }}</a>.</p>
 			</div>
-        </div>
-      </div>
-	</div>
+			<div class="col-sm-2">
+				<span class="label">
+					<a href="#top" class="label label-default gotop" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+						<b class="top"><i class="glyphicon glyphicon-chevron-up"></i>&nbsp;Ke Atas
+					</a>
+				</span><!-- /top-link-block -->
+			</div>
+		</div>
+  </div>
+</div>
 </body>
 </html>
             <script type="text/javascript" src="{{ asset('web/bundles/lclc/js/jquery.easing.min.js') }}"></script>
