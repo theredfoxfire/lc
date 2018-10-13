@@ -15,42 +15,11 @@
 				{% endif %}
 						<div class="row">
 							<div class="panel panel-success">
-								<div class="panel-heading panel-success">
-									<div class="media">
-										<div class="media-body">
-											<div class="col-sm-4">
-												{% if entity.user.broad == 1 %}
-													<h5 class="pull-left"><i class="glyphicon glyphicon-export"></i> broadcast</h5>
-												{% endif %}
-											</div>
-											<div class="col-sm-8" style="display: flex; flex-direction: row; justify-content: space-between;">
-												<h5 class="media-right pull-right">
-													<span class="counter-activity">{{ entity.fcomment|length > 0 ? entity.fcomment|length|number_format(0, ',', ' ') : '' }}</span>
-													<a class="a-act" href="#comments" onclick="setFocus()" data-toggle="tooltip" data-placement="left" title="Tulis balasan"><i class="glyphicon glyphicon-comment"></i></a>
-												</h5>
-												<h5 class="media-right pull-right">
-													<span class="counter-activity">{{ entity.fshare|length > 0 ? entity.fshare|length|number_format(0, ',', ' ') : '' }}</span>
-													<a class="a-act" href="{{ path('fshare_create', {'feel': entity.token, 'page': '1' }) }}" data-toggle="tooltip" data-placement="left" title="Re-Post"><i class="glyphicon glyphicon-retweet"></i></a>
-												</h5>
-												<h5 class="media-right pull-right">
-													{% set lk = 0 %}
-													{% for like in entity.flike %}
-														{% if like.user.id == app.user.id %}
-															{% set lk = 1 %}
-														{% endif %}
-													{% endfor %}
-													{% if lk == 0 %}
-													<span class="counter-activity">{{ entity.flike|length > 0 ? entity.flike|length|number_format(0, ',', ' ') : '' }}</span>
-													<a class="a-act" href="{{ path('flike_create', {'feel': entity.token, 'page': '1' }) }}" data-toggle="tooltip" data-placement="left" title="Beri simpati"><i class="glyphicon glyphicon-thumbs-up"></i></a>
-													{% else %}
-													<span class="counter-activity">{{ entity.flike|length > 0 ? entity.flike|length|number_format(0, ',', ' ') : '' }}</span>
-													<i class="glyphicon glyphicon-thumbs-up disabled-like a-act"></i>
-													{% endif %}
-												</h5>
-											</div>
-										</div>
-									</div>
+								{% if entity.foto %}
+								<div class="panel-footer panel-image">
+										<center><img src="{{ asset('web/uploads/feels/feel_') }}{{ entity.foto }}" alt="{{ entity.user.profile.name }}" class="img-responsive img-full"></center>
 								</div>
+								{% endif %}
 								<div class="panel-body">
 									{% if entity.shared %}
 										{% if entity.user.broad != 1 %}
@@ -128,11 +97,42 @@
 										</div>
 									</div>
 								</div>
-								{% if entity.foto %}
-								<div class="panel-footer panel-image">
-										<center><img src="{{ asset('web/uploads/feels/feel_') }}{{ entity.foto }}" alt="{{ entity.user.profile.name }}" class="img-responsive img-full"></center>
+								<div class="panel-footer panel-success right">
+									<div class="media">
+										<div class="media-body">
+											<div class="col-sm-4">
+												{% if entity.user.broad == 1 %}
+													<h5 class="pull-left"><i class="glyphicon glyphicon-export"></i> broadcast</h5>
+												{% endif %}
+											</div>
+											<div class="col-sm-8" style="display: flex; flex-direction: row; justify-content: space-between;">
+												<h5 class="media-right pull-right">
+													<span class="counter-activity">{{ entity.fcomment|length > 0 ? entity.fcomment|length|number_format(0, ',', ' ') : '' }}</span>
+													<a class="a-act" href="#comments" onclick="setFocus()" data-toggle="tooltip" data-placement="left" title="Tulis balasan"><i class="glyphicon glyphicon-comment"></i></a>
+												</h5>
+												<h5 class="media-right pull-right">
+													<span class="counter-activity">{{ entity.fshare|length > 0 ? entity.fshare|length|number_format(0, ',', ' ') : '' }}</span>
+													<a class="a-act" href="{{ path('fshare_create', {'feel': entity.token, 'page': '1' }) }}" data-toggle="tooltip" data-placement="left" title="Re-Post"><i class="glyphicon glyphicon-retweet"></i></a>
+												</h5>
+												<h5 class="media-right pull-right">
+													{% set lk = 0 %}
+													{% for like in entity.flike %}
+														{% if like.user.id == app.user.id %}
+															{% set lk = 1 %}
+														{% endif %}
+													{% endfor %}
+													{% if lk == 0 %}
+													<span class="counter-activity">{{ entity.flike|length > 0 ? entity.flike|length|number_format(0, ',', ' ') : '' }}</span>
+													<a class="a-act" href="{{ path('flike_create', {'feel': entity.token, 'page': '1' }) }}" data-toggle="tooltip" data-placement="left" title="Beri simpati"><i class="glyphicon glyphicon-thumbs-up"></i></a>
+													{% else %}
+													<span class="counter-activity">{{ entity.flike|length > 0 ? entity.flike|length|number_format(0, ',', ' ') : '' }}</span>
+													<i class="glyphicon glyphicon-thumbs-up disabled-like a-act"></i>
+													{% endif %}
+												</h5>
+											</div>
+										</div>
+									</div>
 								</div>
-								{% endif %}
 							</div>
 							{% for comment in comments|sort %}
 								<div class="panel panel-success apanel-body  margin-feel">

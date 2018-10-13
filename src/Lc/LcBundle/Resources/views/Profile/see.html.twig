@@ -92,6 +92,13 @@
 						{% for entity in entities %}
 						<div class="row margin-feel" id="{{ entity.token }}">
 							<div class="panel panel-success">
+								{% if entity.foto %}
+								<a href="{{ path('feeling_show', {'token': entity.token }) }}">
+									<div class="panel-footer panel-image">
+											<center><img src="{{ asset('web/uploads/feels/feel_') }}{{ entity.foto }}" alt="{{ entity.user.profile.name }}" class="img-responsive img-full"></center>
+									</div>
+								</a>
+								{% endif %}
 								{% if entity.shared %}
 									{% if entity.user.broad != 1 %}
 									<a class="share-link" href="{{ path('profile_see', {'token': entity.user.token }) }}">
@@ -171,14 +178,6 @@
 										</a>
 									</div>
 								</div>
-
-								{% if entity.foto %}
-								<a href="{{ path('feeling_show', {'token': entity.token }) }}">
-									<div class="panel-footer panel-image">
-											<center><img src="{{ asset('web/uploads/feels/feel_') }}{{ entity.foto }}" alt="{{ entity.user.profile.name }}" class="img-responsive img-full"></center>
-									</div>
-								</a>
-								{% endif %}
 								<div class="panel-footer panel-success right">
 									<div class="media">
 										<div class="media-body">
