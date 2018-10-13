@@ -15,6 +15,9 @@
 				{% endif %}
 						<div class="row">
 							<div class="panel panel-success">
+								<div class="panel-heading panel-success">
+									<h5 class='created_at right'><small class="text-muted"> <i class="glyphicon glyphicon-time"></i> <i>{{ entity.createdAt | date('d-m-Y H:i:s') }}</i></small></h5>
+								</div>
 								{% if entity.foto %}
 								<div class="panel-footer panel-image">
 										<center><img src="{{ asset('web/uploads/feels/feel_') }}{{ entity.foto }}" alt="{{ entity.user.profile.name }}" class="img-responsive img-full"></center>
@@ -93,7 +96,6 @@
 												{% endif %}
 											</h5>
 											<h5 class="media-right">{{ entity.feel|raw }}</h5>
-											<div class='pull-right created_at'><small class="text-muted"> <i class="glyphicon glyphicon-time"></i> <i>{{ entity.createdAt | date('d-m-Y H:i:s') }}</i></small></div>
 										</div>
 									</div>
 								</div>
