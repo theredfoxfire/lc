@@ -17,6 +17,7 @@ h5 {
 .panel-image {
   background-color: #fff !important;
   padding: 0;
+  margin: -1px;
 }
 .img-full {
   width: 100%;
