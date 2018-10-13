@@ -3,7 +3,7 @@
 	{{ include ('LcLcBundle:Default:userleftbar.profile.html.twig') }}
 {% endblock %}
 {%block content%}
-				<div class="col-sm-7 column">
+				<div class="column">
 						<div class="row">
 							<div class="panel panel-success">
 								<div class="panel-heading panel-success">

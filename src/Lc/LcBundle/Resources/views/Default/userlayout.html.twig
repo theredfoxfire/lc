@@ -33,30 +33,23 @@
     <div class="row">
       <div class="navbar-header">
         <div>
-          <a class="navbar-brand" href="{{ path('feeling') }}"> <i class="glyphicon glyphicon-user-empty"></i>  <span class="light"></span>
+          <a class="navbar-brand" href="{{ path('feeling') }}">
+            <i class="glyphicon glyphicon-user-empty"></i>  <span class="light"></span>
             <span class="weight">
               <i class="fa fa-address-book-o"></i>
               bukuteman
             </span>
           </a>
         </div>
-        <!-- <div class="centered">
-  				<form action="{{ path('user_search') }}" method="get">
-  				<div class="input-group">
-  					<input type="text" name="query" value="{{ app.request.get('query') }}" placeholder="Cari teman" id="search_keywords" class="form-control"/>
-  						<span class="input-group-btn">
-  							<button class="btn btn-default" type="submit"><li class="glyphicon glyphicon-search"></li></button>
-  						</span>
-  				</div>
-  				</form>
-  			</div> -->
       </div>
     </div>
     <div class="row top-menu-container">
-      <div>
-        <img class="img centered mini-left" src="{{ asset('web/uploads/users/thumb_') }}{{ app.user.foto }}" alt="{% if app.user.profile.name is defined %}{{ app.user.profile.name }} {% else %} {{ app.user.email }} {% endif %}">
-      </div>
       <ul class="nav navbar-nav">
+        <li>
+          <a href="{{ path('feeling') }}" data-toggle="tooltip" data-placement="top" title="Home">
+            <span class="fa fa-home knowing"></span>
+          </a>
+        </li>
         <li>
           <a href="{{ path('friend_fall', {'token': app.user.token }) }}" data-toggle="tooltip" data-placement="top" title="Mau berkenalan">
             <span class="fa fa-handshake-o knowing"></span>{% if fall %}<span class="badge">{{ fall }}</span>{% endif %}
@@ -73,7 +66,7 @@
           </a>
         </li>
   			<li>
-          <a href="" data-toggle="tooltip" data-placement="top" title="Cari teman">
+          <a href="{{ path('user_others') }}" data-toggle="tooltip" data-placement="top" title="Cari teman">
             <span class="fa fa-search knowing"></span>
           </a>
         </li>

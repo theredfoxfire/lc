@@ -3,12 +3,23 @@
 	{{ include ('LcLcBundle:Default:userleftbar.html.twig') }}
 {% endblock %}
 {%block content%}
-				<div class="col-sm-7 column">
+				<div class="column">
+					<div class="centered">
+	  				<form action="{{ path('user_search') }}" method="get">
+	  				<div class="input-group">
+	  					<input type="text" name="query" value="{{ app.request.get('query') }}" placeholder="Cari teman" id="search_keywords" class="form-control"/>
+	  						<span class="input-group-btn">
+	  							<button class="btn btn-default" type="submit"><li class="glyphicon glyphicon-search"></li></button>
+	  						</span>
+	  				</div>
+	  				</form>
+	  			</div>
+					<hr/>
 				{% for entity in entities %}
-						{% if loop.index%4 == 1 %}
+						{% if loop.index%2 == 1 %}
 							<div class="row">
 						{% endif %}
-								<div class="col-md-3">
+								<div class="col-md-6 col-xs-6">
 									<div class="panel panel-success">
 										<a href="{{ path('profile_see', {'token': entity.token }) }}">
 											<div class="text-center"><img src="{{ asset('web/uploads/users/grande_') }}{{ entity.foto }}" alt="{{ entity.profile.name }}" data-toggle="tooltip" data-placement="top"/ title="Lihat Profile"></div>
@@ -26,7 +37,7 @@
 										</div>
 									</div>
 								</div>
-						{% if (loop.index%4 == 0) or (loop.index == cp) %}
+						{% if (loop.index%2 == 0) or (loop.index == cp) %}
 							</div>
 						{% endif %}
 
