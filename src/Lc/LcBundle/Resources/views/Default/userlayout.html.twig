@@ -47,31 +47,31 @@
       <ul class="nav navbar-nav">
         <li>
           <a href="{{ path('feeling') }}" data-toggle="tooltip" data-placement="top" title="Home">
-            <span class="fa fa-home knowing"></span>
+            <span class="fa fa-home fa-lg knowing"></span>
           </a>
         </li>
         <li>
           <a href="{{ path('friend_fall', {'token': app.user.token }) }}" data-toggle="tooltip" data-placement="top" title="Mau berkenalan">
-            <span class="fa fa-handshake-o knowing"></span>{% if fall %}<span class="badge">{{ fall }}</span>{% endif %}
+            <span class="fa fa-handshake-o fa-lg knowing"></span>{% if fall %}<span class="badge">{{ fall }}</span>{% endif %}
           </a>
         </li>
   			<li>
           <a href="{{ path('unread_chat') }}" data-toggle="tooltip" data-placement="top" title="Pesan">
-            <span class="fa fa-envelope-o knowing"></span>{% if chat %}<span class="badge">{{ chat }}</span>{% endif %}
+            <span class="fa fa-envelope-o fa-lg knowing"></span>{% if chat %}<span class="badge">{{ chat }}</span>{% endif %}
           </a>
         </li>
   			<li>
           <a href="{{ path('notification_show') }}" data-toggle="tooltip" data-placement="top" title="Pemberitahuan">
-            <span class="fa fa-bell-o knowing"></span>{% if notify %}<span class="badge">{{ notify }}</span>{% endif %}
+            <span class="fa fa-bell-o fa-lg knowing"></span>{% if notify %}<span class="badge">{{ notify }}</span>{% endif %}
           </a>
         </li>
   			<li>
           <a href="{{ path('user_others') }}" data-toggle="tooltip" data-placement="top" title="Cari teman">
-            <span class="fa fa-search knowing"></span>
+            <span class="fa fa-search fa-lg knowing"></span>
           </a>
         </li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="fa fa-cog knowing"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="fa fa-cog fa-lg knowing"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="{{ path('profile_data') }}">Profile</a></li>
             <li><a href="{{ path('friend_show', {'token': app.user.token}) }}">Temanmu&nbsp;</a></li>
