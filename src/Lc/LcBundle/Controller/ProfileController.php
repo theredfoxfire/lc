@@ -77,6 +77,15 @@ class ProfileController extends Controller
         $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
         $entity = $em->getRepository('LcLcBundle:Profile')->findOneByUser($this->getUid());
 
+        $query = $em->getRepository('LcLcBundle:Feeling')->getUserFeelingPreview($entity);
+        $paginator = $this->get('knp_paginator');
+        $c = $em->getRepository('LcLcBundle:Feeling')->countUserFeelingPreview($entity);
+        $pagination = $paginator->paginate(
+            $query,
+            $this->get('request')->query->get('page', 1),
+            25
+        );
+
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Profile entity.');
         }
@@ -91,11 +100,14 @@ class ProfileController extends Controller
         );
 
         return $this->render('LcLcBundle:Profile:profile.html.twig', array(
+            'entities' => $pagination,
+            'c' => $c,
             'entity' => $entity,
             'others' => $others,
             'fall' => $fall,
             'chat' => $chat,
             'notify' => $notify,
+            'page' => $_GET['page'] ?? 1,
             'form' => $form->createView(),
         ));
     }

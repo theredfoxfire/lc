@@ -17,7 +17,13 @@ h5 {
 .panel-image {
   background-color: #fff !important;
   padding: 0;
-  margin: -1px;
+  margin: -3px;
+}
+.see-status {
+  padding: 2px 3px !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .img-full {
   width: 100%;
