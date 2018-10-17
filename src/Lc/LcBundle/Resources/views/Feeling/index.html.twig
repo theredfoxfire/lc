@@ -19,7 +19,7 @@
 								<div class="panel-body apanel-body">
 									<div class="media">
 										<div class="media-left pull-left">
-											<a href="{{ path('user_foto') }}" data-toggle="tooltip" data-placement="top" title="Ubah foto profile Anda">
+											<a href="{{ path('profile_data') }}" data-toggle="tooltip" data-placement="top" title="Lihat profile Anda">
 												<img src="{{ asset('web/uploads/users/mini_') }}{{ app.user.foto }}" alt="{% if app.user.profile.name is defined %}{{ app.user.profile.name }} {% else %} {{ app.user.email }} {% endif %}" class="img-rounded">
 											</a>
 										</div>
@@ -55,26 +55,26 @@
 									</div>
 								</a>
 								{% endif %}
-								{% if entity.shared %}
-									{% if entity.user.broad != 1 %}
-									<a class="share-link" href="{{ path('profile_see', {'token': entity.user.token }) }}">
-										<i class="glyphicon glyphicon-retweet"></i> {{ entity.user.profile.name }}
-										{% if entity.user.isverified == 1 %}
-											<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
-										{% endif %}
-										repost
-									</a>
-									{% else %}
-										<div class="share-link">
+								<div class="panel-body apanel-body">
+									{% if entity.shared %}
+										{% if entity.user.broad != 1 %}
+										<a class="share-link" href="{{ path('profile_see', {'token': entity.user.token }) }}">
 											<i class="glyphicon glyphicon-retweet"></i> {{ entity.user.profile.name }}
 											{% if entity.user.isverified == 1 %}
 												<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
 											{% endif %}
 											repost
-										</div>
+										</a>
+										{% else %}
+											<div class="share-link">
+												<i class="glyphicon glyphicon-retweet"></i> {{ entity.user.profile.name }}
+												{% if entity.user.isverified == 1 %}
+													<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
+												{% endif %}
+												repost
+											</div>
+										{% endif %}
 									{% endif %}
-								{% endif %}
-								<div class="panel-body apanel-body">
 									<div class="media">
 										<div class="media-left pull-left">
 											{% if entity.shared %}

@@ -11,7 +11,7 @@
 									<div class="media">
 										<div class="media-left pull-left knowing">
 											<img src="{{ asset('web/uploads/users/mini_') }}{{ app.user.foto }}" alt="{{ app.user.profile.name }}" class="img-rounded a-act">
-											Pesan baru untukmu
+											Pesan baru
 										</div>
 										<div class="media-body">
 											<h5 class="media-right pull-right">
@@ -65,7 +65,10 @@
 
 										</div>
 										<div class="media-body f-feel">
-											<h4 class="media-right">Sementara ini masih belum ada.</h4>
+											<h4 class="media-right">Belum ada pesan baru.</h4>
+											<h5>
+												<a href="{{ path('chat') }}">Lihat obrolan sebelumnya</a>
+											</h5>
 										</div>
 									</div>
 								</div>

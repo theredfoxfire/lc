@@ -17,7 +17,13 @@ h5 {
 .panel-image {
   background-color: #fff !important;
   padding: 0;
-  margin: -1px;
+  margin: -3px;
+}
+.see-status {
+  padding: 2px 3px !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .img-full {
   width: 100%;
@@ -93,10 +99,21 @@ h5 {
 
 }
 .top-menu-container {
-  background-color: #d7e2e0;
+  background-color: #d8d8d8;
   display: flex;
   justify-content: space-between;
   flex-direction: row;
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+  box-shadow: 0 5px 6px -4px #777;
+}
+.panel-success {
+    border-color: #efeeee;
+}
+.panel-footer {
+    padding: 1px 2px;
+    background-color: #fff;
+    border-top: 1px solid #fff;
 }
 .top{
 	font-size:12px;
@@ -114,7 +131,6 @@ h5 {
   }
 }
 .knowing{
-	font-size: 16px;
   color: #008390;
 }
 .left-menu{
