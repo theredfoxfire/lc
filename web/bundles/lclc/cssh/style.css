@@ -102,12 +102,15 @@ h5 {
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  -webkit-box-shadow: 0 10px 6px -6px #777;
-  -moz-box-shadow: 0 10px 6px -6px #777;
+  -webkit-box-shadow: 0 5px 6px -4px #777;
+  -moz-box-shadow: 0 5px 6px -4px #777;
   box-shadow: 0 5px 6px -4px #777;
 }
 .panel-success {
     border-color: #efeeee;
+    -webkit-box-shadow: 0 5px 6px -3px #e2e2e2;
+    -moz-box-shadow: 0 5px 6px -3px #e2e2e2;
+    box-shadow: 0 5px 6px -3px #e2e2e2;
 }
 .panel-footer {
     padding: 1px 2px;
