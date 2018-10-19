@@ -10,7 +10,7 @@
 								<div class="panel-heading panel-success">
 									<div class="media">
 										<div class="media-left pull-left knowing">
-											<img src="{{ asset('web/uploads/users/mini_') }}{{ friend.foto }}" alt="{{ friend.profile.name }}" class="img-rounded a-act" >
+											<img class="img-mini" src="{{ asset('web/uploads/users/mini_') }}{{ friend.foto }}" alt="{{ friend.profile.name }}" class="img-rounded a-act" >
 											Obrolanmu dengan {{ friend.profile.name }}
 											{% if friend.profile.user.isverified == 1 %}
 												<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
@@ -28,7 +28,7 @@
 									<div class="panel-body apanel-body p-border">
 										<div class="media">
 											<div class="media-right pull-right">
-												<img src="{{ asset('web/uploads/users/thumb_') }}{{ app.user.foto }}" alt="{{ app.user.profile.name }}" class="img-circle" >
+												<img src="{{ asset('web/uploads/users/thumb_') }}{{ app.user.foto }}" alt="{{ app.user.profile.name }}" class="img-circle img-thumb" >
 											</div>
 											<div class="media-body f-feel">
 												<h5 class="media-left">{{ entity.message }}</h5>
@@ -40,7 +40,7 @@
 									<div class="panel-body apanel-body p-border">
 										<div class="media">
 											<div class="media-left pull-left">
-												<img src="{{ asset('web/uploads/users/thumb_') }}{{ friend.foto }}" alt="{{ friend.profile.name }}" class="img-circle" >
+												<img src="{{ asset('web/uploads/users/thumb_') }}{{ friend.foto }}" alt="{{ friend.profile.name }}" class="img-circle img-thumb" >
 											</div>
 											<div class="media-body f-feel">
 												<h4 class="media-right">

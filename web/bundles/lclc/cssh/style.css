@@ -95,7 +95,22 @@ h5 {
 	text-align: center;
 	padding-top:0px;
 	height: 52px;
-
+}
+.img-thumb {
+  width: 36px;
+  height: auto;
+}
+.img-mini {
+  width: 48px;
+  height: auto;
+}
+.img-grande {
+  width: 128px;
+  height: auto;
+}
+.img-index {
+  width: 200px;
+  height: auto;
 }
 .top-menu-container {
   background-color: #d8d8d8;

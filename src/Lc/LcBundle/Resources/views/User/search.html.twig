@@ -23,7 +23,9 @@
 								<div class="col-md-6 col-xs-6">
 									<div class="panel panel-success">
 										<a href="{{ path('profile_see', {'token': entity.token }) }}">
-											<div class="text-center"><img src="{{ asset('web/uploads/users/grande_') }}{{ entity.foto }}" alt="{{ entity.profile.name }}" data-toggle="tooltip" data-placement="top"/ title="Lihat Profile"></div>
+											<div class="text-center">
+												<img class="img-grande" src="{{ asset('web/uploads/users/grande_') }}{{ entity.foto }}" alt="{{ entity.profile.name }}" data-toggle="tooltip" data-placement="top"/ title="Lihat Profile">
+											</div>
 										</a>
 										<div class="name-center">
 											<p>

@@ -55,18 +55,18 @@
 										{% if entity.shared %}
 											{% if entity.parent.user.broad != 1 %}
 												<a href="{{ path('profile_see', {'token': entity.parent.user.token }) }}">
-													<img src="{{ asset('web/uploads/users/mini_') }}{{ entity.parent.user.foto }}" alt="{{ entity.parent.user.profile.name }}">
+													<img class="img-mini" src="{{ asset('web/uploads/users/mini_') }}{{ entity.parent.user.foto }}" alt="{{ entity.parent.user.profile.name }}">
 												</a>
 											{% else %}
-												<img src="{{ asset('web/uploads/users/mini_') }}{{ entity.parent.user.foto }}" alt="{{ entity.parent.user.profile.name }}">
+												<img class="img-mini" src="{{ asset('web/uploads/users/mini_') }}{{ entity.parent.user.foto }}" alt="{{ entity.parent.user.profile.name }}">
 											{% endif %}
 										{% else %}
 											{% if entity.user.broad != 1 %}
 												<a href="{{ path('profile_see', {'token': entity.user.token }) }}">
-													<img src="{{ asset('web/uploads/users/mini_') }}{{ entity.user.foto }}" alt="{{ entity.user.profile.name }}">
+													<img class="img-mini" src="{{ asset('web/uploads/users/mini_') }}{{ entity.user.foto }}" alt="{{ entity.user.profile.name }}">
 												</a>
 											{% else %}
-												<img src="{{ asset('web/uploads/users/mini_') }}{{ entity.user.foto }}" alt="{{ entity.user.profile.name }}">
+												<img class="img-mini" src="{{ asset('web/uploads/users/mini_') }}{{ entity.user.foto }}" alt="{{ entity.user.profile.name }}">
 											{% endif %}
 										{% endif %}
 										</div>
@@ -150,10 +150,10 @@
 											<div class="media-left pull-left">
 												{% if comment.user.broad != 1 %}
 													<a href="{{ path('profile_see', {'token': comment.user.token }) }}">
-														<img src="{{ asset('web/uploads/users/mini_') }}{{ comment.user.foto }}" class="img-rounded" alt="{{ comment.user.profile.name }}">
+														<img class="img-mini" src="{{ asset('web/uploads/users/mini_') }}{{ comment.user.foto }}" class="img-rounded" alt="{{ comment.user.profile.name }}">
 													</a>
 												{% else %}
-													<img src="{{ asset('web/uploads/users/mini_') }}{{ comment.user.foto }}" class="img-rounded" alt="{{ comment.user.profile.name }}">
+													<img class="img-mini" src="{{ asset('web/uploads/users/mini_') }}{{ comment.user.foto }}" class="img-rounded" alt="{{ comment.user.profile.name }}">
 												{% endif %}
 											</div>
 											<div class="media-body">
@@ -187,7 +187,7 @@
 							<div class="panel-body">
 								<div class="media">
 									<a class="media-left pull-left" href="#">
-										<img src="{{ asset('web/uploads/users/mini_') }}{{ app.user.foto }}" class="img-rounded" alt="{{ app.user.profile.name }}">
+										<img class="img-mini" src="{{ asset('web/uploads/users/mini_') }}{{ app.user.foto }}" class="img-rounded" alt="{{ app.user.profile.name }}">
 									</a>
 									<div class="media-body">
 									{{ form_start(form) }}

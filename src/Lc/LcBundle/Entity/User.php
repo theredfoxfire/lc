@@ -1023,19 +1023,19 @@ class User implements UserInterface, \Serializable
         $this->file->move($this->getUploadRootDir(), $this->foto);
 
         Image::open($this->getUploadRootDir().'/'.$this->foto)
-        ->cropResize(200, 200, $background = 0xffffff)
+        ->cropResize(600, 600, $background = 0xffffff)
         ->save($this->getUploadRootDir().'/index_'.$this->foto);
 
         Image::open($this->getUploadRootDir().'/'.$this->foto)
-        ->cropResize(128, 128, $background = 0xffffff)
+        ->cropResize(328, 328, $background = 0xffffff)
         ->save($this->getUploadRootDir().'/grande_'.$this->foto);
 
         Image::open($this->getUploadRootDir().'/'.$this->foto)
-        ->cropResize(48, 48, $background = 0xffffff)
+        ->cropResize(128, 128, $background = 0xffffff)
         ->save($this->getUploadRootDir().'/mini_'.$this->foto);
 
         Image::open($this->getUploadRootDir().'/'.$this->foto)
-        ->cropResize(36, 36, $background = 0xffffff)
+        ->cropResize(96, 96, $background = 0xffffff)
         ->save($this->getUploadRootDir().'/thumb_'.$this->foto);
 
         $rmfile = $this->getAbsolutePath();

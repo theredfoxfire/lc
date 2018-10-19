@@ -10,7 +10,7 @@
 								<div class="panel-heading panel-success">
 									<div class="media">
 										<div class="media-left pull-left knowing">
-											<img src="{{ asset('web/uploads/users/mini_') }}{{ app.user.foto }}" alt="{{ app.user.profile.name }}" class="img-rounded a-act">
+											<img class="img-mini" src="{{ asset('web/uploads/users/mini_') }}{{ app.user.foto }}" alt="{{ app.user.profile.name }}" class="img-rounded a-act">
 											Pesan baru
 										</div>
 										<div class="media-body">
@@ -27,7 +27,7 @@
 										<div class="media-left pull-left">
 										{% if entity.user2.foto != app.user.foto %}
 										<a href="{{ path('chat_show', {'token': entity.user2.token }) }}" data-toggle="tooltip" data-placement="top">
-											<img src="{{ asset('web/uploads/users/mini_') }}{{ entity.user2.foto }}" alt="{{ entity.user2.profile.name }}" class="img-rounded">
+											<img class="img-mini" src="{{ asset('web/uploads/users/mini_') }}{{ entity.user2.foto }}" alt="{{ entity.user2.profile.name }}" class="img-rounded">
 										</a>
 										{% endif %}
 										</div>

@@ -20,7 +20,7 @@
 									<div class="media">
 										<div class="media-left pull-left">
 											<a href="{{ path('profile_data') }}" data-toggle="tooltip" data-placement="top" title="Lihat profile Anda">
-												<img src="{{ asset('web/uploads/users/mini_') }}{{ app.user.foto }}" alt="{% if app.user.profile.name is defined %}{{ app.user.profile.name }} {% else %} {{ app.user.email }} {% endif %}" class="img-rounded">
+												<img class="img-mini" src="{{ asset('web/uploads/users/mini_') }}{{ app.user.foto }}" alt="{% if app.user.profile.name is defined %}{{ app.user.profile.name }} {% else %} {{ app.user.email }} {% endif %}" class="img-rounded">
 											</a>
 										</div>
 										<div class="media-body">
@@ -80,18 +80,18 @@
 											{% if entity.shared %}
 												{% if entity.parent.user.broad != 1 %}
 												<a href="{{ path('profile_see', {'token': entity.parent.user.token }) }}">
-													<img src="{{ asset('web/uploads/users/mini_') }}{{ entity.parent.user.foto }}" alt="{{ entity.parent.user.profile.name }}" class="img-rounded">
+													<img class="img-mini" src="{{ asset('web/uploads/users/mini_') }}{{ entity.parent.user.foto }}" alt="{{ entity.parent.user.profile.name }}" class="img-rounded">
 												</a>
 												{% else %}
-													<img src="{{ asset('web/uploads/users/mini_') }}{{ entity.parent.user.foto }}" alt="{{ entity.parent.user.profile.name }}" class="img-rounded">
+													<img class="img-mini" src="{{ asset('web/uploads/users/mini_') }}{{ entity.parent.user.foto }}" alt="{{ entity.parent.user.profile.name }}" class="img-rounded">
 												{% endif %}
 											{% else %}
 												{% if entity.user.broad != 1 %}
 												<a href="{{ path('profile_see', {'token': entity.user.token }) }}">
-													<img src="{{ asset('web/uploads/users/mini_') }}{{ entity.user.foto }}" alt="{{ entity.user.profile.name }}" class="img-rounded">
+													<img class="img-mini" src="{{ asset('web/uploads/users/mini_') }}{{ entity.user.foto }}" alt="{{ entity.user.profile.name }}" class="img-rounded">
 												</a>
 												{% else %}
-													<img src="{{ asset('web/uploads/users/mini_') }}{{ entity.user.foto }}" alt="{{ entity.user.profile.name }}" class="img-rounded">
+													<img class="img-mini" src="{{ asset('web/uploads/users/mini_') }}{{ entity.user.foto }}" alt="{{ entity.user.profile.name }}" class="img-rounded">
 												{% endif %}
 											{% endif %}
 										</div>
