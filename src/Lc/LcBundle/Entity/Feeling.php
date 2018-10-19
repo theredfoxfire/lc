@@ -523,7 +523,7 @@ class Feeling
     		$this->file->move($this->getUploadRootDir(), $this->foto);
 
     		Image::open($this->getUploadRootDir().'/'.$this->foto)
-    		->cropResize(470, 250, $background = 0xffffff)
+    		->cropResize(1270, 750, $background = 0xffffff)
     		->save($this->getUploadRootDir().'/feel_'.$this->foto);
 
     		$rmfile = $this->getAbsolutePath();
