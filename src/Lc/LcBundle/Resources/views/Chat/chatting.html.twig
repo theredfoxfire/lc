@@ -10,16 +10,11 @@
 								<div class="panel-heading panel-success">
 									<div class="media">
 										<div class="media-left pull-left knowing">
-											<img class="img-mini" src="{{ asset('web/uploads/users/mini_') }}{{ friend.foto }}" alt="{{ friend.profile.name }}" class="img-rounded a-act" >
-											Obrolanmu dengan {{ friend.profile.name }}
-											{% if friend.profile.user.isverified == 1 %}
-												<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
-											{% endif %}
-										</div>
-										<div class="media-body">
-											<h5 class="media-right pull-right">
-												<a class="a-act" href="#" data-toggle="tooltip" data-placement="top" title="Obrolan"><i class="glyphicon glyphicon-phone knowing"></i></a>
-											</h5>
+											<div>
+												<a href="{{ path('chat') }}" data-toggle="tooltip" data-placement="top" title="Kembali">
+							            <span class="fa fa-arrow-left fa-lg"></span>
+							          </a>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -43,12 +38,12 @@
 												<img src="{{ asset('web/uploads/users/thumb_') }}{{ friend.foto }}" alt="{{ friend.profile.name }}" class="img-circle img-thumb" >
 											</div>
 											<div class="media-body f-feel">
-												<h4 class="media-right">
+												<h5 class="media-right">
 													{{ friend.profile.name }}
 													{% if friend.profile.user.isverified == 1 %}
 														<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
 													{% endif %}
-												</h4>
+												</h5>
 												<h5 class="media-right">{{ entity.message }}</h5>
 												<small class="text-muted"> <i class="glyphicon glyphicon-time"></i> <i>{{ entity.createdAt | date('d-m-Y H:i:s') }}</i></small>
 											</div>

@@ -97,20 +97,20 @@ h5 {
 	height: 52px;
 }
 .img-thumb {
-  width: 36px;
-  height: auto;
+  width: auto;
+  height: 36px;
 }
 .img-mini {
-  width: 48px;
-  height: auto;
+  width: auto;
+  height: 48px;
 }
 .img-grande {
-  width: 128px;
-  height: auto;
+  width: auto;
+  height: 128px;
 }
 .img-index {
-  width: 200px;
-  height: auto;
+  width: auto;
+  height: 200px;
 }
 .top-menu-container {
   background-color: #d8d8d8;
