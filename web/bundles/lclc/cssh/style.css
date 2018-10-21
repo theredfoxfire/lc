@@ -135,6 +135,30 @@ h5 {
 .top{
 	font-size:12px;
 }
+@media (max-width: 900px) and (min-width: 620px) {
+  .col-md-offset-4 {
+    margin-left: 25%;
+  }
+  .col-md-4 {
+    width: 50%;
+  }
+}
+@media (max-width: 1000px) and (min-width: 901px) {
+  .col-md-offset-4 {
+    margin-left: 30%;
+  }
+  .col-md-4 {
+    width: 40%;
+  }
+}
+@media (max-width: 619px) and (min-width: 450px) {
+  .col-md-offset-4 {
+    margin-left: 10%;
+  }
+  .col-md-4 {
+    width: 80%;
+  }
+}
 @media(min-width: 16px) {
   .navbar-nav .open .dropdown-menu {
     background-color: rgba(0,131,144, 0.8) !important;
