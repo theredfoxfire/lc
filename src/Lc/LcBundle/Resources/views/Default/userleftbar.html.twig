@@ -1,21 +1,2 @@
 {%block leftcontent%}
-				<!-- <div class="col-md-2 column">
-					<div id="navbar" class="navbar">
-					<a href="{{ path('user_foto') }}" data-toggle="tooltip" data-placement="top" title="Ubah foto profile Anda">
-						<div class="thumbnail">
-							<img src="{{ asset('web/uploads/users/grande_') }}{{ app.user.foto }}" alt="{% if app.user.profile.name is defined %}{{ app.user.profile.name }} {% else %} {{ app.user.email }} {% endif %}">
-							<h5 class="text-center">
-								{% if app.user.profile.name is defined %}{{ app.user.profile.name }} {% else %} {{ app.user.email }} {% endif %}
-								{% if app.user.isverified == 1 %}
-							    <i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
-							  {% endif %}
-							</h5>
-						</div>
-					</a>
-					<ul class="nav nav-pills nav-stacked">
-						<li role="presentation"><a href="{{ path('friend_show', {'token': app.user.token}) }}">Temanmu&nbsp;</a></li>
-						<li role="presentation"><a href="{{ path('chat') }}">Obrolan</a></li>
-					</ul>
-					</div>
-				</div> -->
 {% endblock %}

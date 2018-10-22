@@ -121,6 +121,18 @@ h5 {
   -moz-box-shadow: 0 5px 6px -4px #777;
   box-shadow: 0 5px 6px -4px #777;
 }
+.spiner-container {
+  position: absolute;
+  display: none;
+  height: 80px;
+  z-index: 4000;
+  width: 100%;
+  color: #026d77;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.text-spinner {
+  text-align: center;
+}
 .panel-success {
     border-color: #efeeee;
     -webkit-box-shadow: 0 5px 6px -3px #e2e2e2;
@@ -134,6 +146,14 @@ h5 {
 }
 .top{
 	font-size:12px;
+}
+@media (min-width: 1500px) {
+  .col-md-offset-4 {
+    margin-left: 37.50%;
+  }
+  .col-md-4 {
+    width: 25%;
+  }
 }
 @media (max-width: 900px) and (min-width: 620px) {
   .col-md-offset-4 {

@@ -1,5 +1,8 @@
-feeling:
+feeling_home:
     path:     /
+    defaults: { _controller: "LcLcBundle:Feeling:indexLanding" }
+feeling:
+    path:     /home
     defaults: { _controller: "LcLcBundle:Feeling:index" }
 
 feeling_show:

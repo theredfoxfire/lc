@@ -5,7 +5,10 @@
 					<div class="pull-right">
 						<i class="fa fa-camera fa-2x"></i>
 					</div>
-					<img class="img-grande" src="{{ asset('web/uploads/users/grande_') }}{{ app.user.foto }}" alt="{% if app.user.profile.name is defined %}{{ app.user.profile.name }} {% else %} {{ app.user.email }} {% endif %}">
+					<center>
+						<img class="img-index" src="{{ asset('web/uploads/users/index_') }}{{ app.user.foto }}" alt="{% if app.user.profile.name is defined %}{{ app.user.profile.name }} {% else %} {{ app.user.email }} {% endif %}">
+					</center>
+					<hr/>
 					<h5 class="text-center">
 						{% if app.user.profile.name is defined %}{{ app.user.profile.name }} {% else %} {{ app.user.email }} {% endif %}
 						{% if app.user.isverified == 1 %}

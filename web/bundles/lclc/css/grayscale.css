@@ -66,7 +66,18 @@ a {
     -moz-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
 }
-
+.spiner-container {
+  position: absolute;
+  display: none;
+  height: 40px;
+  z-index: 4000;
+  width: 100%;
+  color: #026d77;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.text-spinner {
+  text-align: center;
+}
 a:hover,
 a:focus {
     text-decoration: none;

@@ -13,31 +13,36 @@
                 <div class="col-lg-8 col-lg-offset-2">
                     <h2>Login bukuteman</h2>
                     <p>
-						<form role="form" class="login-area" action="{{ path('login_check') }}" method="post">
-						{% if error %}
-							<div class="error-login">{{ error.message }}</div>
-							<div class="error-login">Periksa ulang email dan password anda, login gagal.</div>
-						{% endif %}
-						<input type="hidden" name="_csrf_token"
-				        value="{{ csrf_token('authenticate') }}"
-				    >
-							<div class="form-group form-area">
-								<label for="InputEmail">Email</label>
-								<div class="input-group">
-									<input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" placeholder="Masukan email" required/>
-									<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-								</div>
-							</div>
-							<div class="form-group form-area">
-								<label for="InputEmail">Password</label>
-								<div class="input-group">
-									<input type="password" class="form-control" id="password" name="_password" placeholder="Masukan password" required/>
-									<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-								</div>
-							</div>
-							<input type="submit" name="submit" id="submit" value="Login" class="btn btn-default btn-lg pull-right login-btn">
-						</form>
-					</p>
+										<form role="form" class="login-area" action="{{ path('login_check') }}" method="post">
+										{% if error %}
+											<div class="error-login">{{ error.message }}</div>
+											<div class="error-login">Periksa ulang email dan password anda, login gagal.</div>
+										{% endif %}
+										<input type="hidden" name="_csrf_token"
+								        value="{{ csrf_token('authenticate') }}"
+								    >
+											<div class="form-group form-area">
+												<label for="InputEmail">Email</label>
+												<div class="input-group">
+													<input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" placeholder="Masukan email" required/>
+													<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+												</div>
+											</div>
+											<div class="form-group form-area">
+												<label for="InputEmail">Password</label>
+												<div class="input-group">
+													<input type="password" class="form-control" id="password" name="_password" placeholder="Masukan password" required/>
+													<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+												</div>
+											</div>
+											<div class="row spiner-container top-spinner">
+									      <div class="col-md-12 text-spinner">
+									        <i class="fa fa-spinner fa-spin fa-2x"></i>
+									      </div>
+									    </div>
+											<input type="submit" name="submit" id="submit" value="Login" class="btn btn-default btn-lg pull-right login-btn">
+										</form>
+									</p>
                 </div>
             </div>
         </div>
@@ -62,4 +67,10 @@
             </div>
         </div>
     </section>
+		<script>
+		$('#submit').on('click', function() {
+			 $('.top-spinner').css('display', 'block');
+			 $('#submit').addClass('disabled');
+		})
+		</script>
 	{% endblock %}

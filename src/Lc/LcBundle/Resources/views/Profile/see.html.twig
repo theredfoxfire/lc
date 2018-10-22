@@ -1,4 +1,3 @@
-{% extends 'LcLcBundle:Default:userlayout.html.twig' %}
 {%block leftcontent%}
 	{{ include ('LcLcBundle:Default:userleftbar.html.twig') }}
 {% endblock %}
@@ -12,18 +11,18 @@
 										<span style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i> Akun Terverifikasi</span>
 									{% endif %}
 								</div>
-											<center>
-											<img class="thumbnail img-index" src="{{ asset('web/uploads/users/index_') }}{{ entity.user.foto }}" alt="{{ entity.name }}">
-											{% if friend and friend.isconfirmed == 0 %}
-												<div class="label label-success">Permintaan pertemanan sudah dikirim</div>
-											{% elseif friend and friend.isconfirmed == 1 %}
-												<div class="label label-success">Dia sudah berteman denganmu</div><br /><br / >
-											{% else %}
-												{% if app.user.id != entity.user.id %}
-													<a class="label label-primary" data-toggle="tooltip" data-placement="top" title="Kenal sama Dia?" href="{{ path('friend_create', {'token' : entity.user.token}) }}"> Kenalan</a>
-												{% endif %}
-											{% endif %}
-											</center>
+								<center>
+									<img class="thumbnail img-index" src="{{ asset('web/uploads/users/index_') }}{{ entity.user.foto }}" alt="{{ entity.name }}">
+									{% if friend and friend.isconfirmed == 0 %}
+										<div class="label label-success">Permintaan pertemanan sudah dikirim</div>
+									{% elseif friend and friend.isconfirmed == 1 %}
+										<div class="label label-success">Dia sudah berteman denganmu</div><br /><br / >
+									{% else %}
+										{% if app.user.id != entity.user.id %}
+											<a class="label label-primary" data-toggle="tooltip" data-placement="top" title="Kenal sama Dia?" href="{{ path('friend_create', {'token' : entity.user.token}) }}"> Kenalan</a>
+										{% endif %}
+									{% endif %}
+								</center>
 								<hr />
 								<div class="media-body f-feel">
 								{% if entity.name != '' %}

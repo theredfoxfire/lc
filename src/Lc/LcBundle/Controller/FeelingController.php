@@ -34,57 +34,6 @@ class FeelingController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $paginator = $this->get('knp_paginator');
-        $is_user = $em->getRepository('LcLcBundle:Profile')->findOneByUser($this->getUid());
-        if (empty($is_user)) {
-            $broad = $em->getRepository('LcLcBundle:User')->findOneById(1);
-
-            $profile = new Profile();
-            $criteria = new Usercriteria();
-            $entity = $this->getUid();
-
-            if ($entity->getSex() == 1) {
-                copy(__DIR__.'/../../../../web/uploads/users/grande_p.png', __DIR__.'/../../../../web/uploads/users/grande_'.$entity->getFoto().'');
-                copy(__DIR__.'/../../../../web/uploads/users/index_p.png', __DIR__.'/../../../../web/uploads/users/index_'.$entity->getFoto().'');
-                copy(__DIR__.'/../../../../web/uploads/users/mini_p.png', __DIR__.'/../../../../web/uploads/users/mini_'.$entity->getFoto().'');
-                copy(__DIR__.'/../../../../web/uploads/users/thumb_p.png', __DIR__.'/../../../../web/uploads/users/thumb_'.$entity->getFoto().'');
-            } else {
-                copy(__DIR__.'/../../../../web/uploads/users/grande_w.png', __DIR__.'/../../../../web/uploads/users/grande_'.$entity->getFoto().'');
-                copy(__DIR__.'/../../../../web/uploads/users/index_w.png', __DIR__.'/../../../../web/uploads/users/index_'.$entity->getFoto().'');
-                copy(__DIR__.'/../../../../web/uploads/users/mini_w.png', __DIR__.'/../../../../web/uploads/users/mini_'.$entity->getFoto().'');
-                copy(__DIR__.'/../../../../web/uploads/users/thumb_w.png', __DIR__.'/../../../../web/uploads/users/thumb_'.$entity->getFoto().'');
-            }
-
-            $st = date('Y-m-d H:i:s');
-            $st = $st.$entity->getEmail();
-            $token = sha1($st.rand(11111, 99999));
-
-            $profile->setUser($entity);
-            $profile->setName($entity->getEmail());
-            $em->persist($profile);
-            $em->flush();
-
-            $criteria->setUser($entity);
-            $em->persist($criteria);
-            $em->flush();
-
-            $mate = new Friend();
-            $mate->setUser1($entity);
-            $mate->setUser2($broad);
-            $mate->setStatus(true);
-            $mate->setCast(true);
-            $mate->setIsConfirmed(true);
-            $em->persist($mate);
-            $em->flush();
-
-            $cast = new Friend();
-            $cast->setUser1($broad);
-            $cast->setUser2($entity);
-            $cast->setStatus(true);
-            $cast->setCast(true);
-            $cast->setIsConfirmed(true);
-            $em->persist($cast);
-            $em->flush();
-        }
         $query = $em->getRepository('LcLcBundle:Feeling')->getUserFeeling($this->getUid());
         $pagination = $paginator->paginate(
             $query,
@@ -102,6 +51,42 @@ class FeelingController extends Controller
         $c = $em->getRepository('LcLcBundle:Feeling')->countUserFeeling($this->getUid());
 
         return $this->render('LcLcBundle:Feeling:index.html.twig', array(
+            'entities' => $pagination,
+            'others' => $others,
+            'form'   => $form->createView(),
+            'fall' => $fall,
+            'chat' => $chat,
+            'notify' => $notify,
+            'page' => $_GET['page'] ?? 1,
+            'c' => $c,
+        ));
+    }
+    /**
+     * Lists all Feeling entities.
+     *
+     */
+    public function indexLandingAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $paginator = $this->get('knp_paginator');
+        $query = $em->getRepository('LcLcBundle:Feeling')->getUserFeeling($this->getUid());
+        $pagination = $paginator->paginate(
+            $query,
+            $this->get('request')->query->get('page', 1),
+            25
+        );
+        $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
+        $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
+        $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
+        //exit(\Doctrine\Common\Util\Debug::dump($entities));
+        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
+        $entity = new Feeling();
+        $form = $this->createCreateForm($entity);
+
+        $c = $em->getRepository('LcLcBundle:Feeling')->countUserFeeling($this->getUid());
+
+        return $this->render('LcLcBundle:Feeling:indexLanding.html.twig', array(
             'entities' => $pagination,
             'others' => $others,
             'form'   => $form->createView(),

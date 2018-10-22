@@ -1,4 +1,3 @@
-{% extends 'LcLcBundle:Default:userlayout.html.twig' %}
 {%block leftcontent%}
 	{{ include ('LcLcBundle:Default:userleftbar.html.twig') }}
 {% endblock %}
@@ -46,7 +45,7 @@
 											<a href="{{ path('chat_show', {'token': entity.user2.token }) }}" data-toggle="tooltip" data-placement="top">
 												<h5 class="media-right">{{ entity.message }}</h5>
 											</a>
-											<a class="a-act pull-right" onclick="tanya('{{ entity.user2.profile.name }}','{{ entity.user2.token }}')" href="#" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="glyphicon glyphicon-trash"></i></a>
+											<a class="a-act pull-right" onclick="tanyaChat('{{ entity.user2.profile.name }}','{{ entity.user2.token }}')" href="#" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="glyphicon glyphicon-trash"></i></a>
 											<a class="a-act pull-right" href="{{ path('chat_show', {'token': entity.user2.token }) }}" data-toggle="tooltip" data-placement="top" title="Balas"><i class="glyphicon glyphicon-share-alt"></i></a>
 										</div>
 									</div>
@@ -75,10 +74,9 @@
 								{% endif %}
 							</div>
 						</div>
-
 				</div>
 <script>
-	function tanya(nama,token){
+	function tanyaChat(nama,token){
 		var con = confirm('Kamu yakin akan menghapus percakapan mu dengan '+nama+'?');
 
 		if (con){
