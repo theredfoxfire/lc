@@ -188,7 +188,7 @@ function loadFeelingEditor() {
 		});
 }
 window.onload = function() {
-  // getRequest('{{ path('feeling_home') }}', 'feeling_index', loadFeelingEditor);
+  getRequest('{{ path('feeling_home') }}', 'feeling_index', loadFeelingEditor);
 };
 var currentKey
 function getRequest(url, storageKey, callBack) {

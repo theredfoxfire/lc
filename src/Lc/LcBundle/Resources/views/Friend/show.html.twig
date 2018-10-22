@@ -24,8 +24,8 @@
 									<div class="panel-body apanel-body p-border">
 										<div class="media">
 											<div class="media-left pull-left">
-											<a class="thumbnail" href="{{ path('profile_see', {'token': entity.user1.token }) }}">
-												<img class="img-mini" src="{{ asset('web/uploads/users/mini_') }}{{ entity.user1.foto }}" alt="{{ entity.user1.profile.name }}" class="img-rounded">
+											<a href="{{ path('profile_see', {'token': entity.user1.token }) }}">
+												<img class="img-mini thumbnail" src="{{ asset('web/uploads/users/mini_') }}{{ entity.user1.foto }}" alt="{{ entity.user1.profile.name }}" class="img-rounded">
 											</a>
 											</div>
 											<div class="media-body f-feel">
