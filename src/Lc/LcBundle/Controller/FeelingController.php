@@ -62,6 +62,30 @@ class FeelingController extends Controller
         ));
     }
     /**
+     * Lists all Feeling item.
+     *
+     */
+    public function feelingItemAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $paginator = $this->get('knp_paginator');
+        $query = $em->getRepository('LcLcBundle:Feeling')->getUserFeeling($this->getUid());
+        $pagination = $paginator->paginate(
+            $query,
+            $this->get('request')->query->get('page', 1),
+            25
+        );
+
+        $c = $em->getRepository('LcLcBundle:Feeling')->countUserFeeling($this->getUid());
+
+        return $this->render('LcLcBundle:Feeling:feelingItem.html.twig', array(
+            'entities' => $pagination,
+            'page' => $_GET['page'] ?? 1,
+            'c' => $c,
+        ));
+    }
+    /**
      * Lists all Feeling entities.
      *
      */

@@ -35,7 +35,7 @@
     <div class="row">
       <div class="navbar-header">
         <div>
-          <a class="navbar-brand" href="#status-home" onclick="getRequest('{{ path('feeling_home') }}', 'feeling_index', loadFeelingEditor)">
+          <a class="navbar-brand" href="#status-home" onclick="getFeeling(loadFeelingEditor)">
             <i class="glyphicon glyphicon-user-empty"></i>  <span class="light"></span>
             <span class="weight">
               <i class="fa fa-address-book-o"></i>
@@ -48,7 +48,7 @@
     <div class="row top-menu-container">
       <ul class="nav navbar-nav">
         <li>
-          <a href="#status-home" onclick="getRequest('{{ path('feeling_home') }}', 'feeling_index', loadFeelingEditor)" data-toggle="tooltip" data-placement="top" title="Home">
+          <a href="#status-home" onclick="getFeeling(loadFeelingEditor)" data-toggle="tooltip" data-placement="top" title="Home">
             <span class="fa fa-home fa-lg knowing"></span>
           </a>
         </li>
@@ -138,8 +138,7 @@
 	setTimeout(function() {
 		$('#message-session').fadeOut('slow');
 	}, 3500);
-</script>
-<script>
+
 $(document).ready(function() {
     $('#lc_lcbundle_fcomment_comment').summernote({
 				placeholder: 'bagikan sesuatu...',
@@ -152,13 +151,13 @@ $(document).ready(function() {
 			  ]
 		});
 });
-</script>
-<script>
+
 function setFocus(elementName){
   $('html, body').animate({
       scrollTop: $("#"+elementName+"").offset().top,
   }, 500);
 }
+
 function checkLength(formColomn){
     var textbox = document.getElementById(formColomn);
 		if (textbox.value.length == 0) {
@@ -173,8 +172,18 @@ function checkLength(formColomn){
 				return false;
     }
 }
-</script>
-<script>
+
+$('#lc_lcbundle_feeling_feel').summernote({
+    placeholder: 'bagikan sesuatu...',
+    tooltip: false,
+    height: 100,
+    toolbar: [
+      // [groupName, [list of button]]
+      ['style', ['bold', 'italic', 'underline']],
+      ['font', ['superscript', 'subscript']]
+    ]
+});
+
 function loadFeelingEditor() {
     $('#lc_lcbundle_feeling_feel').summernote({
 				placeholder: 'bagikan sesuatu...',
@@ -187,12 +196,14 @@ function loadFeelingEditor() {
 			  ]
 		});
 }
+
 window.onload = function() {
-  getRequest('{{ path('feeling_home') }}', 'feeling_index', loadFeelingEditor);
+  initCachedFeeling(loadFeelingEditor);
 };
-var currentKey
+
+var currentKey = '';
 function getRequest(url, storageKey, callBack) {
- currentKey = storageKey;
+  currentKey = storageKey;
   $.ajax({
       type: 'GET',
       url: url,
@@ -206,13 +217,16 @@ function getRequest(url, storageKey, callBack) {
         }
         if (localStorage.getItem(storageKey)) {
           $("#page-content").html(localStorage.getItem(storageKey));
+          if (callBack) {
+            callBack();
+          }
         }
       },
       success: function(html) {
         if (storageKey == currentKey) {
           $("#page-content").html(html);
-          localStorage.setItem(storageKey, html);
         }
+        localStorage.setItem(storageKey, html);
       },
       error: function(xhr) {
         alert("Error occured.please try again");
@@ -224,6 +238,107 @@ function getRequest(url, storageKey, callBack) {
         if (callBack) {
           callBack();
         }
+      },
+      dataType: 'html'
+  });
+}
+
+function initCachedFeeling(callBack) {
+  currentKey = 'feeling_index',
+  $.ajax({
+      type: 'GET',
+      url: '{{ path('feeling_home') }}',
+      data: {},
+      beforeSend: function() {
+      },
+      success: function(html) {
+          localStorage.setItem('feeling_index', html);
+      },
+      error: function(xhr) {
+        alert("Error occured.please try again");
+        console.log(xhr.statusText + xhr.responseText);
+        $('.top-spinner').css('display', 'none');
+      },
+      complete: function() {
+        $('.top-spinner').css('display', 'none');
+      },
+      dataType: 'html'
+  });
+  $.ajax({
+      type: 'GET',
+      url: '{{ path('feeling_item') }}',
+      data: {},
+      beforeSend: function() {
+      },
+      success: function(html) {
+        localStorage.setItem('feeling_item', html);
+      },
+      error: function(xhr) {
+        alert("Error occured.please try again");
+        console.log(xhr.statusText + xhr.responseText);
+        $('.top-spinner').css('display', 'none');
+      },
+      complete: function() {
+        $('.top-spinner').css('display', 'none');
+      },
+      dataType: 'html'
+  });
+}
+
+function getFeeling(callBack) {
+  currentKey = 'feeling_index',
+  $.ajax({
+      type: 'GET',
+      url: '{{ path('feeling_home') }}',
+      data: {},
+      beforeSend: function() {
+        setFocus('scroll-content');
+        if (!localStorage.getItem('feeling_index')) {
+          loaderIndicator = setTimeout(function() {
+            $('.top-spinner').css('display', 'block');
+          }, 60);
+        }
+        if (localStorage.getItem('feeling_index')) {
+          $("#page-content").html(localStorage.getItem('feeling_index'));
+          if (callBack) {
+            callBack();
+          }
+        }
+      },
+      success: function(html) {
+          localStorage.setItem('feeling_index', html);
+      },
+      error: function(xhr) {
+        alert("Error occured.please try again");
+        console.log(xhr.statusText + xhr.responseText);
+        $('.top-spinner').css('display', 'none');
+      },
+      complete: function() {
+        $('.top-spinner').css('display', 'none');
+      },
+      dataType: 'html'
+  });
+  $.ajax({
+      type: 'GET',
+      url: '{{ path('feeling_item') }}',
+      data: {},
+      beforeSend: function() {
+        setFocus('scroll-content');
+        if (localStorage.getItem('feeling_item')) {
+          $("#feeling-item-list").html(localStorage.getItem('feeling_item'));
+        }
+      },
+      success: function(html) {
+        $("#feeling-item-list").html(html);
+        localStorage.setItem('feeling_item', html);
+      },
+      error: function(xhr) {
+        alert("Error occured.please try again");
+        console.log(xhr.statusText + xhr.responseText);
+        $('.top-spinner').css('display', 'none');
+      },
+      complete: function() {
+        $('.top-spinner').css('display', 'none');
       },
       dataType: 'html'
   });

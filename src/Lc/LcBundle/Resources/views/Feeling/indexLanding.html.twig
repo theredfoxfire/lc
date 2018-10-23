@@ -43,6 +43,7 @@
 								</div>
 							</div>
 						</div>
+						<div id="feeling-item-list">
 						{% for entity in entities %}
 						<div class="row margin-feel" id="{{ entity.token }}">
 							<div class="panel panel-success">
@@ -178,6 +179,7 @@
 								{{ knp_pagination_render(entities) }}</b>
 							{% endif %}
 						</div>
+					</div>
 				</div>
 {% endblock %}
 {%block rightcontent%}

@@ -1,8 +1,13 @@
 feeling_home:
-    path:     /
-    defaults: { _controller: "LcLcBundle:Feeling:indexLanding" }
-feeling:
     path:     /home
+    defaults: { _controller: "LcLcBundle:Feeling:indexLanding" }
+
+feeling_item:
+    path:     /feeling-item
+    defaults: { _controller: "LcLcBundle:Feeling:feelingItem" }
+
+feeling:
+    path:     /
     defaults: { _controller: "LcLcBundle:Feeling:index" }
 
 feeling_show:
