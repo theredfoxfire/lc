@@ -244,7 +244,7 @@ function getRequest(url, storageKey, callBack) {
 }
 
 function initCachedFeeling(callBack) {
-  currentKey = 'feeling_index',
+  currentKey = 'feeling_index';
   $.ajax({
       type: 'GET',
       url: '{{ path('feeling_home') }}',
@@ -286,7 +286,7 @@ function initCachedFeeling(callBack) {
 }
 
 function getFeeling(callBack) {
-  currentKey = 'feeling_index',
+  currentKey = 'feeling_index';
   $.ajax({
       type: 'GET',
       url: '{{ path('feeling_home') }}',
@@ -303,6 +303,9 @@ function getFeeling(callBack) {
           if (callBack) {
             callBack();
           }
+          if (localStorage.getItem('feeling_item')) {
+            $("#feeling-item-list").html(localStorage.getItem('feeling_item'));
+          }
         }
       },
       success: function(html) {
@@ -315,19 +318,16 @@ function getFeeling(callBack) {
       },
       complete: function() {
         $('.top-spinner').css('display', 'none');
+        getFeelItem();
       },
       dataType: 'html'
   });
+}
+function getFeelItem() {
   $.ajax({
       type: 'GET',
       url: '{{ path('feeling_item') }}',
       data: {},
-      beforeSend: function() {
-        setFocus('scroll-content');
-        if (localStorage.getItem('feeling_item')) {
-          $("#feeling-item-list").html(localStorage.getItem('feeling_item'));
-        }
-      },
       success: function(html) {
         $("#feeling-item-list").html(html);
         localStorage.setItem('feeling_item', html);

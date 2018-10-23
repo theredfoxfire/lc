@@ -1,5 +1,14 @@
 {%block leftcontent%}
-	{{ include ('LcLcBundle:Default:userleftbar.profile.html.twig') }}
+<div class="row">
+		<div class="panel panel-success">
+			<div class="panel-heading panel-success see-status">
+				<div>
+					<h4>Lihat profilemu</h4>
+				</div>
+			</div>
+		</div>
+		{{ include ('LcLcBundle:Default:userleftbar.profile.html.twig') }}
+</div>
 {% endblock %}
 {%block content%}
 				<div class="column">
