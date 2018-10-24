@@ -69,8 +69,12 @@
     </section>
 		<script>
 		$('#submit').on('click', function() {
-			 $('.top-spinner').css('display', 'block');
-			 $('#submit').addClass('disabled');
+			if (($('#username').val() != '') && ($('#password').val() != '')) {
+				$('.top-spinner').css('display', 'block');
+				$('#submit').addClass('disabled');
+			} else {
+				alert('Mohon isi username & password terlebih dahulu!');
+			}
 		})
 		</script>
 	{% endblock %}

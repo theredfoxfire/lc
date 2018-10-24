@@ -35,7 +35,7 @@
     <div class="row">
       <div class="navbar-header">
         <div>
-          <a class="navbar-brand" href="#status-home" onclick="getFeeling(loadFeelingEditor)">
+          <a class="navbar-brand" href="#status-home" onclick="homePage(getFeeling)">
             <i class="glyphicon glyphicon-user-empty"></i>  <span class="light"></span>
             <span class="weight">
               <i class="fa fa-address-book-o"></i>
@@ -48,7 +48,7 @@
     <div class="row top-menu-container">
       <ul class="nav navbar-nav">
         <li>
-          <a href="#status-home" onclick="getFeeling(loadFeelingEditor)" data-toggle="tooltip" data-placement="top" title="Home">
+          <a href="#status-home" onclick="homePage(getFeeling)" data-toggle="tooltip" data-placement="top" title="Home">
             <span class="fa fa-home fa-lg knowing"></span>
           </a>
         </li>
@@ -210,11 +210,9 @@ function getRequest(url, storageKey, callBack) {
       data: {},
       beforeSend: function() {
         setFocus('scroll-content');
-        if (!localStorage.getItem(storageKey)) {
-          loaderIndicator = setTimeout(function() {
-            $('.top-spinner').css('display', 'block');
-          }, 60);
-        }
+        loaderIndicator = setTimeout(function() {
+          $('.top-spinner').css('display', 'block');
+        }, 60);
         if (localStorage.getItem(storageKey)) {
           $("#page-content").html(localStorage.getItem(storageKey));
           if (callBack) {
@@ -284,32 +282,30 @@ function initCachedFeeling(callBack) {
       dataType: 'html'
   });
 }
-
-function getFeeling(callBack) {
+function homePage(callBack) {
+  setFocus('scroll-content');
+  if (localStorage.getItem('feeling_index')) {
+    $("#page-content").html(localStorage.getItem('feeling_index'));
+    if (localStorage.getItem('feeling_item')) {
+      $("#feeling-item-list").html(localStorage.getItem('feeling_item'));
+    }
+  }
+  callBack();
+}
+function getFeeling() {
   currentKey = 'feeling_index';
   $.ajax({
       type: 'GET',
       url: '{{ path('feeling_home') }}',
       data: {},
       beforeSend: function() {
-        setFocus('scroll-content');
-        if (!localStorage.getItem('feeling_index')) {
-          loaderIndicator = setTimeout(function() {
-            $('.top-spinner').css('display', 'block');
-          }, 60);
-        }
-        if (localStorage.getItem('feeling_index')) {
-          $("#page-content").html(localStorage.getItem('feeling_index'));
-          if (callBack) {
-            callBack();
-          }
-          if (localStorage.getItem('feeling_item')) {
-            $("#feeling-item-list").html(localStorage.getItem('feeling_item'));
-          }
-        }
+        loaderIndicator = setTimeout(function() {
+          $('.top-spinner').css('display', 'block');
+        }, 60);
       },
       success: function(html) {
           localStorage.setItem('feeling_index', html);
+          loadFeelingEditor();
       },
       error: function(xhr) {
         alert("Error occured.please try again");
@@ -317,8 +313,8 @@ function getFeeling(callBack) {
         $('.top-spinner').css('display', 'none');
       },
       complete: function() {
-        $('.top-spinner').css('display', 'none');
         getFeelItem();
+        $('.top-spinner').css('display', 'none');
       },
       dataType: 'html'
   });
@@ -335,10 +331,10 @@ function getFeelItem() {
       error: function(xhr) {
         alert("Error occured.please try again");
         console.log(xhr.statusText + xhr.responseText);
-        $('.top-spinner').css('display', 'none');
+        // $('.top-spinner').css('display', 'none');
       },
       complete: function() {
-        $('.top-spinner').css('display', 'none');
+        // $('.top-spinner').css('display', 'none');
       },
       dataType: 'html'
   });
