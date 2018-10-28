@@ -64,12 +64,38 @@
 							<div class="form-group form-area">
 								<h6>Dengan mengklik daftar, berarti Anda telah menyetujui <a href="{{ path('agreement') }}" class="agreement-link" target="_blank"> kesepakatan dan persyaratan </a> penggunaan aplikasi ini</h6>
 							</div>
-							<button type="submit" class='btn btn-default btn-lg pull-right'>Daftar</button>
+							<div class="row spiner-container top-spinner">
+								<div class="col-md-12 text-spinner">
+									<i class="fa fa-spinner fa-spin fa-2x"></i>
+								</div>
+							</div>
+							<button type="submit" id="submit" class='btn btn-default btn-lg pull-right'>Daftar</button>
 				{{ form_end(form) }}
 				</p>
             </div>
         </div>
     </section>
+		<script>
+		$('#submit').on('click', function() {
+			var gender = document.getElementsByName('lc_lcbundle_user[sex]');
+			if (
+					($('#lc_lcbundle_user_fullname').val() != '') &&
+					($('#lc_lcbundle_user_email').val() != '') &&
+					($('#lc_lcbundle_user_password').val() != '') &&
+					($('#lc_lcbundle_user_password2').val() != '') &&
+					($('#lc_lcbundle_user_birthday').val() != '') &&
+					((gender[0].checked == true) || (gender[1].checked == true))
+				)
+			{
+				$('.top-spinner').css('display', 'block');
+				$('#submit').addClass('disabled');
+				return true;
+			} else {
+				alert('Mohon isi semua kolom terlebih dahulu!');
+				return false;
+			}
+		})
+		</script>
 
     <!-- Contact Section -->
     <section id="contact" class="container content-section text-center">

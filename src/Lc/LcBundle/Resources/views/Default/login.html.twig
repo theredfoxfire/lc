@@ -72,8 +72,10 @@
 			if (($('#username').val() != '') && ($('#password').val() != '')) {
 				$('.top-spinner').css('display', 'block');
 				$('#submit').addClass('disabled');
+				return true;
 			} else {
 				alert('Mohon isi username & password terlebih dahulu!');
+				return false;
 			}
 		})
 		</script>
