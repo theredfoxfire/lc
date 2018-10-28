@@ -11,6 +11,9 @@ h5 {
   letter-spacing: 0.8px;
   font-size: 12px;
 }
+.icon-float {
+  position: absolute;
+}
 .title-profile {
   padding-left: 15px;
 }
