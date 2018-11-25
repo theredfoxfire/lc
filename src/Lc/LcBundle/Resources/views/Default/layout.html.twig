@@ -30,15 +30,15 @@
     {% endblock %}
 	<script>
   var d = new Date();
-  var pastYear = d.getFullYear() - 17;
+  var pastYear = d.getFullYear() - 12;
   d.setFullYear(pastYear);
 		$(function() {
 		$( ".date" ).datepicker({
 			changeMonth: true,
 			changeYear: true,
-			yearRange: "-65:-17",
+			yearRange: "-65:-12",
 			dateFormat:'yy-mm-dd',
-      defaultDate: "-17y",
+      defaultDate: "-12y",
 		});
 	});
 	</script>

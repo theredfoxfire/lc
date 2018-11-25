@@ -48,8 +48,8 @@
     <div class="row top-menu-container">
       <ul class="nav navbar-nav">
         <li>
-          <a href="#status-home" onclick="homePage(getFeeling)" data-toggle="tooltip" data-placement="top" title="Home">
-            <span class="fa fa-home fa-lg knowing"></span>
+          <a href="#status-home" id="go-home" class="menu-list" onclick="homePage(getFeeling)" data-toggle="tooltip" data-placement="top" title="Home">
+            <span><i class="fa fa-home fa-lg knowing"></i></span>
           </a>
         </li>
         <li>
@@ -129,12 +129,27 @@
 <script type="text/javascript" src="{{ asset('web/bundles/lclc/js/bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('web/bundles/lclc/js/jquery-migrate-1.2.1.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('web/bundles/lclc/js/validate-image-feel.js') }}"></script>
-<script src="{{ asset('web/bundles/lclc/js/summernote.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.10/summernote.js"></script>
 <script>
 	$(document).ready(function() {
-		$("body").tooltip({ selector: '[data-toggle=tooltip]' });
+    $('body').bind('scroll', chk_scroll);
 	});
-
+  var scrollX = window.pageXOffset;
+  var scrollY = window.pageYOffset;
+  function chk_scroll(e) {
+    var elem = $('#feeling-item-list');
+    if (elem.length > 0) {
+      var current = elem[0].scrollHeight + $("#scroll-content").offset().top;
+      if ((30 > current))
+      {
+        $('.bottom-spinner').css('display', 'block');
+      } else {
+        if (80 < current) {
+          $('.bottom-spinner').css('display', 'none');
+        }
+      }
+    }
+  }
 	setTimeout(function() {
 		$('#message-session').fadeOut('slow');
 	}, 3500);
@@ -222,9 +237,15 @@ function getRequest(url, storageKey, callBack) {
       },
       success: function(html) {
         if (storageKey == currentKey) {
-          $("#page-content").html(html);
+          var elements = $(html);
+          var found = elements.find('div.download-section');
+          if (found.length > 0) {
+            document.write(html);
+          } else {
+            $("#page-content").html(html);
+            localStorage.setItem(storageKey, html);
+          }
         }
-        localStorage.setItem(storageKey, html);
       },
       error: function(xhr) {
         alert("Error occured.please try again");
@@ -283,14 +304,20 @@ function initCachedFeeling(callBack) {
   });
 }
 function homePage(callBack) {
-  setFocus('scroll-content');
-  if (localStorage.getItem('feeling_index')) {
+  var promise = new Promise(function(resolve, reject) {
+    $('.top-spinner').css('display', 'block');
+    setFocus('scroll-content');
+    setTimeout(function() {
+      resolve('foo');
+    }, 50);
+  });
+  promise.then(function(value) {
     $("#page-content").html(localStorage.getItem('feeling_index'));
     if (localStorage.getItem('feeling_item')) {
       $("#feeling-item-list").html(localStorage.getItem('feeling_item'));
     }
-  }
-  callBack();
+    callBack();
+  });
 }
 function getFeeling() {
   currentKey = 'feeling_index';
@@ -304,8 +331,14 @@ function getFeeling() {
         }, 60);
       },
       success: function(html) {
+        var elements = $(html);
+        var found = elements.find('div.download-section');
+        if (found.length > 0) {
+          document.write(html);
+        } else {
           localStorage.setItem('feeling_index', html);
-          loadFeelingEditor();
+        }
+        loadFeelingEditor();
       },
       error: function(xhr) {
         alert("Error occured.please try again");
@@ -325,8 +358,14 @@ function getFeelItem() {
       url: '{{ path('feeling_item') }}',
       data: {},
       success: function(html) {
-        $("#feeling-item-list").html(html);
-        localStorage.setItem('feeling_item', html);
+        var elements = $(html);
+        var found = elements.find('div.download-section');
+        if (found.length > 0) {
+          document.write(html);
+        } else {
+          $("#feeling-item-list").html(html);
+          localStorage.setItem('feeling_item', html);
+        }
       },
       error: function(xhr) {
         alert("Error occured.please try again");
@@ -338,5 +377,8 @@ function getFeelItem() {
       },
       dataType: 'html'
   });
+}
+if(window.innerWidth > 800) {
+ $("body").tooltip({ selector: '[data-toggle=tooltip]' });
 }
 </script>

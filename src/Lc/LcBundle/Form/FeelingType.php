@@ -16,7 +16,7 @@ class FeelingType extends AbstractType
     {
         $builder
             ->add('feel', 'textarea', array('attr' => array( 'class' => 'form-control', 'required' => true, 'placeholder' => 'Apa perasaanmu?'), 'label'=>false))
-            ->add('file', 'file', array('attr'=>array('class'=>'', 'placeholder'=>'Password lama'), 'required' =>false, 'label'=>false))
+            ->add('file', 'file', array('attr'=>array('class'=>'', 'placeholder'=>'Password lama', 'accept'=>"image/png,image/jpg, image/jpeg"), 'required' =>false, 'label'=>false))
         ;
     }
 

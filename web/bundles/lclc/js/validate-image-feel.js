@@ -31,24 +31,27 @@ function Validate(oForm) {
 					return false;
 				}
 
-				input = document.getElementById('lc_lcbundle_feeling_file');
-				if (!input) {
-					alert("Um, couldn't find the fileinput element.");
-					return false;
-				}
-				if (!input.files) {
-					alert("This browser doesn't seem to support the `files` property of file inputs.");
-					return false;
-				}
-				// if (!input.files[0]) {
-				// 	alert("Please select a file before clicking 'Load'");
-				// 	return false;
-				// }
-				file = input.files[0];
-				if(file.size > 10200000) {
-					alert("Ukuran file tidak boleh melebihi 10 MB.");
-					return false;
-				}
+		input = document.getElementById('lc_lcbundle_feeling_file');
+		if (!input) {
+      input = document.getElementById('foto_file');
+      if (!input) {
+        alert("Um, couldn't find the fileinput element.");
+				return false;
+      }
+		}
+		if (!input.files) {
+			alert("This browser doesn't seem to support the `files` property of file inputs.");
+			return false;
+		}
+		if (!input.files[0]) {
+			alert("Please select a file before clicking 'Load'");
+			return false;
+		}
+		file = input.files[0];
+		if(file.size > 10200000) {
+			alert("Ukuran file tidak boleh melebihi 10 MB.");
+			return false;
+		}
 
     return true;
 }
