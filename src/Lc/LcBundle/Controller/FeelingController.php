@@ -78,11 +78,13 @@ class FeelingController extends Controller
         );
 
         $c = $em->getRepository('LcLcBundle:Feeling')->countUserFeeling($this->getUid());
+        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
 
         return $this->render('LcLcBundle:Feeling:feelingItem.html.twig', array(
             'entities' => $pagination,
             'page' => $_GET['page'] ?? 1,
             'c' => $c,
+            'others' => $others,
         ));
     }
     /**

@@ -1,5 +1,6 @@
 {%block leftcontent%}
 <div class="row">
+	<div style="margin-left: 5px;margin-right: -10px;">
 		<div class="panel panel-success">
 			<div class="panel-heading panel-success see-status">
 				<div class="title-profile">
@@ -8,10 +9,11 @@
 			</div>
 		</div>
 		{{ include ('LcLcBundle:Default:userleftbar.profile.html.twig') }}
+	</div>
 </div>
 {% endblock %}
 {%block content%}
-				<div class="column">
+				<div class="column" style="margin-left: 5px;margin-right: -10px;">
 				{% if (app.session.flashbag.get('notice') is not empty) %}
 				<center id="message-session">
 				<div class="alert alert-success lebar" role="alert">
@@ -254,5 +256,7 @@
 </script>
 {% endblock %}
 {%block rightcontent%}
-	{{ include ('LcLcBundle:Default:userrightbar.html.twig') }}
+	<div style="margin-left: 5px;margin-right: -10px;">
+		{{ include ('LcLcBundle:Default:userrightbar.html.twig') }}
+	</div>
 {% endblock %}

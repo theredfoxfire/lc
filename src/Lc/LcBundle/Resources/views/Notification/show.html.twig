@@ -2,7 +2,7 @@
 	{{ include ('LcLcBundle:Default:userleftbar.html.twig') }}
 {% endblock %}
 {%block content%}
-				<div class="column">
+				<div class="column" style="margin-left: 5px;margin-right: -10px;">
 
 						<div class="row">
 							<div class="panel panel-success">
@@ -125,5 +125,7 @@
 				</div>
 {% endblock %}
 {%block rightcontent%}
-	{{ include ('LcLcBundle:Default:userrightbar.html.twig') }}
+	<div style="margin-left: 5px;margin-right: -10px;">
+		{{ include ('LcLcBundle:Default:userrightbar.html.twig') }}
+	</div>
 {% endblock %}
