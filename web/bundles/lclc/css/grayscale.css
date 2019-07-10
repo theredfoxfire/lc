@@ -60,6 +60,10 @@ p {
     }
 }
 
+.spinner-handler {
+  display: none;
+}
+
 a {
     color: #E0F7FA;
     -webkit-transition: all .2s ease-in-out;

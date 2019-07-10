@@ -64,7 +64,7 @@
 							<div class="form-group form-area">
 								<h6>Dengan mengklik daftar, berarti Anda telah menyetujui <a href="{{ path('agreement') }}" class="agreement-link" target="_blank"> kesepakatan dan persyaratan </a> penggunaan aplikasi ini</h6>
 							</div>
-							<button type="submit" class='btn btn-default btn-lg pull-right'>Daftar</button>
+							<button type="submit" class='btn btn-default btn-lg pull-right btn-action-submit'>Daftar</button>
 				{{ form_end(form) }}
 				</p>
             </div>
@@ -90,4 +90,16 @@
             </div>
         </div>
     </section>
+		<script>
+		$('.btn-action-submit').on('click', function() {
+			if (($('#lc_lcbundle_user_fullname').val() != '') && ($('#lc_lcbundle_user_email').val() != '') && ($('#lc_lcbundle_user_password').val() != '') && ($('#lc_lcbundle_user_password2').val() != '') && ($('#lc_lcbundle_user_birthday').val() != '')) {
+				$('.spinner-handler').css('display', 'block');
+				$('.btn-action-submit').addClass('disabled');
+				return true;
+			} else {
+				alert('Mohon isi semua data terlebih dahulu!');
+				return false;
+			}
+		})
+		</script>
 	{% endblock %}

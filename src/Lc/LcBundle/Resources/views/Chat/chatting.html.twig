@@ -11,7 +11,7 @@
 									<div class="media">
 										<div class="media-left pull-left knowing">
 											<div>
-												<a href="{{ path('chat') }}" data-toggle="tooltip" data-placement="top" title="Kembali">
+												<a href="{{ path('chat') }}" data-toggle="tooltip" class="loader-action" data-placement="top" title="Kembali">
 							            <span class="fa fa-arrow-left fa-lg"></span>
 							          </a>
 											</div>
@@ -52,7 +52,7 @@
 									{% endif %}
 								{% endfor %}
 								<div class="panel-footer">
-								<a href="{{ path('chat_show', {'token': friend.token }) }}"><i class="glyphicon glyphicon-refresh"></i> RefreshChatList</a><br><br>
+								<a href="{{ path('chat_show', {'token': friend.token }) }}" class="loader-action"><i class="glyphicon glyphicon-refresh"></i> RefreshChatList</a><br><br>
 									{{ form_start(form) }}
 									{{ form_errors(form) }}
 									<div class="input-group">

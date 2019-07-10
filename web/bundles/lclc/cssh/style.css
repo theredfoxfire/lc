@@ -111,6 +111,9 @@ h5 {
   height: 128px;
   object-fit: cover;
 }
+.spinner-handler {
+  display: none;
+}
 .img-index {
   width: 200px;
   height: 200px;

@@ -6,7 +6,7 @@
 				<div class="column">
 				{% if (app.session.flashbag.get('notice') is not empty) %}
 				<center id="message-session">
-				<div class="alert alert-success lebar" role="alert"> 
+				<div class="alert alert-success lebar" role="alert">
 					Data akun mu sudah diupdate ! :D
 				</div>
 				<hr />
@@ -43,7 +43,7 @@
 												</div>
 												  {{ form_errors(form.phone) }}
 											  </div>
-											  
+
 											  <div class="form-group form-group-sm">
 												<label class="col-sm-2 control-label" for="formGroupInputSmall">Tanggal lahir</label>
 												<div class="col-sm-10">
@@ -75,7 +75,7 @@
 												{{ form_row(form._token) }}
 											{{ form_end(form) }}
 											<br /><br />
-											<a href="{{ path('user_pass') }}">Ubah Password</a>
+											<a href="{{ path('user_pass') }}" class="loader-action">Ubah Password</a>
 										</div>
 									</div>
 								</div>
