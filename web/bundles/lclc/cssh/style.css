@@ -1,7 +1,7 @@
 html,
 body {
   height: 100%;
-  overflow-x: hidden;
+  /* The html and body elements cannot have any padding or margin. */
 }
 
 h5 {
@@ -10,13 +10,6 @@ h5 {
   line-height: 22px;
   letter-spacing: 0.8px;
   font-size: 12px;
-}
-
-.icon-float {
-  position: absolute;
-}
-.title-profile {
-  padding-left: 15px;
 }
 .mini-left {
   margin-left: 35px;
@@ -132,17 +125,6 @@ h5 {
   -moz-box-shadow: 0 5px 6px -4px #777;
   box-shadow: 0 5px 6px -4px #777;
 }
-.spiner-container {
-  position: absolute;
-  display: none;
-  height: 80px;
-  z-index: 4000;
-  width: 100%;
-  color: #026d77;
-}
-.text-spinner {
-  text-align: center;
-}
 .panel-success {
     border-color: #efeeee;
     -webkit-box-shadow: 0 5px 6px -3px #e2e2e2;
@@ -157,36 +139,28 @@ h5 {
 .top{
 	font-size:12px;
 }
-@media (max-width: 1390px) and (min-width: 1231px) {
+@media (max-width: 900px) and (min-width: 620px) {
   .col-md-offset-4 {
-    margin-left: 31.5%;
+    margin-left: 25%;
   }
   .col-md-4 {
-    width: 37%;
+    width: 50%;
   }
 }
-@media (max-width: 1230px) and (min-width: 1101px) {
+@media (max-width: 1000px) and (min-width: 901px) {
   .col-md-offset-4 {
-    margin-left: 29%;
+    margin-left: 30%;
   }
   .col-md-4 {
-    width: 42%;
+    width: 40%;
   }
 }
-@media (max-width: 1100px) and (min-width: 992px) {
+@media (max-width: 619px) and (min-width: 450px) {
   .col-md-offset-4 {
-    margin-left: 26.5%;
+    margin-left: 10%;
   }
   .col-md-4 {
-    width: 47%;
-  }
-}
-@media (max-width: 991px) and (min-width: 460px) {
-  .col-md-offset-4 {
-    margin: 0 auto;
-  }
-  .col-md-4 {
-    width: 460px;
+    width: 80%;
   }
 }
 @media(min-width: 16px) {
