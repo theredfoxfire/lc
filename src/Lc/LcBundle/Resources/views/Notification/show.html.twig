@@ -35,7 +35,7 @@
 												{% endif %}
 											</h4>
 											{% if entity.frompage == 1 %}
-													<h5 class="media-right">Berkunjung ke halaman Profile mu, <a href="{{ path('profile_see', {'token': entity.user1.token }) }}">
+													<h5 class="media-right">Berkunjung ke halaman Profile mu, <a href="{{ path('profile_see', {'token': entity.user1.token }) }}" class="loader-action">
 														Lihat Profile {{ entity.user1.profile.name }}
 														{% if entity.user1.isverified == 1 %}
 															<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
@@ -43,20 +43,20 @@
 													</a></h5>
 											{% elseif entity.frompage == 2 %}
 												{% if entity.user2.id != app.user.id %}
-													<h5 class="media-right">Bersimpati dengan postingannya, <a href="{{ path('feeling_show', {'token': entity.fromid }) }}">Lihat status postingannya.</a></h5>
+													<h5 class="media-right">Bersimpati dengan postingannya, <a href="{{ path('feeling_show', {'token': entity.fromid }) }}" class="loader-action">Lihat status postingannya.</a></h5>
 												{% else %}
-													<h5 class="media-right">Bersimpati dengan postingan mu, <a href="{{ path('feeling_show', {'token': entity.fromid }) }}">Lihat postingan mu.</a></h5>
+													<h5 class="media-right">Bersimpati dengan postingan mu, <a href="{{ path('feeling_show', {'token': entity.fromid }) }}" class="loader-action">Lihat postingan mu.</a></h5>
 												{% endif %}
 											{% elseif entity.frompage == 3 %}
 												{% if entity.user2.id != app.user.id %}
-													<h5 class="media-right">Mengomentari postingannya, <a href="{{ path('feeling_show', {'token': entity.fromid }) }}">
+													<h5 class="media-right">Mengomentari postingannya, <a href="{{ path('feeling_show', {'token': entity.fromid }) }}" class="loader-action">
 														Lihat komentar {{ entity.user1.profile.name }}
 														{% if entity.user1.isverified == 1 %}
 															<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
 														{% endif %}.
 													</a></h5>
 												{% else %}
-													<h5 class="media-right">Mengomentari postingan mu, <a href="{{ path('feeling_show', {'token': entity.fromid }) }}">
+													<h5 class="media-right">Mengomentari postingan mu, <a href="{{ path('feeling_show', {'token': entity.fromid }) }}" class="loader-action">
 														Lihat komentar {{ entity.user1.profile.name }}.
 														{% if entity.user1.isverified == 1 %}
 															<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
@@ -65,7 +65,7 @@
 												{% endif %}
 											{% elseif entity.frompage == 6 %}
 												{% if entity.user1.id != app.user.id %}
-													<h5 class="media-right">Membagikan postingan mu, <a href="{{ path('feeling_show', {'token': entity.fromid }) }}">
+													<h5 class="media-right">Membagikan postingan mu, <a href="{{ path('feeling_show', {'token': entity.fromid }) }}" class="loader-action">
 														Lihat postingan {{ entity.user1.profile.name }}
 														{% if entity.user1.isverified == 1 %}
 															<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
@@ -73,7 +73,7 @@
 													</a></h5>
 												{% endif %}
 											{% elseif entity.frompage == 4 %}
-													<h5 class="media-right">Mengirim permintaan pertemanan dengan mu, <a href="{{ path('profile_see', {'token': entity.user1.token }) }}">
+													<h5 class="media-right">Mengirim permintaan pertemanan dengan mu, <a href="{{ path('profile_see', {'token': entity.user1.token }) }}" class="loader-action">
 														Lihat Profile {{ entity.user1.profile.name }}
 														{% if entity.user1.isverified == 1 %}
 															<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
@@ -81,14 +81,14 @@
 													</a></h5>
 											{% elseif entity.frompage == 5 %}
 												{% if entity.user1.id == app.user.id %}
-													<h5 class="media-right">Menerima permintaan pertemanan mu, <a href="{{ path('profile_see', {'token': entity.user1.token }) }}">
+													<h5 class="media-right">Menerima permintaan pertemanan mu, <a href="{{ path('profile_see', {'token': entity.user1.token }) }}" class="loader-action">
 														Lihat Profile {{ entity.user1.profile.name }}
 														{% if entity.user1.isverified == 1 %}
 															<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
 														{% endif %}.
 													</a></h5>
 												{% else %}
-													<h5 class="media-right">Selamat! kamu mendapatkan teman baru, <a href="{{ path('profile_see', {'token': entity.user1.token }) }}">
+													<h5 class="media-right">Selamat! kamu mendapatkan teman baru, <a href="{{ path('profile_see', {'token': entity.user1.token }) }}" class="loader-action">
 														Lihat Profile {{ entity.user1.profile.name }}
 														{% if entity.user1.isverified == 1 %}
 															<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>

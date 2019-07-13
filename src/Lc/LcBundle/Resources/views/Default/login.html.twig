@@ -13,31 +13,31 @@
                 <div class="col-lg-8 col-lg-offset-2">
                     <h2>Login bukuteman</h2>
                     <p>
-						<form role="form" class="login-area" action="{{ path('login_check') }}" method="post">
-						{% if error %}
-							<div class="error-login">{{ error.message }}</div>
-							<div class="error-login">Periksa ulang email dan password anda, login gagal.</div>
-						{% endif %}
-						<input type="hidden" name="_csrf_token"
-				        value="{{ csrf_token('authenticate') }}"
-				    >
-							<div class="form-group form-area">
-								<label for="InputEmail">Email</label>
-								<div class="input-group">
-									<input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" placeholder="Masukan email" required/>
-									<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-								</div>
-							</div>
-							<div class="form-group form-area">
-								<label for="InputEmail">Password</label>
-								<div class="input-group">
-									<input type="password" class="form-control" id="password" name="_password" placeholder="Masukan password" required/>
-									<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-								</div>
-							</div>
-							<input type="submit" name="submit" id="submit" value="Login" class="btn btn-default btn-lg pull-right login-btn">
-						</form>
-					</p>
+										<form role="form" class="login-area" action="{{ path('login_check') }}" method="post">
+										{% if error %}
+											<div class="error-login">{{ error.message }}</div>
+											<div class="error-login">Periksa ulang email dan password anda, login gagal.</div>
+										{% endif %}
+										<input type="hidden" name="_csrf_token"
+								        value="{{ csrf_token('authenticate') }}"
+								    >
+											<div class="form-group form-area">
+												<label for="InputEmail">Email</label>
+												<div class="input-group">
+													<input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" placeholder="Masukan email" required/>
+													<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+												</div>
+											</div>
+											<div class="form-group form-area">
+												<label for="InputEmail">Password</label>
+												<div class="input-group">
+													<input type="password" class="form-control" id="password" name="_password" placeholder="Masukan password" required/>
+													<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+												</div>
+											</div>
+											<input type="submit" name="submit" value="Login" class="btn btn-default btn-lg pull-right login-btn btn-action-submit">
+										</form>
+									</p>
                 </div>
             </div>
         </div>
@@ -48,8 +48,8 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>Hubungi bukuteman</h2>
-                <p>Tidak usah sungkan, silahkan hubungi kami untuk menyampaikan saran, atau hanya sekedar ingin menyapa kami!</p>
-                <p><a href="mailto:call.bukuteman@gmail.com">call.bukuteman@gmail.com</a>
+                <p>Tidak usah sungkan, silahkan hubungi kami untuk menyampaikan saran, relasi bisnis, advertisement atau hanya sekedar ingin menyapa kami!</p>
+                <p><a href="mailto:call@bukuteman.com">call@bukuteman.com</a>
                 </p>
                 <ul class="list-inline banner-social-buttons">
                     <li>
@@ -62,4 +62,16 @@
             </div>
         </div>
     </section>
+		<script>
+		$('.btn-action-submit').on('click', function() {
+			if (($('#username').val() != '') && ($('#password').val() != '')) {
+				$('.spinner-handler').css('display', 'block');
+				$('.btn-action-submit').addClass('disabled');
+				return true;
+			} else {
+				alert('Mohon isi username & password terlebih dahulu!');
+				return false;
+			}
+		})
+		</script>
 	{% endblock %}

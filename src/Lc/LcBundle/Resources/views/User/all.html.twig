@@ -21,7 +21,7 @@
 						{% endif %}
 								<div class="col-md-6 col-xs-6">
 									<div class="panel panel-success">
-										<a href="{{ path('profile_see', {'token': entity.token }) }}">
+										<a href="{{ path('profile_see', {'token': entity.token }) }}" class="loader-action">
 											<div class="text-center">
 												<img class="img-grande" src="{{ asset('web/uploads/users/grande_') }}{{ entity.foto }}" alt="{{ entity.profile.name }}" data-toggle="tooltip" data-placement="top"/ title="Lihat Profile">
 											</div>
@@ -35,7 +35,7 @@
 											</p>
 										</div>
 										<div class="text-center">
-											<a class="label label-primary" data-toggle="tooltip" data-placement="top" title="Kenal sama Dia?" href="{{ path('friend_create', {'token' : entity.token}) }}"> kenalan</a>
+											<a class="label label-primary loader-action" data-toggle="tooltip" data-placement="top" title="Kenal sama Dia?" href="{{ path('friend_create', {'token' : entity.token}) }}"> kenalan</a>
 										</div>
 									</div>
 								</div>
@@ -51,6 +51,12 @@
 					</div>
 
 				</div>
+				<script>
+				$('.btn').bind('click', function() {
+					$('.spinner-handler').css('display', 'block');
+					$('.btn').addClass('disabled');
+				})
+				</script>
 {% endblock %}
 {%block rightcontent%}
 	{{ include ('LcLcBundle:Default:userrightbar.html.twig') }}

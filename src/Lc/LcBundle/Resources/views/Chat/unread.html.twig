@@ -26,14 +26,14 @@
 									<div class="media">
 										<div class="media-left pull-left">
 										{% if entity.user2.foto != app.user.foto %}
-										<a href="{{ path('chat_show', {'token': entity.user2.token }) }}" data-toggle="tooltip" data-placement="top">
+										<a href="{{ path('chat_show', {'token': entity.user2.token }) }}" class="loader-action" data-toggle="tooltip" data-placement="top">
 											<img class="img-mini" src="{{ asset('web/uploads/users/mini_') }}{{ entity.user2.foto }}" alt="{{ entity.user2.profile.name }}" class="img-rounded">
 										</a>
 										{% endif %}
 										</div>
 										<div class="media-body f-feel">
 										{% if entity.user2.foto != app.user.foto %}
-										<a href="{{ path('chat_show', {'token': entity.user2.token }) }}" data-toggle="tooltip" data-placement="top">
+										<a href="{{ path('chat_show', {'token': entity.user2.token }) }}" class="loader-action" data-toggle="tooltip" data-placement="top">
 											<h4 class="media-right">
 												{{ entity.user2.profile.name }}
 												{% if entity.user2.isverified == 1 %}
@@ -43,11 +43,11 @@
 										</a>
 										{% endif %}
 
-											<a href="{{ path('chat_show', {'token': entity.user2.token }) }}" data-toggle="tooltip" data-placement="top">
+											<a href="{{ path('chat_show', {'token': entity.user2.token }) }}" class="loader-action" data-toggle="tooltip" data-placement="top">
 												<h5 class="media-right">{{ entity.message }}</h5>
 											</a>
 											<a class="a-act pull-right" onclick="tanya('{{ entity.user2.profile.name }}','{{ entity.user2.token }}')" href="#" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="glyphicon glyphicon-trash"></i></a>
-											<a class="a-act pull-right" href="{{ path('chat_show', {'token': entity.user2.token }) }}" data-toggle="tooltip" data-placement="top" title="Balas"><i class="glyphicon glyphicon-share-alt"></i></a>
+											<a class="a-act pull-right loader-action" href="{{ path('chat_show', {'token': entity.user2.token }) }}" data-toggle="tooltip" data-placement="top" title="Balas"><i class="glyphicon glyphicon-share-alt"></i></a>
 										</div>
 									</div>
 								</div>
@@ -67,7 +67,7 @@
 										<div class="media-body f-feel">
 											<h4 class="media-right">Belum ada pesan baru.</h4>
 											<h5>
-												<a href="{{ path('chat') }}">Lihat obrolan sebelumnya</a>
+												<a href="{{ path('chat') }}" class="loader-action">Lihat obrolan sebelumnya</a>
 											</h5>
 										</div>
 									</div>

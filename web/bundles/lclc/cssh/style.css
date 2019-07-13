@@ -97,20 +97,27 @@ h5 {
 	height: 52px;
 }
 .img-thumb {
-  width: auto;
+  width: 36px;
   height: 36px;
+  object-fit: cover;
 }
 .img-mini {
-  width: auto;
+  width: 48px;
   height: 48px;
+  object-fit: cover;
 }
 .img-grande {
-  width: auto;
+  width: 128px;
   height: 128px;
+  object-fit: cover;
+}
+.spinner-handler {
+  display: none;
 }
 .img-index {
-  width: auto;
+  width: 200px;
   height: 200px;
+  object-fit: cover;
 }
 .top-menu-container {
   background-color: #d8d8d8;

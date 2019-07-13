@@ -49,6 +49,20 @@
 				</div>
 
 <script type="text/javascript" src="{{ asset('web/bundles/lclc/js/validate-image.js') }}"></script>
+<script>
+$('.btn').bind('click', function() {
+	var input = document.getElementById('foto_file');
+
+	if (input.files[0] !== undefined) {
+		$('.spinner-handler').css('display', 'block');
+		$('.btn').addClass('disabled');
+		return true;
+	} else {
+		alert('Silahkan pilih foto terlebih dahulu!');
+		return false;
+	}
+})
+</script>
 
 {% endblock %}
 {%block rightcontent%}

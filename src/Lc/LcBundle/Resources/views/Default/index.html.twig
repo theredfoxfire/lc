@@ -62,13 +62,21 @@
     <!-- Navigation -->
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container">
-            <div class="navbar-header">
+            <div class="navbar-header" style="display: flex; align-items: center;justify-content: space-between;">
+                <a class="navbar-brand page-scroll" href="#page-top">
+                    <i class="glyphicon glyphicon-user-empty"></i>
+                    <span class="light">
+                        <i class="fa fa-address-book-o"></i> bukuteman
+                    </span>
+                </a>
+                <div style="width: 135px;color: #FFEB3B;">
+                    <div class="spinner-handler">
+                        <i class="fa fa-snowflake-o fa-spin fa-2x"></i>
+                    </div>
+                </div>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">
-                    <i class="glyphicon glyphicon-user-empty"></i>  <span class="light"><i class="fa fa-address-book-o"></i> bukuteman</span>
-                </a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -80,10 +88,10 @@
                     </li>
 
                     <li>
-                        <a class="page-scroll" href="{{ path('user_new') }}">Daftar</a>
+                        <a class="page-scroll loader-action" href="{{ path('user_new') }}">Daftar</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="{{ path('feeling') }}">Login</a>
+                        <a class="page-scroll loader-action" href="{{ path('feeling') }}">Login</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#contact">Contact</a>
@@ -104,19 +112,19 @@
                         <h1 class="brand-heading">bukuteman</h1>
                         <p class="intro-text">Sosial media Indonesia, yang membuatmu terhubung dengan teman-temanmu.
                           Bantu kami agar bisa membuatnya menjadi lebih baik.
-                          <br><a href="{{ path('user_new') }}">Daftar sekarang!</a>
+                          <br><a href="{{ path('user_new') }}" class="loader-action">Daftar sekarang!</a>
                         </p>
-                        <a href="{{ path('user_new') }}" class="btn btn-circle page-scroll" data-toggle="tooltip" data-placement="top" title="Daftar!">
+                        <a href="{{ path('user_new') }}" class="loader-action btn btn-circle page-scroll" data-toggle="tooltip" data-placement="top" title="Daftar!">
                             <i class="fa fa-angle-double-down animated"></i>
 			</a>
 			</br>
 			</br>
-			<a href="{{ path('user_new') }}" class="btn btn-default">
+			<a href="{{ path('user_new') }}" class="btn btn-default loader-action" >
 	  		    <center>AYO DAFTAR!</center>
                         </a>
                     </div>
                     <div class="col-lg-8 col-lg-offset-2 well hidden" id='login'>
-						<p><a href="{{ path('user_new') }}" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Klik Untuk Login</span></a>
+						<p><a href="{{ path('user_new') }}" class="btn btn-default btn-lg loader-action"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Klik Untuk Login</span></a>
 						</p>
 					</div>
                 </div>
@@ -170,6 +178,9 @@
 		$(function(){
 			$('[data-toggle="tooltip"]').tooltip();
 		});
+        $('.loader-action').on('click', function() {
+            $('.spinner-handler').css('display', 'block');
+        })
 	</script>
 	 <div id="name"></div>
   <script>startApp();</script>

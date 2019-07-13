@@ -48,8 +48,8 @@
 					{% endfor %}
 
 					{% if fr == 0 %}
-						<div class="row">
-							<h4>Maaf kami tidak menemukan orang yang Anda cari, coba dengan Nama lain.</h4>
+						<div class="row" >
+							<h5>Maaf kami tidak menemukan orang yang Anda cari, coba dengan Nama lain.</h5>
 						</div>
 					{% endif %}
 					<div class="text-center">
@@ -59,6 +59,12 @@
 					</div>
 
 				</div>
+				<script>
+				$('.btn').bind('click', function() {
+					$('.spinner-handler').css('display', 'block');
+					$('.btn').addClass('disabled');
+				})
+				</script>
 {% endblock %}
 {%block rightcontent%}
 	{{ include ('LcLcBundle:Default:userrightbar.html.twig') }}

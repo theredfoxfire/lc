@@ -3,7 +3,7 @@
 	{{ include ('LcLcBundle:Default:userleftbar.html.twig') }}
 {% endblock %}
 {%block content%}
-<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+<link href="{{ asset('web/bundles/lclc/css/summernote.css') }}" rel="stylesheet">
 				<div class="column">
 				{% if (app.session.flashbag.get('notice') is not empty) %}
 				<center id="message-session">
@@ -17,7 +17,7 @@
 							<div class="panel panel-success">
 								<div class="panel-heading panel-success see-status">
 									<div>
-										<a href="{{ path('feeling') }}#{{ entity.token }}" data-toggle="tooltip" data-placement="top" title="Kembali">
+										<a href="{{ path('feeling') }}#{{ entity.token }}" class="loader-action" data-toggle="tooltip" data-placement="top" title="Kembali">
 					            <span class="fa fa-arrow-left fa-lg"></span>
 					          </a>
 									</div>
@@ -33,7 +33,7 @@
 								<div class="panel-body">
 									{% if entity.shared %}
 										{% if entity.user.broad != 1 %}
-											<a class="share-link" href="{{ path('profile_see', {'token': entity.user.token }) }}">
+											<a class="share-link loader-action" href="{{ path('profile_see', {'token': entity.user.token }) }}">
 												<i class="glyphicon glyphicon-retweet"></i> {{ entity.user.profile.name }}
 												{% if entity.user.isverified == 1 %}
 													<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
@@ -54,7 +54,7 @@
 										<div class="media-left pull-left">
 										{% if entity.shared %}
 											{% if entity.parent.user.broad != 1 %}
-												<a href="{{ path('profile_see', {'token': entity.parent.user.token }) }}">
+												<a href="{{ path('profile_see', {'token': entity.parent.user.token }) }}" class="loader-action">
 													<img class="img-mini" src="{{ asset('web/uploads/users/mini_') }}{{ entity.parent.user.foto }}" alt="{{ entity.parent.user.profile.name }}">
 												</a>
 											{% else %}
@@ -62,7 +62,7 @@
 											{% endif %}
 										{% else %}
 											{% if entity.user.broad != 1 %}
-												<a href="{{ path('profile_see', {'token': entity.user.token }) }}">
+												<a href="{{ path('profile_see', {'token': entity.user.token }) }}" class="loader-action">
 													<img class="img-mini" src="{{ asset('web/uploads/users/mini_') }}{{ entity.user.foto }}" alt="{{ entity.user.profile.name }}">
 												</a>
 											{% else %}
@@ -74,7 +74,7 @@
 											<h5>
 												{% if entity.shared %}
 													{% if entity.parent.user.broad != 1 %}
-														<a href="{{ path('profile_see', {'token': entity.parent.user.token }) }}">
+														<a href="{{ path('profile_see', {'token': entity.parent.user.token }) }}" class="loader-action">
 															{{ entity.parent.user.profile.name }}
 															{% if entity.parent.user.isverified == 1 %}
 																<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
@@ -88,7 +88,7 @@
 													{% endif %}
 												{% else %}
 													{% if entity.user.broad != 1 %}
-														<a href="{{ path('profile_see', {'token': entity.user.token }) }}">
+														<a href="{{ path('profile_see', {'token': entity.user.token }) }}" class="loader-action">
 															{{ entity.user.profile.name }}
 															{% if entity.user.isverified == 1 %}
 																<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
@@ -117,11 +117,11 @@
 											<div class="col-sm-8" style="display: flex; flex-direction: row; justify-content: space-between;">
 												<h5 class="media-right pull-right">
 													<span class="counter-activity">{{ entity.fcomment|length > 0 ? entity.fcomment|length|number_format(0, ',', ' ') : '' }}</span>
-													<a class="a-act" href="#comments" onclick="setFocus()" data-toggle="tooltip" data-placement="left" title="Tulis balasan"><i class="glyphicon glyphicon-comment"></i></a>
+													<a class="a-act loader-action" href="#comments" onclick="setFocus()" data-toggle="tooltip" data-placement="left" title="Tulis balasan"><i class="glyphicon glyphicon-comment"></i></a>
 												</h5>
 												<h5 class="media-right pull-right">
 													<span class="counter-activity">{{ entity.fshare|length > 0 ? entity.fshare|length|number_format(0, ',', ' ') : '' }}</span>
-													<a class="a-act" href="{{ path('fshare_create', {'feel': entity.token, 'page': '1' }) }}" data-toggle="tooltip" data-placement="left" title="Re-Post"><i class="glyphicon glyphicon-retweet"></i></a>
+													<a class="a-act loader-action" href="{{ path('fshare_create', {'feel': entity.token, 'page': '1' }) }}" data-toggle="tooltip" data-placement="left" title="Re-Post"><i class="glyphicon glyphicon-retweet"></i></a>
 												</h5>
 												<h5 class="media-right pull-right">
 													{% set lk = 0 %}
@@ -132,7 +132,7 @@
 													{% endfor %}
 													{% if lk == 0 %}
 													<span class="counter-activity">{{ entity.flike|length > 0 ? entity.flike|length|number_format(0, ',', ' ') : '' }}</span>
-													<a class="a-act" href="{{ path('flike_create', {'feel': entity.token, 'page': '1' }) }}" data-toggle="tooltip" data-placement="left" title="Beri simpati"><i class="glyphicon glyphicon-thumbs-up"></i></a>
+													<a class="a-act loader-action" href="{{ path('flike_create', {'feel': entity.token, 'page': '1' }) }}" data-toggle="tooltip" data-placement="left" title="Beri simpati"><i class="glyphicon glyphicon-thumbs-up"></i></a>
 													{% else %}
 													<span class="counter-activity">{{ entity.flike|length > 0 ? entity.flike|length|number_format(0, ',', ' ') : '' }}</span>
 													<i class="glyphicon glyphicon-thumbs-up disabled-like a-act"></i>
@@ -149,7 +149,7 @@
 										<div class="media">
 											<div class="media-left pull-left">
 												{% if comment.user.broad != 1 %}
-													<a href="{{ path('profile_see', {'token': comment.user.token }) }}">
+													<a href="{{ path('profile_see', {'token': comment.user.token }) }}" class="loader-action">
 														<img class="img-mini" src="{{ asset('web/uploads/users/mini_') }}{{ comment.user.foto }}" class="img-rounded" alt="{{ comment.user.profile.name }}">
 													</a>
 												{% else %}
@@ -158,7 +158,7 @@
 											</div>
 											<div class="media-body">
 												{% if comment.user.broad != 1 %}
-													<a href="{{ path('profile_see', {'token': comment.user.token }) }}">
+													<a href="{{ path('profile_see', {'token': comment.user.token }) }}" class="loader-action">
 														{{ comment.user.profile.name }}
 														{% if comment.user.isverified == 1 %}
 															<i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
@@ -233,7 +233,9 @@ function checkLength(){
 			return false;
 		}
     else if(textbox.value.length <= 850){
-        return true;
+			$('.spinner-handler').css('display', 'block');
+			$('.btn').addClass('disabled');
+      return true;
     }
     else{
         alert("Postingan tidak boleh melibihi 850 karater.");

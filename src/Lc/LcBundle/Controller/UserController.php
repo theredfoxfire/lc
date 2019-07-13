@@ -327,6 +327,7 @@ class UserController extends Controller
         ));
         return $form;
     }
+
     /**
      * Edits an existing User entity.
      *
@@ -337,6 +338,10 @@ class UserController extends Controller
 
         $entity = $em->getRepository('LcLcBundle:User')->findOneByToken($token);
         $password = $entity->getPassword();
+        $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
+        $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
+        $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
+        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
 
 
         if (!$entity) {
@@ -361,6 +366,10 @@ class UserController extends Controller
 
         return $this->render('LcLcBundle:Profile:index.html.twig', array(
             'entity'      => $entity,
+            'others' => $others,
+            'fall' => $fall,
+            'chat' => $chat,
+            'notify' => $notify,
             'form'   => $editForm->createView(),
         ));
     }
