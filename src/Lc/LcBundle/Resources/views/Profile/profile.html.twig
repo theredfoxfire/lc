@@ -223,6 +223,16 @@
 				</div>
 <script type="text/javascript">
     $(document).ready(function () {
+			$( ".btn" ).bind( "click", function() {
+				if ($('#lc_lcbundle_profile_name').val() !== '') {
+					$('.spinner-handler').css('display', 'block');
+					$('.btn').addClass('disabled');
+					return true;
+				} else {
+					alert('Kolom nama harus diisi!');
+					return false;
+				}
+			});
         $('#lc_lcbundle_profile_province').change(function(){
            var val = $(this).val();
            $.ajax({

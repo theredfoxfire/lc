@@ -3,7 +3,7 @@
 	{{ include ('LcLcBundle:Default:userleftbar.html.twig') }}
 {% endblock %}
 {%block content%}
-<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+<link href="{{ asset('web/bundles/lclc/css/summernote.css') }}" rel="stylesheet">
 				<div class="column">
 				{% if (app.session.flashbag.get('notice') is not empty) %}
 				<center id="message-session">
@@ -203,7 +203,9 @@ function checkLength(){
 			return false;
 		}
     else if(textbox.value.length <= 850){
-        //Validate();
+			$('.spinner-handler').css('display', 'block');
+			$('.btn').addClass('disabled');
+			return true;
     }
     else{
         alert("Postingan tidak boleh melibihi 850 karater.");

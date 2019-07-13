@@ -17,15 +17,15 @@ class DatauType extends AbstractType
         $builder
 			->add('password', 'hidden', array('attr'=>array('class'=>'form-control', 'value'=>'love',  'required'=> true,'placeholder'=>'Masukan Password'), 'label'=>false))
 			->add('password2', 'hidden', array('attr'=>array('class'=>'form-control', 'value'=>'love', 'required'=> true,'placeholder'=>'Ulangi Password'), 'label'=>false))
-            ->add('email', 'email', array('attr'=>array('class'=>'form-control', 'required'=> true,'placeholder'=>'Alamat Email Anda'), 'label'=>false))
-			->add('phone', 'text', array('attr'=>array('class'=>'form-control', 'required'=> true,'placeholder'=>'Nomor Telephone Anda'), 'label'=>false))
-			->add('username', 'text', array('attr'=>array('class'=>'form-control', 'required'=> true,'placeholder'=>'Username'), 'label'=>false))
+            ->add('email', 'email', array('attr'=>array('class'=>'form-control', 'disabled'=> 'disabled', 'required'=> true,'placeholder'=>'Alamat Email Anda'), 'label'=>false))
+			->add('phone', 'text', array('attr'=>array('class'=>'form-control', 'placeholder'=>'No Telephone Anda'), 'label'=>false))
+			->add('username', 'text', array('attr'=>array('class'=>'form-control', 'disabled'=> 'disabled', 'required'=> true,'placeholder'=>'Username'), 'label'=>false))
 			->add('file', 'hidden', array('label' => false, 'attr' => array('class'=>'btn btn-default btn-lg pull-right')))
-			
-			
+
+
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

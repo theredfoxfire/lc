@@ -33,7 +33,7 @@
     <div class="row">
       <div class="navbar-header" style="display: flex; align-items: center;justify-content: space-between;">
         <div>
-          <a class="navbar-brand" href="{{ path('feeling') }}">
+          <a class="navbar-brand loader-action" href="{{ path('feeling') }}">
             <i class="glyphicon glyphicon-user-empty"></i>  <span class="light"></span>
             <span class="weight">
               <i class="fa fa-address-book-o"></i>
@@ -41,7 +41,7 @@
             </span>
           </a>
         </div>
-        <div style="width: 200px; color: #f9e9ed;">
+        <div style="width: 200px;color: #FFEB3B;">
             <div class="spinner-handler">
                 <i class="fa fa-snowflake-o fa-spin fa-2x"></i>
             </div>
@@ -79,7 +79,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="fa fa-bars fa-lg knowing"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="{{ path('profile_data') }}" class="loader-action">Lihat profilemu</a></li>
-            <li><a href="{{ path('profile') }}" class="loader-action">Account setting</a></li>
+            <!-- <li><a href="{{ path('profile') }}" class="loader-action">Account setting</a></li> -->
             <li><a href="{{ path('friend_show', {'token': app.user.token}) }}" class="loader-action">Temanmu&nbsp;</a></li>
 						<li><a href="{{ path('chat') }}" class="loader-action">Obrolan</a></li>
             <li class="divider"></li>

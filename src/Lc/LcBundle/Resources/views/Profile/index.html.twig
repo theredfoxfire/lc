@@ -82,6 +82,12 @@
 							</div>
 						</div>
 				</div>
+				<script>
+					$( ".btn" ).bind( "click", function() {
+						$('.spinner-handler').css('display', 'block');
+						$('.btn').addClass('disabled');
+					});
+				</script>
 {% endblock %}
 {%block rightcontent%}
 	{{ include ('LcLcBundle:Default:userrightbar.html.twig') }}
