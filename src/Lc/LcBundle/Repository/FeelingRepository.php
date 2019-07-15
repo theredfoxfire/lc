@@ -19,15 +19,12 @@ class FeelingRepository extends EntityRepository
             ->createQuery(
                 'SELECT f FROM
 			LcLcBundle:Feeling f
-			WHERE f.user = :id1
-			AND f.is_active = :is or
-			(f.user IN (SELECT IDENTITY (nf.user2) FROM LcLcBundle:Friend nf where nf.user1 = :id1 and
-			nf.is_confirmed = :is and nf.status = :is) and f.user IN (SELECT IDENTITY (na.user2) FROM LcLcBundle:Friend na
-			where na.user1 = :id1 and na.is_confirmed = :is and na.status = :is))
+			WHERE f.channel = :channel
+			AND f.is_active = :is
 			order by f.created_at DESC'
             )
             ->setParameters(array(
-                           'id1' => $uid,
+                           'channel' => 'tbk',
                            'is' => 1,
                             ));
 
@@ -40,12 +37,12 @@ class FeelingRepository extends EntityRepository
             ->createQuery(
                 'SELECT f FROM
 			LcLcBundle:Feeling f
-			WHERE f.user = :id1
+			WHERE f.channel = :channel
 			AND f.is_active = :is
 			order by f.created_at DESC'
             )
             ->setParameters(array(
-                           'id1' => $uid,
+                           'channel' => 'tbk',
                            'is' => 1,
                             ));
 
@@ -58,12 +55,12 @@ class FeelingRepository extends EntityRepository
             ->createQuery(
                 'SELECT f FROM
 			LcLcBundle:Feeling f
-			WHERE f.user = :id1
+			WHERE f.channel = :channel
 			AND f.is_active = :is
 			order by f.created_at DESC'
             )
             ->setParameters(array(
-                           'id1' => $uid,
+                           'channel' => 'tbk',
                            'is' => 1,
                             ));
 
@@ -76,15 +73,12 @@ class FeelingRepository extends EntityRepository
             ->createQuery(
                 'SELECT f FROM
 			LcLcBundle:Feeling f
-			WHERE f.user = :id1
-			AND f.is_active = :is or
-			(f.user IN (SELECT IDENTITY (nf.user2) FROM LcLcBundle:Friend nf where nf.user1 = :id1 and
-			nf.is_confirmed = :is and nf.status = :is) and f.user IN (SELECT IDENTITY (na.user2) FROM LcLcBundle:Friend na
-			where na.user1 = :id1 and na.is_confirmed = :is and na.status = :is))
+			WHERE f.channel = :channel
+			AND f.is_active = :is
 			order by f.created_at DESC'
             )
             ->setParameters(array(
-                           'id1' => $uid,
+                           'channel' => 'tbk',
                            'is' => 1,
                             ));
 

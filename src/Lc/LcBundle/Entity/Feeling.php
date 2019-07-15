@@ -601,4 +601,32 @@ class Feeling
     {
         return $this->parent;
     }
+    /**
+     * @var string
+     */
+    private $channel;
+
+
+    /**
+     * Set channel
+     *
+     * @param string $channel
+     * @return Feeling
+     */
+    public function setChannel($channel)
+    {
+        $this->channel = $channel;
+
+        return $this;
+    }
+
+    /**
+     * Get channel
+     *
+     * @return string 
+     */
+    public function getChannel()
+    {
+        return $this->channel;
+    }
 }
