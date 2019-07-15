@@ -167,7 +167,7 @@
 											{% endif %}
 										</h5>
 										<a href="{{ path('feeling_show', {'token': entity.token }) }}" class="loader-action">
-											<div class="media-body f-feel">
+											<div class="media-body f-feel" style="margin-top: -10px;">
 												<h5 class="media-right">{{ entity.feel|raw }}</h5>
 												<div class='pull-right created_at'><small class="text-muted"> <i class="glyphicon glyphicon-time"></i> <i>{{ entity.createdAt | date('d-m-Y H:i:s') }}</i></small></div>
 											</div>
