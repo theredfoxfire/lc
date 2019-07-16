@@ -102,7 +102,7 @@
 													{% endif %}
 												{% endif %}
 											</h5>
-											<h5 class="media-right">{{ entity.feel|raw }}</h5>
+											<h5 class="media-right" style="margin-top: -20px;">{{ entity.feel|raw }}</h5>
 										</div>
 									</div>
 								</div>
@@ -232,7 +232,7 @@ function checkLength(){
 			alert('Tuliskan sesuatu, sebelum posting.');
 			return false;
 		}
-    else if(textbox.value.length <= 850){
+    else if(textbox.value.length <= 8500){
 			$('.spinner-handler').css('display', 'block');
 			$('.btn').addClass('disabled');
       return true;

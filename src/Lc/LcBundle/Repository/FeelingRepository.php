@@ -20,7 +20,8 @@ class FeelingRepository extends EntityRepository
                 'SELECT f FROM
 			LcLcBundle:Feeling f
 			WHERE f.user = :id1
-			AND f.is_active = :is or
+			AND f.is_active = :is
+            AND f.channel IS NULL or
 			(f.user IN (SELECT IDENTITY (nf.user2) FROM LcLcBundle:Friend nf where nf.user1 = :id1 and
 			nf.is_confirmed = :is and nf.status = :is) and f.user IN (SELECT IDENTITY (na.user2) FROM LcLcBundle:Friend na
 			where na.user1 = :id1 and na.is_confirmed = :is and na.status = :is))
@@ -42,6 +43,7 @@ class FeelingRepository extends EntityRepository
 			LcLcBundle:Feeling f
 			WHERE f.user = :id1
 			AND f.is_active = :is
+            AND f.channel IS NULL
 			order by f.created_at DESC'
             )
             ->setParameters(array(
@@ -60,6 +62,7 @@ class FeelingRepository extends EntityRepository
 			LcLcBundle:Feeling f
 			WHERE f.user = :id1
 			AND f.is_active = :is
+            AND f.channel IS NULL
 			order by f.created_at DESC'
             )
             ->setParameters(array(
@@ -77,7 +80,8 @@ class FeelingRepository extends EntityRepository
                 'SELECT f FROM
 			LcLcBundle:Feeling f
 			WHERE f.user = :id1
-			AND f.is_active = :is or
+			AND f.is_active = :is
+            AND f.channel IS NULL or
 			(f.user IN (SELECT IDENTITY (nf.user2) FROM LcLcBundle:Friend nf where nf.user1 = :id1 and
 			nf.is_confirmed = :is and nf.status = :is) and f.user IN (SELECT IDENTITY (na.user2) FROM LcLcBundle:Friend na
 			where na.user1 = :id1 and na.is_confirmed = :is and na.status = :is))

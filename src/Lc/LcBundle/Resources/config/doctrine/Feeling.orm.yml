@@ -24,6 +24,10 @@ Lc\LcBundle\Entity\Feeling:
    nullable: true
   is_active:
    type: boolean
+  channel:
+   type: string
+   length: 255
+   nullable: true
   created_at:
    type: datetime
   updated_at:
