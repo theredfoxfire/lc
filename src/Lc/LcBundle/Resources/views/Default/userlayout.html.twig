@@ -136,7 +136,9 @@
 
 	<script>
 		$(document).ready(function() {
-			$("body").tooltip({ selector: '[data-toggle=tooltip]' });
+      if(window.innerWidth > 800) {
+       $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+      }
 		});
 
 		setTimeout(function() {
