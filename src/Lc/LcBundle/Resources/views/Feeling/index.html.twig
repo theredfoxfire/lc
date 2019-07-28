@@ -158,7 +158,7 @@
 												<h5 class="media-right pull-right">
 													{% set lk = 0 %}
 													{% for like in entity.flike %}
-														{% if like.user.id == app.user.id %}
+														{% if app.user and like.user.id == app.user.id %}
 															{% set lk = 1 %}
 														{% endif %}
 													{% endfor %}
