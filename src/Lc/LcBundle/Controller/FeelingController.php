@@ -97,11 +97,11 @@ class FeelingController extends Controller
             $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
             //exit(\Doctrine\Common\Util\Debug::dump($entities));
             $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
-            $c = $em->getRepository('LcLcBundle:Feeling')->countUserFeeling($this->getUid());
         }
 
         $entity = new Feeling();
         $form = $this->createCreateForm($entity);
+        $c = $em->getRepository('LcLcBundle:Feeling')->countUserFeeling();
 
         return $this->render('LcLcBundle:Feeling:index.html.twig', array(
             'entities' => $pagination,
@@ -389,7 +389,7 @@ class FeelingController extends Controller
     public function getUid()
     {
         $usr= $this->get('security.context')->getToken()->getUser();
-        if ($uid) {
+        if ($usr !== 'anon.') {
           $uid = $usr->getId();
           $em = $this->getDoctrine()->getManager();
           $userId = $em->getRepository('LcLcBundle:User')->find($uid);
