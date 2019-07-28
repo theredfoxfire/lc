@@ -31,6 +31,9 @@ LcLcBundle_fcomment:
 LcLcBundle_feeling:
         resource: "@LcLcBundle/Resources/config/routing/feeling.yml"
         prefix:   /aheaven
+LcLcBundle_feeling_alias:
+        resource: "@LcLcBundle/Resources/config/routing/feeling.yml"
+        prefix:   /heaven
 LcLcBundle_flike:
         resource: "@LcLcBundle/Resources/config/routing/flike.yml"
         prefix:   /heaven/flike
