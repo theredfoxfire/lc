@@ -28,14 +28,14 @@ security:
                 csrf_provider: form.csrf_provider
                 login_path: /login
                 check_path: /login_check
-                default_target_path: /aheaven
+                default_target_path: /heaven
             oauth:
                 resource_owners:
                     facebook:           "/login/check-facebook"
                     google:             "/login/check-google"
                 login_path:        /login
                 failure_path:      /login
-                default_target_path: /aheaven
+                default_target_path: /heaven
 
                 oauth_user_provider:
                     #this is my custom user provider, created from FOSUBUserProvider - will manage the
