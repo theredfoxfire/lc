@@ -13,6 +13,7 @@
 				<hr />
 				</center>
 				{% endif %}
+				{% if app.user %}
 						<div class="row">
 							<div class="panel panel-success">
 
@@ -45,6 +46,7 @@
 								</div>
 							</div>
 						</div>
+						{% endif %}
 						{% for entity in entities %}
 						<div class="row margin-feel" id="{{ entity.token }}">
 							<div class="panel panel-success">

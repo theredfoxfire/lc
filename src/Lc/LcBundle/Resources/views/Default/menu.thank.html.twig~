@@ -18,7 +18,7 @@
                         <a href="{{ path('lc_lc_homepage') }}"></a>
                     </li>
                     <li>
-						<a class="page-scroll" href="<a class="page-scroll" href="{{ path('feeling') }}">Login</a>">Login</a>
+						<a class="page-scroll" href="<a class="page-scroll" href="{{ path('login') }}">Login</a>">Login</a>
 					</li>
 					<li>
                         <a class="page-scroll" href="#contact">Contact</a>

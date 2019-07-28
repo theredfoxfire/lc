@@ -48,6 +48,7 @@
     </div>
     <div class="row top-menu-container">
       <ul class="nav navbar-nav">
+        {% if app.user %}
         <li>
           <a href="{{ path('feeling') }}" class="loader-action" data-toggle="tooltip" data-placement="top" title="Home">
             <span class="fa fa-home fa-lg knowing"></span>
@@ -84,6 +85,23 @@
             <li><a href="{{ path('logout') }}" class="loader-action">Logout</a></li>
           </ul>
         </li>
+        {% else %}
+        <li>
+          <a href="#" style="color: #006699;text-decoration: none;">
+            Yuk bagikan pengalaman mu!
+          </a>
+        </li>
+        <li>
+          <a href="{{ path('user_new') }}" style="color: #006699;text-decoration: none;" class="loader-action">
+            DAFTAR
+          </a>
+        </li>
+        <li>
+          <a href="{{ path('login') }}" style="color: #006699;text-decoration: none;" class="loader-action">
+            LOGIN
+          </a>
+        </li>
+        {% endif %}
       </ul>
     </div>
   </nav>

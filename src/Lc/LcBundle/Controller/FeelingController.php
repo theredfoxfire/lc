@@ -35,7 +35,7 @@ class FeelingController extends Controller
 
         $paginator = $this->get('knp_paginator');
         $is_user = $em->getRepository('LcLcBundle:Profile')->findOneByUser($this->getUid());
-        if (empty($is_user)) {
+        if ($this->getUid() && empty($is_user)) {
             $broad = $em->getRepository('LcLcBundle:User')->findOneById(1);
 
             $profile = new Profile();
@@ -85,21 +85,23 @@ class FeelingController extends Controller
             $em->persist($cast);
             $em->flush();
         }
-        $query = $em->getRepository('LcLcBundle:Feeling')->getUserFeeling($this->getUid());
+        $query = $em->getRepository('LcLcBundle:Feeling')->getUserFeeling();
         $pagination = $paginator->paginate(
             $query,
             $this->get('request')->query->get('page', 1),
             25
         );
-        $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
-        $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
-        $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
-        //exit(\Doctrine\Common\Util\Debug::dump($entities));
-        $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
+        if ($this->getUid()) {
+            $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
+            $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
+            $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
+            //exit(\Doctrine\Common\Util\Debug::dump($entities));
+            $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
+            $c = $em->getRepository('LcLcBundle:Feeling')->countUserFeeling($this->getUid());
+        }
+
         $entity = new Feeling();
         $form = $this->createCreateForm($entity);
-
-        $c = $em->getRepository('LcLcBundle:Feeling')->countUserFeeling($this->getUid());
 
         return $this->render('LcLcBundle:Feeling:index.html.twig', array(
             'entities' => $pagination,
@@ -387,9 +389,14 @@ class FeelingController extends Controller
     public function getUid()
     {
         $usr= $this->get('security.context')->getToken()->getUser();
-        $uid = $usr->getId();
-        $em = $this->getDoctrine()->getManager();
-        $userId = $em->getRepository('LcLcBundle:User')->find($uid);
-        return $userId;
+        if ($uid) {
+          $uid = $usr->getId();
+          $em = $this->getDoctrine()->getManager();
+          $userId = $em->getRepository('LcLcBundle:User')->find($uid);
+          return $userId;
+        } else {
+          return false;
+        }
+
     }
 }
