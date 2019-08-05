@@ -3,7 +3,7 @@
     "name" : "PRADISTE",
     "scope" : "https://pradiste.com/",
     "display" : "standalone",
-    "start_url" : "https://pradiste.com/web/",
+    "start_url" : "https://pradiste.com/",
     "short_name" : "PRADISTE",
     "theme_color" : "transparent",
     "description" : "Kami membantu agar para pecinta fashion dapat saling terhubung dan berbagi satu sama lain, sehingga membuka peluang pasar yang lebih luas",
