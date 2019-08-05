@@ -177,8 +177,8 @@
     } else {
       // Register the service worker
       navigator.serviceWorker
-        .register("https://pradiste.com/web/pwabuilder-sw.js", {
-          scope: "https://pradiste.com/web/"
+        .register("https://pradiste.com/pwabuilder-sw.js", {
+          scope: "https://pradiste.com/"
         })
         .then(function (reg) {
           console.log("[PWA Builder] Service worker has been registered for scope: " + reg.scope);
