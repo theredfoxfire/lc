@@ -177,7 +177,7 @@
     } else {
       // Register the service worker
       navigator.serviceWorker
-        .register("{{ asset('web/pwabuilder-sw.js') }}", {
+        .register("https://pradiste.com/web/pwabuilder-sw.js", {
           scope: "./"
         })
         .then(function (reg) {
