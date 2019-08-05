@@ -24,7 +24,7 @@ class FeelingRepository extends EntityRepository
 			order by f.created_at DESC'
             )
             ->setParameters(array(
-                           'channel' => 'tbk',
+                           'channel' => 'prd',
                            'is' => 1,
                             ));
 
@@ -42,7 +42,7 @@ class FeelingRepository extends EntityRepository
 			order by f.created_at DESC'
             )
             ->setParameters(array(
-                           'channel' => 'tbk',
+                           'channel' => 'prd',
                            'is' => 1,
                             ));
 
@@ -60,7 +60,7 @@ class FeelingRepository extends EntityRepository
 			order by f.created_at DESC'
             )
             ->setParameters(array(
-                           'channel' => 'tbk',
+                           'channel' => 'prd',
                            'is' => 1,
                             ));
 
@@ -78,7 +78,7 @@ class FeelingRepository extends EntityRepository
 			order by f.created_at DESC'
             )
             ->setParameters(array(
-                           'channel' => 'tbk',
+                           'channel' => 'prd',
                            'is' => 1,
                             ));
 

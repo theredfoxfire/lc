@@ -127,7 +127,7 @@ class FeelingController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity->setIsActive(true);
-            $entity->setChannel('tbk');
+            $entity->setChannel('prd');
             $entity->setUser($this->getUid());
             $em->persist($entity);
             $em->flush();
