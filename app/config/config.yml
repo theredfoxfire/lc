@@ -72,6 +72,7 @@ fos_user:
     firewall_name: main
     user_class: Lc\LcBundle\Entity\User
 knp_paginator:
+    page_range: 3
     template:
         pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig
 hwi_oauth:
