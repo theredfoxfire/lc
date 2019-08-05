@@ -2,8 +2,8 @@
     "lang" : "en",
     "name" : "PRADISTE",
     "scope" : "https://pradiste.com/web/",
-    "display" : "fullscreen",
-    "start_url" : "https://pradiste.com/web/pwabuilder-sw.js",
+    "display" : "standalone",
+    "start_url" : "https://pradiste.com/web/",
     "short_name" : "PRADISTE",
     "theme_color" : "transparent",
     "description" : "Kami membantu agar para pecinta fashion dapat saling terhubung dan berbagi satu sama lain, sehingga membuka peluang pasar yang lebih luas",
@@ -15,6 +15,12 @@
     "icons" : [
         {
             "src": "https://pradiste.com/web/uploads/users/index_5d47e42c9d475.jpeg",
-            "sizes": "600x600"
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "https://pradiste.com/web/uploads/users/index_5d47e42c9d475.jpeg",
+            "sizes": "512x512",
+            "type": "image/png"
         }
     ]}
