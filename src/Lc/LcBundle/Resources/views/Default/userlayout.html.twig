@@ -177,7 +177,7 @@
     } else {
       // Register the service worker
       navigator.serviceWorker
-        .register("{{ asset('pwabuilder-sw.js') }}", {
+        .register("{{ asset('web/pwabuilder-sw.js') }}", {
           scope: "./"
         })
         .then(function (reg) {
