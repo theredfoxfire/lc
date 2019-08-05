@@ -1,0 +1,240 @@
+html,
+body {
+  height: 100%;
+  /* The html and body elements cannot have any padding or margin. */
+}
+
+h5 {
+  color: #68716c;
+  font-weight: 350;
+  line-height: 22px;
+  letter-spacing: 0.8px;
+  font-size: 12px;
+}
+.mini-left {
+  margin-left: 35px;
+}
+.panel-image {
+  background-color: #fff !important;
+  margin: 0px;
+}
+.see-status {
+  padding: 2px 3px !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.img-full {
+  width: 100%;
+  height: auto;
+}
+.share-link {
+  font-size: 11px !important;
+  margin-left: 20px;
+}
+.profile{
+	border-bottom: solid 0.1px; border-color:#D4BFC8;
+}
+.text-muted {
+  padding-top: 15px;
+}
+#message-session {
+  position: absolute;
+  z-index: 2500;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-left: -15px;
+}
+.gotop {
+  margin-bottom: 20px;
+  float: left;
+  text-align: left;
+}
+.footer {
+  border-top: solid 1px #e8eef1;
+}
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto;
+  /* Negative indent footer by its height */
+  margin: 0 auto -60px;
+  /* Pad bottom by footer height */
+  padding: 0 0 60px;
+}
+.margin-feel{
+  margin-top: -13px;
+}
+
+.lebar{
+	width: 100% !important;
+  text-align: center;
+}
+
+.light {
+    font-weight: 400;
+}
+.weight{
+	font-weight: 700;
+}
+.centered{
+	padding-top: 10px;
+}
+.space-header {
+  height: 110px;
+}
+.navbar-collapse.collapse {
+  display: block!important;
+}
+
+.navbar-nav>li, .navbar-nav {
+  float: left !important;
+}
+.name-center{
+	text-align: center;
+	padding-top:0px;
+	height: 52px;
+}
+.img-thumb {
+  width: 36px;
+  height: 36px;
+  object-fit: cover;
+}
+.img-mini {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+}
+.img-grande {
+  width: 128px;
+  height: 128px;
+  object-fit: cover;
+}
+.spinner-handler {
+  display: none;
+}
+.img-index {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+.top-menu-container {
+  background-color: #e7ecf1;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  -webkit-box-shadow: 0 5px 6px -4px #777;
+  -moz-box-shadow: 0 5px 6px -4px #777;
+  box-shadow: 0 5px 6px -4px #777;
+}
+.panel-success {
+    border-color: #efeeee;
+    -webkit-box-shadow: 0 5px 6px -3px #e2e2e2;
+    -moz-box-shadow: 0 5px 6px -3px #e2e2e2;
+    box-shadow: 0 5px 6px -3px #e2e2e2;
+}
+.panel-footer {
+    padding: 1px 2px;
+    background-color: #fff;
+    border-top: 1px solid #fff;
+}
+.top{
+	font-size:12px;
+}
+@media (max-width: 900px) and (min-width: 620px) {
+  .col-md-offset-4 {
+    margin-left: 25%;
+  }
+  .col-md-4 {
+    width: 50%;
+  }
+}
+@media (max-width: 1000px) and (min-width: 901px) {
+  .col-md-offset-4 {
+    margin-left: 30%;
+  }
+  .col-md-4 {
+    width: 40%;
+  }
+}
+@media (max-width: 619px) and (min-width: 450px) {
+  .col-md-offset-4 {
+    margin-left: 10%;
+  }
+  .col-md-4 {
+    width: 80%;
+  }
+}
+@media(min-width: 16px) {
+  .navbar-nav .open .dropdown-menu {
+    background-color: rgba(1,102,153, 0.8) !important;
+    left: auto;
+    right: 0;
+    position: absolute;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+  }
+  .dropdown-menu>li>a {
+    color: #fff;
+  }
+}
+.knowing{
+  color: #006699;
+}
+.left-menu{
+	background-color:#FAF8F8;
+	border-radius: 6px;
+}
+
+.apanel-body:hover, .apanel-body:focus{
+	background-color: #FBFBFB !important;
+}
+.right{
+	text-align: right !important;
+}
+.a-act{
+	margin-right:10px;
+}
+.tooltip.top .tooltip-inner {
+    background-color:#8F8888;
+    width: 128px;
+}
+.tooltip.top .tooltip-arrow {
+      border-top-color: #8F8888;
+}
+.tooltip.left .tooltip-inner {
+    background-color:#8F8888;
+    width: 128px;
+}
+.tooltip.left .tooltip-arrow {
+      border-top-color: #8F8888;
+}
+.c-black{
+	color:#150B0B;
+}
+.btn-feel{
+	width:120px;
+}
+.f-feel{
+	color: #333;
+}
+.disabled-like {
+  color: #757575;
+}
+.limit-string {
+  white-space: wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 10ch;
+    max-height: 30px;
+}
+.counter-activity {
+  font-size: 11px;
+}
+.p-border{
+	border-top: 1px solid #e8eef1;
+}
+.created_at{
+	font-size: 10px;
+	font-style: italic;
+}
