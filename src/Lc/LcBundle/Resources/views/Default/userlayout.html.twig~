@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>bukuteman</title>
+  <title>PRADISTE</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="">
@@ -48,7 +48,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="{{ path('feeling') }}"><i class="glyphicon glyphicon-user-empty"></i>&nbsp;bukuteman</a>
+          <a class="navbar-brand" href="{{ path('feeling') }}"><i class="glyphicon glyphicon-user-empty"></i>&nbsp;PRADISTE</a>
         </div>
         
         <div id="navbar" class="navbar-collapse collapse">
@@ -117,7 +117,7 @@
 		<div class="row clearfix">
 			<div class="col-md-12 column">
 				<div class="col-md-11">
-					<p class="text-muted credit"><a href="http://bukuteman.com">&copy;&nbsp;bukuteman.com Yogyakarta {{ "now"|date("Y") }}</a>.</p>
+					<p class="text-muted credit"><a href="http://PRADISTE.com">&copy;&nbsp;PRADISTE.com Yogyakarta {{ "now"|date("Y") }}</a>.</p>
 				</div>
 				<div class="col-md-1">
 					<span class="label">

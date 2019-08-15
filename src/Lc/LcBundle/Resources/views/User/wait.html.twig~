@@ -10,8 +10,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
-                        <h1 class="brand-heading">bukuteman</h1>
-                        <p class="intro-text">Terima kasih telah melakukan pendaftaran di bukuteman. Kami sudah mengirim email pengaktifan akun ke alamat email anda, silahkan buka email anda dan aktifkan akun anda.</p>
+                        <h1 class="brand-heading">PRADISTE</h1>
+                        <p class="intro-text">Terima kasih telah melakukan pendaftaran di PRADISTE. Kami sudah mengirim email pengaktifan akun ke alamat email anda, silahkan buka email anda dan aktifkan akun anda.</p>
                         <a href="#login" class="btn btn-circle page-scroll" data-toggle="tooltip" data-placement="top" title="Login">
                             <i class="fa fa-angle-double-down animated"></i>
                         </a>
@@ -26,7 +26,7 @@
         <div class="download-section">
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2">
-                    <h2>Login bukuteman</h2>
+                    <h2>Login PRADISTE</h2>
                     <p>
 						<form role="form" class="login-area">
 							<div class="form-group form-area">
@@ -55,7 +55,7 @@
     <section id="contact" class="container content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h2>Hubungi bukuteman</h2>
+                <h2>Hubungi PRADISTE</h2>
                 <p>Tidak usah sungkan, silahkan hubungi kami untuk menyampaikan saran, atau hanya sekedar ingin menyapa kami!</p>
                 <p><a href="mailto:call.bukuteman@gmail.com">call.bukuteman@gmail.com</a>
                 </p>

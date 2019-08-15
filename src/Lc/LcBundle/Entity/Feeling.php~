@@ -54,14 +54,14 @@ class Feeling
      * @var string
      */
     private $token;
-    
+
     public $file;
 
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -84,7 +84,7 @@ class Feeling
     /**
      * Get feel
      *
-     * @return string 
+     * @return string
      */
     public function getFeel()
     {
@@ -107,7 +107,7 @@ class Feeling
     /**
      * Get liked
      *
-     * @return integer 
+     * @return integer
      */
     public function getLiked()
     {
@@ -130,7 +130,7 @@ class Feeling
     /**
      * Get shared
      *
-     * @return integer 
+     * @return integer
      */
     public function getShared()
     {
@@ -153,7 +153,7 @@ class Feeling
     /**
      * Get commented
      *
-     * @return integer 
+     * @return integer
      */
     public function getCommented()
     {
@@ -176,7 +176,7 @@ class Feeling
     /**
      * Get is_active
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getIsActive()
     {
@@ -199,7 +199,7 @@ class Feeling
     /**
      * Get created_at
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -222,7 +222,7 @@ class Feeling
     /**
      * Get updated_at
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
@@ -245,7 +245,7 @@ class Feeling
     /**
      * Get token
      *
-     * @return string 
+     * @return string
      */
     public function getToken()
     {
@@ -273,7 +273,7 @@ class Feeling
     /**
      * Get user
      *
-     * @return \Lc\LcBundle\Entity\User 
+     * @return \Lc\LcBundle\Entity\User
      */
     public function getUser()
     {
@@ -330,7 +330,7 @@ class Feeling
     /**
      * Get fcomment
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getFcomment()
     {
@@ -363,7 +363,7 @@ class Feeling
     /**
      * Get flike
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getFlike()
     {
@@ -396,7 +396,7 @@ class Feeling
     /**
      * Get fshare
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getFshare()
     {
@@ -451,30 +451,31 @@ class Feeling
     /**
      * Get foto
      *
-     * @return string 
+     * @return string
      */
     public function getFoto()
     {
         return $this->foto;
     }
-public function setFile($file)
-    {
-        $this->file = $file;
 
-        return $this;
-    }
+    public function setFile($file)
+        {
+            $this->file = $file;
+
+            return $this;
+        }
 
     /**
      * Get foto
      *
-     * @return string 
+     * @return string
      */
     public function getFile()
     {
         return $this->file;
     }
-    
-    
+
+
 
     /**
      * @ORM\PrePersist
@@ -483,22 +484,22 @@ public function setFile($file)
 	{
 		return 'uploads/feels';
 	}
-	
+
 	protected function getUploadRootDir()
 	{
 		return __DIR__.'/../../../../web/'.$this->getUploadDir();
 	}
-	
+
 	public function getWebPath()
 	{
 		return null === $this->foto ? null : $this->getUploadDir().'/'.$this->foto;
 	}
-	
+
 	public function getAbsolutePath()
 	{
 		return null === $this->foto ? null : $this->getUploadRootDir().'/'.$this->foto;
 	}
-    
+
 
     /**
      * @ORM\PrePersist
@@ -516,21 +517,24 @@ public function setFile($file)
     public function upload()
     {
         if (null === $this->file){
-			return;
-		} 
-		$this->file->move($this->getUploadRootDir(), $this->foto);
-		
-		Image::open($this->getUploadRootDir().'/'.$this->foto)
-		->scaleResize(470, 250, $background = 0xffffff)
-		->save($this->getUploadRootDir().'/feel_'.$this->foto);
-		
-		$rmfile = $this->getAbsolutePath();
+    			return;
+    		}
+
+    		$this->file->move($this->getUploadRootDir(), $this->foto);
+
+    		Image::open($this->getUploadRootDir().'/'.$this->foto)
+    		->cropResize(1270, 750, $background = 0xffffff)
+    		->save($this->getUploadRootDir().'/feel_'.$this->foto);
+
+    		$rmfile = $this->getAbsolutePath();
+
         if(file_exists($rmfile)) {
-			unlink($rmfile);
-		}
-		
-		unset($this->file);
+    			unlink($rmfile);
+    		}
+
+    		unset($this->file);
     }
+
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
@@ -568,7 +572,7 @@ public function setFile($file)
     /**
      * Get children
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getChildren()
     {
@@ -591,7 +595,7 @@ public function setFile($file)
     /**
      * Get parent
      *
-     * @return \Lc\LcBundle\Entity\Feeling 
+     * @return \Lc\LcBundle\Entity\Feeling
      */
     public function getParent()
     {
