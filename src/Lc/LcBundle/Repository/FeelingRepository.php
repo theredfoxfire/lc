@@ -39,11 +39,13 @@ class FeelingRepository extends EntityRepository
 			LcLcBundle:Feeling f
 			WHERE f.channel = :channel
 			AND f.is_active = :is
+			AND f.user = :uid
 			order by f.created_at DESC'
             )
             ->setParameters(array(
                            'channel' => 'tbk',
                            'is' => 1,
+                           'uid' => $uid,
                             ));
 
         return $query;
