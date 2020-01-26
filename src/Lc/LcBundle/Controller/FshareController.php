@@ -43,7 +43,7 @@ class FshareController extends Controller
         $feeling = $em->getRepository('LcLcBundle:Feeling')->findOneByToken($feel);
         $feelNew->setIsActive(true);
         $feelNew->setUser($this->getUid());
-        $feelNew->setChannel("tbk");
+        $feelNew->setChannel("lcp");
         $feelNew->setFeel($feeling->getFeel());
         $feelNew->setFoto($feeling->getFoto());
         $feelNew->setParent($feeling);

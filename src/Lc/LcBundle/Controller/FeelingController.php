@@ -91,6 +91,10 @@ class FeelingController extends Controller
             $this->get('request')->query->get('page', 1),
             25
         );
+        $others = array();
+        $fall = array();
+        $chat = array();
+        $notify = array();
         if ($this->getUid()) {
             $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
             $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
@@ -127,7 +131,7 @@ class FeelingController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity->setIsActive(true);
-            $entity->setChannel('tbk');
+            $entity->setChannel('lcp');
             $entity->setUser($this->getUid());
             $em->persist($entity);
             $em->flush();
