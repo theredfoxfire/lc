@@ -46,24 +46,15 @@
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
-    
-    
-
-    <!-- Footer -->
-    <footer>
-        <div class="container text-center">
-            <p>Copyright &copy; lucidcouple.com {{ "now"|date("Y") }}</p>
-        </div>
-    </footer>
 
             <script type="text/javascript" src="{{ asset('web/bundles/lclc/js/jquery.easing.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('web/bundles/lclc/js/bootstrap.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('web/bundles/lclc/js/grayscale.js') }}"></script>
-            
+
     <!-- Bootstrap Core JavaScript -->
 
     <!-- Custom Theme JavaScript -->
-    
+
 	<script>
 		$(function(){
 			$('[data-toggle="tooltip"]').tooltip();

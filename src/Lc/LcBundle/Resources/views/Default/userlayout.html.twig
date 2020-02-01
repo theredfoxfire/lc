@@ -1,175 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Lucidcouple</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <link rel="shortcut icon" href="{{ asset('web/lucidcouple-ico.png') }}">
+  <head>
+    <meta charset="utf-8">
+    <title>Lucidcouple</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="{{ asset('web/lucidcouple-ico.png') }}">
 
-	<!--link rel="stylesheet/less" href="less/bootstrap.less" type="text/css" /-->
-	<!--link rel="stylesheet/less" href="less/responsive.less" type="text/css" /-->
-	<!--script src="js/less-1.3.3.min.js"></script-->
-	<!--append ‘#!watch’ to the browser URL, then refresh the page. -->
+    <!--link rel="stylesheet/less" href="less/bootstrap.less" type="text/css" /-->
+    <!--link rel="stylesheet/less" href="less/responsive.less" type="text/css" /-->
+    <!--script src="js/less-1.3.3.min.js"></script-->
+    <!--append ‘#!watch’ to the browser URL, then refresh the page. -->
 
-	<link rel="stylesheet" href="{{ asset('web/bundles/lclc/cssh/bootstrap.min.css') }}" type="text/css" media="all" />
-	<link rel="stylesheet" href="{{ asset('web/bundles/lclc/cssh/style.css') }}" type="text/css" media="all" />
-  <link rel="stylesheet" href="{{ asset('web/bundles/lclc/font-awesome/css/font-awesome.min.css') }}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('web/bundles/lclc/cssh/bootstrap.min.css') }}" type="text/css" media="all"/>
+    <link rel="stylesheet" href="{{ asset('web/bundles/lclc/cssh/style.css') }}" type="text/css" media="all"/>
+    <link rel="stylesheet" href="{{ asset('web/bundles/lclc/font-awesome/css/font-awesome.min.css') }}" type="text/css" media="all"/>
 
-  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-  <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-  <![endif]-->
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]> <script src="js/html5shiv.js"></script> <![endif]-->
 
-  <!-- Fav and touch icons -->
-  <script type="text/javascript" src="{{ asset('web/bundles/lclc/js/jquery-1.10.2.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('web/bundles/lclc/js/jquery-ui.js') }}"></script>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-      google_ad_client: "ca-pub-9755733321184371",
-      enable_page_level_ads: true
-    });
-  </script>
-</head>
+    <!-- Fav and touch icons -->
+    <script type="text/javascript" src="{{ asset('web/bundles/lclc/js/jquery-1.10.2.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('web/bundles/lclc/js/jquery-ui.js') }}"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({google_ad_client: "ca-pub-9755733321184371", enable_page_level_ads: true});
+    </script>
+  </head>
 
-<body>
-<div class="container">
-  <nav class="navbar navbar-default navbar-fixed-top col-md-offset-4 col-md-4" role="navigation">
-    <div class="row">
-      <div class="navbar-header" style="display: flex; align-items: center;justify-content: space-between;">
-        <div>
-          <a class="navbar-brand loader-action" href="{{ path('lc_lc_homepage') }}">
-            <span class="weight">
-              lucidcouple
-            </span>
-          </a>
-        </div>
-        <div style="width: 50%;color: #FFEB3B;">
-            <div class="spinner-handler">
-                <i class="fa fa-snowflake-o fa-spin fa-2x"></i>
+  <body>
+    <div class="container">
+      <nav class="navbar navbar-default navbar-fixed-top col-md-offset-4 col-md-4" role="navigation">
+        <div class="row">
+          <div class="navbar-header" style="display: flex; align-items: center;justify-content: space-between;">
+            <div>
+              <a class="navbar-brand loader-action" href="{{ path('lc_lc_homepage') }}">
+                <span class="weight">
+                  lucidcouple
+                </span>
+              </a>
             </div>
+            <div style="width: 50%;color: #FFEB3B;">
+              <div class="spinner-handler">
+                <i class="fa fa-snowflake-o fa-spin fa-2x"></i>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="row top-menu-container">
-      <ul class="nav navbar-nav">
-        {% if app.user %}
-        <li>
-          <a href="{{ path('feeling') }}" class="loader-action" data-toggle="tooltip" data-placement="top" title="Home">
-            <span class="fa fa-home fa-lg knowing"></span>
-          </a>
-        </li>
-        <li>
-          <a href="{{ path('friend_fall', {'token': app.user.token }) }}" class="loader-action" data-toggle="tooltip" data-placement="top" title="Mau berkenalan">
-            <span class="fa fa-handshake-o fa-lg knowing"></span>{% if fall %}<span class="badge">{{ fall }}</span>{% endif %}
-          </a>
-        </li>
-  			<li>
-          <a href="{{ path('unread_chat') }}" data-toggle="tooltip" class="loader-action" data-placement="top" title="Pesan">
-            <span class="fa fa-envelope-o fa-lg knowing"></span>{% if chat %}<span class="badge">{{ chat }}</span>{% endif %}
-          </a>
-        </li>
-  			<li>
-          <a href="{{ path('notification_show') }}" class="loader-action" data-toggle="tooltip" data-placement="top" title="Pemberitahuan">
-            <span class="fa fa-bell-o fa-lg knowing"></span>{% if notify %}<span class="badge">{{ notify }}</span>{% endif %}
-          </a>
-        </li>
-  			<li>
-          <a href="{{ path('user_others') }}" class="loader-action" data-toggle="tooltip" data-placement="top" title="Cari teman">
-            <span class="fa fa-search fa-lg knowing"></span>
-          </a>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="fa fa-bars fa-lg knowing"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="{{ path('profile_data') }}" class="loader-action">Lihat profilemu</a></li>
-            <!-- <li><a href="{{ path('profile') }}" class="loader-action">Account setting</a></li> -->
-            <li><a href="{{ path('friend_show', {'token': app.user.token}) }}" class="loader-action">Temanmu&nbsp;</a></li>
-						<li><a href="{{ path('chat') }}" class="loader-action">Obrolan</a></li>
-            <li class="divider"></li>
-            <li><a href="{{ path('logout') }}" class="loader-action">Logout</a></li>
+        <div class="row top-menu-container">
+          <ul class="nav navbar-nav">
+            {% if app.user %}
+              <li>
+                <a href="{{ path('feeling') }}" class="loader-action" data-toggle="tooltip" data-placement="top" title="Home">
+                  <span class="fa fa-home fa-lg knowing"></span>
+                </a>
+              </li>
+              <li>
+                <a href="{{ path('friend_fall', {'token': app.user.token }) }}" class="loader-action" data-toggle="tooltip" data-placement="top" title="Mau berkenalan">
+                  <span class="fa fa-handshake-o fa-lg knowing"></span>
+                  {% if fall %}
+                    <span class="badge">{{ fall }}</span>
+                  {% endif %}
+                </a>
+              </li>
+              <li>
+                <a href="{{ path('unread_chat') }}" data-toggle="tooltip" class="loader-action" data-placement="top" title="Pesan">
+                  <span class="fa fa-envelope-o fa-lg knowing"></span>
+                  {% if chat %}
+                    <span class="badge">{{ chat }}</span>
+                  {% endif %}
+                </a>
+              </li>
+              <li>
+                <a href="{{ path('notification_show') }}" class="loader-action" data-toggle="tooltip" data-placement="top" title="Pemberitahuan">
+                  <span class="fa fa-bell-o fa-lg knowing"></span>
+                  {% if notify %}
+                    <span class="badge">{{ notify }}</span>
+                  {% endif %}
+                </a>
+              </li>
+              <li>
+                <a href="{{ path('user_others') }}" class="loader-action" data-toggle="tooltip" data-placement="top" title="Cari teman">
+                  <span class="fa fa-search fa-lg knowing"></span>
+                </a>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                  <span class="fa fa-bars fa-lg knowing"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li>
+                    <a href="{{ path('profile_data') }}" class="loader-action">Lihat profilemu</a>
+                  </li>
+                  <!-- <li><a href="{{ path('profile') }}" class="loader-action">Account setting</a></li> -->
+                  <li>
+                    <a href="{{ path('friend_show', {'token': app.user.token}) }}" class="loader-action">Temanmu&nbsp;</a>
+                  </li>
+                  <li>
+                    <a href="{{ path('chat') }}" class="loader-action">Obrolan</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <a href="{{ path('agreement') }}" class="loader-action">Privacy/Policy</a>
+                  </li>
+                  <li>
+                    <a class="page-scroll" href="{{ path('agreement') }}#contact">Contact Us</a>
+                  </li>
+                  <li>
+                    <a href="{{ path('logout') }}" class="loader-action">Logout</a>
+                  </li>
+                </ul>
+              </li>
+            {% else %}
+              <li>
+                <a href="#" style="color: #019bd7;text-decoration: none;">
+                  Yuk temukan Dia di sini!
+                </a>
+              </li>
+              <li>
+                <a href="{{ path('user_new') }}" style="color: #019bd7;text-decoration: none;" class="loader-action">
+                  DAFTAR
+                </a>
+              </li>
+              <li>
+                <a href="{{ path('login') }}" style="color: #019bd7;text-decoration: none;" class="loader-action">
+                  LOGIN
+                </a>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                  <span class="fa fa-bars fa-lg knowing"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li>
+                    <a href="{{ path('agreement') }}" class="loader-action">Privacy/Policy</a>
+                  </li>
+                  <li>
+                    <a class="page-scroll" href="{{ path('agreement') }}#contact">Contact Us</a>
+                  </li>
+                </ul>
+              </li>
+            {% endif %}
           </ul>
-        </li>
-        {% else %}
-        <li>
-          <a href="#" style="color: #019bd7;text-decoration: none;">
-            Yuk temukan Dia di sini!
-          </a>
-        </li>
-        <li>
-          <a href="{{ path('user_new') }}" style="color: #019bd7;text-decoration: none;" class="loader-action">
-            DAFTAR
-          </a>
-        </li>
-        <li>
-          <a href="{{ path('login') }}" style="color: #019bd7;text-decoration: none;" class="loader-action">
-            LOGIN
-          </a>
-        </li>
-        {% endif %}
-      </ul>
+        </div>
+      </nav>
     </div>
-  </nav>
-</div>
-<div id="wrap">
-<div class="container-fluid">
-	<div class="row clearfix"></div>
-	<div class="col-md-4 col-md-offset-4 space-header"></div>
-	<div class="col-md-4 col-md-offset-4">
-		{%block leftcontent%}
-		{% endblock %}
+    <div id="wrap">
+      <div class="container-fluid">
+        <div class="row clearfix"></div>
+        <div class="col-md-4 col-md-offset-4 space-header"></div>
+        <div class="col-md-4 col-md-offset-4">
+          {%block leftcontent%}{% endblock %}
 
-		{%block content%}
-		{% endblock %}
+          {%block content%}{% endblock %}
 
-    {%block rightcontent%}
-    {% endblock %}
-	</div>
+          {%block rightcontent%}{% endblock %}
+        </div>
 
-</div>
-<div class="centered"></div>
-</div>
-</div>
+      </div>
+      <div class="centered"></div>
+    </div>
+  </div>
 
-<div class="container">
-	<div class="col-md-4 col-md-offset-4 column footer">
-		<div class="row">
-			<div class="col-sm-10">
-				<p class="text-muted"><a href="http://lucidcouple.com/heaven">&copy;&nbsp;lucidcouple.com {{ "now"|date("Y") }}</a></p>
-			</div>
-			<div class="col-sm-2">
-				<!-- <span class="label">
+  <!-- <div class="container">
+    <div class="col-md-4 col-md-offset-4 column footer">
+      <div class="row">
+        <div class="col-sm-10">
+          <p class="text-muted">
+            <a href="http://lucidcouple.com/heaven">&copy;&nbsp;lucidcouple.com
+              {{ "now"|date("Y") }}</a>
+          </p>
+        </div>
+        <div class="col-sm-2"> -->
+          <!-- <span class="label">
 					<a href="#top" class="label label-default gotop" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
 						<b class="top"><i class="glyphicon glyphicon-chevron-up"></i>&nbsp;Ke Atas
 					</a>
 				</span> -->
-			</div>
-		</div>
-  </div>
-</div>
+        <!-- </div>
+      </div>
+    </div>
+  </div> -->
 </body>
 </html>
-            <script type="text/javascript" src="{{ asset('web/bundles/lclc/js/jquery.easing.min.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('web/bundles/lclc/js/bootstrap.min.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('web/bundles/lclc/js/jquery-migrate-1.2.1.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('web/bundles/lclc/js/jquery.easing.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('web/bundles/lclc/js/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('web/bundles/lclc/js/jquery-migrate-1.2.1.min.js') }}"></script>
 
-    <!-- Bootstrap Core JavaScript -->
+<!-- Bootstrap Core JavaScript -->
 
-    <!-- Custom Theme JavaScript -->
-  <script data-ad-client="ca-pub-9755733321184371" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-	<script>
-		$(document).ready(function() {
-      if(window.innerWidth > 800) {
-       $("body").tooltip({ selector: '[data-toggle=tooltip]' });
-      }
-		});
+<!-- Custom Theme JavaScript -->
+<script data-ad-client="ca-pub-9755733321184371" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+$(document).ready(function() {
+  if (window.innerWidth > 800) {
+    $("body").tooltip({selector: '[data-toggle=tooltip]'});
+  }
+});
 
-		setTimeout(function() {
-			$('#message-session').fadeOut('slow');
-		}, 3500);
-    $('.loader-action').on('click', function() {
-        $('.spinner-handler').css('display', 'block');
-    })
-	</script>
+setTimeout(function() {
+  $('#message-session').fadeOut('slow');
+}, 3500);
+$('.loader-action').on('click', function() {
+  $('.spinner-handler').css('display', 'block');
+})
+</script>
