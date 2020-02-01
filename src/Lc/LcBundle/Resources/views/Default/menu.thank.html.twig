@@ -24,13 +24,19 @@
                     <li class="hidden">
                         <a href="{{ path('lc_lc_homepage') }}"></a>
                     </li>
+
                     <li><a href="{{ path('agreement') }}" class="loader-action">Privacy/Policy</a></li>
-                    <li>
-                        <a class="page-scroll loader-action" href="{{ path('user_new') }}">Daftar</a>
-                    </li>
-                    <li>
-						<a class="page-scroll loader-action" href="{{ path('login') }}">Login</a>
-					</li>
+                    {% if app.user %}
+                        <li><a href="{{ path('lc_lc_homepage') }}">Home</a></li>
+                    {% else %}
+                        <li>
+                            <a class="page-scroll loader-action" href="{{ path('user_new') }}">Daftar</a>
+                        </li>
+                        <li>
+    						<a class="page-scroll loader-action" href="{{ path('login') }}">Login</a>
+    					</li>
+                    {% endif %}
+
 					<li>
                         <a class="page-scroll" href="#contact">Contact</a>
                     </li>
