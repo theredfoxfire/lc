@@ -25,16 +25,16 @@
                         <a href="{{ path('lc_lc_homepage') }}"></a>
                     </li>
 
-                    <li><a href="{{ path('agreement') }}" class="loader-action">Privacy/Policy</a></li>
+                    <!-- <li><a href="{{ path('agreement') }}" class="loader-action">Privacy/Policy</a></li> -->
                     {% if app.user %}
                         <li><a href="{{ path('lc_lc_homepage') }}" class="loader-action">Home</a></li>
                     {% else %}
-                        <li>
+                        <!-- <li>
                             <a class="page-scroll loader-action" href="{{ path('user_new') }}">Daftar</a>
                         </li>
                         <li>
     						<a class="page-scroll loader-action" href="{{ path('login') }}">Login</a>
-    					</li>
+    					</li> -->
                     {% endif %}
 
 					<li>
