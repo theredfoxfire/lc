@@ -66,8 +66,8 @@ class UserController extends Controller
 		email section
 		*/
 			$message = \Swift_Message::newInstance()
-                ->setSubject('Aktivasi Akun LUCIDCOUPLE')
-                ->setFrom('member@lucidcouple.com')
+                ->setSubject('Aktivasi Akun PRADISTE')
+                ->setFrom('member@pradiste.com')
                 ->setTo($entity->getEmail())
                 ->setBody(
                     $this->renderView('LcLcBundle:User:email.txt.twig', array('token' => $entity->getToken(), 'email' => $entity->getEmail())))
