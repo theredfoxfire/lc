@@ -114,7 +114,7 @@
                   Yuk Beli baju muslim? di sini aja!
                 </a>
               </li>
-              <li>
+              <!-- <li>
                 <a href="{{ path('user_new') }}" style="color: #069;text-decoration: none;" class="loader-action">
                   DAFTAR
                 </a>
@@ -123,8 +123,14 @@
                 <a href="{{ path('login') }}" style="color: #069;text-decoration: none;" class="loader-action">
                   LOGIN
                 </a>
+              </li> -->
+              <li>
+                <a href="{{ path('agreement') }}" style="color: #069;text-decoration: none;" class="loader-action">Policy</a>
               </li>
-              <li class="dropdown">
+              <li>
+                <a class="loader-action" style="color: #069;text-decoration: none;" href="{{ path('agreement') }}#contact">Contact Us</a>
+              </li>
+              <!-- <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                   <span class="fa fa-bars fa-lg knowing"></span>
                 </a>
@@ -136,7 +142,7 @@
                     <a class="loader-action" href="{{ path('agreement') }}#contact">Contact Us</a>
                   </li>
                 </ul>
-              </li>
+              </li> -->
             {% endif %}
           </ul>
         </div>
