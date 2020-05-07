@@ -51,11 +51,15 @@
 						<div class="row margin-feel" id="{{ entity.token }}">
 							<div class="panel panel-success">
 								{% if entity.foto %}
-								<a href="{{ path('feeling_show', {'token': entity.token }) }}" class="loader-action">
-									<div class="panel-footer panel-image">
+
+									<div class="panel-footer panel-image panel-zoom{{ entity.token }}">
 											<center><img src="{{ asset('web/uploads/feels/feel_') }}{{ entity.foto }}" alt="{{ entity.user.profile.name }}" class="img-responsive img-full"></center>
+											<a href="#zoomin" onclick="showBig('zoom{{ entity.token }}', 'panel-zoom{{ entity.token }}')" style="text-align: center;"> Perbesar gambar</a>
 									</div>
-								</a>
+									<div class="zoom{{ entity.token }}" style="display: none;">
+										<img src="{{ asset('web/uploads/feels/feel_') }}{{ entity.foto }}"  alt="{{ entity.user.profile.name }}" />
+										<a href="#zoomin" onclick="closeBig('zoom{{ entity.token }}', 'panel-zoom{{ entity.token }}')" style="text-align: center;"> Tutup Perbesar gambar</a>
+									</div>
 								{% endif %}
 								<div class="panel-body apanel-body">
 									{% if entity.shared %}
@@ -128,7 +132,7 @@
 												{% endif %}
 											{% endif %}
 										</h5>
-										<a href="{{ path('feeling_show', {'token': entity.token }) }}" class="loader-action">
+										<a href="#">
 											<div class="media-body f-feel" style="margin-top: -20px;">
 												<h5 class="media-right">{{ entity.feel|raw }}</h5>
 												<div class='pull-right created_at'><small class="text-muted"> <i class="glyphicon glyphicon-time"></i> <i>{{ entity.createdAt | date('d-m-Y H:i:s') }}</i></small></div>
@@ -146,12 +150,12 @@
 													{% endif %}
 												</h5>
 											</div>
-											<div class="col-sm-8" style="display: flex; flex-direction: row; justify-content: space-between;">
+											<div class="col-sm-8" style="display: flex; flex-direction: row; justify-content: flex-end;">
 												<h5 class="media-right pull-right">
-													<span class="counter-activity">{{ entity.fcomment|length > 0 ? entity.fcomment|length|number_format(0, ',', ' ') : '' }}</span>
-													<a class="a-act loader-action" href="{{ path('feeling_show', {'token': entity.token }) }}#comments" data-toggle="tooltip" data-placement="left" title="Tulis balasan"><i class="glyphicon glyphicon-comment"></i></a>
+													<!-- <span class="counter-activity">{{ entity.fcomment|length > 0 ? entity.fcomment|length|number_format(0, ',', ' ') : '' }}</span> -->
+													<a class="a-act loader-action" href="#" data-toggle="tooltip" data-placement="left"><i class="glyphicon glyphicon-tag"></i> ORDER</a>
 												</h5>
-												<h5 class="media-right pull-right">
+												<!-- <h5 class="media-right pull-right">
 													<span class="counter-activity">{{ entity.fshare|length > 0 ? entity.fshare|length|number_format(0, ',', ' ') : '' }}</span>
 													<a class="a-act loader-action" href="{{ path('fshare_create', {'feel': entity.token, 'page': '2' }) }}?page={{ page }}" data-toggle="tooltip" data-placement="left" title="Re-Post"><i class="glyphicon glyphicon-retweet"></i></a>
 												</h5>
@@ -169,7 +173,7 @@
 													<span class="counter-activity">{{ entity.flike|length > 0 ? entity.flike|length|number_format(0, ',', ' ') : '' }}</span>
 													<i class="glyphicon glyphicon-thumbs-up disabled-like a-act"></i>
 													{% endif %}
-												</h5>
+												</h5> -->
 											</div>
 										</div>
 									</div>
@@ -213,6 +217,14 @@ function checkLength(){
         alert("Postingan tidak boleh melibihi 850 karater.");
 				return false;
     }
+}
+function showBig(targetClass, panel) {
+		$('.'+targetClass).css('display', 'block');
+		$('.'+panel).css('display', 'none');
+}
+function closeBig(targetClass, panel) {
+		$('.'+targetClass).css('display', 'none');
+		$('.'+panel).css('display', 'block');
 }
 $('.loader-action').on('click', function() {
         $('.spinner-handler').css('display', 'block');

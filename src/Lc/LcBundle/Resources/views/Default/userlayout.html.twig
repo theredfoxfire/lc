@@ -28,7 +28,7 @@
   <body>
     <div class="container">
       <nav class="navbar navbar-default navbar-fixed-top col-md-offset-4 col-md-4" role="navigation">
-        <div class="row">
+        <!-- <div class="row">
           <div class="navbar-header" style="display: flex; align-items: center;justify-content: space-between;">
             <div>
               <a class="navbar-brand loader-action" href="{{ path('lc_lc_homepage') }}">
@@ -43,9 +43,25 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="row top-menu-container">
-          <ul class="nav navbar-nav">
+            <div>
+              <a class="navbar-brand loader-action" href="{{ path('lc_lc_homepage') }}">
+                <span class="weight" style="color: #069;">
+                  Pradiste
+                </span>
+              </a>
+            </div>
+            <div style="width: 13%;color: #069;padding-top: 12px;">
+              <div class="spinner-handler">
+                <i class="fa fa-snowflake-o fa-spin fa-2x"></i>
+              </div>
+            </div>
+            <div style="width: 37%;padding-top: 16px;">
+              <a class="loader-action" style="color: #069;text-decoration: none;" href="{{ path('agreement') }}#contact">Contact Us | </a>
+              <a href="{{ path('agreement') }}" style="color: #069;text-decoration: none;" class="loader-action">Policy</a>
+            </div>
+          <!-- <ul class="nav navbar-nav">
             {% if app.user %}
               <li>
                 <a href="{{ path('feeling') }}" class="loader-action" data-toggle="tooltip" data-placement="top" title="Home">
@@ -88,9 +104,9 @@
                 <ul class="dropdown-menu" role="menu">
                   <li>
                     <a href="{{ path('profile_data') }}" class="loader-action">Lihat profilemu</a>
-                  </li>
+                  </li> -->
                   <!-- <li><a href="{{ path('profile') }}" class="loader-action">Account setting</a></li> -->
-                  <li>
+                  <!-- <li>
                     <a href="{{ path('friend_show', {'token': app.user.token}) }}" class="loader-action">Temanmu&nbsp;</a>
                   </li>
                   <li>
@@ -107,13 +123,8 @@
                     <a href="{{ path('logout') }}" class="loader-action">Logout</a>
                   </li>
                 </ul>
-              </li>
+              </li> -->
             {% else %}
-              <li>
-                <a href="#" style="color: #069;text-decoration: none;">
-                  Beli baju muslim? di sini aja!
-                </a>
-              </li>
               <!-- <li>
                 <a href="{{ path('user_new') }}" style="color: #069;text-decoration: none;" class="loader-action">
                   DAFTAR
@@ -124,12 +135,6 @@
                   LOGIN
                 </a>
               </li> -->
-              <li>
-                <a href="{{ path('agreement') }}" style="color: #069;text-decoration: none;" class="loader-action">Policy</a>
-              </li>
-              <li>
-                <a class="loader-action" style="color: #069;text-decoration: none;" href="{{ path('agreement') }}#contact">Contact Us</a>
-              </li>
               <!-- <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                   <span class="fa fa-bars fa-lg knowing"></span>
