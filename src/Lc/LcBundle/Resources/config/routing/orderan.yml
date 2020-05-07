@@ -1,0 +1,30 @@
+orderan:
+    path:     /
+    defaults: { _controller: "LcLcBundle:Orderan:index" }
+
+orderan_show:
+    path:     /{id}/show
+    defaults: { _controller: "LcLcBundle:Orderan:show" }
+
+orderan_new:
+    path:     /new
+    defaults: { _controller: "LcLcBundle:Orderan:new" }
+
+orderan_create:
+    path:     /create
+    defaults: { _controller: "LcLcBundle:Orderan:create" }
+    requirements: { _method: post }
+
+orderan_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "LcLcBundle:Orderan:edit" }
+
+orderan_update:
+    path:     /{id}/update
+    defaults: { _controller: "LcLcBundle:Orderan:update" }
+    requirements: { _method: post|put }
+
+orderan_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "LcLcBundle:Orderan:delete" }
+    requirements: { _method: post|delete }

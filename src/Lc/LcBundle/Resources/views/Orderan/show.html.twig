@@ -1,0 +1,72 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Orderan</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{{ entity.createdat|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Updated_at</th>
+                <td>{{ entity.updatedat|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ entity.status }}</td>
+            </tr>
+            <tr>
+                <th>Token</th>
+                <td>{{ entity.token }}</td>
+            </tr>
+            <tr>
+                <th>Note</th>
+                <td>{{ entity.note }}</td>
+            </tr>
+            <tr>
+                <th>Product</th>
+                <td>{{ entity.product }}</td>
+            </tr>
+            <tr>
+                <th>Phone_wa</th>
+                <td>{{ entity.phonewa }}</td>
+            </tr>
+            <tr>
+                <th>Delivery_date</th>
+                <td>{{ entity.deliverydate }}</td>
+            </tr>
+            <tr>
+                <th>Order_status</th>
+                <td>{{ entity.orderstatus }}</td>
+            </tr>
+            <tr>
+                <th>Payment_status</th>
+                <td>{{ entity.paymentstatus }}</td>
+            </tr>
+            <tr>
+                <th>Payment_dp</th>
+                <td>{{ entity.paymentdp }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('orderan') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('orderan_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

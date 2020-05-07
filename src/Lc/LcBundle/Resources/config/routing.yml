@@ -114,3 +114,6 @@ forgot:
 agreement:
     pattern:   /agreement
     defaults:  { _controller: LcLcBundle:Default:agreement }
+LcLcBundle_orderan:
+    resource: "@LcLcBundle/Resources/config/routing/orderan.yml"
+    prefix:   /orderan

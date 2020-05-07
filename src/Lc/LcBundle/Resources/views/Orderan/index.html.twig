@@ -1,0 +1,61 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Orderan list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Created_at</th>
+                <th>Updated_at</th>
+                <th>Status</th>
+                <th>Token</th>
+                <th>Note</th>
+                <th>Product</th>
+                <th>Phone_wa</th>
+                <th>Delivery_date</th>
+                <th>Order_status</th>
+                <th>Payment_status</th>
+                <th>Payment_dp</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('orderan_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{% if entity.createdat %}{{ entity.createdat|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.updatedat %}{{ entity.updatedat|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.status }}</td>
+                <td>{{ entity.token }}</td>
+                <td>{{ entity.note }}</td>
+                <td>{{ entity.product }}</td>
+                <td>{{ entity.phonewa }}</td>
+                <td>{{ entity.deliverydate }}</td>
+                <td>{{ entity.orderstatus }}</td>
+                <td>{{ entity.paymentstatus }}</td>
+                <td>{{ entity.paymentdp }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('orderan_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('orderan_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('orderan_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}
