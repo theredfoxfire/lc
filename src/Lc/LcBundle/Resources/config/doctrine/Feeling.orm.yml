@@ -50,6 +50,9 @@ Lc\LcBundle\Entity\Feeling:
   fshare:
    targetEntity: Fshare
    mappedBy: feeling
+  orderan:
+   targetEntity: Orderan
+   mappedBy: feeling
  manyToOne:
   parent:
    targetEntity: Feeling

@@ -1,0 +1,49 @@
+Lc\LcBundle\Entity\Orderan:
+ type: entity
+ repositoryClass: Lc\LcBundle\Repository\OrderanRepository
+ table: orderan
+ id:
+  id:
+   type: integer
+   generator: { strategy: AUTO }
+ fields:
+  created_at:
+   type: datetime
+  updated_at:
+   type: datetime
+   nullable: true
+  status:
+   type: boolean
+  token:
+   type: string
+   length: 255
+   unique: true
+  note:
+   type: text
+  product:
+   type: text
+  phone_wa:
+   type: string
+   length: 255
+  delivery_date:
+   type: string
+   length: 255
+  order_status:
+   type: string
+   length: 255
+  payment_status:
+   type: string
+   length: 255
+  payment_dp:
+   type: string
+   length: 255
+ manyToOne:
+  feeling:
+   targetEntity: Feeling
+   inversedBy: orderan
+   joinColumn:
+    name: feeling_id
+    referencedColumnName: id
+ lifecycleCallbacks:
+  prePersist: [ setCreatedAtValue, setTokenValue ]
+  preUpdate: [ setUpdatedAtValue ]

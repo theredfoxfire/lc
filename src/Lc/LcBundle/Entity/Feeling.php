@@ -629,4 +629,42 @@ class Feeling
     {
         return $this->channel;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $orderan;
+
+
+    /**
+     * Add orderan
+     *
+     * @param \Lc\LcBundle\Entity\Orderan $orderan
+     * @return Feeling
+     */
+    public function addOrderan(\Lc\LcBundle\Entity\Orderan $orderan)
+    {
+        $this->orderan[] = $orderan;
+
+        return $this;
+    }
+
+    /**
+     * Remove orderan
+     *
+     * @param \Lc\LcBundle\Entity\Orderan $orderan
+     */
+    public function removeOrderan(\Lc\LcBundle\Entity\Orderan $orderan)
+    {
+        $this->orderan->removeElement($orderan);
+    }
+
+    /**
+     * Get orderan
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getOrderan()
+    {
+        return $this->orderan;
+    }
 }
