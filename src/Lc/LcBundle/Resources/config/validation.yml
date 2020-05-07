@@ -46,6 +46,17 @@ Lc\LcBundle\Entity\Feeling:
    - Length:
       max: 850
       maxMessage: 'Postingan mu melibihi batas maksimal jumlah karater, maksimal {{ limit }} karater.'
+Lc\LcBundle\Entity\Orderan:
+ properties:
+  address:
+   - NotBlank:
+      message: 'Alamat tidak boleh kosong.'
+  delivery_date:
+   - NotBlank:
+      message: 'Tanggal pengiriman tidak boleh kosong.'
+  phone_wa:
+   - NotBlank:
+      message: 'Nomor WhatsApp tidak boleh kosong.'
 Lc\LcBundle\Entity\Profile:
  properties:
   name:

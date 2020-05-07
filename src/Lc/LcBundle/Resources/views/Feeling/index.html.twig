@@ -153,7 +153,7 @@
 											<div class="col-sm-8" style="display: flex; flex-direction: row; justify-content: flex-end;">
 												<h5 class="media-right pull-right">
 													<!-- <span class="counter-activity">{{ entity.fcomment|length > 0 ? entity.fcomment|length|number_format(0, ',', ' ') : '' }}</span> -->
-													<a class="a-act loader-action" href="#" data-toggle="tooltip" data-placement="left"><i class="glyphicon glyphicon-tag"></i> ORDER</a>
+													<a class="a-act loader-action" href="{{ path('orderan_new', {'token': entity.token }) }}" data-toggle="tooltip" data-placement="left"><i class="glyphicon glyphicon-tag"></i> ORDER</a>
 												</h5>
 												<!-- <h5 class="media-right pull-right">
 													<span class="counter-activity">{{ entity.fshare|length > 0 ? entity.fshare|length|number_format(0, ',', ' ') : '' }}</span>
@@ -208,7 +208,7 @@ function checkLength(){
 			alert('Tuliskan sesuatu, sebelum posting.');
 			return false;
 		}
-    else if(textbox.value.length <= 8500){
+    else if(textbox.value.length <= 85000){
 			$('.spinner-handler').css('display', 'block');
 			$('.btn').addClass('disabled');
 			return true;

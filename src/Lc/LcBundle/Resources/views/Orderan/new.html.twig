@@ -1,15 +1,119 @@
-{% extends '::base.html.twig' %}
-
-{% block body -%}
-    <h1>Orderan creation</h1>
-
-    {{ form(form) }}
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('orderan') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+{% extends 'LcLcBundle:Default:userlayout.html.twig' %}
+{%block leftcontent%}
+	{{ include ('LcLcBundle:Default:userleftbar.html.twig') }}
+{% endblock %}
+{% block content%}
+    <h3>Buat Orderan</h3>
+    <div class="panel panel-success">
+        {% if entity.foto %}
+        <div class="panel-footer panel-image">
+                <center><img src="{{ asset('web/uploads/feels/feel_') }}{{ entity.foto }}" alt="{{ entity.user.profile.name }}" class="img-responsive img-full"></center>
+        </div>
+        {% endif %}
+        <div class="panel-body">
+            {% if entity.shared %}
+                {% if entity.user.broad != 1 %}
+                    <a class="share-link loader-action" href="{{ path('profile_see', {'token': entity.user.token }) }}">
+                        <i class="glyphicon glyphicon-retweet"></i> {{ entity.user.profile.name }}
+                        {% if entity.user.isverified == 1 %}
+                            <i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
+                        {% endif %}
+                        repost
+                    </a>
+                {% else %}
+                    <div class="share-link">
+                        <i class="glyphicon glyphicon-retweet"></i> {{ entity.user.profile.name }}
+                        {% if entity.user.isverified == 1 %}
+                            <i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
+                        {% endif %}
+                        repost
+                    </div>
+                {% endif %}
+            {% endif %}
+            <div class="media">
+                <div class="media-left pull-left">
+                {% if entity.shared %}
+                    {% if entity.parent.user.broad != 1 %}
+                        <a href="{{ path('profile_see', {'token': entity.parent.user.token }) }}" class="loader-action">
+                            <img class="img-mini" src="{{ asset('web/uploads/users/mini_') }}{{ entity.parent.user.foto }}" alt="{{ entity.parent.user.profile.name }}">
+                        </a>
+                    {% else %}
+                        <img class="img-mini" src="{{ asset('web/uploads/users/mini_') }}{{ entity.parent.user.foto }}" alt="{{ entity.parent.user.profile.name }}">
+                    {% endif %}
+                {% else %}
+                    {% if entity.user.broad != 1 %}
+                        <a href="{{ path('profile_see', {'token': entity.user.token }) }}" class="loader-action">
+                            <img class="img-mini" src="{{ asset('web/uploads/users/mini_') }}{{ entity.user.foto }}" alt="{{ entity.user.profile.name }}">
+                        </a>
+                    {% else %}
+                        <img class="img-mini" src="{{ asset('web/uploads/users/mini_') }}{{ entity.user.foto }}" alt="{{ entity.user.profile.name }}">
+                    {% endif %}
+                {% endif %}
+                </div>
+                <div class="media-body">
+                    <h5>
+                        {% if entity.shared %}
+                            {% if entity.parent.user.broad != 1 %}
+                                <a href="{{ path('profile_see', {'token': entity.parent.user.token }) }}" class="loader-action">
+                                    {{ entity.parent.user.profile.name }}
+                                    {% if entity.parent.user.isverified == 1 %}
+                                        <i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
+                                    {% endif %}
+                                </a>
+                            {% else %}
+                                {{ entity.parent.user.profile.name }}
+                                {% if entity.parent.user.isverified == 1 %}
+                                    <i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
+                                {% endif %}
+                            {% endif %}
+                        {% else %}
+                            {% if entity.user.broad != 1 %}
+                                <a href="{{ path('profile_see', {'token': entity.user.token }) }}" class="loader-action">
+                                    {{ entity.user.profile.name }}
+                                    {% if entity.user.isverified == 1 %}
+                                        <i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
+                                    {% endif %}
+                                </a>
+                            {% else %}
+                            {{ entity.user.profile.name }}
+                                {% if entity.user.isverified == 1 %}
+                                    <i style="color: #00838F;"><i class="glyphicon glyphicon-ok-circle"></i></i>
+                                {% endif %}
+                            {% endif %}
+                        {% endif %}
+                    </h5>
+                    <h5 class="media-right" style="margin-top: -10px;">{{ entity.feel|raw }}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ form_start(form) }}
+        <h5>Alamat Lengkap:</h5>
+        <div class="form-group">
+        {{ form_widget(form.address) }}
+        </div>
+        {{ form_errors(form.address) }}
+        <h5>Nomor WhatsApp:</h5>
+        <div class="form-group">
+        {{ form_widget(form.phone_wa) }}
+        </div>
+        {{ form_errors(form.phone_wa) }}
+        <h5>Tanggal Pengiriman yang diharapkan:</h5>
+        <div class="form-group">
+        {{ form_widget(form.delivery_date) }}
+        </div>
+        {{ form_errors(form.delivery_date) }}
+        <h5>Catatan tambahan:</h5>
+        <div class="form-group">
+        {{ form_widget(form.note) }}
+        </div>
+        {{ form_errors(form.note) }}
+        <div class="form-group right">
+            <button type="submit" id="btn-feel-new" class="btn btn-primary btn-feel"><i class="glyphicon glyphicon-send"></i> &nbsp;ORDER</button>
+        </div>
+    {{ form_row(form._token) }}
+    {{ form_end(form) }}
+{% endblock %}
+{%block rightcontent%}
+	{{ include ('LcLcBundle:Default:userrightbar.html.twig') }}
 {% endblock %}

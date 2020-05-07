@@ -15,13 +15,10 @@ class OrderanType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('note')
-            ->add('product')
-            ->add('phone_wa')
-            ->add('delivery_date')
-            ->add('order_status')
-            ->add('payment_status')
-            ->add('payment_dp')
+            ->add('note', 'textarea', array('attr' => array('class' => 'form-control', 'required' => true, 'placeholder'=>'Catatan tambahan')))
+            ->add('address', 'textarea', array('attr' => array('class' => 'form-control', 'required' => true, 'placeholder'=>'Alamat pengiriman lengkap')))
+            ->add('phone_wa', 'text', array('attr' => array('class' => 'form-control', 'required' => true, 'placeholder'=>'Nomor WhatsApp')))
+            ->add('delivery_date', 'text', array('attr' => array('class' => 'date-order form-control', 'required' => true, 'readonly'=>true)))
         ;
     }
 

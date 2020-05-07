@@ -22,6 +22,8 @@ Lc\LcBundle\Entity\Orderan:
    type: text
   product:
    type: text
+  address:
+   type: text
   phone_wa:
    type: string
    length: 255

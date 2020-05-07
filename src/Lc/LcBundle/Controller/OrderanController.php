@@ -33,23 +33,40 @@ class OrderanController extends Controller
      * Creates a new Orderan entity.
      *
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, $token)
     {
+        $em = $this->getDoctrine()->getManager();
+        $feeling = $em->getRepository('LcLcBundle:Feeling')->findOneByToken($token);
+        $c = $em->getRepository('LcLcBundle:Feeling')->countUserFeeling();
+        if (!$feeling) {
+            throw $this->createNotFoundException('Unable to find Feeling entity.');
+        }
         $entity = new Orderan();
-        $form = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity, $token);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            $entity->setStatus(1);
+            $entity->setProduct($feeling->getFeel());
+            $entity->setOrderStatus(0);
+            $entity->setPaymentStatus(0);
+            $entity->setPaymentDp(0);
+            $entity->setFeeling($feeling);
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('orderan_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('orderan_show', array('id' => $entity->getToken())));
         }
 
         return $this->render('LcLcBundle:Orderan:new.html.twig', array(
-            'entity' => $entity,
+            'entity' => $feeling,
+            'others' => array(),
             'form'   => $form->createView(),
+            'fall' => array(),
+            'chat' => array(),
+            'notify' => array(),
+            'page' => $_GET['page'] ?? 1,
+            'c' => $c,
         ));
     }
 
@@ -60,14 +77,12 @@ class OrderanController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Orderan $entity)
+    private function createCreateForm(Orderan $entity, $token)
     {
         $form = $this->createForm(new OrderanType(), $entity, array(
-            'action' => $this->generateUrl('orderan_create'),
+            'action' => $this->generateUrl('orderan_create', array('token' => $token)),
             'method' => 'POST',
         ));
-
-        $form->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
     }
@@ -76,14 +91,26 @@ class OrderanController extends Controller
      * Displays a form to create a new Orderan entity.
      *
      */
-    public function newAction()
+    public function newAction($token)
     {
         $entity = new Orderan();
-        $form   = $this->createCreateForm($entity);
+        $em = $this->getDoctrine()->getManager();
+        $form   = $this->createCreateForm($entity, $token);
+        $c = $em->getRepository('LcLcBundle:Feeling')->countUserFeeling();
+        $feeling = $em->getRepository('LcLcBundle:Feeling')->findOneByToken($token);
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Feeling entity.');
+        }
 
         return $this->render('LcLcBundle:Orderan:new.html.twig', array(
-            'entity' => $entity,
+            'entity' => $feeling,
+            'others' => array(),
             'form'   => $form->createView(),
+            'fall' => array(),
+            'chat' => array(),
+            'notify' => array(),
+            'page' => $_GET['page'] ?? 1,
+            'c' => $c,
         ));
     }
 
@@ -95,7 +122,8 @@ class OrderanController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('LcLcBundle:Orderan')->find($id);
+        $entity = $em->getRepository('LcLcBundle:Orderan')->findOneByToken($id);
+        $c = $em->getRepository('LcLcBundle:Feeling')->countUserFeeling();
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Orderan entity.');
@@ -105,6 +133,12 @@ class OrderanController extends Controller
 
         return $this->render('LcLcBundle:Orderan:show.html.twig', array(
             'entity'      => $entity,
+            'others' => array(),
+            'fall' => array(),
+            'chat' => array(),
+            'notify' => array(),
+            'page' => $_GET['page'] ?? 1,
+            'c' => $c,
             'delete_form' => $deleteForm->createView(),
         ));
     }

@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{ asset('web/bundles/lclc/cssh/bootstrap.min.css') }}" type="text/css" media="all"/>
     <link rel="stylesheet" href="{{ asset('web/bundles/lclc/cssh/style.css') }}" type="text/css" media="all"/>
     <link rel="stylesheet" href="{{ asset('web/bundles/lclc/font-awesome/css/font-awesome.min.css') }}" type="text/css" media="all"/>
+    <link rel="stylesheet" href="{{ asset('web/bundles/lclc/css/jquery-ui.css') }}" type="text/css" media="all" />
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]> <script src="js/html5shiv.js"></script> <![endif]-->
@@ -194,6 +195,7 @@
 <script type="text/javascript" src="{{ asset('web/bundles/lclc/js/jquery.easing.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('web/bundles/lclc/js/bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('web/bundles/lclc/js/jquery-migrate-1.2.1.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('web/bundles/lclc/js/jquery-ui.js') }}"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script>
@@ -201,6 +203,14 @@ $(document).ready(function() {
   if (window.innerWidth > 800) {
     $("body").tooltip({selector: '[data-toggle=tooltip]'});
   }
+});
+$(function() {
+$( ".date-order" ).datepicker({
+  changeMonth: true,
+  changeYear: true,
+  yearRange: "-0:+1",
+  dateFormat:'yy-mm-dd',
+});
 });
 
 setTimeout(function() {

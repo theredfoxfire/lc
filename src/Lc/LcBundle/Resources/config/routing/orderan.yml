@@ -7,11 +7,11 @@ orderan_show:
     defaults: { _controller: "LcLcBundle:Orderan:show" }
 
 orderan_new:
-    path:     /new
+    path:     /{token}/new
     defaults: { _controller: "LcLcBundle:Orderan:new" }
 
 orderan_create:
-    path:     /create
+    path:     /{token}/create
     defaults: { _controller: "LcLcBundle:Orderan:create" }
     requirements: { _method: post }
 
