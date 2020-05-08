@@ -6,9 +6,14 @@
     <h3>Buat Orderan</h3>
     <div class="panel panel-success">
         {% if entity.foto %}
-        <div class="panel-footer panel-image">
-                <center><img src="{{ asset('web/uploads/feels/feel_') }}{{ entity.foto }}" alt="{{ entity.user.profile.name }}" class="img-responsive img-full"></center>
-        </div>
+				<div class="panel-footer panel-image panel-zoom{{ entity.token }}">
+						<center><img src="{{ asset('web/uploads/feels/feel_') }}{{ entity.foto }}" alt="{{ entity.user.profile.name }}" class="img-responsive img-full"></center>
+						<a href="#zoomin" onclick="showBig('zoom{{ entity.token }}', 'panel-zoom{{ entity.token }}')" style="text-align: center;"> Perbesar gambar</a>
+				</div>
+				<div class="zoom{{ entity.token }}" style="display: none;">
+					<img src="{{ asset('web/uploads/feels/feel_') }}{{ entity.foto }}"  alt="{{ entity.user.profile.name }}" />
+					<a href="#zoomin" onclick="closeBig('zoom{{ entity.token }}', 'panel-zoom{{ entity.token }}')" style="text-align: center;"> Tutup Perbesar gambar</a>
+				</div>
         {% endif %}
         <div class="panel-body">
             {% if entity.shared %}
@@ -93,7 +98,7 @@
         {{ form_widget(form.delivery_name) }}
         </div>
 		{{ form_errors(form.delivery_name) }}
-        <h5>Alamat Lengkap (RT/RW, Kelurahan, Kecamatan, Kabupaten/Kota, Provinsi):</h5>
+        <h5>Alamat Pengiriman Lengkap (RT/RW, Kelurahan, Kecamatan, Kabupaten/Kota, Provinsi):</h5>
         <div class="form-group">
         {{ form_widget(form.address) }}
         </div>
@@ -118,6 +123,16 @@
         </div>
     {{ form_row(form._token) }}
     {{ form_end(form) }}
+<script>
+function showBig(targetClass, panel) {
+		$('.'+targetClass).css('display', 'block');
+		$('.'+panel).css('display', 'none');
+}
+function closeBig(targetClass, panel) {
+		$('.'+targetClass).css('display', 'none');
+		$('.'+panel).css('display', 'block');
+}
+</script>
 {% endblock %}
 {%block rightcontent%}
 	{{ include ('LcLcBundle:Default:userrightbar.html.twig') }}
