@@ -62,7 +62,8 @@ function isMobile() {
 };
 function sendWhatsapp() {
 	if (isMobile()) {
-		window.location.href = "whatsapp://send?phone=6281339878810&text=Hallo%20Pradiste";
+		window.location.href = "https://api.whatsapp.com/send?phone=6281339878810&text=Hallo%20Pradiste";
+		// window.location.href = "whatsapp://send?phone=6281339878810&text=Hallo%20Pradiste";
 	} else {
 		window.open("https://api.whatsapp.com/send?phone=6281339878810&text=Hallo%20Pradiste");
 	}

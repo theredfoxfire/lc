@@ -46,6 +46,22 @@ class OrderanController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            $deliveryDate = date_create_from_format('Y-m-d', $entity->getDeliveryDate());
+            $phoneWa = substr_replace($entity->getPhoneWa(), "62", 0, 1);
+            $apiToken = $this->container->getParameter('telegram_bot');
+            $textMessage = "Hello mimin Pradiste, ada orderan baru melalui PradisteApp dari kak: ".$entity->getDeliveryName();
+            $textMessage .= "\nKirimi dia chat WhatsApp dengan klik link ini https://api.whatsapp.com/send?phone=".$phoneWa.'&text=Hai%20kak%20'.$entity->getDeliveryName();
+            $textMessage .= "\n \nDetail Pesanan:";
+            $textMessage .= "\nProduct: ".strip_tags($feeling->getFeel());
+            $textMessage .= "\n \nAlamat Pengiriman: ".$entity->getAddress();
+            $textMessage .= "\n \nTanggal Pengiriman: ".date_format($deliveryDate, 'd-m-Y');
+            $textMessage .= "\n \nCatatan tambahan: ".$entity->getNote();
+            $data = [
+                'chat_id' => '@Pradiste',
+                'text' => $textMessage,
+            ];
+
+            $response = file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data) );
             $entity->setStatus(1);
             $entity->setProduct($feeling->getFeel());
             $entity->setOrderStatus(0);
