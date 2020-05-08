@@ -18,6 +18,7 @@ class OrderanType extends AbstractType
             ->add('note', 'textarea', array('attr' => array('class' => 'form-control', 'required' => true, 'placeholder'=>'Catatan tambahan')))
             ->add('address', 'textarea', array('attr' => array('class' => 'form-control', 'required' => true, 'placeholder'=>'Alamat pengiriman lengkap')))
             ->add('phone_wa', 'text', array('attr' => array('class' => 'form-control', 'required' => true, 'placeholder'=>'Nomor WhatsApp')))
+            ->add('delivery_name', 'text', array('attr' => array('class' => 'form-control', 'required' => true, 'placeholder'=>'Nama Lengkap')))
             ->add('delivery_date', 'text', array('attr' => array('class' => 'date-order form-control', 'required' => true, 'readonly'=>true)))
         ;
     }

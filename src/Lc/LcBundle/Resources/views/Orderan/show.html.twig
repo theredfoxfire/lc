@@ -6,30 +6,47 @@
     <h3>Orderan Berhasil Dibuat</h3>
     <div class="panel panel-success">
         <div class="panel-body">
-    <table class="record_properties">
-        <tbody>
-
-            <tr>
-                <th>Catatan</th>
-                <td>{{ entity.note }}</td>
-            </tr>
-            <tr>
-                <th>Product</th>
-                <td>{{ entity.product|raw }}</td>
-            </tr>
-            <tr>
-                <th>Nomor W/A</th>
-                <td>{{ entity.phonewa }}</td>
-            </tr>
-            <tr>
-                <th>Tanggal Pengiriman</th>
-                <td>{{ entity.deliverydate }}</td>
-            </tr>
-        </tbody>
-    </table><br/>
-    Untuk selanjutnya admin kami menghubungi Anda melalui WhatsApp.
-    Jika ada pertanyaan silahkan hubungi Admin kami untuk dengan mengklik link ini.
-    <a target="_blank" href="https://api.whatsapp.com/send?phone=6281339878810&text=Hallo..">Halo Pradiste</a>
+					<div class="row">
+					<label class="col-sm-5 control-label" for="formGroupInputSmall"><h5>Nama</h5></label>
+						<div class="col-sm-7">
+							<h5>{{ entity.deliveryname }}</h5>
+						</div>
+					</div>
+					<div class="row">
+						<label class="col-sm-5 control-label" for="formGroupInputSmall"><h5>Alamat Pengiriman</h5></label>
+						<div class="col-sm-7">
+							<h5>{{ entity.address }}</h5>
+						</div>
+					</div>
+					<div class="row">
+						<label class="col-sm-5 control-label" for="formGroupInputSmall"><h5>Catatan</h5></label>
+						<div class="col-sm-7">
+							<h5>{{ entity.note }}</h5>
+						</div>
+					</div>
+					<div class="row">
+						<label class="col-sm-5 control-label" for="formGroupInputSmall"><h5>Product</h5></label>
+						<div class="col-sm-7">
+							<h5>{{ entity.product|raw }}</h5>
+						</div>
+					</div>
+					<div class="row">
+						<label class="col-sm-5 control-label" for="formGroupInputSmall"><h5>Nomor W/A</h5></label>
+						<div class="col-sm-7">
+							<h5>{{ entity.phonewa }}</h5>
+						</div>
+					</div>
+					<div class="row">
+						<label class="col-sm-5 control-label" for="formGroupInputSmall"><h5>Tanggal Pengiriman</h5></label>
+						<div class="col-sm-7">
+							<h5>{{ entity.deliverydate }}</h5>
+						</div>
+					</div>
+					<div class="row" style="padding: 12px;">
+						Untuk selanjutnya admin kami menghubungi Anda melalui WhatsApp.
+				    Jika ada pertanyaan silahkan hubungi Admin kami, dengan mengklik link ini:
+				    <a href="https://api.whatsapp.com/send?phone=6281339878810&text=Hallo%20Pradiste" data-action="share/whatsapp/share">Halo Pradiste</a>
+					</div>
 </div>
 </div>
 {% endblock %}

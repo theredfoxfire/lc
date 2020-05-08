@@ -88,7 +88,12 @@
         </div>
     </div>
     {{ form_start(form) }}
-        <h5>Alamat Lengkap:</h5>
+        <h5>Name Lengkap:</h5>
+        <div class="form-group">
+        {{ form_widget(form.delivery_name) }}
+        </div>
+		{{ form_errors(form.delivery_name) }}
+        <h5>Alamat Lengkap (RT/RW, Kelurahan, Kecamatan, Kabupaten/Kota, Provinsi):</h5>
         <div class="form-group">
         {{ form_widget(form.address) }}
         </div>

@@ -27,6 +27,9 @@ Lc\LcBundle\Entity\Orderan:
   phone_wa:
    type: string
    length: 255
+  delivery_name:
+   type: string
+   length: 255
   delivery_date:
    type: string
    length: 255

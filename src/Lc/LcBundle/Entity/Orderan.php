@@ -414,4 +414,32 @@ class Orderan
     {
         return $this->address;
     }
+    /**
+     * @var string
+     */
+    private $delivery_name;
+
+
+    /**
+     * Set delivery_name
+     *
+     * @param string $deliveryName
+     * @return Orderan
+     */
+    public function setDeliveryName($deliveryName)
+    {
+        $this->delivery_name = $deliveryName;
+
+        return $this;
+    }
+
+    /**
+     * Get delivery_name
+     *
+     * @return string 
+     */
+    public function getDeliveryName()
+    {
+        return $this->delivery_name;
+    }
 }
