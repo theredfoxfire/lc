@@ -124,6 +124,10 @@
     {{ form_row(form._token) }}
     {{ form_end(form) }}
 <script>
+$('#btn-feel-new').on('click', function() {
+    $('.spinner-handler').css('display', 'block');
+    $('.btn').addClass('disabled');
+})
 function showBig(targetClass, panel) {
 		$('.'+targetClass).css('display', 'block');
 		$('.'+panel).css('display', 'none');
