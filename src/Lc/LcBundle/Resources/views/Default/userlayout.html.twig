@@ -48,6 +48,13 @@
           <ul class="nav navbar-nav">
             {% if app.user %}
               <li>
+                <div style="width: 13%;color: #019bd7;padding-top: 12px;">
+                  <div class="spinner-handler">
+                    <i class="fa fa-snowflake-o fa-spin fa-2x"></i>
+                  </div>
+                </div>
+              </li>
+              <li>
                 <a href="{{ path('feeling') }}" class="loader-action" data-toggle="tooltip" data-placement="top" title="Home">
                   <span class="fa fa-home fa-lg knowing"></span>
                 </a>
@@ -110,9 +117,11 @@
               </li>
             {% else %}
               <li>
-                <a href="#" style="color: #019bd7;text-decoration: none;">
-                  Yuk temukan Dia di sini!
-                </a>
+                <div style="width: 13%;color: #019bd7;padding-top: 12px;">
+                  <div class="spinner-handler">
+                    <i class="fa fa-snowflake-o fa-spin fa-2x"></i>
+                  </div>
+                </div>
               </li>
               <li>
                 <a href="{{ path('user_new') }}" style="color: #019bd7;text-decoration: none;" class="loader-action">
@@ -124,18 +133,11 @@
                   LOGIN
                 </a>
               </li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                  <span class="fa fa-bars fa-lg knowing"></span>
-                </a>
-                <ul class="dropdown-menu" role="menu">
-                  <li>
-                    <a href="{{ path('agreement') }}" class="loader-action">Privacy/Policy</a>
-                  </li>
-                  <li>
-                    <a class="loader-action" href="{{ path('agreement') }}#contact">Contact Us</a>
-                  </li>
-                </ul>
+              <li>
+                <a href="{{ path('agreement') }}" style="color: #019bd7;text-decoration: none;" class="loader-action">Privacy/Policy</a>
+              </li>
+              <li>
+                <a class="loader-action" style="color: #019bd7;text-decoration: none;" href="{{ path('agreement') }}#contact">Contact Us</a>
               </li>
             {% endif %}
           </ul>
