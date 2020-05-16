@@ -44,7 +44,7 @@ Lc\LcBundle\Entity\Feeling:
    - NotBlank:
       message: 'Tulis apa yang ingin kamu bagikan.'
    - Length:
-      max: 850
+      max: 8500
       maxMessage: 'Postingan mu melibihi batas maksimal jumlah karater, maksimal {{ limit }} karater.'
 Lc\LcBundle\Entity\Orderan:
  properties:
