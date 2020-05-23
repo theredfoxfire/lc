@@ -111,6 +111,9 @@ repair:
 forgot:
     pattern:   /forgot
     defaults:  { _controller: LcLcBundle:Default:forgot }
+redirectPlaystore:
+    pattern:   /redirectPlaystore
+    defaults:  { _controller: LcLcBundle:Default:redirectPlaystore }
 agreement:
     pattern:   /agreement
     defaults:  { _controller: LcLcBundle:Default:agreement }

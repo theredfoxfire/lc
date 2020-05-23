@@ -26,12 +26,12 @@ class ChatController extends Controller
         $paginator = $this->get('knp_paginator');
         $query = $em->getRepository('LcLcBundle:Chat')->loadChat($this->getUid(), $this->getUid()->getId());
         $pagination = $paginator->paginate(
-			$query,
-			$this->get('request')->query->get('page', 1),
-			25
-		);
-		$c = $em->getRepository('LcLcBundle:chat')->loadChatCount($this->getUid(), $this->getUid()->getId());
-        
+            $query,
+            $this->get('request')->query->get('page', 1),
+            25
+        );
+        $c = $em->getRepository('LcLcBundle:chat')->loadChatCount($this->getUid(), $this->getUid()->getId());
+
         $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
         $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
         $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
@@ -46,7 +46,7 @@ class ChatController extends Controller
             'notify' => $notify,
         ));
     }
-    
+
     public function unreadAction()
     {
         $em = $this->getDoctrine()->getManager();
@@ -54,12 +54,12 @@ class ChatController extends Controller
         $paginator = $this->get('knp_paginator');
         $query = $em->getRepository('LcLcBundle:Chat')->unreadChat($this->getUid(), $this->getUid()->getId());
         $pagination = $paginator->paginate(
-			$query,
-			$this->get('request')->query->get('page', 1),
-			25
-		);
-		$c = $em->getRepository('LcLcBundle:chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
-		
+            $query,
+            $this->get('request')->query->get('page', 1),
+            25
+        );
+        $c = $em->getRepository('LcLcBundle:chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
+
         $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
         $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
         $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
@@ -108,8 +108,10 @@ class ChatController extends Controller
     private function createCreateForm(Chat $entity, $token)
     {
         $form = $this->createForm(new ChatType(), $entity, array(
-            'action' => $this->generateUrl('chat_show', array(
-				'token' => $token,)
+            'action' => $this->generateUrl(
+                'chat_show',
+                array(
+                'token' => $token,)
             ),
             'method' => 'POST',
         ));
@@ -139,24 +141,24 @@ class ChatController extends Controller
     public function showAction(Request $request, $token)
     {
         $em = $this->getDoctrine()->getManager();
-        
+
         $chit = new Chat();
         $chot = new Chat();
         $form   = $this->createCreateForm($chot, $token);
 
         $friend = $em->getRepository('LcLcBundle:User')->findOneByToken($token);
-        $em->getRepository('LcLcBundle:Chat')->updateChat($this->getUid()->getId(),$friend->getId());
-        
-        $entities = $em->getRepository('LcLcBundle:Chat')->chat($this->getUid()->getId(),$friend->getId());
+        $em->getRepository('LcLcBundle:Chat')->updateChat($this->getUid()->getId(), $friend->getId());
+
+        $entities = $em->getRepository('LcLcBundle:Chat')->chat($this->getUid()->getId(), $friend->getId());
         $fall = $em->getRepository('LcLcBundle:Friend')->fallCount($this->getUid()->getId());
         $chat = $em->getRepository('LcLcBundle:Chat')->unreadChatCount($this->getUid(), $this->getUid()->getId());
         $notify = $em->getRepository('LcLcBundle:Notification')->notyCount($this->getUid());
-        
+
         $others = $em->getRepository('LcLcBundle:User')->loadOthers($this->getUid()->getSex(), $this->getUid()->getId());
-        
+
         $form->handleRequest($request);
         if ($form->isValid()) {
-			$formData = $request->get('lc_lcbundle_chat');
+            $formData = $request->get('lc_lcbundle_chat');
             $chot->setUser1($this->getUid());
             $chot->setUser2($friend);
             $chot->setIsRead(false);
@@ -164,7 +166,7 @@ class ChatController extends Controller
             $chot->setSenderId($this->getUid()->getId());
             $em->persist($chot);
             $em->flush();
-            
+
             $chit->setUser2($this->getUid());
             $chit->setUser1($friend);
             $chit->setMessage($formData['message']);
@@ -174,7 +176,7 @@ class ChatController extends Controller
             $em->persist($chit);
             $em->flush();
             return $this->redirect($this->generateUrl('chat_show', array('token'=>$token)));
-		}
+        }
 
         return $this->render('LcLcBundle:Chat:chatting.html.twig', array(
             'entities' => $entities,
@@ -265,10 +267,9 @@ class ChatController extends Controller
      */
     public function deleteAction($token)
     {
-
         $em = $this->getDoctrine()->getManager();
         $friend = $em->getRepository('LcLcBundle:User')->findOneByToken($token);
-        $entity = $em->getRepository('LcLcBundle:Chat')->deleteChat($this->getUid()->getId(),$friend->getId());
+        $entity = $em->getRepository('LcLcBundle:Chat')->deleteChat($this->getUid()->getId(), $friend->getId());
 
         if (!$friend) {
             throw $this->createNotFoundException('Unable to find Chat entity.');
@@ -293,14 +294,13 @@ class ChatController extends Controller
             ->getForm()
         ;
     }
-    
-    public function getUid(){
-		$usr= $this->get('security.context')->getToken()->getUser();
-		$uid = $usr->getId();
-		$em = $this->getDoctrine()->getManager();
-		$userId = $em->getRepository('LcLcBundle:User')->find($uid);
-		return $userId;
-		
-	}
-	
+
+    public function getUid()
+    {
+        $usr= $this->get('security.context')->getToken()->getUser();
+        $uid = $usr->getId();
+        $em = $this->getDoctrine()->getManager();
+        $userId = $em->getRepository('LcLcBundle:User')->find($uid);
+        return $userId;
+    }
 }
