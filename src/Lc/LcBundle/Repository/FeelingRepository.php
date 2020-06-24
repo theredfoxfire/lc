@@ -50,6 +50,25 @@ class FeelingRepository extends EntityRepository
 
         return $query;
     }
+    public function getUserFeelingSearch($key = null)
+    {
+        $query = $this->getEntityManager()
+            ->createQuery(
+                'SELECT f FROM
+			LcLcBundle:Feeling f
+			WHERE f.channel = :channel
+			AND f.is_active = :is
+			AND f.feel = :key
+			order by f.created_at DESC'
+            )
+            ->setParameters(array(
+                           'channel' => 'prd',
+                           'is' => 1,
+                           'key' => '%'.$key,
+                            ));
+
+        return $query;
+    }
 
     public function countUserFeelingPreview($uid = null)
     {
@@ -59,11 +78,31 @@ class FeelingRepository extends EntityRepository
 			LcLcBundle:Feeling f
 			WHERE f.channel = :channel
 			AND f.is_active = :is
+            AND f.user = :uid
 			order by f.created_at DESC'
             )
             ->setParameters(array(
                            'channel' => 'prd',
                            'is' => 1,
+                            ));
+
+        return count($query->getResult());
+    }
+    public function countUserFeelingSearch($key = null)
+    {
+        $query = $this->getEntityManager()
+            ->createQuery(
+                'SELECT f FROM
+			LcLcBundle:Feeling f
+			WHERE f.channel = :channel
+			AND f.is_active = :is
+            AND f.feel = :key
+			order by f.created_at DESC'
+            )
+            ->setParameters(array(
+                           'channel' => 'prd',
+                           'is' => 1,
+                           'key' => '%'.$key,
                             ));
 
         return count($query->getResult());
