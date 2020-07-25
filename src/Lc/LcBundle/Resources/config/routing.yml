@@ -112,7 +112,7 @@ forgot:
     pattern:   /forgot
     defaults:  { _controller: LcLcBundle:Default:forgot }
 redirectPlaystore:
-    pattern:   /redirectPlaystore
+    pattern:   /aku-mau-order
     defaults:  { _controller: LcLcBundle:Default:redirectPlaystore }
 agreement:
     pattern:   /agreement
