@@ -55,11 +55,14 @@
 									<div class="panel-footer panel-image panel-zoom{{ entity.token }}">
 											<center><img src="{{ asset('web/uploads/feels/feel_') }}{{ entity.foto }}" alt="{{ entity.user.profile.name }}" class="img-responsive img-full"></center>
 											<a href="#zoomin" onclick="showBig('zoom{{ entity.token }}', 'panel-zoom{{ entity.token }}')" style="text-align: center;"> Perbesar gambar</a>
+											<a class="a-act loader-action pull-right" href="{{ path('orderan_new', {'token': entity.token }) }}" data-toggle="tooltip" data-placement="left"><i class="glyphicon glyphicon-tag"></i> ORDER</a>
 									</div>
 									<div class="zoom{{ entity.token }}" style="display: none;">
 										<img src="{{ asset('web/uploads/feels/feel_') }}{{ entity.foto }}"  alt="{{ entity.user.profile.name }}" />
 										<a href="#zoomin" onclick="closeBig('zoom{{ entity.token }}', 'panel-zoom{{ entity.token }}')" style="text-align: center;"> Tutup Perbesar gambar</a>
+										<a class="a-act loader-action pull-right" href="{{ path('orderan_new', {'token': entity.token }) }}" data-toggle="tooltip" data-placement="left"><i class="glyphicon glyphicon-tag"></i> ORDER</a>
 									</div>
+
 								{% endif %}
 								<div class="panel-body apanel-body">
 									{% if entity.shared %}
@@ -151,10 +154,10 @@
 												</h5>
 											</div>
 											<div class="col-sm-8" style="display: flex; flex-direction: row; justify-content: flex-end;">
-												<h5 class="media-right pull-right">
+												<!-- <h5 class="media-right pull-right"> -->
 													<!-- <span class="counter-activity">{{ entity.fcomment|length > 0 ? entity.fcomment|length|number_format(0, ',', ' ') : '' }}</span> -->
-													<a class="a-act loader-action" href="{{ path('orderan_new', {'token': entity.token }) }}" data-toggle="tooltip" data-placement="left"><i class="glyphicon glyphicon-tag"></i> ORDER</a>
-												</h5>
+
+												<!-- </h5> -->
 												<!-- <h5 class="media-right pull-right">
 													<span class="counter-activity">{{ entity.fshare|length > 0 ? entity.fshare|length|number_format(0, ',', ' ') : '' }}</span>
 													<a class="a-act loader-action" href="{{ path('fshare_create', {'feel': entity.token, 'page': '2' }) }}?page={{ page }}" data-toggle="tooltip" data-placement="left" title="Re-Post"><i class="glyphicon glyphicon-retweet"></i></a>
