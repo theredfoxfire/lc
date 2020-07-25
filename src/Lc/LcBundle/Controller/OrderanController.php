@@ -50,6 +50,7 @@ class OrderanController extends Controller
             $phoneWa = substr_replace($entity->getPhoneWa(), "62", 0, 1);
             $apiToken = $this->container->getParameter('telegram_bot');
             $textMessage = "Hello mimin Pradiste, ada orderan baru melalui PradisteApp dari kak: ".$entity->getDeliveryName();
+            $textMessage .= "\n \nNomer WA:".$entity->getPhoneWa();
             $textMessage .= "\nKirimi dia chat WhatsApp dengan klik link ini https://api.whatsapp.com/send?phone=".$phoneWa.'&text=Hai%20kak%20'.$entity->getDeliveryName();
             $textMessage .= "\n \nDetail Pesanan:";
             $textMessage .= "\nProduct: ".strip_tags($feeling->getFeel());
