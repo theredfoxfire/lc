@@ -138,8 +138,9 @@
 										<a href="#">
 											<div class="media-body f-feel" style="margin-top: -20px;">
 												<h5 class="media-right">{{ entity.feel|raw }}</h5>
+
 												<a class="a-act loader-action pull-right" href="{{ path('orderan_new', {'token': entity.token }) }}" data-toggle="tooltip" data-placement="left"><i class="glyphicon glyphicon-tag"></i> ORDER</a>
-												<div class='pull-right created_at'><small class="text-muted"> <i class="glyphicon glyphicon-time"></i> <i>{{ entity.createdAt | date('d-m-Y H:i:s') }}</i></small></div>
+												<div class='created_at'><small class="text-muted"> <i class="glyphicon glyphicon-time"></i> <i>{{ entity.createdAt | date('d-m-Y H:i:s') }}</i></small></div>
 											</div>
 										</a>
 									</div>
