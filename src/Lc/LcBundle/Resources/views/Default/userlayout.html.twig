@@ -2,11 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Curhat-Q</title>
+    <title>Maztah</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="{{ asset('web/curhatq-ico.png') }}">
+    <link rel="shortcut icon" href="{{ asset('web/Maztah-ico.png') }}">
 
     <!--link rel="stylesheet/less" href="less/bootstrap.less" type="text/css" /-->
     <!--link rel="stylesheet/less" href="less/responsive.less" type="text/css" /-->
@@ -34,7 +34,7 @@
             <div>
               <a class="navbar-brand loader-action" href="{{ path('lc_lc_homepage') }}">
                 <span class="weight">
-                  curhatq
+                  Maztah
                 </span>
               </a>
             </div>
@@ -49,7 +49,7 @@
             <div>
               <a class="navbar-brand loader-action" href="{{ path('lc_lc_homepage') }}">
                 <span class="weight" style="color: #069;">
-                  Curhat-Q
+                  Maztah
                 </span>
               </a>
             </div>
@@ -58,13 +58,10 @@
                 <i class="fa fa-snowflake-o fa-spin fa-2x"></i>
               </div>
             </div>
-            <div style="width: 37%;padding-top: 16px;">
-              <a class="loader-action" style="color: #069;text-decoration: none;" href="{{ path('agreement') }}#contact">Contact Us | </a>
-              <a href="{{ path('agreement') }}" style="color: #069;text-decoration: none;" class="loader-action">Policy</a>
-            </div>
-          <!-- <ul class="nav navbar-nav">
+          <ul class="nav navbar-nav">
+
             {% if app.user %}
-              <li>
+          <!--    <li>
                 <a href="{{ path('feeling') }}" class="loader-action" data-toggle="tooltip" data-placement="top" title="Home">
                   <span class="fa fa-home fa-lg knowing"></span>
                 </a>
@@ -97,22 +94,22 @@
                 <a href="{{ path('user_others') }}" class="loader-action" data-toggle="tooltip" data-placement="top" title="Cari teman">
                   <span class="fa fa-search fa-lg knowing"></span>
                 </a>
-              </li>
+              </li> -->
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                   <span class="fa fa-bars fa-lg knowing"></span>
                 </a>
                 <ul class="dropdown-menu" role="menu">
                   <li>
-                    <a href="{{ path('profile_data') }}" class="loader-action">Lihat profilemu</a>
-                  </li> -->
-                  <!-- <li><a href="{{ path('profile') }}" class="loader-action">Account setting</a></li> -->
+                    <a href="{{ path('profile_data') }}" class="loader-action">Lihat pertanyaan mu</a>
+                  </li>
+                  <li><a href="{{ path('profile') }}" class="loader-action">Account setting</a></li>
                   <!-- <li>
                     <a href="{{ path('friend_show', {'token': app.user.token}) }}" class="loader-action">Temanmu&nbsp;</a>
                   </li>
                   <li>
                     <a href="{{ path('chat') }}" class="loader-action">Obrolan</a>
-                  </li>
+                  </li> -->
                   <li class="divider"></li>
                   <li>
                     <a href="{{ path('agreement') }}" class="loader-action">Privacy/Policy</a>
@@ -124,9 +121,9 @@
                     <a href="{{ path('logout') }}" class="loader-action">Logout</a>
                   </li>
                 </ul>
-              </li> -->
+               </li>
             {% else %}
-              <!-- <li>
+              <li>
                 <a href="{{ path('user_new') }}" style="color: #069;text-decoration: none;" class="loader-action">
                   DAFTAR
                 </a>
@@ -135,8 +132,8 @@
                 <a href="{{ path('login') }}" style="color: #069;text-decoration: none;" class="loader-action">
                   LOGIN
                 </a>
-              </li> -->
-              <!-- <li class="dropdown">
+              </li>
+              <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                   <span class="fa fa-bars fa-lg knowing"></span>
                 </a>
@@ -148,7 +145,7 @@
                     <a class="loader-action" href="{{ path('agreement') }}#contact">Contact Us</a>
                   </li>
                 </ul>
-              </li> -->
+              </li>
             {% endif %}
           </ul>
         </div>
@@ -176,7 +173,7 @@
       <div class="row">
         <div class="col-sm-10">
           <p class="text-muted">
-            <a href="http://curhatq.com/heaven">&copy;&nbsp;curhatq.com
+            <a href="http://Maztah.com/heaven">&copy;&nbsp;Maztah.com
               {{ "now"|date("Y") }}</a>
           </p>
         </div>

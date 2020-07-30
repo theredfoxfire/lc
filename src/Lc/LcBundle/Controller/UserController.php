@@ -143,14 +143,14 @@ class UserController extends Controller
             /*
               email section
             */
-            //~ $transport = \Swift_SmtpTransport::newInstance('curhatq.com',587,'tls')
-            //~ ->setUsername('registration@curhatq.com')->setPassword('13264656#vL');
+            //~ $transport = \Swift_SmtpTransport::newInstance('Maztah.com',587,'tls')
+            //~ ->setUsername('registration@Maztah.com')->setPassword('13264656#vL');
             //~
             //~ $mailer = \Swift_Mailer::newInstance($transport);
             //~
             //~ $message = \Swift_Message::newInstance()
             //~ ->setSubject('Aktivasi Akun CURHAT-Q')
-            //~ ->setFrom('registration@curhatq.com')
+            //~ ->setFrom('registration@Maztah.com')
             //~ ->setTo($entity->getEmail())
             //~ ->setBody(
             //~ $this->renderView('LcLcBundle:User:email.txt.twig', array('token' => $entity->getToken(), 'email' => $entity->getEmail())))

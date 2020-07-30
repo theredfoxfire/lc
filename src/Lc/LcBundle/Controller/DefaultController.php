@@ -129,14 +129,14 @@ class DefaultController extends Controller
             email section
             */
 
-            $transport = \Swift_SmtpTransport::newInstance('curhatq.com', 587, 'tls')
-            ->setUsername('registration@curhatq.com')->setPassword('13264656#vL');
+            $transport = \Swift_SmtpTransport::newInstance('Maztah.com', 587, 'tls')
+            ->setUsername('registration@Maztah.com')->setPassword('13264656#vL');
 
             $mailer = \Swift_Mailer::newInstance($transport);
 
             $message = \Swift_Message::newInstance()
                 ->setSubject('Reset Password Akun CURHAT-Q')
-                ->setFrom('member@curhatq.com')
+                ->setFrom('member@Maztah.com')
                 ->setTo($email)
                 ->setBody(
                     $this->renderView('LcLcBundle:User:forgot.txt.twig', array('token' => $entity->getToken(), 'name' => $entity->getProfile()->getName()))

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>curhatq - Temukan takdirmu disini!</title>
+    <title>Maztah - Temukan takdirmu disini!</title>
 
     <!-- Bootstrap Core CSS -->
     {% block stylesheets %}

@@ -67,7 +67,7 @@ class UserController extends Controller
 		*/
 			$message = \Swift_Message::newInstance()
                 ->setSubject('Aktivasi Akun CURHAT-Q')
-                ->setFrom('member@curhatq.com')
+                ->setFrom('member@Maztah.com')
                 ->setTo($entity->getEmail())
                 ->setBody(
                     $this->renderView('LcLcBundle:User:email.txt.twig', array('token' => $entity->getToken(), 'email' => $entity->getEmail())))
