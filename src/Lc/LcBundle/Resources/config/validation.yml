@@ -44,7 +44,7 @@ Lc\LcBundle\Entity\Feeling:
    - NotBlank:
       message: 'Tulis apa yang ingin kamu bagikan.'
    - Length:
-      max: 8500
+      max: 108500
       maxMessage: 'Postingan mu melibihi batas maksimal jumlah karater, maksimal {{ limit }} karater.'
 Lc\LcBundle\Entity\Orderan:
  properties:
@@ -67,11 +67,11 @@ Lc\LcBundle\Entity\Profile:
       maxMessage: 'Nama mu melibihi batas maksimal jumlah karater, maksimal {{ limit }} karater.'
   about:
    - Length:
-      max: 850
+      max: 10850
       maxMessage: 'Kolom tentang melibihi batas maksimal jumlah karater, maksimal {{ limit }} karater.'
   address:
    - Length:
-      max: 850
+      max: 10850
       maxMessage: 'Kolom alamat melibihi batas maksimal jumlah karater, maksimal {{ limit }} karater.'
   job:
    - Length:
@@ -95,5 +95,5 @@ Lc\LcBundle\Entity\Fcomment:
     - NotBlank:
        message: 'Tulis apa komentarmu.'
     - Length:
-       max: 850
+       max: 10850
        maxMessage: 'Postingan mu melibihi batas maksimal jumlah karater, maksimal {{ limit }} karater.'
